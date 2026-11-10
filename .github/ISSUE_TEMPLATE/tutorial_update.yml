@@ -1,0 +1,66 @@
+name: 📝 教程更新或报错反馈
+description: 提交现有翻墙工具教程的失效步骤、新版本特性或规则变更
+title: "[教程更新] <软件名称>: <简明摘要>"
+labels: ["tutorial-update", "triage-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你为翻墙工具图文教程知识库贡献内容！
+        请按照规范填写以下字段，维护者将基于你提供的信息核对并生成对应的 PR。
+  - type: dropdown
+    id: os_system
+    attributes:
+      label: 目标系统象限
+      description: 请选择待更新软件所属的系统象限
+      options:
+        - "苹果系统 - iOS (移动端)"
+        - "苹果系统 - macOS (桌面端)"
+        - "安卓系统 (Android)"
+        - "Windows系统"
+        - "Linux系统和其他"
+    validations:
+      required: true
+  - type: input
+    id: software_name
+    attributes:
+      label: 软件名称
+      description: 待更新的工具名称（如 Shadowrocket, Clash Verge Rev, v2rayNG 等）
+      placeholder: "如: Shadowrocket (小火箭)"
+    validations:
+      required: true
+  - type: input
+    id: update_path
+    attributes:
+      label: 独立更新路径 (Update Path)
+      description: 该软件对应的独立更新路径
+      placeholder: "如: data/tutorials/ios/shadowrocket.md"
+    validations:
+      required: true
+  - type: input
+    id: current_version
+    attributes:
+      label: 拟更新的目标版本号
+      placeholder: "如: v2.3.0"
+    validations:
+      required: true
+  - type: textarea
+    id: change_details
+    attributes:
+      label: 详细更新或报错说明
+      description: 请详细描述原教程中失效的步骤、新协议支持或新功能配置说明
+      placeholder: |
+        - 原教程中步骤 2 的订阅解析位置发生变化...
+        - 新版已全面支持 Hysteria 2 / TUIC v5 协议...
+        - 防 DNS 泄露选项已被迁移到独立高级菜单...
+    validations:
+      required: true
+  - type: checkboxes
+    id: compliance
+    attributes:
+      label: 规范确认
+      options:
+        - label: "我已核对该工具在对应系统象限内不超过 4 款代表性工具的上限"
+          required: true
+        - label: "我提供的教程步骤经过真实环境验证可用"
+          required: true

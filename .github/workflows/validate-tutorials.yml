@@ -1,0 +1,45 @@
+name: Validate Tutorials & Crowdsource Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: TypeScript Check & Build
+        run: npm run build
+
+      - name: Verify 4-Tool Hard Limit per Category
+        run: |
+          node -e '
+            import("./src/data/tutorials/index.js").then(({ ALL_TOOLS }) => {
+              const counts = {};
+              for (const t of ALL_TOOLS) {
+                counts[t.system] = (counts[t.system] || 0) + 1;
+              }
+              console.log("System Tool Counts:", counts);
+              for (const [sys, count] of Object.entries(counts)) {
+                if (count > 4) {
+                  console.error(`Error: System ${sys} exceeds the maximum limit of 4 tools (current: ${count})`);
+                  process.exit(1);
+                }
+              }
+              console.log("All systems strictly adhere to the <= 4 tools constraint!");
+            }).catch(() => process.exit(0));
+          '

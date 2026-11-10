@@ -1,0 +1,31 @@
+{
+  "name": "纸上谈兵 · 翻墙工具教程众包平台",
+  "short_name": "纸上谈兵",
+  "description": "翻墙工具客户端使用教程与众包知识库",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf7ed",
+  "theme_color": "#faf7ed",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

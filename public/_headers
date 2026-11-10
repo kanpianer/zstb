@@ -1,0 +1,29 @@
+# Persistent Caching Headers for Cloudflare Pages / Netlify
+
+# Vite hashed production assets: 1 year immutable cache
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Font files: 1 year immutable cache
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Static media / icons: 30 days cache
+/*.svg
+  Cache-Control: public, max-age=2592000
+
+/*.png
+  Cache-Control: public, max-age=2592000
+
+/*.ico
+  Cache-Control: public, max-age=2592000
+
+# Service worker must revalidate to pick up changes promptly
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate

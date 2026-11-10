@@ -1,0 +1,52 @@
+name: 💡 新软件收录提名 / 替换提议
+description: 提名收录一款优秀软件，或提议替换当前象限中已过时的软件（严格受限系统上限4款）
+title: "[软件收录提名] <软件名称> (<所属系统>)"
+labels: ["tool-nomination"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### ⚠️ 严格准入准则：
+        每一个系统象限**最多只可以有 4 个翻墙工具**。若当前象限已有 4 款工具，提名新工具时**必须说明建议替换哪一款**以及充分的理由。
+  - type: dropdown
+    id: target_system
+    attributes:
+      label: 目标系统象限
+      options:
+        - "苹果系统 - iOS"
+        - "苹果系统 - macOS"
+        - "安卓系统"
+        - "Windows系统"
+        - "Linux系统和其他"
+    validations:
+      required: true
+  - type: input
+    id: tool_name
+    attributes:
+      label: 拟提名的工具名称
+      placeholder: "如: FlClash"
+    validations:
+      required: true
+  - type: dropdown
+    id: open_source_status
+    attributes:
+      label: 是否开源
+      options:
+        - "是 - 完全开源 (附带 GPL/MIT/Apache 协议)"
+        - "否 - 商业闭源软件"
+    validations:
+      required: true
+  - type: input
+    id: release_date
+    attributes:
+      label: 工具首次发布时间
+      placeholder: "如: 2023-12-18"
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: 提名理由与代表性说明
+      description: 为何该工具应当被收录为该系统下的 Top 4 最常用工具？
+    validations:
+      required: true
