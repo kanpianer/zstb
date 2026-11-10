@@ -241,7 +241,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                   <PencilAppleLogo className="w-full h-full text-pencil-dark" />
                 </div>
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-serif font-black text-pencil-dark flex items-center gap-2 text-ultra-bold">
+                  <h2 className="text-xl md:text-2xl font-serif font-black text-pencil-dark flex items-center gap-2 text-ultra-bold">
                     <span>{QUADRANTS_CONFIG.apple.name}</span>
                   </h2>
                   <p className="text-xs text-pencil-light mt-0.5">
@@ -360,7 +360,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                   <PencilAndroidLogo className="w-full h-full text-pencil-dark" />
                 </div>
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-serif font-black text-pencil-dark flex items-center gap-2 text-ultra-bold">
+                  <h2 className="text-xl md:text-2xl font-serif font-black text-pencil-dark flex items-center gap-2 text-ultra-bold">
                     <span>{QUADRANTS_CONFIG.android.name}</span>
                   </h2>
                   <p className="text-xs text-pencil-light mt-0.5">
@@ -421,7 +421,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                   <PencilWindowsLogo className="w-full h-full text-pencil-dark" />
                 </div>
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-serif font-black text-pencil-dark flex items-center gap-2 text-ultra-bold">
+                  <h2 className="text-xl md:text-2xl font-serif font-black text-pencil-dark flex items-center gap-2 text-ultra-bold">
                     <span>{QUADRANTS_CONFIG.windows.name}</span>
                   </h2>
                   <p className="text-xs text-pencil-light mt-0.5">
@@ -482,7 +482,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                   <PencilLinuxLogo className="w-full h-full text-pencil-dark" />
                 </div>
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-serif font-black text-pencil-dark flex items-center gap-2 text-ultra-bold">
+                  <h2 className="text-xl md:text-2xl font-serif font-black text-pencil-dark flex items-center gap-2 text-ultra-bold">
                     <span>{QUADRANTS_CONFIG.linux.name}</span>
                   </h2>
                   <p className="text-xs text-pencil-light mt-0.5">

@@ -179,11 +179,11 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
         onClick={onNavigateHome}
         className="cursor-pointer group flex items-center gap-2.5 sm:gap-3 select-none min-w-0"
       >
-        <div className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center transform group-hover:-rotate-6 group-hover:scale-105 transition-all duration-300 shrink-0">
+        <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center transform group-hover:-rotate-6 group-hover:scale-105 transition-all duration-300 shrink-0">
           <PencilPaperLogo className="w-full h-full drop-shadow-sm" />
         </div>
         <div className="min-w-0 flex items-center">
-          <h1 className="font-serif font-black text-xl sm:text-2xl tracking-tight text-pencil-dark whitespace-nowrap text-ultra-bold">
+          <h1 className="font-serif font-black text-xl sm:text-2xl md:text-3xl tracking-tight text-pencil-dark whitespace-nowrap text-ultra-bold">
             紙上談兵
           </h1>
         </div>
@@ -192,7 +192,7 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
   };
 
   return (
-    <header className="relative h-[48px] shrink-0 mb-2 sm:mb-3 pb-2 flex items-center justify-between gap-2 sm:gap-4 select-none">
+    <header className="relative h-[48px] md:h-[52px] shrink-0 mb-2 sm:mb-3 pb-2 flex items-center justify-between gap-2 sm:gap-4 select-none">
       {/* Left side content */}
       <div
         className={`min-w-0 flex-1 flex items-center ${
