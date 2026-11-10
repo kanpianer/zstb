@@ -65,7 +65,7 @@ export const AppleQuadrantView: React.FC<AppleQuadrantViewProps> = ({
                 </p>
 
                 {/* Detailed Introduction: 移动端隐藏长介绍，桌面端保留三行内容 */}
-                <p className="text-[10px] text-pencil-light font-serif hidden lg:line-clamp-3 mt-1 leading-relaxed">
+                <p className="text-[10px] text-pencil-light font-sans hidden lg:line-clamp-3 mt-1 leading-relaxed">
                   {tool.description}
                 </p>
 
@@ -142,7 +142,7 @@ export const AppleQuadrantView: React.FC<AppleQuadrantViewProps> = ({
                 </p>
 
                 {/* Detailed Introduction: 移动端隐藏长介绍，桌面端保留三行内容 */}
-                <p className="text-[10px] text-pencil-light font-serif hidden lg:line-clamp-3 mt-1 leading-relaxed">
+                <p className="text-[10px] text-pencil-light font-sans hidden lg:line-clamp-3 mt-1 leading-relaxed">
                   {tool.description}
                 </p>
 

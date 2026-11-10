@@ -40,8 +40,8 @@ export const CrowdsourceModal: React.FC<CrowdsourceModalProps> = ({
 
   if (!isOpen) return null;
 
-  const repoOwner = 'crowdsource-network';
-  const repoName = 'proxy-tutorials-a4';
+  const repoOwner = 'kanpianer';
+  const repoName = 'zstb';
 
   // Generate standardized markdown template
   const generateMarkdownTemplate = () => {

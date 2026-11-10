@@ -201,7 +201,7 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
               使用教程
             </h2>
           </div>
-          <p className="text-xs text-pencil-light font-sketch mt-1">
+          <p className="text-xs text-pencil-light font-sans mt-1">
             {tool.tutorial.overview}
           </p>
         </div>
@@ -262,7 +262,7 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
 
               {/* Tip */}
               {step.pencilTip && (
-                <div className="mt-3 p-2.5 bg-paper-200/70 border-l-4 border-pencil-gold rounded-r text-xs text-pencil-dark font-sketch flex items-start gap-2">
+                <div className="mt-3 p-2.5 bg-paper-200/70 border-l-4 border-pencil-gold rounded-r text-xs text-pencil-dark font-sans flex items-start gap-2">
                   <span className="font-bold text-pencil-gold">提示:</span>
                   <span>{step.pencilTip}</span>
                 </div>

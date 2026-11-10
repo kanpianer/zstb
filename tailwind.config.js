@@ -28,11 +28,11 @@ export default {
         }
       },
       fontFamily: {
-        title: ['"jiangxizhuokai"', '"江西拙楷"', '"JiangXiZhuoKai"', '"LXGW WenKai"', 'cursive', 'serif'],
-        serif: ['"jiangxizhuokai"', '"江西拙楷"', '"JiangXiZhuoKai"', '"LXGW WenKai"', 'serif'],
+        title: ['"LXGW WenKai Mono TC"', '"LXGW WenKai"', 'cursive', 'serif'],
+        serif: ['"LXGW WenKai Mono TC"', '"LXGW WenKai"', 'serif'],
         sans: ['"LXGW WenKai"', '"霞鹜文楷"', '"LXGWWenKai"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         body: ['"LXGW WenKai"', '"霞鹜文楷"', '"LXGWWenKai"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
-        sketch: ['"Architects Daughter"', '"LXGW WenKai"', '"Klee One"', 'cursive', 'sans-serif'],
+        sketch: ['"LXGW WenKai"', '"霞鹜文楷"', '"LXGWWenKai"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         mono: ['"JetBrains Mono"', '"Fira Code"', '"LXGW WenKai Mono"', 'monospace']
       },
       boxShadow: {

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 
 interface PencilFooterProps {
-  onOpenCrowdsource: () => void;
+  onOpenCrowdsource?: () => void;
   onScrollToTop?: () => void;
   scrollProgress?: number;
 }
@@ -86,14 +86,17 @@ export const PencilFooter: React.FC<PencilFooterProps> = ({
     <footer className="h-[36px] shrink-0 mt-2 sm:mt-3 pt-2 text-xs text-pencil-light select-none">
       <div className="flex items-center justify-between gap-3 text-[11px] font-mono text-pencil-faint h-full">
         <div className="flex items-center gap-2 truncate">
-          <span className="truncate">© 2026 纸上谈兵 · 翻墙工具教程知识库</span>
+          <span className="truncate">© 2026 纸上谈兵 · 主流翻墙工具教程</span>
           <span className="hidden sm:inline">·</span>
-          <button
-            onClick={onOpenCrowdsource}
+          <a
+            href="https://github.com/kanpianer/zstb"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hover:underline text-pencil-dark font-semibold shrink-0 hidden sm:inline"
+            title="查看本项目 GitHub 仓库"
           >
-            参与贡献 (GitHub)
-          </button>
+            Github
+          </a>
         </div>
 
         <button

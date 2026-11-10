@@ -11,6 +11,8 @@ export interface PencilHeaderProps {
   onNavigateHome: () => void;
   onBack?: () => void;
   onOpenCrowdsourceModal: () => void;
+  /** 上一页是否是主页（即返回按钮可直接回到主页）。为 true 时隐藏多余的「主页」按钮。 */
+  prevIsHome?: boolean;
 }
 
 export const PencilHeader: React.FC<PencilHeaderProps> = ({
@@ -20,6 +22,7 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
   onNavigateHome,
   onBack = () => {},
   onOpenCrowdsourceModal,
+  prevIsHome = false,
 }) => {
   const isHome = !currentCategory && !currentSubSystem && !currentTool;
 
@@ -64,17 +67,19 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
       return (
         <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
           <div className="inline-grid grid-flow-col auto-cols-fr gap-1.5 sm:gap-2.5 shrink-0">
-            <button
-              onClick={onNavigateHome}
-              className="pencil-btn-secondary text-xs py-1.5 flex items-center justify-center gap-1 shrink-0 w-full !px-0 sm:!px-5 whitespace-nowrap"
-              title="返回主页四象限"
-            >
-              <span>主页</span>
-            </button>
+            {!prevIsHome && (
+              <button
+                onClick={onNavigateHome}
+                className="pencil-btn-secondary text-xs py-1.5 flex items-center justify-center gap-1 shrink-0 w-full !px-0 sm:!px-5 whitespace-nowrap"
+                title="返回主页四象限"
+              >
+                <span>主页</span>
+              </button>
+            )}
             <button
               onClick={onBack}
               className="pencil-btn text-xs py-1.5 px-2 sm:px-3 flex items-center justify-center gap-1 sm:gap-1.5 shrink-0 w-[58px] sm:w-auto !px-0 sm:!px-5 whitespace-nowrap"
-              title="返回客户端列表"
+              title="返回上一个页面"
             >
               <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
               <span>返回</span>
@@ -91,17 +96,19 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
         <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
           {currentCategory === 'apple' ? (
             <div className="inline-grid grid-flow-col auto-cols-fr gap-1.5 sm:gap-2.5 shrink-0">
-              <button
-                onClick={onNavigateHome}
-                className="pencil-btn-secondary text-xs py-1.5 flex items-center justify-center gap-1 shrink-0 w-full !px-0 sm:!px-5 whitespace-nowrap"
-                title="返回主页四象限"
-              >
-                <span>主页</span>
-              </button>
+              {!prevIsHome && (
+                <button
+                  onClick={onNavigateHome}
+                  className="pencil-btn-secondary text-xs py-1.5 flex items-center justify-center gap-1 shrink-0 w-full !px-0 sm:!px-5 whitespace-nowrap"
+                  title="返回主页四象限"
+                >
+                  <span>主页</span>
+                </button>
+              )}
               <button
                 onClick={onBack}
                 className="pencil-btn text-xs py-1.5 px-2 sm:px-3 flex items-center justify-center gap-1 sm:gap-1.5 shrink-0 w-[58px] sm:w-auto !px-0 sm:!px-5 whitespace-nowrap"
-                title="返回上一级"
+                title="返回上一个页面"
               >
                 <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
                 <span>返回</span>
@@ -111,13 +118,13 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
             <button
               onClick={onBack}
               className="pencil-btn text-xs py-1.5 px-2 sm:px-3 flex items-center justify-center gap-1 sm:gap-1.5 shrink-0 w-[58px] sm:w-auto !px-0 sm:!px-5 whitespace-nowrap"
-              title="返回上一级"
+              title="返回上一个页面"
             >
               <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
               <span>返回</span>
             </button>
           )}
-          <div className="flex items-center gap-1 sm:gap-2 min-w-0 ml-0 sm:ml-1">
+          <div className="flex items-center gap-1 sm:gap-2 min-w-0 ml-1 sm:ml-2">
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg border-2 border-pencil bg-paper-50 flex items-center justify-center p-1 sm:p-1.5 shadow-pencil shrink-0">
               <PencilSystemLogo system={currentCategory!} className="w-full h-full text-pencil-dark" />
             </div>
@@ -127,7 +134,7 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
                 <span className="sm:hidden">{sysInfo.shortTitle}</span>
               </h2>
               {sysInfo.desc && (
-                <p className="text-[11px] text-pencil-light font-sketch hidden lg:block truncate max-w-[220px] xl:max-w-[340px]">
+                <p className="text-[11px] text-pencil-light font-sans hidden lg:block truncate max-w-[220px] xl:max-w-[340px]">
                   {sysInfo.desc}
                 </p>
               )}
@@ -142,9 +149,9 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
       return (
         <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           <button
-            onClick={onNavigateHome}
+            onClick={onBack}
             className="pencil-btn text-xs py-1.5 px-2 sm:px-3 flex items-center justify-center gap-1 sm:gap-1.5 shrink-0 w-[58px] sm:w-auto !px-0 sm:!px-5 whitespace-nowrap"
-            title="返回主页四象限"
+            title="返回上一个页面"
           >
             <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
             <span>返回</span>
@@ -157,7 +164,7 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
               <h2 className="text-lg sm:text-xl font-serif font-black text-pencil-dark whitespace-nowrap">
                 苹果系统
               </h2>
-              <p className="text-[11px] text-pencil-light font-sketch hidden md:block truncate max-w-[220px]">
+              <p className="text-[11px] text-pencil-light font-sans hidden md:block truncate max-w-[220px]">
                 iOS 移动端与 macOS 桌面端
               </p>
             </div>
@@ -176,8 +183,8 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
           <PencilPaperLogo className="w-full h-full drop-shadow-sm" />
         </div>
         <div className="min-w-0 flex items-center">
-          <h1 className="font-serif font-black text-xl sm:text-2xl tracking-tight text-pencil-dark whitespace-nowrap">
-            纸上谈兵
+          <h1 className="font-serif font-black text-xl sm:text-2xl tracking-tight text-pencil-dark whitespace-nowrap text-ultra-bold">
+            紙上談兵
           </h1>
         </div>
       </div>
@@ -205,7 +212,7 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
         className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center select-none cursor-pointer group ${
           isHome || currentTool ? 'flex' : 'hidden md:flex'
         } items-center justify-center`}
-        title="纸上谈兵 · 翻墙教程"
+        title="紙上談兵 · 翻墙教程"
       >
         <span className="font-serif font-bold text-sm sm:text-base md:text-lg tracking-widest text-pencil-dark group-hover:text-pencil transition-colors whitespace-nowrap">
           翻墙教程

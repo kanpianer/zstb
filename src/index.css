@@ -36,9 +36,9 @@
     background-position: 0 0, 0 0, 0 0;
   }
 
-  /* All titles and headings across entire site strictly use 江西拙楷 (Jiangxi Zhuokai) */
+  /* All titles and headings across entire site use LXGW WenKai Mono TC */
   h1, h2, h3, h4, h5, h6, .font-title, .title-font, .font-serif {
-    font-family: 'jiangxizhuokai', '江西拙楷', 'JiangXiZhuoKai', 'LXGW WenKai', '霞鹜文楷', cursive, serif !important;
+    font-family: 'LXGW WenKai Mono TC', 'LXGW WenKai', '霞鹜文楷', cursive, serif !important;
     letter-spacing: 0.015em;
   }
 
@@ -48,12 +48,24 @@
   }
 
   .font-sketch {
-    font-family: 'Architects Daughter', 'LXGW WenKai', '霞鹜文楷', cursive, sans-serif;
+    font-family: 'LXGW WenKai', '霞鹜文楷', 'LXGWWenKai', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   }
 
   input, textarea, select, button {
     font-family: inherit;
   }
+}
+
+/* Ultra-bold text effect: simulates heavier font weight beyond the font's max (700)
+   via stroke thickening + layered text-shadow for a genuinely heavier visual density */
+.text-ultra-bold {
+  -webkit-text-stroke: 0.45px currentColor;
+  text-shadow:
+    0.3px 0   0 currentColor,
+   -0.3px 0   0 currentColor,
+    0  0.3px  0 currentColor,
+    0 -0.3px  0 currentColor;
+  paint-order: stroke fill;
 }
 
 /* Pencil Sketch Utilities */

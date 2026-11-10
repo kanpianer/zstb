@@ -290,7 +290,7 @@ export const PencilQuadrantCross: React.FC<PencilQuadrantCrossProps> = ({ classN
   return (
     <div
       ref={containerRef}
-      className={`hidden md:block absolute inset-0 pointer-events-none z-10 overflow-hidden ${className}`}
+      className={`absolute inset-0 pointer-events-none z-10 overflow-hidden ${className ? className : 'hidden md:block'}`}
     >
       <canvas
         ref={canvasRef}

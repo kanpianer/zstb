@@ -9,43 +9,106 @@ import { SystemListView } from './components/SystemListView';
 import { TutorialDetailView } from './components/TutorialDetailView';
 import { CrowdsourceModal } from './components/CrowdsourceModal';
 
+export interface NavigationState {
+  category: SystemCategory | null;
+  subSystem: SubSystemCategory | null;
+  toolId: string | null;
+}
+
+const parseNavigationStateFromUrl = (): NavigationState => {
+  if (typeof window === 'undefined') {
+    return { category: null, subSystem: null, toolId: null };
+  }
+  const params = new URLSearchParams(window.location.search);
+  const toolId = params.get('tool');
+  if (toolId) {
+    const t = getToolById(toolId);
+    if (t) return { category: t.category, subSystem: t.system, toolId };
+  }
+  const sub = params.get('sub');
+  if (sub === 'ios' || sub === 'macos') {
+    return { category: 'apple', subSystem: sub as SubSystemCategory, toolId: null };
+  }
+  if (sub === 'android' || sub === 'windows' || sub === 'linux') {
+    return { category: sub as SystemCategory, subSystem: sub as SubSystemCategory, toolId: null };
+  }
+  const cat = params.get('cat');
+  if (cat === 'apple' || cat === 'android' || cat === 'windows' || cat === 'linux') {
+    return {
+      category: cat,
+      subSystem: cat === 'apple' ? null : (cat as SubSystemCategory),
+      toolId: null,
+    };
+  }
+  return { category: null, subSystem: null, toolId: null };
+};
+
+const getSearchStringFromState = (state: NavigationState): string => {
+  const params = new URLSearchParams();
+  if (state.toolId) {
+    params.set('tool', state.toolId);
+  } else if (state.subSystem) {
+    params.set('sub', state.subSystem);
+  } else if (state.category) {
+    params.set('cat', state.category);
+  }
+  return params.toString() ? `?${params.toString()}` : window.location.pathname;
+};
+
+const areStatesEqual = (a: NavigationState, b: NavigationState): boolean => {
+  return a.category === b.category && a.subSystem === b.subSystem && a.toolId === b.toolId;
+};
+
 export const App: React.FC = () => {
-  const [currentCategory, setCurrentCategory] = useState<SystemCategory | null>(() => {
-    if (typeof window === 'undefined') return null;
-    const params = new URLSearchParams(window.location.search);
-    const toolId = params.get('tool');
-    if (toolId) {
-      const t = getToolById(toolId);
-      if (t) return t.category;
-    }
-    const cat = params.get('cat');
-    if (cat === 'apple' || cat === 'android' || cat === 'windows' || cat === 'linux') return cat;
-    const sub = params.get('sub');
-    if (sub === 'ios' || sub === 'macos') return 'apple';
-    if (sub === 'android' || sub === 'windows' || sub === 'linux') return sub as SystemCategory;
-    return null;
-  });
+  const [navState, setNavState] = useState<NavigationState>(parseNavigationStateFromUrl);
+  const { category: currentCategory, subSystem: currentSubSystem, toolId: currentToolId } = navState;
 
-  const [currentSubSystem, setCurrentSubSystem] = useState<SubSystemCategory | null>(() => {
-    if (typeof window === 'undefined') return null;
-    const params = new URLSearchParams(window.location.search);
-    const toolId = params.get('tool');
-    if (toolId) {
-      const t = getToolById(toolId);
-      if (t) return t.system;
-    }
-    const sub = params.get('sub');
-    if (sub === 'ios' || sub === 'macos' || sub === 'android' || sub === 'windows' || sub === 'linux') {
-      return sub as SubSystemCategory;
-    }
-    return null;
-  });
+  // History stack records visited pages in this session to support returning to previous page
+  const historyStackRef = useRef<NavigationState[]>([]);
+  const historyIndexRef = useRef<number>(0);
+  const isInternalNavRef = useRef<boolean>(false);
+  const navStateRef = useRef<NavigationState>(navState);
 
-  const [currentToolId, setCurrentToolId] = useState<string | null>(() => {
-    if (typeof window === 'undefined') return null;
-    const params = new URLSearchParams(window.location.search);
-    return params.get('tool');
-  });
+  useEffect(() => {
+    navStateRef.current = navState;
+  }, [navState]);
+
+  // Synchronize browser history and popstate events
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Initialize root history entry
+    const initialSearch = getSearchStringFromState(navState);
+    window.history.replaceState({ idx: 0 }, '', initialSearch);
+
+    const handlePopState = (e: PopStateEvent) => {
+      if (isInternalNavRef.current) {
+        isInternalNavRef.current = false;
+        return;
+      }
+
+      const prevIdx = historyIndexRef.current;
+      const newIdx = (e.state && typeof e.state.idx === 'number') ? e.state.idx : prevIdx - 1;
+      historyIndexRef.current = newIdx;
+
+      const newState = parseNavigationStateFromUrl();
+      if (newIdx < prevIdx) {
+        // Navigated backward
+        if (historyStackRef.current.length > 0) {
+          historyStackRef.current.pop();
+        }
+      } else {
+        // Navigated forward
+        historyStackRef.current.push(navStateRef.current);
+      }
+      setNavState(newState);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
 
   // Crowdsource modal state
   const [isCrowdsourceModalOpen, setIsCrowdsourceModalOpen] = useState<boolean>(false);
@@ -55,21 +118,6 @@ export const App: React.FC = () => {
   // Ref for the scrollable main container inside the frame
   const mainContentRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
-
-  // Sync URL query params with current view state
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const params = new URLSearchParams();
-    if (currentToolId) {
-      params.set('tool', currentToolId);
-    } else if (currentSubSystem) {
-      params.set('sub', currentSubSystem);
-    } else if (currentCategory) {
-      params.set('cat', currentCategory);
-    }
-    const searchStr = params.toString() ? `?${params.toString()}` : window.location.pathname;
-    window.history.replaceState(null, '', searchStr);
-  }, [currentCategory, currentSubSystem, currentToolId]);
 
   // Scroll inner main container to top on navigation change and reset progress
   useEffect(() => {
@@ -138,53 +186,58 @@ export const App: React.FC = () => {
     }
   };
 
-  // Navigation handlers
-  const handleNavigateHome = () => {
-    setCurrentCategory(null);
-    setCurrentSubSystem(null);
-    setCurrentToolId(null);
+  // Forward navigation: pushes to session history stack and browser history
+  const navigateTo = (nextState: NavigationState) => {
+    if (areStatesEqual(navState, nextState)) return;
+    historyStackRef.current.push(navState);
+    historyIndexRef.current += 1;
+    setNavState(nextState);
+    if (typeof window !== 'undefined' && window.history) {
+      const searchStr = getSearchStringFromState(nextState);
+      window.history.pushState({ idx: historyIndexRef.current }, '', searchStr);
+    }
   };
 
+  // 返回按钮：返回到进入当前页面之前的上一个页面，而不是返回到上一级
   const handleBack = () => {
-    if (currentToolId) {
-      setCurrentToolId(null);
-    } else if (currentSubSystem) {
-      if (currentCategory === 'apple') {
-        setCurrentSubSystem(null); // Back to Apple Upper/Lower sub-quadrants
-      } else {
-        handleNavigateHome(); // Back to 4 quadrants home
+    if (historyStackRef.current.length > 0) {
+      const prevState = historyStackRef.current.pop()!;
+      isInternalNavRef.current = true;
+      historyIndexRef.current = Math.max(0, historyIndexRef.current - 1);
+      setNavState(prevState);
+      if (typeof window !== 'undefined' && window.history) {
+        window.history.back();
+        setTimeout(() => {
+          isInternalNavRef.current = false;
+        }, 150);
       }
-    } else if (currentCategory) {
+    } else {
+      // 容错兜底：若直接从外链或刷新进入当前页面（无先前历史），返回主页
       handleNavigateHome();
     }
   };
 
+  const handleNavigateHome = () => {
+    navigateTo({ category: null, subSystem: null, toolId: null });
+  };
+
   const handleSelectCategory = (cat: SystemCategory) => {
-    setCurrentCategory(cat);
-    setCurrentToolId(null);
     if (cat === 'apple') {
-      setCurrentSubSystem(null); // Show the Apple upper/lower sub-quadrants
+      navigateTo({ category: 'apple', subSystem: null, toolId: null });
     } else {
-      setCurrentSubSystem(cat as SubSystemCategory);
+      navigateTo({ category: cat, subSystem: cat as SubSystemCategory, toolId: null });
     }
   };
 
   const handleSelectSubSystem = (sub: SubSystemCategory) => {
-    if (sub === 'ios' || sub === 'macos') {
-      setCurrentCategory('apple');
-    } else {
-      setCurrentCategory(sub as SystemCategory);
-    }
-    setCurrentSubSystem(sub);
-    setCurrentToolId(null);
+    const cat = (sub === 'ios' || sub === 'macos') ? 'apple' : (sub as SystemCategory);
+    navigateTo({ category: cat, subSystem: sub, toolId: null });
   };
 
   const handleSelectTool = (toolId: string) => {
     const tool = getToolById(toolId);
     if (tool) {
-      setCurrentCategory(tool.category);
-      setCurrentSubSystem(tool.system);
-      setCurrentToolId(toolId);
+      navigateTo({ category: tool.category, subSystem: tool.system, toolId });
     }
   };
 
@@ -195,6 +248,12 @@ export const App: React.FC = () => {
   };
 
   const currentTool = currentToolId ? getToolById(currentToolId) : null;
+
+  // 判断上一页是否为主页：若历史栈末项的 category 为 null，则返回按钮会回到主页，无需额外显示「主页」按钮
+  const prevIsHome =
+    historyStackRef.current.length > 0
+      ? historyStackRef.current[historyStackRef.current.length - 1].category === null
+      : false;
 
   return (
     <div className="h-full h-screen h-[100dvh] w-full overflow-hidden flex flex-col justify-center items-center p-2 sm:p-4 md:p-6 box-border select-auto">
@@ -216,6 +275,7 @@ export const App: React.FC = () => {
           onNavigateHome={handleNavigateHome}
           onBack={handleBack}
           onOpenCrowdsourceModal={() => handleOpenCrowdsource(null, 'guide')}
+          prevIsHome={prevIsHome}
         />
 
         {/* Dynamic Main Body Content: scrollable inside the frame, hidden scrollbar */}
@@ -225,7 +285,7 @@ export const App: React.FC = () => {
         >
           {/* VIEW 1: Four Quadrants Home Page */}
           {!currentCategory && (
-            <div className="w-full md:my-auto">
+            <div className="w-full my-auto">
               <QuadrantHome
                 onSelectCategory={handleSelectCategory}
                 onSelectSubSystem={handleSelectSubSystem}
