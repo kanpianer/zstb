@@ -30,6 +30,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
           - 2x2 真实四象限工程手绘布局与十字分割线
           - 苹果象限包含 iOS 和 macOS 按钮，上下方与安卓象限4个按钮严格对齐
           - 按钮内清晰标明支持的设备 (如 支持 iPhone / iPad, 支持 Mac / MacBook)
+          - 按钮中间空白区域展示该系统下对应收录软件的手绘 Logo 图标（仅显示 Logo，不显示名称）
           - 其他象限仅显示系统图标与名称、软件图标与名称，不显示其他多余内容
          ========================================================================= */}
       <div className="md:hidden relative w-full h-[470px] sm:h-[510px] flex flex-col justify-center select-none">
@@ -53,7 +54,10 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
             <div className="flex-1 grid grid-rows-2 gap-2 mt-2 sm:mt-2.5">
               <button
                 type="button"
-                onClick={() => onSelectSubSystem('ios')}
+                onClick={(e) => {
+                  e.currentTarget.blur();
+                  onSelectSubSystem('ios');
+                }}
                 className="w-full h-full bg-paper-50/95 hover:bg-pencil hover:text-paper-50 border border-pencil/35 hover:border-pencil px-3 py-2 sm:py-2.5 rounded-xl text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex flex-col justify-between group/ios text-left"
                 title="点击进入 iOS 软件简介页面"
               >
@@ -70,6 +74,23 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                     简介 ➔
                   </span>
                 </div>
+
+                {/* 软件 Logo 图标列表：直接展示 Logo，无外边框，不显示名称 */}
+                <div className="flex items-center gap-2 sm:gap-2.5 my-auto py-0.5">
+                  {getToolsBySubSystem('ios').map((tool) => (
+                    <span
+                      key={tool.id}
+                      title={tool.name}
+                      className="shrink-0 flex items-center justify-center"
+                    >
+                      <PencilSoftwareLogo
+                        toolId={tool.id}
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-pencil-dark group-hover/ios:text-paper-50 transition-colors"
+                      />
+                    </span>
+                  ))}
+                </div>
+
                 <div className="text-[10px] sm:text-[11px] font-sans text-pencil-light group-hover/ios:text-paper-100/80 truncate">
                   支持 iPhone / iPad
                 </div>
@@ -77,7 +98,10 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
 
               <button
                 type="button"
-                onClick={() => onSelectSubSystem('macos')}
+                onClick={(e) => {
+                  e.currentTarget.blur();
+                  onSelectSubSystem('macos');
+                }}
                 className="w-full h-full bg-paper-50/95 hover:bg-pencil hover:text-paper-50 border border-pencil/35 hover:border-pencil px-3 py-2 sm:py-2.5 rounded-xl text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex flex-col justify-between group/mac text-left"
                 title="点击进入 macOS 软件简介页面"
               >
@@ -94,6 +118,23 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                     简介 ➔
                   </span>
                 </div>
+
+                {/* 软件 Logo 图标列表：直接展示 Logo，无外边框，不显示名称 */}
+                <div className="flex items-center gap-2 sm:gap-2.5 my-auto py-0.5">
+                  {getToolsBySubSystem('macos').map((tool) => (
+                    <span
+                      key={tool.id}
+                      title={tool.name}
+                      className="shrink-0 flex items-center justify-center"
+                    >
+                      <PencilSoftwareLogo
+                        toolId={tool.id}
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-pencil-dark group-hover/mac:text-paper-50 transition-colors"
+                      />
+                    </span>
+                  ))}
+                </div>
+
                 <div className="text-[10px] sm:text-[11px] font-sans text-pencil-light group-hover/mac:text-paper-100/80 truncate">
                   支持 Mac / MacBook
                 </div>
@@ -124,6 +165,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
+                    e.currentTarget.blur();
                     onSelectTool(tool.id);
                   }}
                   className="w-full h-full bg-paper-50/90 hover:bg-pencil hover:text-paper-50 border border-pencil/25 hover:border-pencil px-2.5 py-1 sm:py-1.5 rounded-lg text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex items-center gap-2 min-w-0 group/tool text-left"
@@ -161,6 +203,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
+                    e.currentTarget.blur();
                     onSelectTool(tool.id);
                   }}
                   className="w-full h-full bg-paper-50/90 hover:bg-pencil hover:text-paper-50 border border-pencil/25 hover:border-pencil px-2.5 py-1 sm:py-1.5 rounded-lg text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex items-center gap-2 min-w-0 group/tool text-left"
@@ -198,6 +241,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
+                    e.currentTarget.blur();
                     onSelectTool(tool.id);
                   }}
                   className="w-full h-full bg-paper-50/90 hover:bg-pencil hover:text-paper-50 border border-pencil/25 hover:border-pencil px-2.5 py-1 sm:py-1.5 rounded-lg text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex items-center gap-2 min-w-0 group/tool text-left"
