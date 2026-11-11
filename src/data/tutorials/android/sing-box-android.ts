@@ -2,8 +2,8 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const singBoxAndroid: SoftwareTool = {
   id: 'sing-box-android',
-  name: 'Sing-box for Android (SFA)',
-  shortName: 'Sing-box Android',
+  name: 'Sing-box',
+  shortName: 'Sing-box',
   system: 'android',
   category: 'android',
   tagline: '官方纯血通用代理平台、极致功耗控制与纯粹性能',

@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const flclash: SoftwareTool = {
   id: 'flclash',
-  name: 'FlClash (Android)',
+  name: 'FlClash',
   shortName: 'FlClash',
   system: 'android',
   category: 'android',

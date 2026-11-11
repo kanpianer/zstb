@@ -1,6 +1,6 @@
 ---
 id: "nekoray"
-name: "NekoRay / Matsuri (Windows)"
+name: "NekoRay"
 system: "windows"
 category: "windows"
 tagline: "基于 Qt 与 sing-box 核心构建的高性能极客桌面代理客户端"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# NekoRay / Matsuri (Windows) 众包图文教程
+# NekoRay 众包图文教程
 
 > **独立更新路径**: `data/tutorials/windows/nekoray.md`  
 > **更新时间**: 2026-03-12 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2022-06-08

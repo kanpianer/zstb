@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const clashIos: SoftwareTool = {
   id: 'clash-ios',
-  name: 'Clash (iOS)',
+  name: 'Clash',
   shortName: 'Clash',
   system: 'ios',
   category: 'apple',

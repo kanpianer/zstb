@@ -1,6 +1,6 @@
 ---
 id: "clash-verge-rev-mac"
-name: "Clash Verge Rev (macOS)"
+name: "Clash Verge Rev"
 system: "macos"
 category: "apple"
 tagline: "基于 Tauri 构建的现代化 Mihomo 内核跨平台旗舰客户端"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# Clash Verge Rev (macOS) 众包图文教程
+# Clash Verge Rev 众包图文教程
 
 > **独立更新路径**: `data/tutorials/macos/clash-verge-rev-mac.md`  
 > **更新时间**: 2026-03-22 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2023-11-05

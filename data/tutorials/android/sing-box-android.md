@@ -1,6 +1,6 @@
 ---
 id: "sing-box-android"
-name: "Sing-box for Android (SFA)"
+name: "Sing-box"
 system: "android"
 category: "android"
 tagline: "官方纯血通用代理平台、极致功耗控制与纯粹性能"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# Sing-box for Android (SFA) 众包图文教程
+# Sing-box 众包图文教程
 
 > **独立更新路径**: `data/tutorials/android/sing-box-android.md`  
 > **更新时间**: 2026-03-26 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2022-08-10

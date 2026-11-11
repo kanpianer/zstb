@@ -1,6 +1,6 @@
 ---
 id: "clash-party-win"
-name: "Clash Party (Windows)"
+name: "Clash Party"
 system: "windows"
 category: "windows"
 tagline: "Windows 上极具美感、操作直观的次世代代理客户端（原 Mihomo Party）"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# Clash Party (Windows) 众包图文教程
+# Clash Party 众包图文教程
 
 > **独立更新路径**: `data/tutorials/windows/clash-party-win.md`  
 > **更新时间**: 2026-03-28 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2024-01-10

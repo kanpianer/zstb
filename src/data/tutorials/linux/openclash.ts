@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const openclash: SoftwareTool = {
   id: 'openclash',
-  name: 'OpenClash (OpenWrt / Linux 软路由)',
+  name: 'OpenClash',
   shortName: 'OpenClash',
   system: 'linux',
   category: 'linux',

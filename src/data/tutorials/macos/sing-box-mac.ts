@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const singBoxMac: SoftwareTool = {
   id: 'sing-box-mac',
-  name: 'Sing-box (macOS)',
+  name: 'Sing-box',
   shortName: 'Sing-box',
   system: 'macos',
   category: 'apple',

@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const v2raya: SoftwareTool = {
   id: 'v2raya',
-  name: 'v2rayA (Linux / 软路由)',
+  name: 'v2rayA',
   shortName: 'v2rayA',
   system: 'linux',
   category: 'linux',

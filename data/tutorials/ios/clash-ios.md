@@ -1,6 +1,6 @@
 ---
 id: "clash-ios"
-name: "Clash (iOS)"
+name: "Clash"
 system: "ios"
 category: "apple"
 tagline: "基于 SwiftUI 原生打造的现代化 Mihomo 内核分流客户端"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# Clash (iOS) 众包图文教程
+# Clash 众包图文教程
 
 > **独立更新路径**: `data/tutorials/ios/clash-ios.md`  
 > **更新时间**: 2026-03-28 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2024-10-15

@@ -1,6 +1,6 @@
 ---
 id: "nekobox-android"
-name: "NekoBox for Android"
+name: "NekoBox"
 system: "android"
 category: "android"
 tagline: "基于 sing-box 核心的多协议极客利器与 Matsuri 正统继承者"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# NekoBox for Android 众包图文教程
+# NekoBox 众包图文教程
 
 > **独立更新路径**: `data/tutorials/android/nekobox-android.md`  
 > **更新时间**: 2026-03-16 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2022-09-01

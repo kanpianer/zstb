@@ -1,12 +1,20 @@
 # 紙上談兵
 
-> 全平台科学上网客户端图文教程库，GitHub 众包协作维护。  
-> A4 纸张质感 × 手绘铅笔素描设计风格。
+> 全平台科学上网客户端图文教程库，GitHub 众包协作维护。
 
 [![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?logo=vite)](https://vite.dev)
 [![React](https://img.shields.io/badge/React-19.x-61DAFB?logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript)](https://www.typescriptlang.org)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?logo=tailwind-css)](https://tailwindcss.com)
+
+<p align="center">
+  <img src="screenshots/01-home.png" width="49%" alt="首页导航" />
+  <img src="screenshots/02-list.png" width="49%" alt="系统列表" />
+</p>
+<p align="center">
+  <img src="screenshots/03-detail.png" width="49%" alt="客户端详情" />
+  <img src="screenshots/04-tutorial.png" width="49%" alt="使用教程" />
+</p>
 
 ---
 
@@ -16,8 +24,8 @@
 
 | 系统 | 收录软件 |
 | :--- | :--- |
-| **iOS** | Shadowrocket、Clash (iOS)、Quantumult X、Loon |
-| **macOS** | Clash Verge Rev、Clash (macOS)、Clash Party、Sing-box |
+| **iOS** | Shadowrocket、Clash、Quantumult X、Loon |
+| **macOS** | Clash Verge Rev、Clash、Clash Party、Sing-box |
 | **Android** | v2rayNG、FlClash、NekoBox、Sing-box |
 | **Windows** | v2rayN、Clash Verge Rev、Clash Party、NekoRay |
 | **Linux / 软路由** | Clash Verge Rev、v2rayA、OpenClash、dae |

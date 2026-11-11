@@ -1,6 +1,6 @@
 ---
 id: "clash-verge-rev-linux"
-name: "Clash Verge Rev (Linux 桌面)"
+name: "Clash Verge Rev"
 system: "linux"
 category: "linux"
 tagline: "Linux 桌面发行版（Ubuntu/Fedora/Arch）开箱即用图形化代理首选"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# Clash Verge Rev (Linux 桌面) 众包图文教程
+# Clash Verge Rev 众包图文教程
 
 > **独立更新路径**: `data/tutorials/linux/clash-verge-rev-linux.md`  
 > **更新时间**: 2026-03-22 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2023-11-05

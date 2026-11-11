@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const nekoboxAndroid: SoftwareTool = {
   id: 'nekobox-android',
-  name: 'NekoBox for Android',
+  name: 'NekoBox',
   shortName: 'NekoBox',
   system: 'android',
   category: 'android',

@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const clashVergeRevLinux: SoftwareTool = {
   id: 'clash-verge-rev-linux',
-  name: 'Clash Verge Rev (Linux 桌面)',
+  name: 'Clash Verge Rev',
   shortName: 'Clash Verge Rev',
   system: 'linux',
   category: 'linux',

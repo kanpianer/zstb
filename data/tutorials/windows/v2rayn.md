@@ -1,6 +1,6 @@
 ---
 id: "v2rayn"
-name: "v2rayN (Windows)"
+name: "v2rayN"
 system: "windows"
 category: "windows"
 tagline: "Windows 平台无可撼动的常青树与自建节点/多内核调试神器"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# v2rayN (Windows) 众包图文教程
+# v2rayN 众包图文教程
 
 > **独立更新路径**: `data/tutorials/windows/v2rayn.md`  
 > **更新时间**: 2026-03-25 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2017-04-18

@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const clashVergeRevMac: SoftwareTool = {
   id: 'clash-verge-rev-mac',
-  name: 'Clash Verge Rev (macOS)',
+  name: 'Clash Verge Rev',
   shortName: 'Clash Verge Rev',
   system: 'macos',
   category: 'apple',

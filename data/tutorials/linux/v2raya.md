@@ -1,6 +1,6 @@
 ---
 id: "v2raya"
-name: "v2rayA (Linux / 软路由)"
+name: "v2rayA"
 system: "linux"
 category: "linux"
 tagline: "基于 Web GUI 的高性能 Linux 透明代理管理中枢"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# v2rayA (Linux / 软路由) 众包图文教程
+# v2rayA 众包图文教程
 
 > **独立更新路径**: `data/tutorials/linux/v2raya.md`  
 > **更新时间**: 2026-03-18 | **开源性质**: 开源 (AGPL-3.0 开源协议) | **最初发布**: 2019-10-15

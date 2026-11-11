@@ -1,6 +1,6 @@
 ---
 id: "clash-verge-rev-win"
-name: "Clash Verge Rev (Windows)"
+name: "Clash Verge Rev"
 system: "windows"
 category: "windows"
 tagline: "目前 Windows 端最受推荐的现代化 Mihomo GUI 客户端"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# Clash Verge Rev (Windows) 众包图文教程
+# Clash Verge Rev 众包图文教程
 
 > **独立更新路径**: `data/tutorials/windows/clash-verge-rev-win.md`  
 > **更新时间**: 2026-03-22 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2023-11-05

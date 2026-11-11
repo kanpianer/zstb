@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const nekoray: SoftwareTool = {
   id: 'nekoray',
-  name: 'NekoRay / Matsuri (Windows)',
+  name: 'NekoRay',
   shortName: 'NekoRay',
   system: 'windows',
   category: 'windows',

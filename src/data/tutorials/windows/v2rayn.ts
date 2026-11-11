@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const v2rayn: SoftwareTool = {
   id: 'v2rayn',
-  name: 'v2rayN (Windows)',
+  name: 'v2rayN',
   shortName: 'v2rayN',
   system: 'windows',
   category: 'windows',

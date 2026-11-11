@@ -1,6 +1,6 @@
 ---
 id: "openclash"
-name: "OpenClash (OpenWrt / Linux 软路由)"
+name: "OpenClash"
 system: "linux"
 category: "linux"
 tagline: "OpenWrt 全局透明代理客户端、家庭与软路由终极分流网关"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# OpenClash (OpenWrt / Linux 软路由) 众包图文教程
+# OpenClash 众包图文教程
 
 > **独立更新路径**: `data/tutorials/linux/openclash.md`  
 > **更新时间**: 2026-03-28 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2019-04-12

@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const clashPartyMac: SoftwareTool = {
   id: 'clash-party-mac',
-  name: 'Clash Party (macOS)',
+  name: 'Clash Party',
   shortName: 'Clash Party',
   system: 'macos',
   category: 'apple',

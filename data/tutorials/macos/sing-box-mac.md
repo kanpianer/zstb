@@ -1,6 +1,6 @@
 ---
 id: "sing-box-mac"
-name: "Sing-box (macOS)"
+name: "Sing-box"
 system: "macos"
 category: "apple"
 tagline: "次世代通用网络核心、内存怪兽与官方 GUI 原生应用"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# Sing-box (macOS) 众包图文教程
+# Sing-box 众包图文教程
 
 > **独立更新路径**: `data/tutorials/macos/sing-box-mac.md`  
 > **更新时间**: 2026-03-26 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2022-07-01

@@ -1,6 +1,6 @@
 ---
 id: "flclash"
-name: "FlClash (Android)"
+name: "FlClash"
 system: "android"
 category: "android"
 tagline: "基于 Flutter 开发的高颜值多平台 Mihomo 内核客户端"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# FlClash (Android) 众包图文教程
+# FlClash 众包图文教程
 
 > **独立更新路径**: `data/tutorials/android/flclash.md`  
 > **更新时间**: 2026-03-23 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2023-12-18

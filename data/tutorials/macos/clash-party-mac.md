@@ -1,6 +1,6 @@
 ---
 id: "clash-party-mac"
-name: "Clash Party (macOS)"
+name: "Clash Party"
 system: "macos"
 category: "apple"
 tagline: "开箱即用、界面极为优雅精美的代理客户端新标杆（原 Mihomo Party）"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# Clash Party (macOS) 众包图文教程
+# Clash Party 众包图文教程
 
 > **独立更新路径**: `data/tutorials/macos/clash-party-mac.md`  
 > **更新时间**: 2026-03-28 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2024-01-10

@@ -2,7 +2,7 @@ import { SoftwareTool } from '../../../types/tutorial';
 
 export const clashPartyWin: SoftwareTool = {
   id: 'clash-party-win',
-  name: 'Clash Party (Windows)',
+  name: 'Clash Party',
   shortName: 'Clash Party',
   system: 'windows',
   category: 'windows',

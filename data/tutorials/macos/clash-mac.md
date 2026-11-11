@@ -1,6 +1,6 @@
 ---
 id: "clash-mac"
-name: "Clash (macOS)"
+name: "Clash"
 system: "macos"
 category: "apple"
 tagline: "常驻菜单栏、SwiftUI 原生打造的轻量高效 Mihomo 分流客户端"
@@ -32,7 +32,7 @@ screenshot:
   caption: ""
 ---
 
-# Clash (macOS) 众包图文教程
+# Clash 众包图文教程
 
 > **独立更新路径**: `data/tutorials/macos/clash-mac.md`  
 > **更新时间**: 2026-03-29 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2024-10-15
