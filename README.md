@@ -24,7 +24,7 @@
 
 | 系统 | 收录软件 |
 | :--- | :--- |
-| **iOS** | Shadowrocket、Clash、Quantumult X、Loon |
+| **iOS** | Shadowrocket、Clash、Quantumult X、Karing |
 | **macOS** | Clash Verge Rev、Clash、Clash Party、Sing-box |
 | **Android** | v2rayNG、FlClash、NekoBox、Sing-box |
 | **Windows** | v2rayN、Clash Verge Rev、Clash Party、NekoRay |

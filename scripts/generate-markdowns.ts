@@ -25,7 +25,7 @@ latest_version: "${tool.latestVersion}"
 update_path: "${tool.updatePath}"
 
 official_site: "${tool.officialSite || ''}"
-github_repo: "${tool.githubRepo || ''}"
+github_repo: "${tool.githubRepo || ''}"${tool.appStoreUrl ? `\nappstore_url: "${tool.appStoreUrl}"` : ''}
 
 specs:
   compatibility: "${tool.specs.compatibility}"

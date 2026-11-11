@@ -3,7 +3,7 @@ import { SoftwareTool, SubSystemCategory, SystemCategory } from '../../types/tut
 import { shadowrocket } from './ios/shadowrocket';
 import { clashIos } from './ios/clash-ios';
 import { quantumultX } from './ios/quantumult-x';
-import { loon } from './ios/loon';
+import { karing } from './ios/karing';
 
 import { clashVergeRevMac } from './macos/clash-verge-rev-mac';
 import { clashMac } from './macos/clash-mac';
@@ -31,7 +31,7 @@ export const ALL_TOOLS: SoftwareTool[] = [
   shadowrocket,
   clashIos,
   quantumultX,
-  loon,
+  karing,
   
   // macOS (4 tools)
   clashVergeRevMac,

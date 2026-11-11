@@ -19,8 +19,8 @@ export const shadowrocket: SoftwareTool = {
   latestVersion: 'v2.2.65',
   updatePath: 'data/tutorials/ios/shadowrocket.md',
   
-  officialSite: 'https://shadowrocket.net',
-  appStoreUrl: 'https://apps.apple.com/app/shadowrocket/id932747118',
+  officialSite: 'https://shadowlaunch.com',
+  appStoreUrl: 'https://apps.apple.com/us/app/shadowrocket/id932747118',
   
   specs: {
     compatibility: 'iOS 12.0 / iPadOS 12.0 或更高版本 (兼容 visionOS)',

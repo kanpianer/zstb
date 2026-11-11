@@ -9,12 +9,14 @@ tagline: "iOS 生态装机量第一的规则分流与全协议代理客户端"
 updated_at: "2026-03-24"
 is_open_source: false
 license: "商业闭源授权"
+price: "约 $2.99 买断"
 released_at: "2015-04-12"
 latest_version: "v2.2.65"
 update_path: "data/tutorials/ios/shadowrocket.md"
 
-official_site: "https://shadowrocket.net"
+official_site: "https://shadowlaunch.com"
 github_repo: ""
+appstore_url: "https://apps.apple.com/us/app/shadowrocket/id932747118"
 
 specs:
   compatibility: "iOS 12.0 / iPadOS 12.0 或更高版本 (兼容 visionOS)"

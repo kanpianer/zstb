@@ -9,12 +9,14 @@ tagline: "高颜值手绘仪表盘与强大 JS 脚本生态的进阶利器"
 updated_at: "2026-03-05"
 is_open_source: false
 license: "商业闭源软件"
+price: "约 $7.99 买断"
 released_at: "2019-07-15"
 latest_version: "v1.5.8"
 update_path: "data/tutorials/ios/quantumult-x.md"
 
 official_site: "https://quantumult.app"
 github_repo: ""
+appstore_url: "https://apps.apple.com/us/app/quantumult/id1252015438"
 
 specs:
   compatibility: "iOS 14.0 / iPadOS 14.0 或更高版本"
@@ -97,7 +99,7 @@ https://airport.com/sub/qx?token=xxx, tag=我的机场, enabled=true
 
 ## 五、常见问题与避坑 FAQ
 #### Q: 圈X支持 VLESS-Reality 或 Hysteria 2 协议吗？
-**A**: 目前圈X官方版本对新兴协议（如 Reality / Hy2）更新较为缓慢，若主用此类新协议，推荐搭配 Loon 或 Shadowrocket。
+**A**: 目前圈X官方版本对新兴协议（如 Reality / Hy2）更新较为缓慢，若主用此类新协议，推荐搭配 Karing 或 Shadowrocket。
 
 
 ---

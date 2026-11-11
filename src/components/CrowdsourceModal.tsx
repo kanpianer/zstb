@@ -57,7 +57,7 @@ released_at: "${currentTool.releasedAt}"
 latest_version: "${newVersion}"
 update_path: "${currentTool.updatePath}"
 official_site: "${currentTool.officialSite || ''}"
-github_repo: "${currentTool.githubRepo || ''}"
+github_repo: "${currentTool.githubRepo || ''}"${currentTool.appStoreUrl ? `\nappstore_url: "${currentTool.appStoreUrl}"` : ''}
 specs:
   compatibility: "${currentTool.specs.compatibility}"
   architecture: "${currentTool.specs.architecture}"

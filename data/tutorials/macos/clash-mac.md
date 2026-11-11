@@ -15,6 +15,7 @@ update_path: "data/tutorials/macos/clash-mac.md"
 
 official_site: "https://clash.md/platforms/macos"
 github_repo: "https://github.com/ProjectClash/Clash-Client"
+appstore_url: "https://apps.apple.com/app/id6794257189?platform=mac"
 
 specs:
   compatibility: "macOS 14.0 (Sonoma) 或更高版本"

@@ -20,7 +20,7 @@ export const clashIos: SoftwareTool = {
   
   officialSite: 'https://clash.md/platforms/ios',
   githubRepo: 'https://github.com/ProjectClash/Clash-Client',
-  appStoreUrl: 'https://apps.apple.com/app/id6794257189',
+  appStoreUrl: 'https://apps.apple.com/us/app/clash-rule-based-proxy/id6794257189',
   
   specs: {
     compatibility: 'iOS 16.0 / iPadOS 16.0 或更高版本',

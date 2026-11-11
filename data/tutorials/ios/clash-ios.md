@@ -15,6 +15,7 @@ update_path: "data/tutorials/ios/clash-ios.md"
 
 official_site: "https://clash.md/platforms/ios"
 github_repo: "https://github.com/ProjectClash/Clash-Client"
+appstore_url: "https://apps.apple.com/us/app/clash-rule-based-proxy/id6794257189"
 
 specs:
   compatibility: "iOS 16.0 / iPadOS 16.0 或更高版本"

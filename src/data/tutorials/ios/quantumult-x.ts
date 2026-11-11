@@ -20,7 +20,7 @@ export const quantumultX: SoftwareTool = {
   updatePath: 'data/tutorials/ios/quantumult-x.md',
   
   officialSite: 'https://quantumult.app',
-  appStoreUrl: 'https://apps.apple.com/app/quantumult-x/id1453926890',
+  appStoreUrl: 'https://apps.apple.com/us/app/quantumult/id1252015438',
   
   specs: {
     compatibility: 'iOS 14.0 / iPadOS 14.0 或更高版本',
@@ -99,7 +99,7 @@ export const quantumultX: SoftwareTool = {
     faq: [
       {
         question: '圈X支持 VLESS-Reality 或 Hysteria 2 协议吗？',
-        answer: '目前圈X官方版本对新兴协议（如 Reality / Hy2）更新较为缓慢，若主用此类新协议，推荐搭配 Loon 或 Shadowrocket。'
+        answer: '目前圈X官方版本对新兴协议（如 Reality / Hy2）更新较为缓慢，若主用此类新协议，推荐搭配 Karing 或 Shadowrocket。'
       }
     ]
   },

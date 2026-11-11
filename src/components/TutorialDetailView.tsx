@@ -91,15 +91,28 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
           </div>
 
           {/* Official links */}
-          <div className="flex md:flex-col gap-2 flex-shrink-0 font-mono text-xs">
+          <div className="flex flex-wrap md:flex-col gap-2 flex-shrink-0 font-mono text-xs">
             {tool.officialSite && (
               <a
                 href={tool.officialSite}
                 target="_blank"
                 rel="noreferrer"
                 className="pencil-btn-secondary py-1.5 px-3 flex items-center justify-center gap-1.5 hover:bg-paper-100"
+                title="访问官方网站"
               >
                 <span>官方网站</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+            {tool.appStoreUrl && (
+              <a
+                href={tool.appStoreUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="pencil-btn-secondary py-1.5 px-3 flex items-center justify-center gap-1.5 hover:bg-paper-100"
+                title="前往 App Store 下载"
+              >
+                <span>App Store</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             )}
@@ -109,6 +122,7 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
                 target="_blank"
                 rel="noreferrer"
                 className="pencil-btn-secondary py-1.5 px-3 flex items-center justify-center gap-1.5 hover:bg-paper-100"
+                title="查看 GitHub 源码"
               >
                 <span>GitHub 源码</span>
                 <ExternalLink className="w-3 h-3" />
@@ -208,10 +222,32 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
 
         {/* Prerequisites */}
         {tool.tutorial.prerequisites.length > 0 && (
-          <div className="mb-6 p-4 bg-amber-50/70 border-2 border-dashed border-amber-300 rounded-xl text-xs">
-            <div className="font-bold text-amber-900 font-serif mb-2 flex items-center gap-1.5">
-              <AlertCircle className="w-4 h-4 text-amber-700" />
-              <span>准备工作：</span>
+          <div className="relative mb-6 p-4 bg-amber-50/70 border-2 border-dashed border-amber-300 rounded-xl text-xs">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div className="font-bold text-amber-900 font-serif flex items-center gap-1.5">
+                <AlertCircle className="w-4 h-4 text-amber-700 shrink-0" />
+                <span>准备工作：</span>
+              </div>
+              <div className="flex items-center gap-1 text-[11px] sm:text-xs text-amber-800 bg-amber-100/80 border border-amber-300/80 rounded-md px-2 py-0.5 shadow-xs">
+                <span>到</span>
+                <a
+                  href="https://jkdh.sld.tw/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-amber-950 hover:text-amber-800 underline decoration-amber-400 hover:decoration-amber-700 underline-offset-2 inline-flex items-center gap-1 transition-colors"
+                  title="前往家宽导航"
+                >
+                  <img
+                    src="/jkdh-favicon.png"
+                    alt="家宽导航"
+                    className="w-3.5 h-3.5 object-contain rounded-xs shrink-0"
+                    width={14}
+                    height={14}
+                  />
+                  <span>家宽导航</span>
+                </a>
+                <span>购买节点</span>
+              </div>
             </div>
             <ul className="list-disc list-inside space-y-1 text-amber-950 font-sans">
               {tool.tutorial.prerequisites.map((pre, idx) => (

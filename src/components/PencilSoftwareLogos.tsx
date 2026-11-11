@@ -373,10 +373,10 @@ export const PencilQuantumultXLogo: React.FC<PencilSoftwareLogoProps> = ({
 };
 
 /**
- * 4. Loon 铅笔手绘 Logo
- * 经典的平流层热气球 / 飞艇造型、气囊纵向分瓣条纹与挂载吊篮
+ * 4. Karing (iOS / 跨平台通用) 铅笔手绘 Logo
+ * 参考官方 App 图标精准重绘：标志性圆角方盘徽章底座、两条相互穿插咬合的平行链环 (Link)、内部核心数据胶囊与建筑素描排线
  */
-export const PencilLoonLogo: React.FC<PencilSoftwareLogoProps> = ({
+export const PencilKaringLogo: React.FC<PencilSoftwareLogoProps> = ({
   className = 'w-6 h-6',
   size,
   ...props
@@ -395,88 +395,126 @@ export const PencilLoonLogo: React.FC<PencilSoftwareLogoProps> = ({
       stroke="currentColor"
       {...props}
     >
-      {/* 热气球外轮廓 (倒水滴形) */}
-      <path
-        d="M 32 9 
-           C 44 9, 49 22, 43 36 
-           L 38 43 
-           L 26 43 
-           L 21 36 
-           C 15 22, 20 9, 32 9 Z"
-        strokeWidth="2.3"
+      {/* 1. 手绘圆角方形 App 图标底盘 (带圆角和素描复线) */}
+      <rect
+        x="7"
+        y="7"
+        width="50"
+        height="50"
+        rx="13"
+        ry="13"
+        strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="currentColor"
         fillOpacity="0.04"
       />
-      {/* 气囊外框草图复线 */}
+      <rect
+        x="8.5"
+        y="8.5"
+        width="47"
+        height="47"
+        rx="11.5"
+        ry="11.5"
+        strokeWidth="0.8"
+        strokeDasharray="14 3 18 4"
+        opacity="0.35"
+      />
+
+      {/* 2. 四角与边缘素描阴影排线 (烘托手绘图标立体质感) */}
+      <g strokeWidth="0.8" strokeLinecap="round" opacity="0.25">
+        <line x1="12" y1="17" x2="17" y2="12" />
+        <line x1="14" y1="21" x2="21" y2="14" />
+        <line x1="47" y1="12" x2="52" y2="17" />
+        <line x1="43" y1="14" x2="50" y2="21" />
+        <line x1="12" y1="47" x2="17" y2="52" />
+        <line x1="14" y1="43" x2="21" y2="50" />
+        <line x1="47" y1="52" x2="52" y2="47" />
+        <line x1="43" y1="50" x2="50" y2="43" />
+      </g>
+
+      {/* 3. Karing 标志性互锁链环 (Interlocking Link) */}
+      {/* 左环主干 (从底部水平开口端，绕过左侧大圆弧，经顶部横梁向右下弯折互锁) */}
       <path
-        d="M 32 10.5 C 42.5 10.5, 47 22.5, 41.5 35.5 L 37 42 L 27 42 L 22.5 35.5 C 17 22.5, 21.5 10.5, 32 10.5"
+        d="M 23.5 39.5 
+           L 19 39.5 
+           A 7.5 7.5 0 0 1 19 24.5 
+           L 28.5 24.5 
+           C 32.5 24.5, 35.5 27, 35.5 31 
+           C 35.5 35, 33 37, 30 37"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* 左环手绘草图复线 */}
+      <path
+        d="M 23 40.5 L 19 40.5 A 8.5 8.5 0 0 1 19 23.5 L 28.5 23.5 C 33 23.5, 36.5 26.5, 36.5 31"
         strokeWidth="0.8"
         strokeLinecap="round"
         opacity="0.35"
       />
 
-      {/* 气囊纵向曲率分瓣线 */}
+      {/* 右环主干 (180度严格旋转对称：从顶部水平开口端，绕过右侧大圆弧，经底部横梁向左上弯折互锁) */}
       <path
-        d="M 32 9 C 26 18, 26 34, 29 43"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-      />
-      <path
-        d="M 32 9 C 38 18, 38 34, 35 43"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-      />
-      <line x1="32" y1="9" x2="32" y2="43" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="3 2" opacity="0.6" />
-
-      {/* 侧面瓣条纹的素描排线 */}
-      <g strokeWidth="0.9" strokeLinecap="round" opacity="0.6">
-        <line x1="22" y1="22" x2="26" y2="24" />
-        <line x1="21" y1="27" x2="25" y2="29" />
-        <line x1="22" y1="32" x2="26" y2="34" />
-        <line x1="42" y1="22" x2="38" y2="24" />
-        <line x1="43" y1="27" x2="39" y2="29" />
-        <line x1="42" y1="32" x2="38" y2="34" />
-      </g>
-
-      {/* 燃烧器喷口与吊索连接 */}
-      <line x1="28" y1="43" x2="29" y2="48" strokeWidth="1.4" strokeLinecap="round" />
-      <line x1="36" y1="43" x2="35" y2="48" strokeWidth="1.4" strokeLinecap="round" />
-      <line x1="32" y1="43" x2="32" y2="48" strokeWidth="1" strokeLinecap="round" />
-
-      {/* 下方乘员吊篮 */}
-      <rect
-        x="27"
-        y="48"
-        width="10"
-        height="8"
-        rx="2"
-        strokeWidth="2.1"
+        d="M 40.5 24.5 
+           L 45 24.5 
+           A 7.5 7.5 0 0 1 45 39.5 
+           L 35.5 39.5 
+           C 31.5 39.5, 28.5 37, 28.5 33 
+           C 28.5 29, 31 27, 34 27"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        fill="currentColor"
-        fillOpacity="0.08"
       />
-      <line x1="27" y1="52" x2="37" y2="52" strokeWidth="1.1" strokeLinecap="round" />
-      <line x1="32" y1="48" x2="32" y2="56" strokeWidth="1.1" strokeLinecap="round" />
+      {/* 右环手绘草图复线 */}
+      <path
+        d="M 41 23.5 L 45 23.5 A 8.5 8.5 0 0 1 45 40.5 L 35.5 40.5 C 31 40.5, 27.5 37.5, 27.5 33"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+        opacity="0.35"
+      />
 
-      {/* 飘动的铅笔手绘白云 */}
-      <path
-        d="M 12 40 C 10 38, 7 39, 7 41 C 5 42, 6 45, 8 45 L 14 45 C 16 45, 16 42, 14 41 Z"
-        strokeWidth="1.1"
+      {/* 4. 双环中央核心数据胶囊 (Capsule / Pill) */}
+      <rect
+        x="17.5"
+        y="30.5"
+        width="6.5"
+        height="3"
+        rx="1.5"
+        strokeWidth="1.8"
         strokeLinecap="round"
-        opacity="0.65"
+        fill="currentColor"
+        fillOpacity="0.12"
       />
-      <path
-        d="M 50 34 C 48 32, 45 33, 45 35 C 43 36, 44 39, 46 39 L 52 39 C 54 39, 54 36, 52 35 Z"
-        strokeWidth="1.1"
+      <rect
+        x="40"
+        y="30.5"
+        width="6.5"
+        height="3"
+        rx="1.5"
+        strokeWidth="1.8"
         strokeLinecap="round"
-        opacity="0.65"
+        fill="currentColor"
+        fillOpacity="0.12"
       />
+
+      {/* 5. 互锁与圆弧处的素描质感排线 */}
+      <g strokeWidth="0.8" strokeLinecap="round" opacity="0.4">
+        {/* 左环圆弧内排线 */}
+        <line x1="14" y1="29" x2="16" y2="31" />
+        <line x1="14" y1="33" x2="16" y2="35" />
+        {/* 右环圆弧内排线 */}
+        <line x1="48" y1="29" x2="50" y2="31" />
+        <line x1="48" y1="33" x2="50" y2="35" />
+        {/* 中央互锁咬合阴影排线 (增强层叠进深感) */}
+        <line x1="30" y1="29.5" x2="33" y2="32.5" />
+        <line x1="31" y1="31.5" x2="34" y2="34.5" />
+      </g>
     </svg>
   );
 };
+
+export const PencilLoonLogo = PencilKaringLogo;
 
 /**
  * 5. Clash Verge Rev (Mac / Win / Linux) 铅笔手绘 Logo
@@ -1675,8 +1713,9 @@ export const PencilSoftwareLogo: React.FC<{
     case 'quantumult-x':
       return <PencilQuantumultXLogo className={className} size={size} {...props} />;
     
+    case 'karing':
     case 'loon':
-      return <PencilLoonLogo className={className} size={size} {...props} />;
+      return <PencilKaringLogo className={className} size={size} {...props} />;
     
     // Clash Verge Rev (macOS / Windows / Linux 全平台保持完全一致)
     case 'clash-verge-rev-mac':
