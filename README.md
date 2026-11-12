@@ -8,12 +8,12 @@
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?logo=tailwind-css)](https://tailwindcss.com)
 
 <p align="center">
-  <img src="screenshots/01-home.png" width="49%" alt="首页导航" />
-  <img src="screenshots/02-list.png" width="49%" alt="系统列表" />
+  <img src="screenshots/01-home.png" alt="首页导航" />
 </p>
 <p align="center">
-  <img src="screenshots/03-detail.png" width="49%" alt="客户端详情" />
-  <img src="screenshots/04-tutorial.png" width="49%" alt="使用教程" />
+  <img src="screenshots/mobile-01-home.jpg" width="32%" alt="移动端首页" />
+  <img src="screenshots/mobile-02-detail.jpg" width="32%" alt="移动端详情" />
+  <img src="screenshots/mobile-03-tutorial.jpg" width="32%" alt="移动端教程" />
 </p>
 
 ---
