@@ -276,7 +276,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
           {/* Quadrant 1 (Top-Left): 苹果系统 */}
           <div
             onClick={() => onSelectCategory('apple')}
-            className="group relative h-full min-h-[260px] p-4 sm:p-5 pb-3.5 flex flex-col justify-between cursor-pointer hover:bg-pencil/[0.03] rounded-xl transition-all overflow-hidden"
+            className="group relative h-full min-h-[260px] p-4 sm:p-5 pb-3.5 flex flex-col justify-between cursor-pointer hover:bg-pencil/[0.08] rounded-xl transition-all overflow-hidden"
           >
             {/* Background Watermark Sketch */}
             <div className="absolute -right-4 -bottom-4 w-32 h-32 sm:w-40 sm:h-40 pointer-events-none opacity-[0.06] group-hover:opacity-[0.14] group-hover:scale-105 transition-all text-pencil-dark select-none">
@@ -395,7 +395,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
           {/* Quadrant 2 (Top-Right): 安卓系统 */}
           <div
             onClick={() => onSelectCategory('android')}
-            className="group relative h-full min-h-[260px] p-4 sm:p-5 pb-3.5 flex flex-col justify-between cursor-pointer hover:bg-pencil/[0.03] rounded-xl transition-all overflow-hidden"
+            className="group relative h-full min-h-[260px] p-4 sm:p-5 pb-3.5 flex flex-col justify-between cursor-pointer hover:bg-pencil/[0.08] rounded-xl transition-all overflow-hidden"
           >
             {/* Background Watermark Sketch */}
             <div className="absolute -right-4 -bottom-4 w-32 h-32 sm:w-40 sm:h-40 pointer-events-none opacity-[0.06] group-hover:opacity-[0.14] group-hover:scale-105 transition-all text-pencil-dark select-none">
@@ -456,7 +456,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
           {/* Quadrant 3 (Bottom-Left): Windows系统 */}
           <div
             onClick={() => onSelectCategory('windows')}
-            className="group relative h-full min-h-[260px] p-4 sm:p-5 pt-3.5 pb-3.5 flex flex-col justify-between cursor-pointer hover:bg-pencil/[0.03] rounded-xl transition-all overflow-hidden"
+            className="group relative h-full min-h-[260px] p-4 sm:p-5 pt-3.5 pb-3.5 flex flex-col justify-between cursor-pointer hover:bg-pencil/[0.08] rounded-xl transition-all overflow-hidden"
           >
             {/* Background Watermark Sketch */}
             <div className="absolute -right-4 -bottom-4 w-32 h-32 sm:w-40 sm:h-40 pointer-events-none opacity-[0.06] group-hover:opacity-[0.14] group-hover:scale-105 transition-all text-pencil-dark select-none">
@@ -517,7 +517,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
           {/* Quadrant 4 (Bottom-Right): Linux 和软路由 */}
           <div
             onClick={() => onSelectCategory('linux')}
-            className="group relative h-full min-h-[260px] p-4 sm:p-5 pt-3.5 pb-3.5 flex flex-col justify-between cursor-pointer hover:bg-pencil/[0.03] rounded-xl transition-all overflow-hidden"
+            className="group relative h-full min-h-[260px] p-4 sm:p-5 pt-3.5 pb-3.5 flex flex-col justify-between cursor-pointer hover:bg-pencil/[0.08] rounded-xl transition-all overflow-hidden"
           >
             {/* Background Watermark Sketch */}
             <div className="absolute -right-4 -bottom-4 w-32 h-32 sm:w-40 sm:h-40 pointer-events-none opacity-[0.06] group-hover:opacity-[0.14] group-hover:scale-105 transition-all text-pencil-dark select-none">
