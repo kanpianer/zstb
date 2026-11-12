@@ -11,11 +11,11 @@ export const clashVergeRevWin: SoftwareTool = {
   iconName: 'Monitor',
   badgeText: 'Win 桌面主力',
   
-  updatedAt: '2026-03-22',
+  updatedAt: '2026-11-03',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2023-11-05',
-  latestVersion: 'v2.0.4',
+  latestVersion: 'v2.5.10',
   updatePath: 'data/tutorials/windows/clash-verge-rev-win.md',
   
   githubRepo: 'https://github.com/clash-verge-rev/clash-verge-rev',
@@ -27,34 +27,6 @@ export const clashVergeRevWin: SoftwareTool = {
     coreEngine: 'Mihomo Core (原 Clash.Meta)',
     protocols: ['VLESS (Reality)', 'VMess', 'Hysteria 2', 'TUIC v5', 'Trojan', 'Shadowsocks', 'WireGuard', 'Snell'],
     trafficHandling: 'Windows 系统代理 + Wintun 虚拟网卡 (TUN 模式)',
-    resourceFootprint: 'Rust 前端极致轻巧，常驻内存仅 ~35MB'
-  },
-  
-  screenshot: {
-    deviceType: 'windows',
-    deviceSpec: 'Windows 11 PC (2K 165Hz 电竞显示器)',
-    screenResolution: '2560 × 1440 像素',
-    title: 'Clash Verge Rev Windows 策略组折叠、测速与托盘控制',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'cvw1', label: '① 订阅管理', note: '左侧【订阅】导入机场 Clash 订阅链接，支持右键重命名和定时更新', xPercent: 20, yPercent: 25 },
-      { id: 'cvw2', label: '② 系统代理与TUN', note: '开启【系统代理】或安装【服务模式】后启动 TUN 虚拟网卡全局拦截', xPercent: 80, yPercent: 15 },
-      { id: 'cvw3', label: '③ 策略组分流', note: '规则模式下，海外节点、国内直连与广告拦截自动精准分流', xPercent: 55, yPercent: 50 }
-    ],
-    mockData: {
-      status: 'Mihomo 内核已启动 - TUN 驱动正常',
-      trafficTotal: '下行: 18.5 GB | 上行: 2.4 GB',
-      outboundMode: 'Rule (分流规则)',
-      activeNodes: [
-        { name: '🇭🇰 HK 01 [优质专线] 0.5x', type: 'VLESS-Reality', ping: 28, selected: true },
-        { name: '🇯🇵 Tokyo 02 [原生解锁]', type: 'Hysteria 2', ping: 51 },
-        { name: '🇸🇬 SG 03 [狮城节点]', type: 'Trojan', ping: 56 }
-      ],
-      logs: [
-        '[TUN] wintun driver loaded successfully',
-        '[Route] match GeoSite(youtube) -> Outbound(PROXY)'
-      ]
-    }
   },
   
   tutorial: {
@@ -105,10 +77,10 @@ export const clashVergeRevWin: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-22',
+      date: '2026-11-12',
       author: 'WinDev',
-      prNumber: 100,
-      summary: '完善 Windows 11 下 Wintun 权限与服务模式一键安装教程',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'a718cc2'
     }
   ]

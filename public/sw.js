@@ -74,6 +74,9 @@ self.addEventListener('fetch', (event) => {
   const request = event.request;
   const url = new URL(request.url);
 
+  // CMS content and authenticated GitHub requests must never enter SW caches.
+  if (url.pathname.startsWith('/content/') || url.hostname === 'api.github.com') return;
+
   // Only intercept GET requests
   if (request.method !== 'GET') return;
 

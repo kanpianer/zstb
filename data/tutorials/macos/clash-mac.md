@@ -6,11 +6,11 @@ category: "apple"
 tagline: "常驻菜单栏、SwiftUI 原生打造的轻量高效 Mihomo 分流客户端"
 
 # 必填固定标准格式字段
-updated_at: "2026-03-29"
+updated_at: "2026-11-07"
 is_open_source: true
 license: "GPL-3.0 开源协议"
 released_at: "2024-10-15"
-latest_version: "v1.2.0"
+latest_version: "v1.0.14"
 update_path: "data/tutorials/macos/clash-mac.md"
 
 official_site: "https://clash.md/platforms/macos"
@@ -23,20 +23,12 @@ specs:
   core_engine: "Mihomo Core (Clash.Meta) + Apple NetworkExtension"
   protocols: ["Shadowsocks", "VMess", "VLESS (Reality)", "Trojan", "Hysteria 2", "TUIC v5", "WireGuard"]
   traffic_handling: "NetworkExtension PacketTunnel (utun) + 菜单栏轻量接管 + 进程/可执行路径分流"
-  resource_footprint: "原生 SwiftUI 极低开销，常驻内存仅 ~25MB - 45MB"
-
-screenshot:
-  device_type: "macbook"
-  device_spec: "Apple MacBook Pro 16" (Liquid Retina XDR, M-Series)"
-  resolution: "3456 × 2234 像素"
-  title: "Clash Mac 菜单栏控制器、活动连接脉络与分流规则"
-  caption: ""
 ---
 
 # Clash 众包图文教程
 
-> **独立更新路径**: `data/tutorials/macos/clash-mac.md`  
-> **更新时间**: 2026-03-29 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2024-10-15
+> **教程文件路径**: `data/tutorials/macos/clash-mac.md`  
+> **最近更新**: 2026-11-07 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2024-10-15
 
 ## 一、软件简介与核心规格
 Clash (macOS) 是专为 Mac 打造的纯血原生规则分流代理客户端。基于开源 Mihomo (Clash.Meta) 内核与 SwiftUI 框架构建，常驻菜单栏即时掌控连接状态、模式与速率；支持不同进程/应用独立分流、网络质量检测小组件与快捷指令联动，完全无任何广告与遥测追踪。
@@ -46,22 +38,11 @@ Clash (macOS) 是专为 Mac 打造的纯血原生规则分流代理客户端。�
 - **系统要求**: macOS 14.0 (Sonoma) 或更高版本
 - **底层引擎**: Mihomo Core (Clash.Meta) + Apple NetworkExtension
 - **流量接管模式**: NetworkExtension PacketTunnel (utun) + 菜单栏轻量接管 + 进程/可执行路径分流
-- **资源消耗**: 原生 SwiftUI 极低开销，常驻内存仅 ~25MB - 45MB
 - **支持协议**: Shadowsocks, VMess, VLESS (Reality), Trojan, Hysteria 2, TUIC v5, WireGuard
 
 ---
 
-## 二、风格化截图与图解规格
-- **设备线框规格**: Apple MacBook Pro 16" (Liquid Retina XDR, M-Series) (3456 × 2234 像素)
-
-### 关键控制点标注
-- **① 菜单栏快捷控制**: 常驻菜单栏，随手连接、断开、切换分流模式与查看实时速率
-- **② 进程级差异化分流**: 按进程名称、可执行路径或 UID 分流浏览器、下载工具与终端环境
-- **③ 连接脉络一览无余**: 活动连接、近期记录、命中规则全览，内置节点延迟与 NAT 质量诊断
-
----
-
-## 三、标准操作步骤指南
+## 二、标准操作步骤指南
 
 ### 步骤 1：下载与安装 Clash Mac 版
 访问官方网站 (https://clash.md/platforms/macos) 点击 Mac App Store 徽章安装，或通过 Telegram 申请 TestFlight Beta 资格。首次打开时，根据系统提示授予网络扩展（NetworkExtension）与 VPN 配置权限。
@@ -89,13 +70,13 @@ https://sub.airport.org/api/v1/client/subscribe?token=xxx&flag=clash
 
 ---
 
-## 四、进阶分流与防泄露建议
+## 三、进阶分流与防泄露建议
 1. 进程级精细分流：在配置文件或规则列表中添加 PROCESS-NAME 规则，让指定软件（如 Terminal、Xcode、Telegram 等）走专用代理或直连线路。
 2. 小组件与快捷指令联动：将 Clash 状态与常用策略组放置在 macOS 桌面上，配合快捷指令实现按场景自动启停。
 
 ---
 
-## 五、常见问题与避坑 FAQ
+## 四、常见问题与避坑 FAQ
 #### Q: Clash Mac 版相比原有的 Surge for Mac 或 Electron 客户端有何优势？
 **A**: Clash Mac 版采用原生 SwiftUI 架构开发，相比 Electron 客户端更为轻巧丝滑、极度省电且常驻内存低；相比商业软件 Surge 则完全免费且核心开源，开箱即用支持最新的 Mihomo/Meta 新协议生态（Reality、Hysteria 2 等）。
 
@@ -105,10 +86,10 @@ https://sub.airport.org/api/v1/client/subscribe?token=xxx&flag=clash
 
 ---
 
-## 六、众包维护历史与贡献者
+## 五、教程更新记录与贡献者
 | 日期 | 维护者 | PR 编号 | 变更说明 | Commit |
 | :--- | :--- | :--- | :--- | :--- |
-| 2026-03-29 | ClashMaintainer | #128 | 收录 Clash (macOS) 原生客户端图文教程，替换原 Surge 配置 | `c3e819b` |
+| 2026-11-12 | ClashMaintainer | #1 | 首次更新 | `c3e819b` |
 
 ---
 *本教程通过 GitHub 众包模式协同维护，欢迎在 GitHub 上提交 PR 或 Issue 进行内容更迭。*

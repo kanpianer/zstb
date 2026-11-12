@@ -11,14 +11,15 @@ export const singBoxAndroid: SoftwareTool = {
   iconName: 'Box',
   badgeText: '官方纯血',
   
-  updatedAt: '2026-03-26',
+  updatedAt: '2026-10-24',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2022-08-10',
-  latestVersion: 'v1.11.2',
+  latestVersion: 'v1.14.4',
   updatePath: 'data/tutorials/android/sing-box-android.md',
   
-  githubRepo: 'https://github.com/SagerNet/sing-box',
+  releasesUrl: 'https://github.com/SagerNet/sing-box/releases',
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=io.nekohasekai.sfa',
   officialSite: 'https://sing-box.sagernet.org',
   
   specs: {
@@ -27,34 +28,6 @@ export const singBoxAndroid: SoftwareTool = {
     coreEngine: 'Sing-box 官方核心 (Go 原生编译)',
     protocols: ['Shadowsocks', 'VLESS (Reality)', 'VMess', 'Trojan', 'Hysteria 2', 'TUIC v5', 'WireGuard', 'Direct/Reject'],
     trafficHandling: 'VpnService TUN 驱动 + 官方规则路由引擎',
-    resourceFootprint: '空闲仅 ~16MB，几乎是全平台内存占用最低的客户端'
-  },
-  
-  screenshot: {
-    deviceType: 'android',
-    deviceSpec: 'Google Pixel 8 Pro',
-    screenResolution: '1344 × 2992 像素',
-    title: 'Sing-box Android 官方仪表盘与配置配置集',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'sba1', label: '① 主开关', note: '主页面顶部极简开关，一键启动 TUN 模式拦截', xPercent: 50, yPercent: 15 },
-      { id: 'sba2', label: '② Profile管理', note: '支持导入标准 JSON 规则或远程订阅链接', xPercent: 50, yPercent: 40 },
-      { id: 'sba3', label: '③ 仪表板概览', note: '实时查看当前出站分配、吞吐率与内存消耗', xPercent: 50, yPercent: 70 }
-    ],
-    mockData: {
-      status: 'Sing-box 运行中 - 内存占用 18.4MB',
-      trafficTotal: '下行: 5.1 GB | 上行: 610 MB',
-      outboundMode: 'Rule-Based Routing',
-      activeNodes: [
-        { name: '🇭🇰 香港 01 Extreme [Hy2]', type: 'Hysteria 2', ping: 25, selected: true },
-        { name: '🇯🇵 日本 02 Reality', type: 'VLESS', ping: 48 },
-        { name: '🇺🇸 美国 03 节点', type: 'Trojan', ping: 130 }
-      ],
-      logs: [
-        'sing-box service started via VpnService',
-        'route: ruleset matched geosite-cn -> direct'
-      ]
-    }
   },
   
   tutorial: {
@@ -98,10 +71,10 @@ export const singBoxAndroid: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-26',
+      date: '2026-11-12',
       author: 'SingBoxCoreDev',
-      prNumber: 107,
-      summary: '升级 1.11.2 版内核与 Rule-Set 二进制规则集解析指引',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'f1892de'
     }
   ]

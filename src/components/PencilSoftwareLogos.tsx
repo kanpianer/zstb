@@ -1476,11 +1476,17 @@ export const PencilOpenClashLogo: React.FC<PencilSoftwareLogoProps> = ({
 };
 
 /**
- * 15. dae (Linux / 内核级 eBPF) 铅笔手绘 Logo
- * 标志性 Untitled Goose '大鹅叼刀' (Peace was never an option) 经典吉祥物素描重绘：
- * 经典疾走鹅身轮廓、翘尾羽毛、长扁鹅喙牢牢咬紧黄油刀、双足腾空飞奔与 eBPF 吞吐风速微线
+ * 15. 自己搭建节点 / VPS 服务器 铅笔手绘 Logo
+ * 风格深度参考 Clash 的铅笔手绘风格：
+ * - 底部经典手绘投影虚线与素描排线
+ * - 经典 3 层模块化机架式 VPS 服务器机箱轮廓，圆角与手绘草图微颤复线
+ * - 顶层服务器包含 Clash 同款萌系圆圆大眼睛纯真质感 LED 指示灯与电源按键
+ * - 中层服务器具备 SSH 终端命令行提示符 (>_) 与热插拔硬盘托架（呼应 不想搭梯 Web SSH）
+ * - 底层服务器具备千兆网络接口 (RJ45) 与吞吐活动柱状指示
+ * - 顶部漂浮手绘云端无线信号波，呼应云端 VPS 远程连接
+ * - 45 度经典素描阴影排线与镂空纯白纸张底色
  */
-export const PencilDaeLogo: React.FC<PencilSoftwareLogoProps> = ({
+export const PencilVpsLogo: React.FC<PencilSoftwareLogoProps> = ({
   className = 'w-6 h-6',
   size,
   ...props
@@ -1499,199 +1505,184 @@ export const PencilDaeLogo: React.FC<PencilSoftwareLogoProps> = ({
       stroke="currentColor"
       {...props}
     >
-      {/* 底部手绘奔跑投影虚线 */}
+      {/* 底部手绘投影基准虚线 (参考 Clash Logo) */}
       <line
-        x1="9"
+        x1="10"
         y1="56"
-        x2="53"
+        x2="54"
         y2="56"
         strokeWidth="1.2"
         strokeLinecap="round"
-        strokeDasharray="3 3 10 3"
         opacity="0.3"
+        strokeDasharray="4 3 12 3"
       />
 
-      {/* 奔跑风速素描线 (大鹅高速偷刀飞奔动感，呼应 eBPF 万兆吞吐) */}
+      {/* 顶部漂浮的云端 VPS / SSH 无线连接信号弧线 */}
       <path
-        d="M 5 21 C 7 19.5, 8.5 21.5, 10 20"
-        strokeWidth="1"
+        d="M 27 8.5 C 27 6, 29.5 4.5, 32 4.5 C 34.5 4.5, 37 6, 37 8.5"
+        strokeWidth="1.2"
         strokeLinecap="round"
-        opacity="0.4"
+        opacity="0.6"
+        strokeDasharray="2.5 1.8"
       />
       <path
-        d="M 4 26 C 6 25, 7.5 27, 9 25.5"
-        strokeWidth="0.8"
-        strokeLinecap="round"
-        opacity="0.3"
-      />
-
-      {/* 1. 腾空后蹬的左腿与展开蹼足 (后足) */}
-      <g strokeLinecap="round" strokeLinejoin="round">
-        <path
-          d="M 17.5 42 L 12.8 47.2"
-          strokeWidth="2.2"
-        />
-        <path
-          d="M 12.8 47.2 L 7.8 48.2
-             M 12.8 47.2 L 9.6 53.5
-             M 12.8 47.2 L 15.2 50.2"
-          strokeWidth="2.0"
-        />
-        <path
-          d="M 7.8 48.2 Q 8.5 51.5 9.6 53.5 Q 12.5 52.2 15.2 50.2"
-          strokeWidth="1.2"
-          fill="currentColor"
-          fillOpacity="0.12"
-        />
-      </g>
-
-      {/* 2. 大鹅身体核心轮廓 (翘尾、背颈、头部、丰满胸腹剪影) */}
-      <path
-        d="M 12.5 17
-           C 14 23, 17.5 24, 22.5 24.5
-           C 27.5 25, 32.5 26.5, 36.5 28.5
-           C 39.5 27, 42.5 26, 45 26.8
-           C 47.5 27.8, 48 29.5, 46.8 32
-           C 44.5 34, 40.5 36.5, 37.5 39.5
-           C 34.5 42.5, 29.5 44, 23 44
-           C 17 44, 14 40.5, 14.5 34
-           C 15 28, 11.5 21.5, 12.5 17 Z"
-        strokeWidth="2.3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="currentColor"
-        fillOpacity="0.05"
-      />
-
-      {/* 翘尾羽毛层次手绘草图复线 */}
-      <path
-        d="M 13.5 18.5 C 14.8 24, 18 24.8, 23 25.5 C 28 26, 32.5 27.5, 36 29.5 C 39 28, 42 27.2, 44.2 27.8"
-        strokeWidth="0.8"
+        d="M 22.5 8.5 C 22.5 4, 27 2, 32 2 C 37 2, 41.5 4, 41.5 8.5"
+        strokeWidth="0.9"
         strokeLinecap="round"
         opacity="0.35"
+        strokeDasharray="3 2"
       />
-      <path
-        d="M 15 20 L 16.8 24"
-        strokeWidth="1.1"
-        strokeLinecap="round"
-        opacity="0.5"
-      />
+      <circle cx="32" cy="8.5" r="1.1" fill="currentColor" opacity="0.8" />
 
-      {/* 3. 鹅翅膀翼羽波浪轮廓与层次 */}
+      {/* ================= 1. 第一层机箱 (Top Blade: 包含 Clash 同款萌系圆圆大眼 LED) ================= */}
+      {/* 机箱机架左右挂耳 */}
       <path
-        d="M 20.5 26.5
-           C 17 30, 16 34.5, 16.5 38
-           C 18.5 39.5, 21.2 39, 23.2 38
-           C 25.2 39.5, 27.8 39, 30.2 37.5
-           C 32.2 36, 33.8 33, 32.8 29.5"
-        strokeWidth="1.8"
+        d="M 14 13.5 L 9.5 13.5 C 8.5 13.5, 8 14, 8 15 L 8 20.5 C 8 21.5, 8.5 22, 9.5 22 L 14 22
+           M 50 13.5 L 54.5 13.5 C 55.5 13.5, 56 14, 56 15 L 56 20.5 C 56 21.5, 55.5 22, 54.5 22 L 50 22"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        fill="currentColor"
-        fillOpacity="0.04"
       />
-      {/* 翅羽内部素描质感排线 */}
-      <g strokeWidth="0.9" strokeLinecap="round" opacity="0.35">
-        <line x1="20" y1="31.5" x2="23" y2="35.5" />
-        <line x1="24" y1="31.5" x2="27" y2="35.5" />
-        <line x1="28" y1="31.5" x2="31" y2="35" />
-      </g>
+      <circle cx="10.8" cy="17.8" r="1.1" strokeWidth="1" fill="#FAF7F0" />
+      <circle cx="53.2" cy="17.8" r="1.1" strokeWidth="1" fill="#FAF7F0" />
 
-      {/* 4. 前跨踏地的右腿与蹼足 (前足) */}
-      <g strokeLinecap="round" strokeLinejoin="round">
-        <path
-          d="M 31.8 43.5 L 35.2 48.2"
-          strokeWidth="2.2"
-        />
-        <path
-          d="M 35.2 48.2 L 32.2 50.8
-             M 35.2 48.2 L 36.2 54.8
-             M 35.2 48.2 L 41.5 50.8"
-          strokeWidth="2.0"
-        />
-        <path
-          d="M 32.2 50.8 Q 33.8 53.8 36.2 54.8 Q 38.8 53.2 41.5 50.8"
-          strokeWidth="1.2"
-          fill="currentColor"
-          fillOpacity="0.12"
-        />
-      </g>
-
-      {/* 5. 叼着的经典黄油刀 (刀柄朝左下，刀身冲向右上) */}
-      {/* 刀柄木质握把 (向下后方倾斜圆润刀柄) */}
+      {/* 顶层机箱主轮廓 */}
       <path
-        d="M 43.8 33.5 
-           L 40.2 39.5 
-           C 39.5 40.8, 41.2 41.8, 42.2 40.8 
-           L 45.8 34.8 Z"
-        strokeWidth="1.8"
+        d="M 14 14.5 C 14 13.2, 15.2 12, 16.8 12 L 47.2 12 C 48.8 12, 50 13.2, 50 14.5 L 50 21.5 C 50 22.8, 48.8 24, 47.2 24 L 16.8 24 C 15.2 24, 14 22.8, 14 21.5 Z"
+        strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="currentColor"
         fillOpacity="0.08"
       />
-      {/* 刀柄中心手绘素描质感微线 */}
-      <line
-        x1="43.5"
-        y1="35.5"
-        x2="41.5"
-        y2="39"
-        strokeWidth="0.9"
-        strokeLinecap="round"
-        opacity="0.5"
-      />
-
-      {/* 黄油刀金属刀刃 (自喙部向前上方伸出，带圆头安全刀尖) */}
+      {/* 手绘草图微颤复线 */}
       <path
-        d="M 47.8 31.2 
-           L 57.5 25 
-           C 59.2 24, 60.5 25.4, 59.2 27 
-           L 49.2 33.4 Z"
-        strokeWidth="1.8"
+        d="M 15 13 L 49 13 M 15 23 L 49 23"
+        strokeWidth="0.7"
+        opacity="0.3"
+        strokeLinecap="round"
+      />
+      {/* 电源按钮 */}
+      <circle cx="17.2" cy="18" r="1.3" strokeWidth="1.1" strokeLinecap="round" />
+      {/* 标志性 Clash 同款圆圆大眼睛 LED 指示灯 (镂空纯白纸底 + 瞳孔高光点) */}
+      <circle
+        cx="22.5"
+        cy="18"
+        r="2.6"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        fill="#FAF7F0"
+      />
+      <circle cx="22.5" cy="18" r="0.85" fill="currentColor" stroke="none" />
+      <circle
+        cx="28.8"
+        cy="18"
+        r="2.6"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        fill="#FAF7F0"
+      />
+      <circle cx="28.8" cy="18" r="0.85" fill="currentColor" stroke="none" />
+      {/* 散热格栅与 45 度素描排线 */}
+      <line x1="34.5" y1="16.5" x2="46" y2="16.5" strokeWidth="1.1" strokeLinecap="round" opacity="0.6" />
+      <line x1="34.5" y1="19.5" x2="46" y2="19.5" strokeWidth="1.1" strokeLinecap="round" opacity="0.6" />
+      <g strokeWidth="0.8" strokeLinecap="round" opacity="0.35">
+        <line x1="37" y1="15" x2="40" y2="18" />
+        <line x1="41" y1="15" x2="44" y2="18" />
+      </g>
+
+      {/* ================= 2. 第二层机箱 (Middle Blade: 包含 SSH 终端提示符 >_ 与硬盘插槽) ================= */}
+      {/* 机箱机架左右挂耳 */}
+      <path
+        d="M 14 27 L 9.5 27 C 8.5 27, 8 27.5, 8 28.5 L 8 34 C 8 35, 8.5 35.5, 9.5 35.5 L 14 35.5
+           M 50 27 L 54.5 27 C 55.5 27, 56 27.5, 56 28.5 L 56 34 C 56 35, 55.5 35.5, 54.5 35.5 L 50 35.5"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="10.8" cy="31.2" r="1.1" strokeWidth="1" fill="#FAF7F0" />
+      <circle cx="53.2" cy="31.2" r="1.1" strokeWidth="1" fill="#FAF7F0" />
+
+      {/* 中层机箱主轮廓 */}
+      <path
+        d="M 14 28 C 14 26.7, 15.2 25.5, 16.8 25.5 L 47.2 25.5 C 48.8 25.5, 50 26.7, 50 28 L 50 35 C 50 36.3, 48.8 37.5, 47.2 37.5 L 16.8 37.5 C 15.2 37.5, 14 36.3, 14 35 Z"
+        strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="currentColor"
-        fillOpacity="0.06"
+        fillOpacity="0.08"
       />
-      {/* 刀刃金属反光素描线 */}
-      <line
-        x1="50"
-        y1="31.2"
-        x2="57.2"
-        y2="26.4"
-        strokeWidth="0.8"
-        strokeLinecap="round"
-        opacity="0.6"
-      />
-
-      {/* 6. 标志性大鹅长扁喙 (上下喙牢牢咬紧刀身) */}
       <path
-        d="M 45.5 28.2 
-           L 52 30.8 
-           C 52.2 31.8, 51.5 32.6, 50.2 32.8 
-           L 46.2 34 Z"
-        strokeWidth="2.1"
+        d="M 15 26.5 L 49 26.5 M 15 36.5 L 49 36.5"
+        strokeWidth="0.7"
+        opacity="0.3"
+        strokeLinecap="round"
+      />
+      {/* 终端命令行提示符 >_ (呼应 不想搭梯 SSH 终端) */}
+      <path
+        d="M 18.2 29.2 L 21.8 31.5 L 18.2 33.8"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <line x1="23.8" y1="33.8" x2="27" y2="33.8" strokeWidth="1.6" strokeLinecap="round" />
+      {/* 双位硬盘插槽与素描卡扣 */}
+      <rect x="32" y="28" width="7" height="7" rx="1.2" strokeWidth="1.2" strokeLinecap="round" fill="currentColor" fillOpacity="0.05" />
+      <rect x="40.5" y="28" width="7" height="7" rx="1.2" strokeWidth="1.2" strokeLinecap="round" fill="currentColor" fillOpacity="0.05" />
+      <line x1="34" y1="31.5" x2="37" y2="31.5" strokeWidth="1.1" strokeLinecap="round" opacity="0.6" />
+      <line x1="42.5" y1="31.5" x2="45.5" y2="31.5" strokeWidth="1.1" strokeLinecap="round" opacity="0.6" />
+
+      {/* ================= 3. 第三层机箱 (Bottom Blade: 包含千兆网络接口与吞吐活动柱) ================= */}
+      {/* 机箱机架左右挂耳 */}
+      <path
+        d="M 14 40.5 L 9.5 40.5 C 8.5 40.5, 8 41, 8 42 L 8 47.5 C 8 48.5, 8.5 49, 9.5 49 L 14 49
+           M 50 40.5 L 54.5 40.5 C 55.5 40.5, 56 41, 56 42 L 56 47.5 C 56 48.5, 55.5 49, 54.5 49 L 50 49"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="10.8" cy="44.8" r="1.1" strokeWidth="1" fill="#FAF7F0" />
+      <circle cx="53.2" cy="44.8" r="1.1" strokeWidth="1" fill="#FAF7F0" />
+
+      {/* 底层机箱主轮廓 */}
+      <path
+        d="M 14 41.5 C 14 40.2, 15.2 39, 16.8 39 L 47.2 39 C 48.8 39, 50 40.2, 50 41.5 L 50 48.5 C 50 49.8, 48.8 51, 47.2 51 L 16.8 51 C 15.2 51, 14 49.8, 14 48.5 Z"
+        strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="currentColor"
-        fillOpacity="0.18"
+        fillOpacity="0.08"
       />
-      {/* 鹅嘴鼻孔微点 */}
-      <circle cx="47" cy="29.2" r="0.5" fill="currentColor" stroke="none" />
+      <path
+        d="M 15 40 L 49 40 M 15 50 L 49 50"
+        strokeWidth="0.7"
+        opacity="0.3"
+        strokeLinecap="round"
+      />
+      {/* 3 个 RJ45 网络插孔 */}
+      <rect x="17.5" y="42.8" width="4.5" height="4.5" rx="0.8" strokeWidth="1.2" strokeLinecap="round" />
+      <rect x="23.5" y="42.8" width="4.5" height="4.5" rx="0.8" strokeWidth="1.2" strokeLinecap="round" />
+      <rect x="29.5" y="42.8" width="4.5" height="4.5" rx="0.8" strokeWidth="1.2" strokeLinecap="round" />
+      {/* 网络流量吞吐活跃柱状指示 */}
+      <line x1="36.8" y1="47.5" x2="36.8" y2="44.5" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="39.8" y1="47.5" x2="39.8" y2="42.5" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="42.8" y1="47.5" x2="42.8" y2="45.5" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="45.8" y1="47.5" x2="45.8" y2="41.5" strokeWidth="1.5" strokeLinecap="round" />
 
-      {/* 7. 鹅眼：纯黑小圆眼与纯白高光点，透出'大鹅出击'的坚定与诙谐 */}
-      <circle cx="43.5" cy="29.2" r="1.3" fill="currentColor" stroke="none" />
-      <circle cx="43.2" cy="28.9" r="0.45" fill="#FAF7F0" stroke="none" />
-
-      {/* 8. 鹅腹与下胸素描阴影排线 */}
-      <g strokeWidth="0.9" strokeLinecap="round" opacity="0.3">
-        <line x1="20" y1="41.5" x2="23" y2="44" />
-        <line x1="24" y1="41.5" x2="27" y2="44" />
-        <line x1="28" y1="41.5" x2="31" y2="44" />
+      {/* 底部 45 度素描投影排线 (与 Clash 猫身阴影排线同风格) */}
+      <g strokeWidth="0.9" strokeLinecap="round" opacity="0.35">
+        <line x1="18" y1="52" x2="21" y2="55" />
+        <line x1="23" y1="52" x2="26" y2="55" />
+        <line x1="28" y1="52" x2="31" y2="55" />
+        <line x1="33" y1="52" x2="36" y2="55" />
+        <line x1="38" y1="52" x2="41" y2="55" />
+        <line x1="43" y1="52" x2="46" y2="55" />
       </g>
     </svg>
   );
 };
+
+export const PencilDaeLogo = PencilVpsLogo;
 
 /**
  * 软件 ID 与铅笔 Logo 映射统一解析组件
@@ -1730,8 +1721,10 @@ export const PencilSoftwareLogo: React.FC<{
     case 'clash-party-win':
       return <PencilClashPartyLogo className={className} size={size} {...props} />;
     
+    case 'sing-box-ios':
     case 'sing-box-mac':
     case 'sing-box-android':
+    case 'sing-box-win':
       return <PencilSingBoxLogo className={className} size={size} {...props} />;
     
     // v2rayNG / v2rayN 保持经典 V2Ray 徽标一致
@@ -1745,7 +1738,6 @@ export const PencilSoftwareLogo: React.FC<{
     
     // NekoBox / NekoRay 保持官方纸箱萌猫徽标一致
     case 'nekobox-android':
-    case 'nekoray':
       return <PencilNekoBoxLogo className={className} size={size} {...props} />;
     
     // v2rayA (Linux / 软路由)
@@ -1755,8 +1747,15 @@ export const PencilSoftwareLogo: React.FC<{
     case 'openclash':
       return <PencilOpenClashLogo className={className} size={size} {...props} />;
     
+    // 自己搭建节点 (VPS 服务器)
+    case 'vps-nodes':
+    case 'self-built-node':
+    case 'vps':
+    case 'termius':
+    case 'ssh':
+    case 'bxdt':
     case 'dae':
-      return <PencilDaeLogo className={className} size={size} {...props} />;
+      return <PencilVpsLogo className={className} size={size} {...props} />;
     
     default:
       return <PencilClashLogo className={className} size={size} {...props} />;

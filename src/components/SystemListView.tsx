@@ -90,7 +90,7 @@ export const SystemListView: React.FC<SystemListViewProps> = ({
             <div className="mt-2.5 p-2 sm:p-2.5 bg-paper-200/70 border border-pencil/30 rounded-lg font-mono text-[10px] sm:text-[11px] text-pencil-dark flex flex-col gap-1.5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1">
-                  <span className="text-pencil-faint text-[10px]">更新时间:</span>
+                  <span className="text-pencil-faint text-[10px]">最近更新:</span>
                   <span className="font-bold flex items-center gap-1">
                     <Calendar className="w-3 h-3 text-pencil-light" />
                     {tool.updatedAt}

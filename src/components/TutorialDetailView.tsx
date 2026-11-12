@@ -33,6 +33,138 @@ const formatOpenSourceLicense = (license?: string): string => {
   return license.replace(/\s*\/?\s*[（(]?免费[)）]?/g, '').trim();
 };
 
+const ACTION_BUTTON_BASE_CLASSES =
+  "inline-flex items-center gap-1 text-[11px] sm:text-xs font-sans font-bold leading-normal rounded-md px-2 py-0.5 shadow-xs transition-colors";
+
+const renderInlineElements = (text: string): React.ReactNode[] => {
+  const tokenRegex = /(\[!\[([^\]]*)\]\(([^)]+)\)\s*([^\]]*)\]\(([^)]+)\)|!\[([^\]]*)\]\(([^)]+)\)|\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|`([^`]+)`|([（(]https?:\/\/[^\s<>（()）\u3000-\u303f\uff00-\uffef]+[)）]|https?:\/\/[^\s<>（()）\u3000-\u303f\uff00-\uffef]+)|\n)/g;
+
+  const elements: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = tokenRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      elements.push(text.substring(lastIndex, match.index));
+    }
+
+    const [fullMatch, , linkImgAlt, linkImgSrc, linkImgText, linkImgUrl, imgAlt, imgSrc, linkText, linkUrl, boldText, codeText, bareUrl] = match;
+
+    if (linkImgUrl) {
+      const isBxdt = linkImgText?.includes('不想搭梯') || linkImgUrl?.includes('bxdt') || linkImgSrc?.includes('bxdt');
+      elements.push(
+        <a
+          key={match.index}
+          href={linkImgUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={
+            isBxdt
+              ? `${ACTION_BUTTON_BASE_CLASSES} text-blue-600 bg-blue-50/90 border border-blue-200/90 hover:bg-blue-100 hover:border-blue-300 align-middle mx-1`
+              : "inline-flex items-center gap-1 font-bold text-blue-700 hover:text-blue-900 hover:underline align-baseline"
+          }
+          title={linkImgText ? `前往 ${linkImgText}` : undefined}
+        >
+          <img
+            src={linkImgSrc}
+            alt={linkImgAlt || 'icon'}
+            className="w-3.5 h-3.5 object-contain rounded-xs shrink-0"
+            width={14}
+            height={14}
+          />
+          {linkImgText && <span>{linkImgText}</span>}
+        </a>
+      );
+    } else if (imgSrc) {
+      elements.push(
+        <img
+          key={match.index}
+          src={imgSrc}
+          alt={imgAlt || 'image'}
+          className="inline-block w-3.5 h-3.5 object-contain align-middle -mt-0.5 mx-0.5"
+          width={14}
+          height={14}
+        />
+      );
+    } else if (linkUrl) {
+      const isBxdt = linkText?.includes('不想搭梯') || linkUrl?.includes('bxdt');
+      elements.push(
+        <a
+          key={match.index}
+          href={linkUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={
+            isBxdt
+              ? `${ACTION_BUTTON_BASE_CLASSES} text-blue-600 bg-blue-50/90 border border-blue-200/90 hover:bg-blue-100 hover:border-blue-300 align-middle mx-1`
+              : "inline-flex items-center gap-1 font-bold text-blue-700 hover:text-blue-900 hover:underline align-baseline"
+          }
+          title={linkText ? `前往 ${linkText}` : undefined}
+        >
+          {isBxdt && (
+            <img
+              src="/bxdt-icon.png"
+              alt="不想搭梯"
+              className="w-3.5 h-3.5 object-contain rounded-xs shrink-0"
+              width={14}
+              height={14}
+            />
+          )}
+          <span>{linkText}</span>
+        </a>
+      );
+    } else if (boldText) {
+      elements.push(
+        <strong key={match.index} className="font-bold text-pencil-dark">
+          {renderInlineElements(boldText)}
+        </strong>
+      );
+    } else if (codeText) {
+      elements.push(
+        <code key={match.index} className="px-1 py-0.5 bg-paper-200/90 text-pencil-dark rounded font-mono text-[11px] border border-pencil/20">
+          {codeText}
+        </code>
+      );
+    } else if (bareUrl) {
+      const unwrapped = bareUrl.replace(/^[（(]|[)）]$/g, '');
+      const url = unwrapped.replace(/[.,;:!?]+$/, '');
+      const punctuation = unwrapped.slice(url.length);
+      elements.push(
+        <a key={match.index} href={url} target="_blank" rel="noopener noreferrer"
+          className="font-bold text-blue-700 hover:text-blue-900 underline underline-offset-2 break-words"
+          title={`前往 ${url}`}>
+          {url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+        </a>
+      );
+      if (punctuation) elements.push(punctuation);
+    } else if (fullMatch === '\n') {
+      elements.push(<br key={match.index} />);
+    }
+
+    lastIndex = tokenRegex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    elements.push(text.substring(lastIndex));
+  }
+
+  return elements;
+};
+
+export const FormattedRichText: React.FC<{ text: string; className?: string }> = ({ text, className }) => {
+  if (!text) return null;
+  const paragraphs = text.split(/\n\n+/);
+  return (
+    <div className={className}>
+      {paragraphs.map((para, pIdx) => (
+        <p key={pIdx} className={pIdx > 0 ? 'mt-2 leading-relaxed' : 'leading-relaxed'}>
+          {renderInlineElements(para)}
+        </p>
+      ))}
+    </div>
+  );
+};
+
 export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
   tool,
   onBack,
@@ -85,9 +217,9 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
             <p className="text-sm font-sans text-pencil-light mt-2 leading-relaxed">
               {tool.tagline}
             </p>
-            <p className="text-xs text-pencil/80 mt-1 italic font-sans">
-              {tool.description}
-            </p>
+            <div className="text-xs text-pencil/80 mt-1 italic font-sans">
+              <FormattedRichText text={tool.description} />
+            </div>
           </div>
 
           {/* Official links */}
@@ -98,9 +230,12 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
                 target="_blank"
                 rel="noreferrer"
                 className="pencil-btn-secondary py-1.5 px-3 flex items-center justify-center gap-1.5 hover:bg-paper-100"
-                title="访问官方网站"
+                title={tool.officialSiteLabel ? `访问 ${tool.officialSiteLabel}` : '访问官方网站'}
               >
-                <span>官方网站</span>
+                {tool.officialSiteIcon && (
+                  <img src={tool.officialSiteIcon} alt="" className="w-3.5 h-3.5 object-contain rounded-xs" width={14} height={14} />
+                )}
+                <span>{tool.officialSiteLabel || '官方网站'}</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             )}
@@ -113,6 +248,42 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
                 title="前往 App Store 下载"
               >
                 <span>App Store</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+            {tool.playStoreUrl && (
+              <a
+                href={tool.playStoreUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="pencil-btn-secondary py-1.5 px-3 flex items-center justify-center gap-1.5 hover:bg-paper-100"
+                title="前往 Google Play 下载"
+              >
+                <span>Google Play</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+            {tool.homebrewUrl && (
+              <a
+                href={tool.homebrewUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="pencil-btn-secondary py-1.5 px-3 flex items-center justify-center gap-1.5 hover:bg-paper-100"
+                title="通过 Homebrew 安装"
+              >
+                <span>Homebrew</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+            {tool.releasesUrl && (
+              <a
+                href={tool.releasesUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="pencil-btn-secondary py-1.5 px-3 flex items-center justify-center gap-1.5 hover:bg-paper-100"
+                title="前往 GitHub Releases 下载"
+              >
+                <span>软件下载</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             )}
@@ -134,7 +305,7 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
         {/* Metadata Grid */}
         <div className="mt-6 p-4 bg-paper-200/80 border-2 border-pencil rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
           <div className="p-2 bg-paper-100 rounded border border-pencil/20">
-            <span className="text-[10px] text-pencil-faint block uppercase">更新时间:</span>
+            <span className="text-[10px] text-pencil-faint block uppercase">最近更新:</span>
             <span className="text-pencil-dark font-bold text-sm flex items-center gap-1 mt-0.5">
               <Calendar className="w-3.5 h-3.5 text-blue-700" />
               {tool.updatedAt}
@@ -215,9 +386,9 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
               使用教程
             </h2>
           </div>
-          <p className="text-xs text-pencil-light font-sans mt-1">
-            {tool.tutorial.overview}
-          </p>
+          <div className="text-xs text-pencil-light font-sans mt-1">
+            <FormattedRichText text={tool.tutorial.overview} />
+          </div>
         </div>
 
         {/* Prerequisites */}
@@ -228,32 +399,52 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
                 <AlertCircle className="w-4 h-4 text-amber-700 shrink-0" />
                 <span>准备工作：</span>
               </div>
-              <div className="flex items-center gap-1 text-[11px] sm:text-xs text-amber-800">
-                <span>到</span>
-                <a
-                  href="https://jkdh.sld.tw/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-bold text-amber-950 bg-amber-100/80 border border-amber-300/80 rounded-md px-2 py-0.5 shadow-xs hover:bg-amber-200/80 hover:border-amber-400 transition-colors"
-                  title="前往家宽导航"
-                >
-                  <img
-                    src="/jkdh-favicon.png"
-                    alt="家宽导航"
-                    className="w-3.5 h-3.5 object-contain rounded-xs shrink-0"
-                    width={14}
-                    height={14}
-                  />
-                  <span>家宽导航</span>
-                </a>
-                <span>购买节点</span>
+              <div className="flex items-center gap-2 flex-wrap">
+                {(tool.tutorial.prerequisiteActions ?? [
+                  tool.tutorial.prerequisiteAction ?? {
+                    prefixText: '到',
+                    url: 'https://jkdh.sld.tw/',
+                    name: '家宽导航',
+                    iconSrc: '/jkdh-favicon.png',
+                    suffixText: '购买节点',
+                    title: '前往家宽导航',
+                  },
+                ]).map((action, idx) => (
+                  <div key={idx} className="flex items-center gap-1 text-[11px] sm:text-xs text-amber-800">
+                    {action.prefixText && <span>{action.prefixText}</span>}
+                    <a
+                      href={action.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${ACTION_BUTTON_BASE_CLASSES} text-amber-950 bg-amber-100/80 border border-amber-300/80 hover:bg-amber-200/80 hover:border-amber-400`}
+                      title={action.title ?? `前往 ${action.name}`}
+                    >
+                      {action.iconSrc && (
+                        <img
+                          src={action.iconSrc}
+                          alt={action.name}
+                          className="w-3.5 h-3.5 object-contain rounded-xs shrink-0"
+                          width={14}
+                          height={14}
+                        />
+                      )}
+                      <span>{action.name}</span>
+                    </a>
+                    {action.suffixText && <span>{action.suffixText}</span>}
+                  </div>
+                ))}
               </div>
             </div>
-            <ul className="list-disc list-inside space-y-1 text-amber-950 font-sans">
-              {tool.tutorial.prerequisites.map((pre, idx) => (
-                <li key={idx}>{pre}</li>
-              ))}
-            </ul>
+            <div className="max-w-full" aria-label="准备工作列表">
+              <ul className="space-y-1 text-amber-950 font-sans">
+                {tool.tutorial.prerequisites.map((pre, idx) => (
+                  <li key={idx} className="leading-relaxed flex items-baseline gap-2">
+                    <span aria-hidden="true" className="shrink-0 text-black">•</span>
+                    <span className="min-w-0 flex-1 break-words [overflow-wrap:anywhere]">{renderInlineElements(pre)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         )}
 
@@ -274,9 +465,7 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
                 </h3>
               </div>
 
-              <p className="text-xs text-pencil-light leading-relaxed font-sans">
-                {step.description}
-              </p>
+              <FormattedRichText text={step.description} className="text-xs text-pencil-light font-sans" />
 
               {/* Code Snippet Box (if available) */}
               {step.codeSnippet && (
@@ -299,8 +488,10 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
               {/* Tip */}
               {step.pencilTip && (
                 <div className="mt-3 p-2.5 bg-paper-200/70 border-l-4 border-pencil-gold rounded-r text-xs text-pencil-dark font-sans flex items-start gap-2">
-                  <span className="font-bold text-pencil-gold">提示:</span>
-                  <span>{step.pencilTip}</span>
+                  <span className="font-bold text-pencil-gold shrink-0">提示:</span>
+                  <div className="flex-1">
+                    <FormattedRichText text={step.pencilTip} />
+                  </div>
                 </div>
               )}
             </div>
@@ -320,8 +511,10 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
         <ul className="space-y-2 text-xs text-pencil-light font-sans">
           {tool.tutorial.advancedRules.map((rule, idx) => (
             <li key={idx} className="p-2.5 bg-paper-100 rounded border border-pencil/20 flex items-start gap-2">
-              <span className="font-mono font-bold text-pencil-dark">[{idx + 1}]</span>
-              <span>{rule}</span>
+              <span className="font-mono font-bold text-pencil-dark shrink-0">[{idx + 1}]</span>
+              <div className="flex-1">
+                <FormattedRichText text={rule} />
+              </div>
             </li>
           ))}
         </ul>
@@ -340,12 +533,16 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
           {tool.tutorial.faq.map((item, idx) => (
             <div key={idx} className="p-3 bg-paper-100 rounded-lg border border-pencil/30">
               <div className="font-bold text-pencil-dark font-serif flex items-start gap-1.5">
-                <span className="text-red-700 font-mono">Q:</span>
-                <span>{item.question}</span>
+                <span className="text-red-700 font-mono shrink-0">Q:</span>
+                <div className="flex-1">
+                  <FormattedRichText text={item.question} />
+                </div>
               </div>
               <div className="text-pencil-light mt-1 pl-4 font-sans leading-relaxed flex items-start gap-1.5">
-                <span className="text-emerald-700 font-mono font-bold">A:</span>
-                <span>{item.answer}</span>
+                <span className="text-emerald-700 font-mono font-bold shrink-0">A:</span>
+                <div className="flex-1">
+                  <FormattedRichText text={item.answer} />
+                </div>
               </div>
             </div>
           ))}
@@ -358,7 +555,7 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
           <div className="flex items-center gap-2">
             <History className="w-4 h-4 text-pencil" />
             <h2 className="font-serif font-black text-lg text-pencil-dark">
-              更新记录
+              教程更新记录
             </h2>
           </div>
           <button

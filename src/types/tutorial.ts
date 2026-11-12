@@ -1,31 +1,6 @@
 export type SystemCategory = 'apple' | 'android' | 'windows' | 'linux';
 export type SubSystemCategory = 'ios' | 'macos' | 'android' | 'windows' | 'linux';
 
-export interface StylizedAnnotation {
-  id: string;
-  label: string;
-  note: string;
-  xPercent: number; // For interactive pencil pin
-  yPercent: number;
-}
-
-export interface StylizedScreenshot {
-  deviceType: 'iphone' | 'macbook' | 'android' | 'windows' | 'terminal';
-  deviceSpec: string; // e.g. "iPhone 16 Pro (Retina 120Hz, Super Retina XDR)"
-  screenResolution: string; // e.g. "1179 × 2556 px"
-  title: string;
-  caption?: string;
-  colorScheme: 'light' | 'dark';
-  annotations: StylizedAnnotation[];
-  mockData: {
-    status: string;
-    trafficTotal?: string;
-    outboundMode?: string;
-    activeNodes?: Array<{ name: string; type: string; ping: number; selected?: boolean }>;
-    logs?: string[];
-  };
-}
-
 export interface TutorialStep {
   stepNumber: number;
   title: string;
@@ -45,6 +20,15 @@ export interface CrowdsourceLog {
   commitHash: string;
 }
 
+export interface PrerequisiteAction {
+  prefixText?: string; // 默认 "到"
+  url: string; // 链接
+  name: string; // "Akile" 或 "家宽导航"
+  iconSrc?: string; // 图标路径
+  suffixText?: string; // "买服务器" 或 "购买节点"
+  title?: string; // 悬停提示
+}
+
 export interface SoftwareTool {
   id: string;
   name: string;
@@ -57,7 +41,7 @@ export interface SoftwareTool {
   badgeText: string;
   
   // Mandatory Standardized Metadata
-  updatedAt: string; // 更新时间
+  updatedAt: string; // 最近更新时间
   isOpenSource: boolean; // 是否开源
   license: string; // 开源许可证 / 商业授权
   price?: string; // 软件价格 (含货币单位、数值与买断说明，如 "约 $2.99 买断")
@@ -67,8 +51,13 @@ export interface SoftwareTool {
   
   // Links
   officialSite?: string;
+  officialSiteLabel?: string; // 自定义官网按钮文案
+  officialSiteIcon?: string; // 自定义官网按钮图标路径 (如 "/bxdt-icon.png")
   githubRepo?: string;
   appStoreUrl?: string;
+  playStoreUrl?: string; // Google Play 地址
+  homebrewUrl?: string; // Homebrew (formulae.brew.sh) 地址
+  releasesUrl?: string; // GitHub Releases 软件下载地址
   
   // Specifications
   specs: {
@@ -77,16 +66,14 @@ export interface SoftwareTool {
     coreEngine: string; // 底层内核 (Mihomo, Xray, sing-box, eBPF)
     protocols: string[]; // 支持的协议
     trafficHandling: string; // 流量处理方式 (TUN, 系统代理, 透明代理)
-    resourceFootprint: string; // 内存与性能开销
   };
-  
-  // Stylized visual presentation
-  screenshot: StylizedScreenshot;
   
   // Standard Step-by-Step Tutorial
   tutorial: {
     overview: string;
     prerequisites: string[];
+    prerequisiteAction?: PrerequisiteAction;
+    prerequisiteActions?: PrerequisiteAction[];
     steps: TutorialStep[];
     advancedRules: string[];
     faq: Array<{ question: string; answer: string }>;

@@ -11,11 +11,11 @@ export const clashPartyMac: SoftwareTool = {
   iconName: 'Sparkles',
   badgeText: '新一代美学先锋',
   
-  updatedAt: '2026-03-28',
+  updatedAt: '2026-10-18',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2024-01-10',
-  latestVersion: 'v1.6.5',
+  latestVersion: 'v2.0.4',
   updatePath: 'data/tutorials/macos/clash-party-mac.md',
   
   officialSite: 'https://clashparty.org',
@@ -27,34 +27,6 @@ export const clashPartyMac: SoftwareTool = {
     coreEngine: 'Mihomo Core (Alpha / Release)',
     protocols: ['VLESS (Reality)', 'VMess', 'Hysteria 2', 'TUIC v5', 'Trojan', 'Shadowsocks', 'WireGuard'],
     trafficHandling: '一键系统代理 + 智能 TUN 虚拟网卡 (免额外服务安装)',
-    resourceFootprint: 'Electron 优化版，内存占用约 60MB - 90MB'
-  },
-  
-  screenshot: {
-    deviceType: 'macbook',
-    deviceSpec: 'MacBook Air 13" (M-Series)',
-    screenResolution: '2560 × 1664 像素',
-    title: 'Clash Party 优雅暗色/亮色切换与订阅中心',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'cp1', label: '① 节点矩阵', note: '卡片式分组呈现，支持流媒体解锁状态角标标记与 Smart 测速', xPercent: 50, yPercent: 35 },
-      { id: 'cp2', label: '② 一键覆写与 Sub-Store', note: '内置常用规则覆写与 Sub-Store 集成，自动规避 DNS 泄漏', xPercent: 20, yPercent: 65 },
-      { id: 'cp3', label: '③ 快速模式切换', note: '规则、全局、直连顶部三档轻触无缝切换', xPercent: 50, yPercent: 15 }
-    ],
-    mockData: {
-      status: 'Clash Party 核心运行中 - Smart 延迟优选就绪',
-      trafficTotal: '下行: 5.7 GB | 上行: 720 MB',
-      outboundMode: 'Rule (智能规则)',
-      activeNodes: [
-        { name: '🇭🇰 香港 IEPL 企业内网专线', type: 'VLESS', ping: 25, selected: true },
-        { name: '🇯🇵 日本 01 [支持 ChatGPT/Claude]', type: 'Reality', ping: 48 },
-        { name: '🇸🇬 新加坡 02 高速出口', type: 'Hysteria 2', ping: 53 }
-      ],
-      logs: [
-        '[Route] match GeoSite(google) -> Outbound(Proxy)',
-        '[Route] match GeoIP(CN) -> Outbound(Direct)'
-      ]
-    }
   },
   
   tutorial: {
@@ -104,10 +76,10 @@ export const clashPartyMac: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-28',
+      date: '2026-11-12',
       author: 'UIArtist',
-      prNumber: 110,
-      summary: '升级并更名为 Clash Party (clash-party)，更新官方域名 clashparty.org',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'd883c91'
     }
   ]

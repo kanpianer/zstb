@@ -11,11 +11,11 @@ export const clashVergeRevLinux: SoftwareTool = {
   iconName: 'Terminal',
   badgeText: 'Linux 桌面首选',
   
-  updatedAt: '2026-03-22',
+  updatedAt: '2026-11-03',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2023-11-05',
-  latestVersion: 'v2.0.4',
+  latestVersion: 'v2.5.10',
   updatePath: 'data/tutorials/linux/clash-verge-rev-linux.md',
   
   githubRepo: 'https://github.com/clash-verge-rev/clash-verge-rev',
@@ -27,34 +27,6 @@ export const clashVergeRevLinux: SoftwareTool = {
     coreEngine: 'Mihomo Core (原 Clash.Meta)',
     protocols: ['VLESS (Reality)', 'Hysteria 2', 'TUIC v5', 'VMess', 'Trojan', 'Shadowsocks', 'WireGuard'],
     trafficHandling: 'GNOME/KDE 系统代理设置 + Linux TUN (iptables/nftables) 全局接管',
-    resourceFootprint: 'Rust 前端 + Go 后台，常驻内存仅需 ~40MB'
-  },
-  
-  screenshot: {
-    deviceType: 'terminal',
-    deviceSpec: 'Linux Desktop (Arch Linux / GNOME 47 / Wayland)',
-    screenResolution: '2560 × 1440 像素',
-    title: 'Clash Verge Rev Linux 桌面窗口与 TUN 虚拟接口',
-    colorScheme: 'dark',
-    annotations: [
-      { id: 'cl1', label: '① 订阅管理', note: '通过图形界面导入机场订阅链接，支持定时自动刷新', xPercent: 20, yPercent: 25 },
-      { id: 'cl2', label: '② TUN 模式授权', note: '借助 setcap 或 systemd 服务赋予内核绑定 utun 虚拟网卡权限', xPercent: 80, yPercent: 15 },
-      { id: 'cl3', label: '③ 终端命令无缝直连', note: '开启 TUN 后，curl、git clone 与 apt/pacman 自动走极速代理', xPercent: 50, yPercent: 70 }
-    ],
-    mockData: {
-      status: 'Mihomo 运行中 - TUN (utun0) 已加载',
-      trafficTotal: '下行: 12.8 GB | 上行: 1.9 GB',
-      outboundMode: 'Rule (分流规则)',
-      activeNodes: [
-        { name: '🇭🇰 HK 01 [优质专线] 0.8x', type: 'VLESS-Reality', ping: 29, selected: true },
-        { name: '🇯🇵 JP 02 [流媒体 4K]', type: 'Hysteria 2', ping: 53 },
-        { name: '🇺🇸 US 03 [原生解锁]', type: 'Trojan', ping: 132 }
-      ],
-      logs: [
-        '[TUN] created utun0 device successfully via /dev/net/tun',
-        '[Route] match GeoSite(github) -> Outbound(PROXY)'
-      ]
-    }
   },
   
   tutorial: {
@@ -101,10 +73,10 @@ export const clashVergeRevLinux: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-22',
+      date: '2026-11-12',
       author: 'LinuxTux',
-      prNumber: 98,
-      summary: '完善 Linux 下 setcap 权限配置与 Wayland 桌面托盘兼容指南',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'e319bf0'
     }
   ]

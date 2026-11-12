@@ -24,6 +24,16 @@
 /*.ico
   Cache-Control: public, max-age=2592000
 
+# CMS content is part of each static deployment, never an offline snapshot.
+/content/*
+  Cache-Control: no-store
+
+/dtms
+  Cache-Control: no-cache
+
+/dtms/
+  Cache-Control: no-cache
+
 # Service worker must revalidate to pick up changes promptly
 /sw.js
   Cache-Control: public, max-age=0, must-revalidate

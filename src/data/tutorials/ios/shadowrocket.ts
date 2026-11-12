@@ -11,12 +11,12 @@ export const shadowrocket: SoftwareTool = {
   iconName: 'Rocket',
   badgeText: 'iOS 普及首选',
   
-  updatedAt: '2026-03-24',
+  updatedAt: '2026-10-29',
   isOpenSource: false,
   license: '商业闭源授权',
   price: '约 $2.99 买断',
   releasedAt: '2015-04-12',
-  latestVersion: 'v2.2.65',
+  latestVersion: 'v2.2.93',
   updatePath: 'data/tutorials/ios/shadowrocket.md',
   
   officialSite: 'https://shadowlaunch.com',
@@ -28,37 +28,6 @@ export const shadowrocket: SoftwareTool = {
     coreEngine: 'iOS NetworkExtension + 自研多协议引擎',
     protocols: ['Shadowsocks', 'ShadowsocksR', 'VMess', 'VLESS (Reality)', 'Trojan', 'Hysteria 2', 'TUIC v5', 'WireGuard', 'Snell', 'HTTP/SOCKS5'],
     trafficHandling: 'VPN TUN 虚拟网卡全局拦截 + 本地 DNS 缓存分流',
-    resourceFootprint: '空闲 ~18MB / 满载 45MB，CPU 占用低于 2%'
-  },
-  
-  screenshot: {
-    deviceType: 'iphone',
-    deviceSpec: 'Apple iPhone 16 Pro (Super Retina XDR)',
-    screenResolution: '1179 × 2556 像素 (460 ppi)',
-    title: 'Shadowrocket 节点仪表盘与分流工作台',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'a1', label: '① 状态开关', note: '主页面顶部一键连接开关，自动唤起 iOS VPN 权限确认', xPercent: 50, yPercent: 12 },
-      { id: 'a2', label: '② 全局路由', note: '默认推荐设为【配置】(分流模式)，国内直连海外走代理', xPercent: 50, yPercent: 24 },
-      { id: 'a3', label: '③ 订阅节点', note: '多协议节点列表，点击右上角【+】扫码或粘贴机场订阅', xPercent: 50, yPercent: 48 },
-      { id: 'a4', label: '④ Ping测速', note: '轻触【连通性测试】，支持按毫秒延迟或可用性自动排序', xPercent: 82, yPercent: 32 }
-    ],
-    mockData: {
-      status: '已连接 (Connected) - 规则分流模式',
-      trafficTotal: '下行: 1.42 GB | 上行: 182 MB',
-      outboundMode: '配置 (Rule Base)',
-      activeNodes: [
-        { name: '🇭🇰 香港 IEPL 专线 01 [优质]', type: 'VLESS-Reality', ping: 32, selected: true },
-        { name: '🇯🇵 日本 Tokyo BGP 02', type: 'Hysteria 2', ping: 58 },
-        { name: '🇸🇬 新加坡 狮城 03', type: 'Trojan', ping: 64 },
-        { name: '🇺🇸 美国 硅谷 04 [流媒体]', type: 'VMess', ping: 142 }
-      ],
-      logs: [
-        '[Rule] DIRECT: api.apple.com',
-        '[Rule] PROXY -> HK 01: youtubei.googleapis.com',
-        '[DNS] Resolved dns.google -> 8.8.8.8 (12ms)'
-      ]
-    }
   },
   
   tutorial: {
@@ -115,18 +84,11 @@ export const shadowrocket: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-24',
+      date: '2026-11-12',
       author: 'CyberPencil-Editor',
-      prNumber: 104,
-      summary: '补全 Hysteria 2 与 TUIC v5 新协议配置指引与 iPhone 16 Pro 屏幕适配规格',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'a7f3d91'
-    },
-    {
-      date: '2026-01-18',
-      author: 'iOS-Master',
-      prNumber: 88,
-      summary: '校对订阅自动更新步骤并添加防 DNS 泄露建议',
-      commitHash: 'c1b48e2'
     }
   ]
 };

@@ -11,11 +11,11 @@ export const v2rayn: SoftwareTool = {
   iconName: 'Monitor',
   badgeText: 'Windows 常青树',
   
-  updatedAt: '2026-03-25',
+  updatedAt: '2026-10-11',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2017-04-18',
-  latestVersion: 'v7.1.6',
+  latestVersion: 'v7.25.6',
   updatePath: 'data/tutorials/windows/v2rayn.md',
   
   githubRepo: 'https://github.com/2dust/v2rayN',
@@ -27,36 +27,6 @@ export const v2rayn: SoftwareTool = {
     coreEngine: 'Xray-core / sing-box / mihomo 多内核动态加载',
     protocols: ['VLESS (Reality)', 'VMess', 'Trojan', 'Shadowsocks', 'Hysteria 2', 'TUIC v5', 'WireGuard', 'SOCKS5'],
     trafficHandling: '一键写入系统代理 + 独立 Wintun/TUN 虚拟网卡驱动',
-    resourceFootprint: '空闲 ~35MB / 满载 65MB'
-  },
-  
-  screenshot: {
-    deviceType: 'windows',
-    deviceSpec: 'Windows 11 Pro PC (4K 3840×2160 HDR)',
-    screenResolution: '2560 × 1440 像素',
-    title: 'v2rayN 经典节点表格、路由规则与底部状态栏',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'vn1', label: '① 订阅分组', note: '顶部菜单【订阅分组】->【订阅分组设置】，添加机场链接并一键更新', xPercent: 18, yPercent: 12 },
-      { id: 'vn2', label: '② 节点矩阵', note: '表格列出协议类型、别名、测试延迟及配置详情，支持回车直接设为主活动节点', xPercent: 50, yPercent: 45 },
-      { id: 'vn3', label: '③ 底部状态控制', note: '状态栏关键设置：路由设为【绕过大陆】，系统代理切换为【自动配置系统代理】', xPercent: 50, yPercent: 92 },
-      { id: 'vn4', label: '④ TUN 模式', note: '勾选底部【开启 Tun 模式】，接管 Windows 命令行、CMD、Git 与游戏直连', xPercent: 82, yPercent: 92 }
-    ],
-    mockData: {
-      status: 'Xray-core 启动就绪 - 系统代理已开启 (Port: 10808)',
-      trafficTotal: '下行: 19.8 GB | 上行: 2.1 GB',
-      outboundMode: '绕过大陆 (IP/Domain Bypass)',
-      activeNodes: [
-        { name: '🇭🇰 香港 01 BGP 专线 [优质]', type: 'VLESS-Reality', ping: 31, selected: true },
-        { name: '🇯🇵 日本 02 4K 极速', type: 'Hysteria 2', ping: 52 },
-        { name: '🇸🇬 新加坡 03 原生', type: 'Trojan', ping: 58 },
-        { name: '🇺🇸 美国 04 节点', type: 'VMess', ping: 139 }
-      ],
-      logs: [
-        'v2rayN core service listening at 127.0.0.1:10808 (socks), 10809 (http)',
-        'Routing rule hit: geosite:cn -> direct'
-      ]
-    }
   },
   
   tutorial: {
@@ -112,10 +82,10 @@ export const v2rayn: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-25',
+      date: '2026-11-12',
       author: 'WinExpert',
-      prNumber: 105,
-      summary: '更新 v2rayN 7.x 架构与 .NET 8 依赖安装说明及 TUN 模式指引',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'b183fd4'
     }
   ]

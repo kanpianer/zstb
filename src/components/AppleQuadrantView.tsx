@@ -2,6 +2,7 @@ import React from 'react';
 import { SubSystemCategory } from '../types/tutorial';
 import { getToolsBySubSystem } from '../data/tutorials';
 import { Smartphone, Laptop } from 'lucide-react';
+import { getAppleOrder } from '../cms/content';
 import { PencilSoftwareLogo } from './PencilSoftwareLogos';
 
 interface AppleQuadrantViewProps {
@@ -20,7 +21,7 @@ export const AppleQuadrantView: React.FC<AppleQuadrantViewProps> = ({
   return (
     <div className="relative border-4 border-pencil rounded-2xl overflow-hidden shadow-pencil-lg bg-paper-100 min-h-[520px] md:h-[560px] w-full flex flex-col divide-y-4 divide-pencil">
       {/* UPPER SUB-QUADRANT: iOS */}
-      <div className="group relative flex-1 min-h-[260px] p-3 sm:p-4 lg:p-5 flex flex-col justify-between overflow-hidden bg-paper-100/60 hover:bg-paper-50/70 transition-all">
+      <div style={{ order: getAppleOrder().indexOf('ios') }} className="group relative flex-1 min-h-[260px] p-3 sm:p-4 lg:p-5 flex flex-col justify-between overflow-hidden bg-paper-100/60 hover:bg-paper-50/70 transition-all">
         <div className="relative z-10 flex items-center justify-between">
           <div>
             <h3 
@@ -97,7 +98,7 @@ export const AppleQuadrantView: React.FC<AppleQuadrantViewProps> = ({
       </div>
 
       {/* LOWER SUB-QUADRANT: macOS */}
-      <div className="group relative flex-1 min-h-[260px] p-3 sm:p-4 lg:p-5 flex flex-col justify-between overflow-hidden bg-paper-100/60 hover:bg-paper-50/70 transition-all">
+      <div style={{ order: getAppleOrder().indexOf('macos') }} className="group relative flex-1 min-h-[260px] p-3 sm:p-4 lg:p-5 flex flex-col justify-between overflow-hidden bg-paper-100/60 hover:bg-paper-50/70 transition-all">
         <div className="relative z-10 flex items-center justify-between">
           <div>
             <h3 

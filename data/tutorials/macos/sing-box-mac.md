@@ -6,15 +6,17 @@ category: "apple"
 tagline: "次世代通用网络核心、内存怪兽与官方 GUI 原生应用"
 
 # 必填固定标准格式字段
-updated_at: "2026-03-26"
+updated_at: "2026-10-24"
 is_open_source: true
 license: "GPL-3.0 开源协议"
 released_at: "2022-07-01"
-latest_version: "v1.11.2"
+latest_version: "v1.14.4"
 update_path: "data/tutorials/macos/sing-box-mac.md"
 
 official_site: "https://sing-box.sagernet.org"
-github_repo: "https://github.com/SagerNet/sing-box"
+github_repo: ""
+homebrew_url: "https://formulae.brew.sh/cask/sfm"
+releases_url: "https://github.com/SagerNet/sing-box/releases"
 
 specs:
   compatibility: "macOS 12.0 (Monterey) 或更高版本"
@@ -22,20 +24,12 @@ specs:
   core_engine: "Sing-box Universal Proxy Platform (Go)"
   protocols: ["Shadowsocks", "VMess", "VLESS (Reality)", "Trojan", "Hysteria 2", "TUIC v5", "ShadowTLS", "WireGuard", "Direct/Block"]
   traffic_handling: "原生 System Extension 虚拟网卡 (TUN) + 系统代理"
-  resource_footprint: "极致轻量，常驻内存仅需 ~18MB - 28MB"
-
-screenshot:
-  device_type: "macbook"
-  device_spec: "MacBook Pro 14" (Apple M3 Max)"
-  resolution: "3024 × 1964 像素"
-  title: "Sing-box 官方客户端原生地图拓扑与仪表盘"
-  caption: ""
 ---
 
 # Sing-box 众包图文教程
 
-> **独立更新路径**: `data/tutorials/macos/sing-box-mac.md`  
-> **更新时间**: 2026-03-26 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2022-07-01
+> **教程文件路径**: `data/tutorials/macos/sing-box-mac.md`  
+> **最近更新**: 2026-10-24 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2022-07-01
 
 ## 一、软件简介与核心规格
 Sing-box 是目前代理协议演进的技术引领者，由 SagerNet 团队倾力打造。官方 macOS 客户端采用原生 Swift 结合高性能 Go 核心构建，支持几乎所有前沿协议（Hysteria 2、TUIC v5、ShadowTLS 等），资源开销近乎为零。
@@ -45,22 +39,11 @@ Sing-box 是目前代理协议演进的技术引领者，由 SagerNet 团队倾�
 - **系统要求**: macOS 12.0 (Monterey) 或更高版本
 - **底层引擎**: Sing-box Universal Proxy Platform (Go)
 - **流量接管模式**: 原生 System Extension 虚拟网卡 (TUN) + 系统代理
-- **资源消耗**: 极致轻量，常驻内存仅需 ~18MB - 28MB
 - **支持协议**: Shadowsocks, VMess, VLESS (Reality), Trojan, Hysteria 2, TUIC v5, ShadowTLS, WireGuard, Direct/Block
 
 ---
 
-## 二、风格化截图与图解规格
-- **设备线框规格**: MacBook Pro 14" (Apple M3 Max) (3024 × 1964 像素)
-
-### 关键控制点标注
-- **① 状态监控**: 原生系统扩展极速接入，支持低延迟实时吞吐指示
-- **② 订阅与Profile**: 支持本地 JSON/JSONC 规则或远程托管 Profile 订阅
-- **③ 独立分流出站**: 每个出站（Outbound）均可独立配置测速探针与容灾回退
-
----
-
-## 三、标准操作步骤指南
+## 二、标准操作步骤指南
 
 ### 步骤 1：下载并安装客户端
 前往官方 GitHub Releases 页面或 Mac App Store（非国区）下载 Sing-box for macOS 客户端（.dmg 或 AppStore 安装）。
@@ -83,22 +66,22 @@ https://api.yourproxy.net/sub/singbox?token=mytoken123
 
 ---
 
-## 四、进阶分流与防泄露建议
+## 三、进阶分流与防泄露建议
 1. 使用 Headless 模式：可以通过 `brew install sing-box` 在后台使用 launchd 作为纯守护进程运行。
 
 ---
 
-## 五、常见问题与避坑 FAQ
+## 四、常见问题与避坑 FAQ
 #### Q: 为什么部分旧机场订阅无法在 Sing-box 正常导入？
 **A**: Sing-box 采用全新的配置规范（JSON 语法），需要机场支持生成原生 sing-box 订阅，或使用订阅转换工具转为 sing-box 格式。
 
 
 ---
 
-## 六、众包维护历史与贡献者
+## 五、教程更新记录与贡献者
 | 日期 | 维护者 | PR 编号 | 变更说明 | Commit |
 | :--- | :--- | :--- | :--- | :--- |
-| 2026-03-26 | SingBoxAdvocate | #108 | 升级 Sing-box 1.11.2 客户端配置格式与 System Extension 安装指引 | `d382ca1` |
+| 2026-11-12 | SingBoxAdvocate | #1 | 首次更新 | `d382ca1` |
 
 ---
 *本教程通过 GitHub 众包模式协同维护，欢迎在 GitHub 上提交 PR 或 Issue 进行内容更迭。*

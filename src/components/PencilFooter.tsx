@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { getSettings } from '../cms/content';
 import { ArrowUp } from 'lucide-react';
 
 interface PencilFooterProps {
@@ -50,6 +51,7 @@ export const PencilFooter: React.FC<PencilFooterProps> = ({
   onScrollToTop,
   scrollProgress = 0
 }) => {
+  const settings = getSettings();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [btnSize, setBtnSize] = useState<{ width: number; height: number }>({ width: 82, height: 27 });
 
@@ -86,16 +88,16 @@ export const PencilFooter: React.FC<PencilFooterProps> = ({
     <footer className="h-[36px] shrink-0 mt-2 sm:mt-3 pt-2 text-xs text-pencil-light select-none">
       <div className="flex items-center justify-between gap-3 text-[11px] font-mono text-pencil-faint h-full">
         <div className="flex items-center gap-2 truncate">
-          <span className="truncate">© 2026 纸上谈兵 · 主流翻墙工具教程</span>
+          <span className="truncate">{settings.footerText}</span>
           <span className="hidden sm:inline">·</span>
           <a
-            href="https://github.com/kanpianer/zstb"
+            href={settings.footerLinkUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:underline text-pencil-dark font-semibold shrink-0 hidden sm:inline"
             title="查看本项目 GitHub 仓库"
           >
-            Github
+            {settings.footerLinkLabel}
           </a>
         </div>
 

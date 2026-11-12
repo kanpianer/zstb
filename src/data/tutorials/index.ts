@@ -1,8 +1,9 @@
 import { SoftwareTool, SubSystemCategory, SystemCategory } from '../../types/tutorial';
+import { getActiveContent } from '../../cms/content';
 
 import { shadowrocket } from './ios/shadowrocket';
 import { clashIos } from './ios/clash-ios';
-import { quantumultX } from './ios/quantumult-x';
+import { singBoxIos } from './ios/sing-box-ios';
 import { karing } from './ios/karing';
 
 import { clashVergeRevMac } from './macos/clash-verge-rev-mac';
@@ -18,19 +19,19 @@ import { singBoxAndroid } from './android/sing-box-android';
 import { v2rayn } from './windows/v2rayn';
 import { clashVergeRevWin } from './windows/clash-verge-rev-win';
 import { clashPartyWin } from './windows/clash-party-win';
-import { nekoray } from './windows/nekoray';
+import { singBoxWin } from './windows/sing-box-win';
 
 import { clashVergeRevLinux } from './linux/clash-verge-rev-linux';
 import { v2raya } from './linux/v2raya';
 import { openclash } from './linux/openclash';
-import { dae } from './linux/dae';
+import { vpsNodes } from './linux/vps-nodes';
 
 // Master collection of tools
 export const ALL_TOOLS: SoftwareTool[] = [
   // iOS (4 tools)
   shadowrocket,
   clashIos,
-  quantumultX,
+  singBoxIos,
   karing,
   
   // macOS (4 tools)
@@ -49,13 +50,13 @@ export const ALL_TOOLS: SoftwareTool[] = [
   v2rayn,
   clashVergeRevWin,
   clashPartyWin,
-  nekoray,
+  singBoxWin,
   
   // Linux & Others (4 tools)
   clashVergeRevLinux,
   v2raya,
   openclash,
-  dae
+  vpsNodes
 ];
 
 export interface QuadrantMeta {
@@ -101,21 +102,31 @@ export const QUADRANTS_CONFIG: Record<SystemCategory, QuadrantMeta> = {
     id: 'linux',
     name: 'Linux 和软路由',
     englishTitle: 'Linux & Soft Router',
-    representativeTool: 'Clash Verge · v2rayA · OpenClash · dae',
+    representativeTool: 'Clash Verge · v2rayA · OpenClash · 自己搭建节点',
     bgDescription: '',
     subTitle: 'Linux 桌面、服务器与网关工具及教程',
     toolCount: 4
   }
 };
 
-export function getToolsBySubSystem(subSystem: SubSystemCategory): SoftwareTool[] {
-  return ALL_TOOLS.filter(t => t.system === subSystem).slice(0, 4); // Enforce max 4 tools strictly
+export function getQuadrants() { return getActiveContent()?.quadrants ?? QUADRANTS_CONFIG; }
+
+export function getToolsBySubSystem(subSystem: SubSystemCategory, placement: 'card' | 'home' = 'card'): SoftwareTool[] {
+  const content = getActiveContent();
+  const tools = (content?.tools ?? ALL_TOOLS).filter(t => t.system === subSystem);
+  const order = content?.[placement === 'home' ? 'homeOrder' : 'cardOrder'][subSystem];
+  return order ? [...tools].sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id)) : tools;
 }
 
-export function getToolsByCategory(category: SystemCategory): SoftwareTool[] {
-  return ALL_TOOLS.filter(t => t.category === category);
+export function getToolsByCategory(category: SystemCategory, placement: 'card' | 'home' = 'card'): SoftwareTool[] {
+  if (category === 'apple') return [...getToolsBySubSystem('ios', placement), ...getToolsBySubSystem('macos', placement)];
+  return getToolsBySubSystem(category, placement);
 }
 
 export function getToolById(id: string): SoftwareTool | undefined {
-  return ALL_TOOLS.find(t => t.id === id);
+  const tools = getActiveContent()?.tools ?? ALL_TOOLS;
+  if (id === 'dae' || id === 'self-built-node') {
+    return tools.find(t => t.id === 'vps-nodes') || tools.find(t => t.id === id);
+  }
+  return tools.find(t => t.id === id);
 }

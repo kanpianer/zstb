@@ -11,11 +11,11 @@ export const flclash: SoftwareTool = {
   iconName: 'Smartphone',
   badgeText: '新锐高颜值',
   
-  updatedAt: '2026-03-23',
+  updatedAt: '2026-11-04',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2023-12-18',
-  latestVersion: 'v0.8.72',
+  latestVersion: 'v0.9.3',
   updatePath: 'data/tutorials/android/flclash.md',
   
   githubRepo: 'https://github.com/chen08209/FlClash',
@@ -26,34 +26,6 @@ export const flclash: SoftwareTool = {
     coreEngine: 'Mihomo Core (Clash.Meta)',
     protocols: ['VLESS-Reality', 'VMess', 'Hysteria 2', 'TUIC v5', 'Trojan', 'Shadowsocks', 'WireGuard'],
     trafficHandling: 'VpnService 虚拟网卡 + 动态规则分流',
-    resourceFootprint: 'Flutter 引擎优化，内存占用约 45MB - 70MB'
-  },
-  
-  screenshot: {
-    deviceType: 'android',
-    deviceSpec: 'Samsung Galaxy S24 Ultra / Vivo X100 Pro',
-    screenResolution: '1440 × 3120 像素',
-    title: 'FlClash 现代化仪表盘、测速卡片与策略组折叠视图',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'fc1', label: '① 启停控制', note: '顶部醒目的动态水波纹连接开关，实时展现上下行速率', xPercent: 50, yPercent: 12 },
-      { id: 'fc2', label: '② 策略卡片', note: '自动折叠展开的策略组，直观选择节点并支持一键多线程测速', xPercent: 50, yPercent: 42 },
-      { id: 'fc3', label: '③ 订阅面板', note: '左侧导航抽屉可管理多个机场配置，支持差异化规则覆写', xPercent: 15, yPercent: 75 }
-    ],
-    mockData: {
-      status: 'FlClash 运行中 - Mihomo Core 状态良好',
-      trafficTotal: '下行: 4.8 GB | 上行: 520 MB',
-      outboundMode: '规则分流 (Rule)',
-      activeNodes: [
-        { name: '🇭🇰 HK 01 [VIP 极速专线]', type: 'VLESS', ping: 31, selected: true },
-        { name: '🇯🇵 JP 02 [流媒体解锁]', type: 'Hysteria 2', ping: 56 },
-        { name: '🇸🇬 SG 03 [原生IP]', type: 'Trojan', ping: 60 }
-      ],
-      logs: [
-        'Connecting through Mihomo Tun interface',
-        'GeoSite match -> domain: youtube.com outbound: Proxy'
-      ]
-    }
   },
   
   tutorial: {
@@ -97,10 +69,10 @@ export const flclash: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-23',
+      date: '2026-11-12',
       author: 'FlutterDev',
-      prNumber: 102,
-      summary: '新增 Material 动态主题色彩适配说明与分流配置优化',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'e719aa2'
     }
   ]

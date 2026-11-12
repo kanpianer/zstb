@@ -11,11 +11,11 @@ export const v2raya: SoftwareTool = {
   iconName: 'Globe',
   badgeText: 'Web管理/软路由',
   
-  updatedAt: '2026-03-18',
+  updatedAt: '2026-11-09',
   isOpenSource: true,
   license: 'AGPL-3.0 开源协议',
   releasedAt: '2019-10-15',
-  latestVersion: 'v2.2.5',
+  latestVersion: 'v2.5.14',
   updatePath: 'data/tutorials/linux/v2raya.md',
   
   githubRepo: 'https://github.com/v2rayA/v2rayA',
@@ -27,34 +27,6 @@ export const v2raya: SoftwareTool = {
     coreEngine: 'Xray-core / V2Ray-core + iptables/nftables 透明代理',
     protocols: ['VLESS (Reality)', 'VMess', 'Trojan', 'Shadowsocks', 'HTTP', 'SOCKS5'],
     trafficHandling: '透明代理 (Redirect/TProxy) + 局域网网关共享',
-    resourceFootprint: '无头运行，内存常驻仅 ~30MB'
-  },
-  
-  screenshot: {
-    deviceType: 'terminal',
-    deviceSpec: 'Debian 12 / Home Server (WebUI :2017)',
-    screenResolution: '1920 × 1080 像素',
-    title: 'v2rayA 现代化 Web 控制台与分流规则',
-    colorScheme: 'dark',
-    annotations: [
-      { id: 'va1', label: '① 导入节点', note: '支持直接粘贴订阅 URL 或节点连接，自动解析并测速', xPercent: 20, yPercent: 20 },
-      { id: 'va2', label: '② 透明代理开关', note: '【设置】中开启透明代理，可实现本机或整个局域网流量透明翻墙', xPercent: 50, yPercent: 50 },
-      { id: 'va3', label: '③ 规则端口', note: 'WebUI 默认监听 2017 端口，方便远程通过局域网 IP 随时管理', xPercent: 80, yPercent: 80 }
-    ],
-    mockData: {
-      status: 'v2rayA 服务运行中 - 透明代理已激活 (TProxy)',
-      trafficTotal: '下行: 45.2 GB | 上行: 6.8 GB',
-      outboundMode: '分流模式 (GFWList / 大陆白名单)',
-      activeNodes: [
-        { name: '🇭🇰 香港 01 BGP 专线', type: 'VLESS', ping: 28, selected: true },
-        { name: '🇯🇵 日本 02 优质', type: 'Trojan', ping: 49 },
-        { name: '🇸🇬 新加坡 03 节点', type: 'VMess', ping: 55 }
-      ],
-      logs: [
-        'v2rayA listening at http://0.0.0.0:2017',
-        'iptables rules injected: redirect TCP/UDP to 127.0.0.1:32345'
-      ]
-    }
   },
   
   tutorial: {
@@ -99,10 +71,10 @@ export const v2raya: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-18',
+      date: '2026-11-12',
       author: 'SysAdminPro',
-      prNumber: 95,
-      summary: '完善 systemd 一键安装脚本与软路由 TProxy 透明代理设置指南',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'a9821ef'
     }
   ]

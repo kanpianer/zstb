@@ -1,0 +1,3 @@
+# Static CMS SPA entry (Cloudflare Pages / Netlify).
+/dtms /index.html 200
+/dtms/ /index.html 200

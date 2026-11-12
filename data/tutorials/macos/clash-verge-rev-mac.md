@@ -6,11 +6,11 @@ category: "apple"
 tagline: "基于 Tauri 构建的现代化 Mihomo 内核跨平台旗舰客户端"
 
 # 必填固定标准格式字段
-updated_at: "2026-03-22"
+updated_at: "2026-11-03"
 is_open_source: true
 license: "GPL-3.0 开源协议"
 released_at: "2023-11-05"
-latest_version: "v2.0.4"
+latest_version: "v2.5.10"
 update_path: "data/tutorials/macos/clash-verge-rev-mac.md"
 
 official_site: "https://clash-verge-rev.github.io"
@@ -22,20 +22,12 @@ specs:
   core_engine: "Mihomo Core (原 Clash.Meta 最新稳定版)"
   protocols: ["VLESS (Reality)", "VMess", "Trojan", "Hysteria 2", "TUIC v5", "Shadowsocks", "WireGuard", "Snell"]
   traffic_handling: "TUN 虚拟网卡 (wintun/utun) + macOS 系统 PAC / 全局代理"
-  resource_footprint: "Rust 前端 + Go 内核，常驻内存约 35MB - 65MB"
-
-screenshot:
-  device_type: "macbook"
-  device_spec: "Apple MacBook Pro 16" (Liquid Retina XDR, M-Series)"
-  resolution: "3456 × 2234 像素"
-  title: "Clash Verge Rev 订阅订阅面板与 TUN 虚拟网卡模式"
-  caption: ""
 ---
 
 # Clash Verge Rev 众包图文教程
 
-> **独立更新路径**: `data/tutorials/macos/clash-verge-rev-mac.md`  
-> **更新时间**: 2026-03-22 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2023-11-05
+> **教程文件路径**: `data/tutorials/macos/clash-verge-rev-mac.md`  
+> **最近更新**: 2026-11-03 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2023-11-05
 
 ## 一、软件简介与核心规格
 在原 Clash 停更之后，Clash Verge Rev 迅速成为桌面端（macOS/Windows/Linux）最具统治力的客户端。内置高性能 Mihomo (Clash.Meta) 内核，全面支持系统代理、TUN 虚拟网卡全局拦截与现代化 UI。
@@ -45,22 +37,11 @@ screenshot:
 - **系统要求**: macOS 11.0 (Big Sur) 或更高版本 (兼容 macOS 15 Sequoia)
 - **底层引擎**: Mihomo Core (原 Clash.Meta 最新稳定版)
 - **流量接管模式**: TUN 虚拟网卡 (wintun/utun) + macOS 系统 PAC / 全局代理
-- **资源消耗**: Rust 前端 + Go 内核，常驻内存约 35MB - 65MB
 - **支持协议**: VLESS (Reality), VMess, Trojan, Hysteria 2, TUIC v5, Shadowsocks, WireGuard, Snell
 
 ---
 
-## 二、风格化截图与图解规格
-- **设备线框规格**: Apple MacBook Pro 16" (Liquid Retina XDR, M-Series) (3456 × 2234 像素)
-
-### 关键控制点标注
-- **① 订阅管理**: 左侧导航栏【订阅】，支持拖拽排序与定时自动刷新配置
-- **② TUN 模式**: 开启虚拟网卡，让终端 Terminal、Git 和容器流量全面接管
-- **③ 策略组折叠**: 清晰的分流策略组展开卡片，可一键批量延迟测速
-
----
-
-## 三、标准操作步骤指南
+## 二、标准操作步骤指南
 
 ### 步骤 1：下载并安装 dmg 安装包
 访问官方 GitHub Releases 页面，Apple Silicon (M1/M2/M3/M4) 用户下载 `_aarch64.dmg`，Intel 用户下载 `_x64.dmg`。双击挂载后将应用拖拽到 Applications (应用程序) 文件夹中。
@@ -88,23 +69,23 @@ https://sub.airport.io/api/v1/client/subscribe?token=secret123&flag=clash
 
 ---
 
-## 四、进阶分流与防泄露建议
+## 三、进阶分流与防泄露建议
 1. 配置覆写 (Merge Config)：在订阅列表中可添加本地扩展脚本，强制屏蔽测速广告或追加自定义直连域名。
 2. 开机自启与静默启动：在【设置】中勾选“开机自启动”和“静默启动（启动时最小化到菜单栏）”。
 
 ---
 
-## 五、常见问题与避坑 FAQ
+## 四、常见问题与避坑 FAQ
 #### Q: 为什么开启 TUN 模式后终端依然报错超时？
 **A**: 检查是否开启了其他第三方 VPN 或防火墙冲突软件（如 Little Snitch）。另外确认是否在 Clash Verge Rev 设置中将内核切换为了最新的 Mihomo 内核。
 
 
 ---
 
-## 六、众包维护历史与贡献者
+## 五、教程更新记录与贡献者
 | 日期 | 维护者 | PR 编号 | 变更说明 | Commit |
 | :--- | :--- | :--- | :--- | :--- |
-| 2026-03-22 | MacGeek | #101 | 适配 macOS 15 Sequoia 权限声明与 Universal 包选型指引 | `f49a21b` |
+| 2026-11-12 | MacGeek | #1 | 首次更新 | `f49a21b` |
 
 ---
 *本教程通过 GitHub 众包模式协同维护，欢迎在 GitHub 上提交 PR 或 Issue 进行内容更迭。*

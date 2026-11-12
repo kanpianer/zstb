@@ -23,5 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+# Local credentials and legacy runtime data (never commit tokens)
+.env
+.env.*
+data/cms/
+
 # TypeScript cache
 *.tsbuildinfo

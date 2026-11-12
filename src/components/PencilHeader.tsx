@@ -2,6 +2,8 @@ import React from 'react';
 import { ArrowLeft, GitPullRequest } from 'lucide-react';
 import { SubSystemCategory, SystemCategory, SoftwareTool } from '../types/tutorial';
 import { PencilAppleLogo, PencilSystemLogo } from './PencilSystemLogos';
+import { getSettings } from '../cms/content';
+import { getQuadrants } from '../data/tutorials';
 import { PencilPaperLogo } from './PencilPaperLogo';
 
 export interface PencilHeaderProps {
@@ -24,6 +26,7 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
   onOpenCrowdsourceModal,
   prevIsHome = false,
 }) => {
+  const settings = getSettings();
   const isHome = !currentCategory && !currentSubSystem && !currentTool;
 
   const getSystemInfo = (sub: SubSystemCategory) => {
@@ -162,7 +165,7 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
             </div>
             <div className="min-w-0">
               <h2 className="text-lg sm:text-xl font-serif font-black text-pencil-dark whitespace-nowrap">
-                苹果系统
+                {getQuadrants().apple.name}
               </h2>
               <p className="text-[11px] text-pencil-light font-sans hidden md:block truncate max-w-[220px]">
                 iOS 移动端与 macOS 桌面端
@@ -184,7 +187,7 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
         </div>
         <div className="min-w-0 flex items-center">
           <h1 className="font-serif font-black text-xl sm:text-2xl md:text-3xl tracking-tight text-pencil-dark whitespace-nowrap text-ultra-bold">
-            紙上談兵
+            {settings.siteName}
           </h1>
         </div>
       </div>
@@ -212,10 +215,10 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
         className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center select-none cursor-pointer group ${
           isHome || currentTool ? 'flex' : 'hidden md:flex'
         } items-center justify-center`}
-        title="紙上談兵 · 翻墙教程"
+        title={`${settings.siteName} · ${settings.siteSubtitle}`}
       >
         <span className="font-serif font-bold text-sm sm:text-base md:text-lg tracking-widest text-pencil-dark group-hover:text-pencil transition-colors whitespace-nowrap">
-          翻墙教程
+          {settings.siteSubtitle}
         </span>
       </div>
 

@@ -11,11 +11,11 @@ export const clashMac: SoftwareTool = {
   iconName: 'Zap',
   badgeText: '原生纯血',
   
-  updatedAt: '2026-03-29',
+  updatedAt: '2026-11-07',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2024-10-15',
-  latestVersion: 'v1.2.0',
+  latestVersion: 'v1.0.14',
   updatePath: 'data/tutorials/macos/clash-mac.md',
   
   officialSite: 'https://clash.md/platforms/macos',
@@ -28,36 +28,6 @@ export const clashMac: SoftwareTool = {
     coreEngine: 'Mihomo Core (Clash.Meta) + Apple NetworkExtension',
     protocols: ['Shadowsocks', 'VMess', 'VLESS (Reality)', 'Trojan', 'Hysteria 2', 'TUIC v5', 'WireGuard'],
     trafficHandling: 'NetworkExtension PacketTunnel (utun) + 菜单栏轻量接管 + 进程/可执行路径分流',
-    resourceFootprint: '原生 SwiftUI 极低开销，常驻内存仅 ~25MB - 45MB'
-  },
-  
-  screenshot: {
-    deviceType: 'macbook',
-    deviceSpec: 'Apple MacBook Pro 16" (Liquid Retina XDR, M-Series)',
-    screenResolution: '3456 × 2234 像素',
-    title: 'Clash Mac 菜单栏控制器、活动连接脉络与分流规则',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'cm1', label: '① 菜单栏快捷控制', note: '常驻菜单栏，随手连接、断开、切换分流模式与查看实时速率', xPercent: 25, yPercent: 15 },
-      { id: 'cm2', label: '② 进程级差异化分流', note: '按进程名称、可执行路径或 UID 分流浏览器、下载工具与终端环境', xPercent: 65, yPercent: 35 },
-      { id: 'cm3', label: '③ 连接脉络一览无余', note: '活动连接、近期记录、命中规则全览，内置节点延迟与 NAT 质量诊断', xPercent: 50, yPercent: 75 }
-    ],
-    mockData: {
-      status: 'Clash 运行中 - 规则模式 (Rule)',
-      trafficTotal: '下行: 18.6 GB | 上行: 2.4 GB',
-      outboundMode: 'Rule (分流规则)',
-      activeNodes: [
-        { name: '⚡ [Auto] 香港专线 01', type: 'VLESS-Reality', ping: 22, selected: true },
-        { name: '🇯🇵 日本 02 优质流媒体', type: 'Hysteria 2', ping: 48 },
-        { name: '🇸🇬 新加坡 03 高速节点', type: 'Trojan', ping: 55 },
-        { name: '🇺🇸 美国 04 原生落地', type: 'VMess', ping: 135 }
-      ],
-      logs: [
-        '[Process: Safari] Route domain: github.com -> PROXY [Auto]',
-        '[Process: Terminal] utun5 packet redirected via Mihomo',
-        '[DNS] doh.pub query resolved in 12ms'
-      ]
-    }
   },
   
   tutorial: {
@@ -113,10 +83,10 @@ export const clashMac: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-29',
+      date: '2026-11-12',
       author: 'ClashMaintainer',
-      prNumber: 128,
-      summary: '收录 Clash (macOS) 原生客户端图文教程，替换原 Surge 配置',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'c3e819b'
     }
   ]

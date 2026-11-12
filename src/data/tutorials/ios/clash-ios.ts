@@ -11,11 +11,11 @@ export const clashIos: SoftwareTool = {
   iconName: 'Zap',
   badgeText: '原生纯血',
   
-  updatedAt: '2026-03-28',
+  updatedAt: '2026-11-07',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2024-10-15',
-  latestVersion: 'v1.2.0',
+  latestVersion: 'v1.0.14',
   updatePath: 'data/tutorials/ios/clash-ios.md',
   
   officialSite: 'https://clash.md/platforms/ios',
@@ -28,37 +28,6 @@ export const clashIos: SoftwareTool = {
     coreEngine: 'Mihomo Core (Clash.Meta) + Apple NetworkExtension',
     protocols: ['Shadowsocks', 'VMess', 'VLESS (Reality)', 'Trojan', 'Hysteria 2', 'TUIC v5', 'WireGuard'],
     trafficHandling: 'NetworkExtension PacketTunnel 虚拟网卡 (TUN 全局/分流)',
-    resourceFootprint: '原生 SwiftUI 内存占用仅 ~18MB - 35MB，极度省电'
-  },
-  
-  screenshot: {
-    deviceType: 'iphone',
-    deviceSpec: 'Apple iPhone 16 Pro',
-    screenResolution: '1206 × 2622 像素',
-    title: 'Clash 节点列表、延迟测速与策略组编排',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'c1', label: '① 模式切换', note: '支持规则 (Rule)、全局 (Global) 与直连 (Direct) 极速三档切换', xPercent: 50, yPercent: 14 },
-      { id: 'c2', label: '② 智能策略组', note: '自动根据延迟优选节点 (URL-Test) 或备用故障转移 (Fallback)', xPercent: 50, yPercent: 36 },
-      { id: 'c3', label: '③ 延迟测速', note: '点击即可对全组节点进行并发测速，毫秒级响应直观呈现', xPercent: 50, yPercent: 62 },
-      { id: 'c4', label: '④ 系统深度集成', note: '支持 iOS 控制中心快捷开关与快捷指令自动化联动', xPercent: 80, yPercent: 82 }
-    ],
-    mockData: {
-      status: 'Clash 已连接 - 规则模式 (Rule)',
-      trafficTotal: '下行: 6.42 GB | 上行: 840 MB',
-      outboundMode: 'Rule (分流规则)',
-      activeNodes: [
-        { name: '⚡ [Auto] 香港优选专线', type: 'VLESS-Reality', ping: 26, selected: true },
-        { name: '🇯🇵 日本 01 (ChatGPT/Netflix)', type: 'Hysteria 2', ping: 49 },
-        { name: '🇸🇬 新加坡 02 高速节点', type: 'Trojan', ping: 58 },
-        { name: '🇺🇸 美国 03 住宅解锁', type: 'VMess', ping: 142 }
-      ],
-      logs: [
-        '[TCP] connect to api.openai.com:443 via proxy [Auto]',
-        '[DNS] resolve bilibili.com -> Direct',
-        '[TUN] packet tunnel running smoothly'
-      ]
-    }
   },
   
   tutorial: {
@@ -110,10 +79,10 @@ export const clashIos: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-28',
+      date: '2026-11-12',
       author: 'ClashMaintainer',
-      prNumber: 112,
-      summary: '初始收录 Clash (iOS) 教程，基于 clash.md 官方规范编写',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'e5f78a2'
     }
   ]

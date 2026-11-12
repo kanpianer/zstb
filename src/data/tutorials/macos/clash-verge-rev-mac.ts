@@ -11,11 +11,11 @@ export const clashVergeRevMac: SoftwareTool = {
   iconName: 'Laptop',
   badgeText: 'Mac 桌面首选',
   
-  updatedAt: '2026-03-22',
+  updatedAt: '2026-11-03',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2023-11-05',
-  latestVersion: 'v2.0.4',
+  latestVersion: 'v2.5.10',
   updatePath: 'data/tutorials/macos/clash-verge-rev-mac.md',
   
   githubRepo: 'https://github.com/clash-verge-rev/clash-verge-rev',
@@ -27,35 +27,6 @@ export const clashVergeRevMac: SoftwareTool = {
     coreEngine: 'Mihomo Core (原 Clash.Meta 最新稳定版)',
     protocols: ['VLESS (Reality)', 'VMess', 'Trojan', 'Hysteria 2', 'TUIC v5', 'Shadowsocks', 'WireGuard', 'Snell'],
     trafficHandling: 'TUN 虚拟网卡 (wintun/utun) + macOS 系统 PAC / 全局代理',
-    resourceFootprint: 'Rust 前端 + Go 内核，常驻内存约 35MB - 65MB'
-  },
-  
-  screenshot: {
-    deviceType: 'macbook',
-    deviceSpec: 'Apple MacBook Pro 16" (Liquid Retina XDR, M-Series)',
-    screenResolution: '3456 × 2234 像素',
-    title: 'Clash Verge Rev 订阅订阅面板与 TUN 虚拟网卡模式',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'cv1', label: '① 订阅管理', note: '左侧导航栏【订阅】，支持拖拽排序与定时自动刷新配置', xPercent: 20, yPercent: 25 },
-      { id: 'cv2', label: '② TUN 模式', note: '开启虚拟网卡，让终端 Terminal、Git 和容器流量全面接管', xPercent: 82, yPercent: 18 },
-      { id: 'cv3', label: '③ 策略组折叠', note: '清晰的分流策略组展开卡片，可一键批量延迟测速', xPercent: 55, yPercent: 45 }
-    ],
-    mockData: {
-      status: '内核运行中 (Mihomo v1.19.2) - TUN 模式已激活',
-      trafficTotal: '下行: 14.5 GB | 上行: 1.8 GB',
-      outboundMode: 'Rule (分流规则)',
-      activeNodes: [
-        { name: '🇭🇰 HK 专线 01 | 0.8x [低延迟]', type: 'VLESS-Reality', ping: 26, selected: true },
-        { name: '🇯🇵 Tokyo 02 | 1.0x [4K 流媒体]', type: 'Hysteria 2', ping: 49 },
-        { name: '🇸🇬 SG 03 | 1.0x', type: 'Trojan', ping: 55 },
-        { name: '🇺🇸 US 04 | 1.0x [ChatGPT 优选]', type: 'VMess', ping: 128 }
-      ],
-      logs: [
-        '[TCP] 127.0.0.1:53120 --> copilot.microsoft.com:443 match DomainSuffix(github.com) using Proxy[HK 01]',
-        '[TUN] Intercepted DNS query: registry.npmjs.org -> 104.16.25.35'
-      ]
-    }
   },
   
   tutorial: {
@@ -106,10 +77,10 @@ export const clashVergeRevMac: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-22',
+      date: '2026-11-12',
       author: 'MacGeek',
-      prNumber: 101,
-      summary: '适配 macOS 15 Sequoia 权限声明与 Universal 包选型指引',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'f49a21b'
     }
   ]

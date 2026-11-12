@@ -11,11 +11,11 @@ export const nekoboxAndroid: SoftwareTool = {
   iconName: 'Smartphone',
   badgeText: '极客多协议',
   
-  updatedAt: '2026-03-16',
+  updatedAt: '2026-02-09',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2022-09-01',
-  latestVersion: 'v1.3.2',
+  latestVersion: 'v1.4.2',
   updatePath: 'data/tutorials/android/nekobox-android.md',
   
   githubRepo: 'https://github.com/MatsuriDayo/NekoBoxForAndroid',
@@ -26,34 +26,6 @@ export const nekoboxAndroid: SoftwareTool = {
     coreEngine: 'sing-box core + 自定义插件模块',
     protocols: ['VLESS-Reality', 'Hysteria 2', 'TUIC v5', 'Shadowsocks', 'Trojan', 'VMess', 'WireGuard', 'NaïveProxy'],
     trafficHandling: 'VpnService TUN 模式 + 链式转发',
-    resourceFootprint: '空闲 ~24MB / 满载 42MB'
-  },
-  
-  screenshot: {
-    deviceType: 'android',
-    deviceSpec: 'OnePlus 13 / Redmi K80 Pro',
-    screenResolution: '1440 × 3168 像素',
-    title: 'NekoBox 路由规则链与节点测速矩阵',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'nb1', label: '① 节点矩阵', note: '支持聚合多种不同协议类型与自定义出站链路', xPercent: 50, yPercent: 30 },
-      { id: 'nb2', label: '② 路由分支', note: '精细的域名与 IP 分流规则集，国内完全不绕行', xPercent: 50, yPercent: 60 },
-      { id: 'nb3', label: '③ 启动控制', note: '底部常驻操作栏，点击一键唤起 VPN 系统服务', xPercent: 80, yPercent: 90 }
-    ],
-    mockData: {
-      status: 'sing-box 核心正在工作 - 链路完整',
-      trafficTotal: '下行: 6.2 GB | 上行: 880 MB',
-      outboundMode: '绕过局域网及大陆 (Bypass CN)',
-      activeNodes: [
-        { name: '🇭🇰 HK 01 Extreme [Hysteria 2]', type: 'Hysteria 2', ping: 27, selected: true },
-        { name: '🇯🇵 Tokyo 02 Reality', type: 'VLESS', ping: 47 },
-        { name: '🇸🇬 SG 03 NaïveProxy', type: 'Naïve', ping: 63 }
-      ],
-      logs: [
-        'sing-box inbound tun ready',
-        'route matched geosite-cn -> direct'
-      ]
-    }
   },
   
   tutorial: {
@@ -97,10 +69,10 @@ export const nekoboxAndroid: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-16',
+      date: '2026-11-12',
       author: 'NekoMaster',
-      prNumber: 94,
-      summary: '梳理链式出站与 Hysteria 2 UDP 调优建议',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'd220ff1'
     }
   ]

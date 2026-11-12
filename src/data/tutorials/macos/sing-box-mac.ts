@@ -11,14 +11,15 @@ export const singBoxMac: SoftwareTool = {
   iconName: 'Box',
   badgeText: '次世代核心',
   
-  updatedAt: '2026-03-26',
+  updatedAt: '2026-10-24',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2022-07-01',
-  latestVersion: 'v1.11.2',
+  latestVersion: 'v1.14.4',
   updatePath: 'data/tutorials/macos/sing-box-mac.md',
   
-  githubRepo: 'https://github.com/SagerNet/sing-box',
+  releasesUrl: 'https://github.com/SagerNet/sing-box/releases',
+  homebrewUrl: 'https://formulae.brew.sh/cask/sfm',
   officialSite: 'https://sing-box.sagernet.org',
   
   specs: {
@@ -27,34 +28,6 @@ export const singBoxMac: SoftwareTool = {
     coreEngine: 'Sing-box Universal Proxy Platform (Go)',
     protocols: ['Shadowsocks', 'VMess', 'VLESS (Reality)', 'Trojan', 'Hysteria 2', 'TUIC v5', 'ShadowTLS', 'WireGuard', 'Direct/Block'],
     trafficHandling: '原生 System Extension 虚拟网卡 (TUN) + 系统代理',
-    resourceFootprint: '极致轻量，常驻内存仅需 ~18MB - 28MB'
-  },
-  
-  screenshot: {
-    deviceType: 'macbook',
-    deviceSpec: 'MacBook Pro 14" (Apple M3 Max)',
-    screenResolution: '3024 × 1964 像素',
-    title: 'Sing-box 官方客户端原生地图拓扑与仪表盘',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'sb1', label: '① 状态监控', note: '原生系统扩展极速接入，支持低延迟实时吞吐指示', xPercent: 50, yPercent: 20 },
-      { id: 'sb2', label: '② 订阅与Profile', note: '支持本地 JSON/JSONC 规则或远程托管 Profile 订阅', xPercent: 30, yPercent: 50 },
-      { id: 'sb3', label: '③ 独立分流出站', note: '每个出站（Outbound）均可独立配置测速探针与容灾回退', xPercent: 70, yPercent: 65 }
-    ],
-    mockData: {
-      status: 'Sing-box 内核活跃中 - TUN (utun9) 托管',
-      trafficTotal: '下行: 18.2 GB | 上行: 2.3 GB',
-      outboundMode: 'Rule Base (Route Rules)',
-      activeNodes: [
-        { name: '🇭🇰 香港 01 Extreme [Hy2]', type: 'Hysteria 2', ping: 22, selected: true },
-        { name: '🇯🇵 日本 02 Reality', type: 'VLESS-Reality', ping: 45 },
-        { name: '🇸🇬 新加坡 03 TUIC v5', type: 'TUIC', ping: 51 }
-      ],
-      logs: [
-        '[Router] match geosite:category-dev -> outbound:proxy',
-        '[Inbound] tun[inbound/tun] inbound packet: 198.18.0.1:443'
-      ]
-    }
   },
   
   tutorial: {
@@ -98,10 +71,10 @@ export const singBoxMac: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-26',
+      date: '2026-11-12',
       author: 'SingBoxAdvocate',
-      prNumber: 108,
-      summary: '升级 Sing-box 1.11.2 客户端配置格式与 System Extension 安装指引',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'd382ca1'
     }
   ]

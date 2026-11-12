@@ -6,11 +6,11 @@ category: "android"
 tagline: "Android 平台最经典的开源代理利器与装机必备常青树"
 
 # 必填固定标准格式字段
-updated_at: "2026-03-24"
+updated_at: "2026-11-01"
 is_open_source: true
 license: "GPL-3.0 开源协议"
 released_at: "2017-06-15"
-latest_version: "v1.9.15"
+latest_version: "v2.3.15"
 update_path: "data/tutorials/android/v2rayng.md"
 
 official_site: "https://github.com/2dust/v2rayNG/releases"
@@ -22,20 +22,12 @@ specs:
   core_engine: "Xray-core / V2Ray-core 原生优化版"
   protocols: ["VLESS (Reality / XTLS)", "VMess", "Trojan", "Shadowsocks", "SOCKS", "WireGuard"]
   traffic_handling: "Android VpnService 虚拟专用网全局/分流拦截"
-  resource_footprint: "低功耗后台保活，内存占用约 20MB - 38MB"
-
-screenshot:
-  device_type: "android"
-  device_spec: "Pixel 9 Pro / Xiaomi 15 Pro (AMOLED 120Hz)"
-  resolution: "1280 × 2800 像素"
-  title: "v2rayNG 节点列表、测速延迟与侧滑抽屉"
-  caption: ""
 ---
 
 # v2rayNG 众包图文教程
 
-> **独立更新路径**: `data/tutorials/android/v2rayng.md`  
-> **更新时间**: 2026-03-24 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2017-06-15
+> **教程文件路径**: `data/tutorials/android/v2rayng.md`  
+> **最近更新**: 2026-11-01 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2017-06-15
 
 ## 一、软件简介与核心规格
 v2rayNG 是 Android 平台用户量最大、兼容性最强的老牌开源客户端。基于 Xray 内核与 V2Ray 协议规范，支持几乎所有常见的自建节点与机场订阅，开箱即用，稳定省心。
@@ -45,23 +37,11 @@ v2rayNG 是 Android 平台用户量最大、兼容性最强的老牌开源客户
 - **系统要求**: Android 5.0 (Lollipop) 或更高版本 (全面兼容 Android 14/15)
 - **底层引擎**: Xray-core / V2Ray-core 原生优化版
 - **流量接管模式**: Android VpnService 虚拟专用网全局/分流拦截
-- **资源消耗**: 低功耗后台保活，内存占用约 20MB - 38MB
 - **支持协议**: VLESS (Reality / XTLS), VMess, Trojan, Shadowsocks, SOCKS, WireGuard
 
 ---
 
-## 二、风格化截图与图解规格
-- **设备线框规格**: Pixel 9 Pro / Xiaomi 15 Pro (AMOLED 120Hz) (1280 × 2800 像素)
-
-### 关键控制点标注
-- **① 订阅更新**: 轻触右上角三点菜单 ->【更新订阅】，一键刷新全部节点
-- **② 节点卡片**: 点击节点选中，右侧显示真实 HTTP 握手延迟毫秒数
-- **③ 浮动启动按钮**: 右下角经典的圆形【V】标志浮动按钮，点击开启 VPN
-- **④ 分应用代理**: 侧边栏设置【分应用代理】，自主选择哪些 App 翻墙
-
----
-
-## 三、标准操作步骤指南
+## 二、标准操作步骤指南
 
 ### 步骤 1：下载并安装 APK
 从 GitHub Releases 官方页面下载以 `v2rayNG_xxx_arm64-v8a.apk` 结尾的安装包（绝大多数现代安卓手机均适用此架构）。点击安装包完成安装。
@@ -89,13 +69,13 @@ https://airport-sub.org/api/v1/client/subscribe?token=v2rayng_token
 
 ---
 
-## 四、进阶分流与防泄露建议
+## 三、进阶分流与防泄露建议
 1. 分应用代理（白名单/黑名单）：在【设置】->【分应用代理】中，可指定仅 Telegram、Chrome、YouTube 等指定海外 App 走代理，微信/淘宝等直接直连，省电且不影响外卖和打车定位。
 2. 后台保活策略：在系统设置中为 v2rayNG 设置【允许后台高耗电】和【自启动】，并将多任务卡片加锁，防止系统杀后台。
 
 ---
 
-## 五、常见问题与避坑 FAQ
+## 四、常见问题与避坑 FAQ
 #### Q: 为什么连上后国内 App 提示网络连接失败？
 **A**: 请检查设置里的【预定义规则】是否误改为了全局代理，或者分应用代理是否勾选了冲突规则；请确保选择【绕过局域网及大陆地址】。
 
@@ -105,10 +85,10 @@ https://airport-sub.org/api/v1/client/subscribe?token=v2rayng_token
 
 ---
 
-## 六、众包维护历史与贡献者
+## 五、教程更新记录与贡献者
 | 日期 | 维护者 | PR 编号 | 变更说明 | Commit |
 | :--- | :--- | :--- | :--- | :--- |
-| 2026-03-24 | AndroidMaster | #103 | 完善 Android 15 权限兼容说明与分应用代理排错清单 | `b492aa8` |
+| 2026-11-12 | AndroidMaster | #1 | 首次更新 | `b492aa8` |
 
 ---
 *本教程通过 GitHub 众包模式协同维护，欢迎在 GitHub 上提交 PR 或 Issue 进行内容更迭。*

@@ -11,11 +11,11 @@ export const openclash: SoftwareTool = {
   iconName: 'Router',
   badgeText: '软路由网关',
   
-  updatedAt: '2026-03-28',
+  updatedAt: '2026-10-12',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2019-04-12',
-  latestVersion: 'v0.46.070',
+  latestVersion: 'v0.48.002',
   updatePath: 'data/tutorials/linux/openclash.md',
   
   githubRepo: 'https://github.com/vernesong/OpenClash',
@@ -27,34 +27,6 @@ export const openclash: SoftwareTool = {
     coreEngine: 'Mihomo (Clash Meta) / Clash Premium Core',
     protocols: ['Shadowsocks', 'VMess', 'VLESS-Reality', 'Trojan', 'Hysteria 2', 'TUIC v5', 'WireGuard', 'Snell'],
     trafficHandling: 'TProxy / Redir-Host / TUN 模式 (软路由局域网透明代理 + 智能 DNS 分流)',
-    resourceFootprint: '按需配置，轻量模式常驻约 30MB~80MB，支持硬件加速 Offloading'
-  },
-  
-  screenshot: {
-    deviceType: 'terminal',
-    deviceSpec: 'OpenWrt 23.05 / LuCI 网页控制台 (192.168.1.1)',
-    screenResolution: '1920 × 1080 像素',
-    title: 'OpenClash 运行状态看板与 LuCI 节点规则配置',
-    colorScheme: 'dark',
-    annotations: [
-      { id: 'oc1', label: '① 运行模式', note: '推荐使用 Fake-IP (TUN 混合) 或 TProxy 模式实现全局透明翻墙', xPercent: 25, yPercent: 20 },
-      { id: 'oc2', label: '② 订阅与覆写', note: '支持直接导入机场 Clash/V2Ray 订阅链接，并通过覆写设置灵活自定义 DNS', xPercent: 55, yPercent: 45 },
-      { id: 'oc3', label: '③ 局域网分流', note: '可按局域网设备 IP 或 MAC 地址精细化指定走代理、直连或屏蔽', xPercent: 75, yPercent: 75 }
-    ],
-    mockData: {
-      status: 'OpenClash 运行正常 (Meta 内核) - 透明代理开启',
-      trafficTotal: '下行: 156.4 GB | 上行: 22.8 GB',
-      outboundMode: 'Rule-Based Smart Routing (Fake-IP / TUN)',
-      activeNodes: [
-        { name: '🇭🇰 香港 01 [BGP专线] 0.5x', type: 'VLESS-Reality', ping: 21, selected: true },
-        { name: '🇯🇵 日本 02 [原生 IP / 4K]', type: 'Hysteria 2', ping: 42 }
-      ],
-      logs: [
-        '[OpenClash] Mihomo Core started successfully',
-        '[DNS] Fake-IP pool allocated: 198.18.0.0/16',
-        '[TProxy] iptables/nftables prerouting rules applied for LAN'
-      ]
-    }
   },
   
   tutorial: {
@@ -107,10 +79,10 @@ export const openclash: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-28',
+      date: '2026-11-12',
       author: 'RouterGeek',
-      prNumber: 112,
-      summary: '适配 OpenWrt 23.05+ nftables 防火墙与 Mihomo Meta 内核',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'c71f92e'
     }
   ]

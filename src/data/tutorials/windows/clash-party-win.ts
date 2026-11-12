@@ -11,11 +11,11 @@ export const clashPartyWin: SoftwareTool = {
   iconName: 'Sparkles',
   badgeText: '精美易用',
   
-  updatedAt: '2026-03-28',
+  updatedAt: '2026-10-18',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2024-01-10',
-  latestVersion: 'v1.6.5',
+  latestVersion: 'v2.0.4',
   updatePath: 'data/tutorials/windows/clash-party-win.md',
   
   officialSite: 'https://clashparty.org',
@@ -27,34 +27,6 @@ export const clashPartyWin: SoftwareTool = {
     coreEngine: 'Mihomo Core (Alpha/Release)',
     protocols: ['VLESS-Reality', 'Hysteria 2', 'TUIC v5', 'VMess', 'Trojan', 'Shadowsocks', 'WireGuard'],
     trafficHandling: 'Windows 系统代理 + 智能 TUN 虚拟网卡 (免服务模式)',
-    resourceFootprint: 'Electron 深度优化版，内存占用约 60MB - 90MB'
-  },
-  
-  screenshot: {
-    deviceType: 'windows',
-    deviceSpec: 'Windows 11 PC (2K 144Hz)',
-    screenResolution: '2560 × 1440 像素',
-    title: 'Clash Party Windows 仪表板与流媒体解锁检测',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'cpw1', label: '① 节点流媒体角标', note: '自动检测节点是否支持解锁 Netflix、ChatGPT、Disney+ 等', xPercent: 50, yPercent: 30 },
-      { id: 'cpw2', label: '② 一键启停开关', note: '左上角大按钮切换启动与停止，右下角托盘图标同步更新', xPercent: 15, yPercent: 15 },
-      { id: 'cpw3', label: '③ 脚本与规则扩展', note: '内置常用规则覆写，自动规避国内直连 DNS 污染', xPercent: 50, yPercent: 70 }
-    ],
-    mockData: {
-      status: 'Clash Party 正在运行 - TUN 已开启',
-      trafficTotal: '下行: 8.4 GB | 上行: 1.1 GB',
-      outboundMode: 'Rule (分流规则)',
-      activeNodes: [
-        { name: '🇭🇰 香港 01 [解锁 ChatGPT]', type: 'VLESS', ping: 27, selected: true },
-        { name: '🇯🇵 日本 02 [原生 IP]', type: 'Reality', ping: 49 },
-        { name: '🇺🇸 美国 03 [4K 极速]', type: 'Hysteria 2', ping: 135 }
-      ],
-      logs: [
-        '[TCP] outbound proxy connected to google.com via HK 01',
-        '[TUN] wintun driver hooked'
-      ]
-    }
   },
   
   tutorial: {
@@ -104,10 +76,10 @@ export const clashPartyWin: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-28',
+      date: '2026-11-12',
       author: 'ModernUIFan',
-      prNumber: 108,
-      summary: '升级并更名为 Clash Party (clash-party)，更新官方域名 clashparty.org',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'e719ea2'
     }
   ]

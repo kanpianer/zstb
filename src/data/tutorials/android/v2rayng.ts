@@ -11,11 +11,11 @@ export const v2rayng: SoftwareTool = {
   iconName: 'Smartphone',
   badgeText: '安卓装机必备',
   
-  updatedAt: '2026-03-24',
+  updatedAt: '2026-11-01',
   isOpenSource: true,
   license: 'GPL-3.0 开源协议',
   releasedAt: '2017-06-15',
-  latestVersion: 'v1.9.15',
+  latestVersion: 'v2.3.15',
   updatePath: 'data/tutorials/android/v2rayng.md',
   
   githubRepo: 'https://github.com/2dust/v2rayNG',
@@ -27,37 +27,6 @@ export const v2rayng: SoftwareTool = {
     coreEngine: 'Xray-core / V2Ray-core 原生优化版',
     protocols: ['VLESS (Reality / XTLS)', 'VMess', 'Trojan', 'Shadowsocks', 'SOCKS', 'WireGuard'],
     trafficHandling: 'Android VpnService 虚拟专用网全局/分流拦截',
-    resourceFootprint: '低功耗后台保活，内存占用约 20MB - 38MB'
-  },
-  
-  screenshot: {
-    deviceType: 'android',
-    deviceSpec: 'Pixel 9 Pro / Xiaomi 15 Pro (AMOLED 120Hz)',
-    screenResolution: '1280 × 2800 像素',
-    title: 'v2rayNG 节点列表、测速延迟与侧滑抽屉',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'v1', label: '① 订阅更新', note: '轻触右上角三点菜单 ->【更新订阅】，一键刷新全部节点', xPercent: 88, yPercent: 8 },
-      { id: 'v2', label: '② 节点卡片', note: '点击节点选中，右侧显示真实 HTTP 握手延迟毫秒数', xPercent: 50, yPercent: 32 },
-      { id: 'v3', label: '③ 浮动启动按钮', note: '右下角经典的圆形【V】标志浮动按钮，点击开启 VPN', xPercent: 85, yPercent: 88 },
-      { id: 'v4', label: '④ 分应用代理', note: '侧边栏设置【分应用代理】，自主选择哪些 App 翻墙', xPercent: 15, yPercent: 50 }
-    ],
-    mockData: {
-      status: '已连接 - VpnService 运行中',
-      trafficTotal: '下行: 3.4 GB | 上行: 410 MB',
-      outboundMode: '绕过局域网及大陆地址 (Bypass CN)',
-      activeNodes: [
-        { name: '🇭🇰 香港 IEPL 专线 01 [推荐]', type: 'VLESS-Reality', ping: 38, selected: true },
-        { name: '🇯🇵 日本 02 高速出口', type: 'Trojan', ping: 62 },
-        { name: '🇸🇬 新加坡 03 节点', type: 'VMess', ping: 75 },
-        { name: '🇺🇸 美国 04 节点', type: 'Shadowsocks', ping: 145 }
-      ],
-      logs: [
-        '[Info] core started with xray 1.8.x',
-        '[Direct] api.wechat.com:443 bypass cn list',
-        '[Proxy] android.clients.google.com -> HK IEPL 01'
-      ]
-    }
   },
   
   tutorial: {
@@ -112,10 +81,10 @@ export const v2rayng: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-03-24',
+      date: '2026-11-12',
       author: 'AndroidMaster',
-      prNumber: 103,
-      summary: '完善 Android 15 权限兼容说明与分应用代理排错清单',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'b492aa8'
     }
   ]

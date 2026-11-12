@@ -11,7 +11,7 @@ export const karing: SoftwareTool = {
   iconName: 'Link2',
   badgeText: '新锐全能',
   
-  updatedAt: '2026-11-10',
+  updatedAt: '2026-11-12',
   isOpenSource: true,
   license: '开源软件 (GPL-3.0)',
   price: '免费使用',
@@ -29,34 +29,6 @@ export const karing: SoftwareTool = {
     coreEngine: 'Sing-box 内核定制版 + 多源路由规则集',
     protocols: ['Shadowsocks', 'ShadowsocksR', 'VMess', 'VLESS (Reality)', 'Trojan', 'Hysteria 2', 'TUIC', 'WireGuard', 'SSH'],
     trafficHandling: 'TUN 虚拟网卡接管 (规则分流 / 全局代理 / 直连模式)',
-    resourceFootprint: '空闲 ~24MB / 满载 42MB，功耗极低'
-  },
-  
-  screenshot: {
-    deviceType: 'iphone',
-    deviceSpec: 'Apple iPhone 16 Pro',
-    screenResolution: '1206 × 2622 像素',
-    title: 'Karing 主控面板、多订阅聚合与分流规则管理',
-    colorScheme: 'light',
-    annotations: [
-      { id: 'k1', label: '① 快速连接', note: '主界面居中醒目电源主开关，连接状态与流量统计一目了然', xPercent: 50, yPercent: 25 },
-      { id: 'k2', label: '② 聚合订阅', note: '可同时添加并管理多个机场订阅源，自动去重与健康测速', xPercent: 50, yPercent: 48 },
-      { id: 'k3', label: '③ 智能分流', note: '内置 GeoIP、GeoSite 与 ACL 规则集，支持新手模式与自定义规则组', xPercent: 50, yPercent: 72 }
-    ],
-    mockData: {
-      status: 'Karing 已连接 - 规则模式 (Rule)',
-      trafficTotal: '下行: 5.12 GB | 上行: 620 MB',
-      outboundMode: '规则模式 (Rule)',
-      activeNodes: [
-        { name: '🇭🇰 香港 IPLC 高速 01', type: 'Hysteria 2', ping: 28, selected: true },
-        { name: '🇯🇵 日本 02 4K 流媒体', type: 'VLESS', ping: 48 },
-        { name: '🇸🇬 新加坡 专线 03', type: 'Trojan', ping: 62 }
-      ],
-      logs: [
-        '[Rule] Match DOMAIN-SUFFIX: openai.com -> ProxyGroup (Auto)',
-        '[Sing-box] Tun interface started successfully'
-      ]
-    }
   },
   
   tutorial: {
@@ -107,10 +79,10 @@ export const karing: SoftwareTool = {
   
   changelog: [
     {
-      date: '2026-11-10',
+      date: '2026-11-12',
       author: 'KaringTeam',
-      prNumber: 138,
-      summary: '收录并更新 Karing 1.2.26 完整图文教程，完善 Sing-box 核心与跨平台规则适配说明',
+      prNumber: 1,
+      summary: '首次更新',
       commitHash: 'b4a8e21'
     }
   ]

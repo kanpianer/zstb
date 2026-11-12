@@ -6,11 +6,11 @@ category: "windows"
 tagline: "目前 Windows 端最受推荐的现代化 Mihomo GUI 客户端"
 
 # 必填固定标准格式字段
-updated_at: "2026-03-22"
+updated_at: "2026-11-03"
 is_open_source: true
 license: "GPL-3.0 开源协议"
 released_at: "2023-11-05"
-latest_version: "v2.0.4"
+latest_version: "v2.5.10"
 update_path: "data/tutorials/windows/clash-verge-rev-win.md"
 
 official_site: "https://clash-verge-rev.github.io"
@@ -22,20 +22,12 @@ specs:
   core_engine: "Mihomo Core (原 Clash.Meta)"
   protocols: ["VLESS (Reality)", "VMess", "Hysteria 2", "TUIC v5", "Trojan", "Shadowsocks", "WireGuard", "Snell"]
   traffic_handling: "Windows 系统代理 + Wintun 虚拟网卡 (TUN 模式)"
-  resource_footprint: "Rust 前端极致轻巧，常驻内存仅 ~35MB"
-
-screenshot:
-  device_type: "windows"
-  device_spec: "Windows 11 PC (2K 165Hz 电竞显示器)"
-  resolution: "2560 × 1440 像素"
-  title: "Clash Verge Rev Windows 策略组折叠、测速与托盘控制"
-  caption: ""
 ---
 
 # Clash Verge Rev 众包图文教程
 
-> **独立更新路径**: `data/tutorials/windows/clash-verge-rev-win.md`  
-> **更新时间**: 2026-03-22 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2023-11-05
+> **教程文件路径**: `data/tutorials/windows/clash-verge-rev-win.md`  
+> **最近更新**: 2026-11-03 | **开源性质**: 开源 (GPL-3.0 开源协议) | **最初发布**: 2023-11-05
 
 ## 一、软件简介与核心规格
 Clash Verge Rev 基于 Tauri 开发，内存消耗远低于老旧的 Electron 应用。内置最新的 Mihomo (Clash.Meta) 内核，对 Windows 系统的通知、暗色模式、Wintun 虚拟网卡提供了极其完美的适配。
@@ -45,22 +37,11 @@ Clash Verge Rev 基于 Tauri 开发，内存消耗远低于老旧的 Electron �
 - **系统要求**: Windows 10 / Windows 11 (64位)
 - **底层引擎**: Mihomo Core (原 Clash.Meta)
 - **流量接管模式**: Windows 系统代理 + Wintun 虚拟网卡 (TUN 模式)
-- **资源消耗**: Rust 前端极致轻巧，常驻内存仅 ~35MB
 - **支持协议**: VLESS (Reality), VMess, Hysteria 2, TUIC v5, Trojan, Shadowsocks, WireGuard, Snell
 
 ---
 
-## 二、风格化截图与图解规格
-- **设备线框规格**: Windows 11 PC (2K 165Hz 电竞显示器) (2560 × 1440 像素)
-
-### 关键控制点标注
-- **① 订阅管理**: 左侧【订阅】导入机场 Clash 订阅链接，支持右键重命名和定时更新
-- **② 系统代理与TUN**: 开启【系统代理】或安装【服务模式】后启动 TUN 虚拟网卡全局拦截
-- **③ 策略组分流**: 规则模式下，海外节点、国内直连与广告拦截自动精准分流
-
----
-
-## 三、标准操作步骤指南
+## 二、标准操作步骤指南
 
 ### 步骤 1：下载并安装应用
 前往官方 GitHub Releases 页面，下载带有安装程序的 `Clash.Verge_xxx_x64-setup.exe`。双击运行，根据安装向导一路下一步完成安装。
@@ -88,23 +69,23 @@ https://airport.com/api/v1/client/subscribe?token=xxx&flag=clash
 
 ---
 
-## 四、进阶分流与防泄露建议
+## 三、进阶分流与防泄露建议
 1. 开机静默启动：在设置中勾选【开机启动】与【静默启动】。
 2. 快捷键调用：可设置全局快捷键一键唤起主面板或开关系统代理。
 
 ---
 
-## 五、常见问题与避坑 FAQ
+## 四、常见问题与避坑 FAQ
 #### Q: 为什么打开 TUN 模式提示失败？
 **A**: 请在设置页面先点击【服务模式】右侧的安装按钮，安装完成并重启软件后，即可顺畅开启 TUN 模式。
 
 
 ---
 
-## 六、众包维护历史与贡献者
+## 五、教程更新记录与贡献者
 | 日期 | 维护者 | PR 编号 | 变更说明 | Commit |
 | :--- | :--- | :--- | :--- | :--- |
-| 2026-03-22 | WinDev | #100 | 完善 Windows 11 下 Wintun 权限与服务模式一键安装教程 | `a718cc2` |
+| 2026-11-12 | WinDev | #1 | 首次更新 | `a718cc2` |
 
 ---
 *本教程通过 GitHub 众包模式协同维护，欢迎在 GitHub 上提交 PR 或 Issue 进行内容更迭。*

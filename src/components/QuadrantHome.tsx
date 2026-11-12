@@ -1,6 +1,6 @@
 import React from 'react';
 import { SubSystemCategory, SystemCategory } from '../types/tutorial';
-import { QUADRANTS_CONFIG, getToolsByCategory, getToolsBySubSystem } from '../data/tutorials';
+import { getQuadrants, getToolsByCategory, getToolsBySubSystem } from '../data/tutorials';
 import { ArrowUpRight, Smartphone, Laptop } from 'lucide-react';
 import {
   PencilAppleLogo,
@@ -9,6 +9,7 @@ import {
   PencilLinuxLogo,
 } from './PencilSystemLogos';
 import { PencilSoftwareLogo } from './PencilSoftwareLogos';
+import { getAppleOrder } from '../cms/content';
 import { PencilQuadrantCross } from './PencilQuadrantCross';
 
 interface QuadrantHomeProps {
@@ -23,6 +24,8 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
   onSelectSubSystem,
   onSelectTool,
 }) => {
+  const QUADRANTS_CONFIG = getQuadrants();
+  const appleOrder = getAppleOrder();
   return (
     <div className="relative w-full">
       {/* =========================================================================
@@ -54,6 +57,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
             <div className="flex-1 grid grid-rows-2 gap-2 mt-2 sm:mt-2.5">
               <button
                 type="button"
+                style={{ order: appleOrder.indexOf('ios') }}
                 onClick={(e) => {
                   e.currentTarget.blur();
                   onSelectSubSystem('ios');
@@ -77,7 +81,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
 
                 {/* 软件 Logo 图标列表：直接展示 Logo，无外边框，不显示名称 */}
                 <div className="flex items-center gap-2 sm:gap-2.5 my-auto py-0.5">
-                  {getToolsBySubSystem('ios').map((tool) => (
+                  {getToolsBySubSystem('ios', 'home').map((tool) => (
                     <span
                       key={tool.id}
                       title={tool.name}
@@ -98,6 +102,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
 
               <button
                 type="button"
+                style={{ order: appleOrder.indexOf('macos') }}
                 onClick={(e) => {
                   e.currentTarget.blur();
                   onSelectSubSystem('macos');
@@ -121,7 +126,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
 
                 {/* 软件 Logo 图标列表：直接展示 Logo，无外边框，不显示名称 */}
                 <div className="flex items-center gap-2 sm:gap-2.5 my-auto py-0.5">
-                  {getToolsBySubSystem('macos').map((tool) => (
+                  {getToolsBySubSystem('macos', 'home').map((tool) => (
                     <span
                       key={tool.id}
                       title={tool.name}
@@ -159,7 +164,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
 
             {/* 软件列表：仅展示图标和名称，不显示其他多余内容 */}
             <div className="flex-1 grid grid-rows-4 gap-1.5 mt-2 sm:mt-2.5">
-              {getToolsByCategory('android').map((tool) => (
+              {getToolsByCategory('android', 'home').map((tool) => (
                 <button
                   key={tool.id}
                   type="button"
@@ -197,7 +202,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
 
             {/* 软件列表：仅展示图标和名称，不显示其他多余内容 */}
             <div className="flex-1 grid grid-rows-4 gap-1.5 mt-2 sm:mt-2.5">
-              {getToolsByCategory('windows').map((tool) => (
+              {getToolsByCategory('windows', 'home').map((tool) => (
                 <button
                   key={tool.id}
                   type="button"
@@ -235,7 +240,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
 
             {/* 软件列表：仅展示图标和名称，不显示其他多余内容 */}
             <div className="flex-1 grid grid-rows-4 gap-1.5 mt-2 sm:mt-2.5">
-              {getToolsByCategory('linux').map((tool) => (
+              {getToolsByCategory('linux', 'home').map((tool) => (
                 <button
                   key={tool.id}
                   type="button"
@@ -303,7 +308,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
             <div className="relative z-10 mt-2 sm:mt-2.5 flex-1 flex flex-col justify-center">
               <div className="grid grid-cols-2 gap-2.5 sm:gap-3 text-xs">
                 {/* Left Column: iOS */}
-                <div className="flex flex-col gap-1 sm:gap-1.5">
+                <div style={{ order: appleOrder.indexOf('ios') }} className="flex flex-col gap-1 sm:gap-1.5">
                   <div
                     onClick={(e) => {
                       e.stopPropagation();
@@ -320,7 +325,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
 
                   {/* iOS Software List (1 col x 4 tools) */}
                   <div className="flex flex-col gap-1 sm:gap-1.5">
-                    {getToolsBySubSystem('ios').map(tool => (
+                    {getToolsBySubSystem('ios', 'home').map(tool => (
                       <button
                         key={tool.id}
                         type="button"
@@ -344,7 +349,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                 </div>
 
                 {/* Right Column: macOS */}
-                <div className="flex flex-col gap-1 sm:gap-1.5">
+                <div style={{ order: appleOrder.indexOf('macos') }} className="flex flex-col gap-1 sm:gap-1.5">
                   <div
                     onClick={(e) => {
                       e.stopPropagation();
@@ -361,7 +366,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
 
                   {/* macOS Software List (1 col x 4 tools) */}
                   <div className="flex flex-col gap-1 sm:gap-1.5">
-                    {getToolsBySubSystem('macos').map(tool => (
+                    {getToolsBySubSystem('macos', 'home').map(tool => (
                       <button
                         key={tool.id}
                         type="button"
@@ -421,7 +426,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
             {/* Tools Content Area */}
             <div className="relative z-10 mt-2 sm:mt-2.5 flex-1 flex flex-col justify-center">
               <div className="grid grid-cols-2 gap-2.5 sm:gap-3 text-xs">
-                {getToolsByCategory('android').map(tool => (
+                {getToolsByCategory('android', 'home').map(tool => (
                   <button
                     key={tool.id}
                     type="button"
@@ -482,7 +487,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
             {/* Tools Content Area */}
             <div className="relative z-10 mt-2 sm:mt-2.5 flex-1 flex flex-col justify-center">
               <div className="grid grid-cols-2 gap-2.5 sm:gap-3 text-xs">
-                {getToolsByCategory('windows').map(tool => (
+                {getToolsByCategory('windows', 'home').map(tool => (
                   <button
                     key={tool.id}
                     type="button"
@@ -543,7 +548,7 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
             {/* Tools Content Area */}
             <div className="relative z-10 mt-2 sm:mt-2.5 flex-1 flex flex-col justify-center">
               <div className="grid grid-cols-2 gap-2.5 sm:gap-3 text-xs">
-                {getToolsByCategory('linux').map(tool => (
+                {getToolsByCategory('linux', 'home').map(tool => (
                   <button
                     key={tool.id}
                     type="button"
