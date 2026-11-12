@@ -228,13 +228,13 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
                 <AlertCircle className="w-4 h-4 text-amber-700 shrink-0" />
                 <span>准备工作：</span>
               </div>
-              <div className="flex items-center gap-1 text-[11px] sm:text-xs text-amber-800 bg-amber-100/80 border border-amber-300/80 rounded-md px-2 py-0.5 shadow-xs">
+              <div className="flex items-center gap-1 text-[11px] sm:text-xs text-amber-800">
                 <span>到</span>
                 <a
                   href="https://jkdh.sld.tw/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-bold text-amber-950 hover:text-amber-800 underline decoration-amber-400 hover:decoration-amber-700 underline-offset-2 inline-flex items-center gap-1 transition-colors"
+                  className="inline-flex items-center gap-1 font-bold text-amber-950 bg-amber-100/80 border border-amber-300/80 rounded-md px-2 py-0.5 shadow-xs hover:bg-amber-200/80 hover:border-amber-400 transition-colors"
                   title="前往家宽导航"
                 >
                   <img

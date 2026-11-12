@@ -29,7 +29,7 @@ export const SystemListView: React.FC<SystemListViewProps> = ({
       {tools.map((tool, idx) => (
         <div
           key={tool.id}
-          className="pencil-box bg-paper-50 p-3 sm:p-3.5 flex flex-col justify-between relative overflow-hidden group h-full"
+          className="pencil-box bg-paper-50 hover:bg-paper-200 p-3 sm:p-3.5 flex flex-col justify-between relative overflow-hidden group h-full transition-colors"
         >
           {/* Card Background Watermark Logo at the top (在卡片背景上方的手绘底纹 Logo) */}
           <div className="absolute right-1 -top-1 w-24 h-24 sm:w-28 sm:h-28 pointer-events-none opacity-[0.07] group-hover:opacity-[0.15] transition-all text-pencil-dark select-none -rotate-6">

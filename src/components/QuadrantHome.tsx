@@ -58,19 +58,19 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                   e.currentTarget.blur();
                   onSelectSubSystem('ios');
                 }}
-                className="w-full h-full bg-paper-50/95 hover:bg-pencil hover:text-paper-50 border border-pencil/35 hover:border-pencil px-3 py-2 sm:py-2.5 rounded-xl text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex flex-col justify-between group/ios text-left"
+                className="w-full h-full bg-paper-50/95 hover:bg-paper-200 border border-pencil/35 px-3 py-2 sm:py-2.5 rounded-xl text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex flex-col justify-between group/ios text-left"
                 title="点击进入 iOS 软件简介页面"
               >
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-                    <div className="w-6 h-6 rounded-lg border border-pencil/25 bg-paper-100/80 group-hover/ios:bg-paper-50/20 flex items-center justify-center shrink-0 transition-colors">
-                      <Smartphone className="w-3.5 h-3.5 text-pencil-dark group-hover/ios:text-paper-50 transition-colors" />
+                    <div className="w-6 h-6 rounded-lg border border-pencil/25 bg-paper-100/80 flex items-center justify-center shrink-0 transition-colors">
+                      <Smartphone className="w-3.5 h-3.5 text-pencil-dark transition-colors" />
                     </div>
-                    <span className="text-xs sm:text-sm font-serif font-black leading-none group-hover/ios:text-paper-50">
+                    <span className="text-xs sm:text-sm font-serif font-black leading-none">
                       iOS
                     </span>
                   </div>
-                  <span className="text-[10px] sm:text-[11px] font-mono text-pencil-faint group-hover/ios:text-paper-100/90 transition-colors shrink-0">
+                  <span className="text-[10px] sm:text-[11px] font-mono text-pencil-faint transition-colors shrink-0">
                     简介 ➔
                   </span>
                 </div>
@@ -85,13 +85,13 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                     >
                       <PencilSoftwareLogo
                         toolId={tool.id}
-                        className="w-5 h-5 sm:w-6 sm:h-6 text-pencil-dark group-hover/ios:text-paper-50 transition-colors"
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-pencil-dark transition-colors"
                       />
                     </span>
                   ))}
                 </div>
 
-                <div className="text-[10px] sm:text-[11px] font-sans text-pencil-light group-hover/ios:text-paper-100/80 truncate">
+                <div className="text-[10px] sm:text-[11px] font-sans text-pencil-light truncate">
                   支持 iPhone / iPad
                 </div>
               </button>
@@ -102,19 +102,19 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                   e.currentTarget.blur();
                   onSelectSubSystem('macos');
                 }}
-                className="w-full h-full bg-paper-50/95 hover:bg-pencil hover:text-paper-50 border border-pencil/35 hover:border-pencil px-3 py-2 sm:py-2.5 rounded-xl text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex flex-col justify-between group/mac text-left"
+                className="w-full h-full bg-paper-50/95 hover:bg-paper-200 border border-pencil/35 px-3 py-2 sm:py-2.5 rounded-xl text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex flex-col justify-between group/mac text-left"
                 title="点击进入 macOS 软件简介页面"
               >
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-                    <div className="w-6 h-6 rounded-lg border border-pencil/25 bg-paper-100/80 group-hover/mac:bg-paper-50/20 flex items-center justify-center shrink-0 transition-colors">
-                      <Laptop className="w-3.5 h-3.5 text-pencil-dark group-hover/mac:text-paper-50 transition-colors" />
+                    <div className="w-6 h-6 rounded-lg border border-pencil/25 bg-paper-100/80 flex items-center justify-center shrink-0 transition-colors">
+                      <Laptop className="w-3.5 h-3.5 text-pencil-dark transition-colors" />
                     </div>
-                    <span className="text-xs sm:text-sm font-serif font-black leading-none group-hover/mac:text-paper-50">
+                    <span className="text-xs sm:text-sm font-serif font-black leading-none">
                       macOS
                     </span>
                   </div>
-                  <span className="text-[10px] sm:text-[11px] font-mono text-pencil-faint group-hover/mac:text-paper-100/90 transition-colors shrink-0">
+                  <span className="text-[10px] sm:text-[11px] font-mono text-pencil-faint transition-colors shrink-0">
                     简介 ➔
                   </span>
                 </div>
@@ -129,13 +129,13 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                     >
                       <PencilSoftwareLogo
                         toolId={tool.id}
-                        className="w-5 h-5 sm:w-6 sm:h-6 text-pencil-dark group-hover/mac:text-paper-50 transition-colors"
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-pencil-dark transition-colors"
                       />
                     </span>
                   ))}
                 </div>
 
-                <div className="text-[10px] sm:text-[11px] font-sans text-pencil-light group-hover/mac:text-paper-100/80 truncate">
+                <div className="text-[10px] sm:text-[11px] font-sans text-pencil-light truncate">
                   支持 Mac / MacBook
                 </div>
               </button>
@@ -168,11 +168,11 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                     e.currentTarget.blur();
                     onSelectTool(tool.id);
                   }}
-                  className="w-full h-full bg-paper-50/90 hover:bg-pencil hover:text-paper-50 border border-pencil/25 hover:border-pencil px-2.5 py-1 sm:py-1.5 rounded-lg text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex items-center gap-2 min-w-0 group/tool text-left"
+                  className="w-full h-full bg-paper-50/90 hover:bg-paper-200 border border-pencil/25 px-2.5 py-1 sm:py-1.5 rounded-lg text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex items-center gap-2 min-w-0 group/tool text-left"
                   title={`点击查看 ${tool.name} 教程`}
                 >
-                  <PencilSoftwareLogo toolId={tool.id} className="w-4 h-4 text-pencil-dark group-hover/tool:text-paper-50 shrink-0 transition-colors" />
-                  <span className="truncate text-xs font-serif font-bold group-hover/tool:text-paper-50">
+                  <PencilSoftwareLogo toolId={tool.id} className="w-4 h-4 text-pencil-dark shrink-0 transition-colors" />
+                  <span className="truncate text-xs font-serif font-bold">
                     {tool.shortName}
                   </span>
                 </button>
@@ -206,11 +206,11 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                     e.currentTarget.blur();
                     onSelectTool(tool.id);
                   }}
-                  className="w-full h-full bg-paper-50/90 hover:bg-pencil hover:text-paper-50 border border-pencil/25 hover:border-pencil px-2.5 py-1 sm:py-1.5 rounded-lg text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex items-center gap-2 min-w-0 group/tool text-left"
+                  className="w-full h-full bg-paper-50/90 hover:bg-paper-200 border border-pencil/25 px-2.5 py-1 sm:py-1.5 rounded-lg text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex items-center gap-2 min-w-0 group/tool text-left"
                   title={`点击查看 ${tool.name} 教程`}
                 >
-                  <PencilSoftwareLogo toolId={tool.id} className="w-4 h-4 text-pencil-dark group-hover/tool:text-paper-50 shrink-0 transition-colors" />
-                  <span className="truncate text-xs font-serif font-bold group-hover/tool:text-paper-50">
+                  <PencilSoftwareLogo toolId={tool.id} className="w-4 h-4 text-pencil-dark shrink-0 transition-colors" />
+                  <span className="truncate text-xs font-serif font-bold">
                     {tool.shortName}
                   </span>
                 </button>
@@ -244,11 +244,11 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                     e.currentTarget.blur();
                     onSelectTool(tool.id);
                   }}
-                  className="w-full h-full bg-paper-50/90 hover:bg-pencil hover:text-paper-50 border border-pencil/25 hover:border-pencil px-2.5 py-1 sm:py-1.5 rounded-lg text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex items-center gap-2 min-w-0 group/tool text-left"
+                  className="w-full h-full bg-paper-50/90 hover:bg-paper-200 border border-pencil/25 px-2.5 py-1 sm:py-1.5 rounded-lg text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil active:scale-95 cursor-pointer flex items-center gap-2 min-w-0 group/tool text-left"
                   title={`点击查看 ${tool.name} 教程`}
                 >
-                  <PencilSoftwareLogo toolId={tool.id} className="w-4 h-4 text-pencil-dark group-hover/tool:text-paper-50 shrink-0 transition-colors" />
-                  <span className="truncate text-xs font-serif font-bold group-hover/tool:text-paper-50">
+                  <PencilSoftwareLogo toolId={tool.id} className="w-4 h-4 text-pencil-dark shrink-0 transition-colors" />
+                  <span className="truncate text-xs font-serif font-bold">
                     {tool.shortName}
                   </span>
                 </button>
@@ -328,14 +328,14 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                           e.stopPropagation();
                           onSelectTool(tool.id);
                         }}
-                        className="bg-paper-50/90 hover:bg-pencil hover:text-paper-50 border border-pencil/30 hover:border-pencil px-2.5 py-1.5 sm:py-2 rounded-xl text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil hover:-translate-y-0.5 active:scale-95 cursor-pointer flex items-center justify-between group/tool text-left"
+                        className="bg-paper-50/90 hover:bg-paper-200 border border-pencil/30 px-2.5 py-1.5 sm:py-2 rounded-xl text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil hover:-translate-y-0.5 active:scale-95 cursor-pointer flex items-center justify-between group/tool text-left"
                         title={`点击查看 ${tool.name} 教程`}
                       >
                         <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-                          <PencilSoftwareLogo toolId={tool.id} className="w-4 h-4 text-pencil-dark group-hover/tool:text-paper-50 shrink-0 transition-colors" />
+                          <PencilSoftwareLogo toolId={tool.id} className="w-4 h-4 text-pencil-dark shrink-0 transition-colors" />
                           <span className="truncate text-xs font-serif font-bold">{tool.shortName}</span>
                         </div>
-                        <span className="text-[9px] font-mono text-pencil-faint group-hover/tool:text-paper-100/75 shrink-0 ml-1 hidden sm:inline">
+                        <span className="text-[9px] font-mono text-pencil-faint shrink-0 ml-1 hidden sm:inline">
                           {tool.badgeText}
                         </span>
                       </button>
@@ -369,14 +369,14 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                           e.stopPropagation();
                           onSelectTool(tool.id);
                         }}
-                        className="bg-paper-50/90 hover:bg-pencil hover:text-paper-50 border border-pencil/30 hover:border-pencil px-2.5 py-1.5 sm:py-2 rounded-xl text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil hover:-translate-y-0.5 active:scale-95 cursor-pointer flex items-center justify-between group/tool text-left"
+                        className="bg-paper-50/90 hover:bg-paper-200 border border-pencil/30 px-2.5 py-1.5 sm:py-2 rounded-xl text-pencil-dark font-medium transition-all shadow-xs hover:shadow-pencil hover:-translate-y-0.5 active:scale-95 cursor-pointer flex items-center justify-between group/tool text-left"
                         title={`点击查看 ${tool.name} 教程`}
                       >
                         <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-                          <PencilSoftwareLogo toolId={tool.id} className="w-4 h-4 text-pencil-dark group-hover/tool:text-paper-50 shrink-0 transition-colors" />
+                          <PencilSoftwareLogo toolId={tool.id} className="w-4 h-4 text-pencil-dark shrink-0 transition-colors" />
                           <span className="truncate text-xs font-serif font-bold">{tool.shortName}</span>
                         </div>
-                        <span className="text-[9px] font-mono text-pencil-faint group-hover/tool:text-paper-100/75 shrink-0 ml-1 hidden sm:inline">
+                        <span className="text-[9px] font-mono text-pencil-faint shrink-0 ml-1 hidden sm:inline">
                           {tool.badgeText}
                         </span>
                       </button>
@@ -429,19 +429,19 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                       e.stopPropagation();
                       onSelectTool(tool.id);
                     }}
-                    className="bg-paper-50/90 hover:bg-pencil hover:text-paper-50 border border-pencil/30 hover:border-pencil p-2.5 sm:p-3 sm:h-[85.5px] rounded-xl text-pencil-dark transition-all shadow-xs hover:shadow-pencil hover:-translate-y-0.5 active:scale-95 cursor-pointer flex items-center justify-between group/tool text-left"
+                    className="bg-paper-50/90 hover:bg-paper-200 border border-pencil/30 p-2.5 sm:p-3 sm:h-[85.5px] rounded-xl text-pencil-dark transition-all shadow-xs hover:shadow-pencil hover:-translate-y-0.5 active:scale-95 cursor-pointer flex items-center justify-between group/tool text-left"
                     title={`点击查看 ${tool.name} 教程`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-pencil/25 bg-paper-100 group-hover/tool:bg-paper-50/20 flex items-center justify-center p-1.5 shrink-0 transition-colors">
-                        <PencilSoftwareLogo toolId={tool.id} className="w-full h-full text-pencil-dark group-hover/tool:text-paper-50 transition-colors" />
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-pencil/25 bg-paper-100 flex items-center justify-center p-1.5 shrink-0 transition-colors">
+                        <PencilSoftwareLogo toolId={tool.id} className="w-full h-full text-pencil-dark transition-colors" />
                       </div>
                       <div className="min-w-0">
-                        <span className="block truncate text-xs sm:text-sm font-serif font-bold group-hover/tool:text-paper-50">{tool.shortName}</span>
-                        <span className="text-[10px] sm:text-[11px] font-mono text-pencil-faint group-hover/tool:text-paper-100/75 truncate block mt-0.5">{tool.badgeText}</span>
+                        <span className="block truncate text-xs sm:text-sm font-serif font-bold">{tool.shortName}</span>
+                        <span className="text-[10px] sm:text-[11px] font-mono text-pencil-faint truncate block mt-0.5">{tool.badgeText}</span>
                       </div>
                     </div>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-pencil-light group-hover/tool:text-paper-50 opacity-40 group-hover/tool:opacity-100 transition-all shrink-0 ml-1" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-pencil-light opacity-40 group-hover/tool:opacity-100 transition-all shrink-0 ml-1" />
                   </button>
                 ))}
               </div>
@@ -490,19 +490,19 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                       e.stopPropagation();
                       onSelectTool(tool.id);
                     }}
-                    className="bg-paper-50/90 hover:bg-pencil hover:text-paper-50 border border-pencil/30 hover:border-pencil p-2.5 sm:p-3 sm:h-[85.5px] rounded-xl text-pencil-dark transition-all shadow-xs hover:shadow-pencil hover:-translate-y-0.5 active:scale-95 cursor-pointer flex items-center justify-between group/tool text-left"
+                    className="bg-paper-50/90 hover:bg-paper-200 border border-pencil/30 p-2.5 sm:p-3 sm:h-[85.5px] rounded-xl text-pencil-dark transition-all shadow-xs hover:shadow-pencil hover:-translate-y-0.5 active:scale-95 cursor-pointer flex items-center justify-between group/tool text-left"
                     title={`点击查看 ${tool.name} 教程`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-pencil/25 bg-paper-100 group-hover/tool:bg-paper-50/20 flex items-center justify-center p-1.5 shrink-0 transition-colors">
-                        <PencilSoftwareLogo toolId={tool.id} className="w-full h-full text-pencil-dark group-hover/tool:text-paper-50 transition-colors" />
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-pencil/25 bg-paper-100 flex items-center justify-center p-1.5 shrink-0 transition-colors">
+                        <PencilSoftwareLogo toolId={tool.id} className="w-full h-full text-pencil-dark transition-colors" />
                       </div>
                       <div className="min-w-0">
-                        <span className="block truncate text-xs sm:text-sm font-serif font-bold group-hover/tool:text-paper-50">{tool.shortName}</span>
-                        <span className="text-[10px] sm:text-[11px] font-mono text-pencil-faint group-hover/tool:text-paper-100/75 truncate block mt-0.5">{tool.badgeText}</span>
+                        <span className="block truncate text-xs sm:text-sm font-serif font-bold">{tool.shortName}</span>
+                        <span className="text-[10px] sm:text-[11px] font-mono text-pencil-faint truncate block mt-0.5">{tool.badgeText}</span>
                       </div>
                     </div>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-pencil-light group-hover/tool:text-paper-50 opacity-40 group-hover/tool:opacity-100 transition-all shrink-0 ml-1" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-pencil-light opacity-40 group-hover/tool:opacity-100 transition-all shrink-0 ml-1" />
                   </button>
                 ))}
               </div>
@@ -551,19 +551,19 @@ export const QuadrantHome: React.FC<QuadrantHomeProps> = ({
                       e.stopPropagation();
                       onSelectTool(tool.id);
                     }}
-                    className="bg-paper-50/90 hover:bg-pencil hover:text-paper-50 border border-pencil/30 hover:border-pencil p-2.5 sm:p-3 sm:h-[85.5px] rounded-xl text-pencil-dark transition-all shadow-xs hover:shadow-pencil hover:-translate-y-0.5 active:scale-95 cursor-pointer flex items-center justify-between group/tool text-left"
+                    className="bg-paper-50/90 hover:bg-paper-200 border border-pencil/30 p-2.5 sm:p-3 sm:h-[85.5px] rounded-xl text-pencil-dark transition-all shadow-xs hover:shadow-pencil hover:-translate-y-0.5 active:scale-95 cursor-pointer flex items-center justify-between group/tool text-left"
                     title={`点击查看 ${tool.name} 教程`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-pencil/25 bg-paper-100 group-hover/tool:bg-paper-50/20 flex items-center justify-center p-1.5 shrink-0 transition-colors">
-                        <PencilSoftwareLogo toolId={tool.id} className="w-full h-full text-pencil-dark group-hover/tool:text-paper-50 transition-colors" />
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-pencil/25 bg-paper-100 flex items-center justify-center p-1.5 shrink-0 transition-colors">
+                        <PencilSoftwareLogo toolId={tool.id} className="w-full h-full text-pencil-dark transition-colors" />
                       </div>
                       <div className="min-w-0">
-                        <span className="block truncate text-xs sm:text-sm font-serif font-bold group-hover/tool:text-paper-50">{tool.shortName}</span>
-                        <span className="text-[10px] sm:text-[11px] font-mono text-pencil-faint group-hover/tool:text-paper-100/75 truncate block mt-0.5">{tool.badgeText}</span>
+                        <span className="block truncate text-xs sm:text-sm font-serif font-bold">{tool.shortName}</span>
+                        <span className="text-[10px] sm:text-[11px] font-mono text-pencil-faint truncate block mt-0.5">{tool.badgeText}</span>
                       </div>
                     </div>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-pencil-light group-hover/tool:text-paper-50 opacity-40 group-hover/tool:opacity-100 transition-all shrink-0 ml-1" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-pencil-light opacity-40 group-hover/tool:opacity-100 transition-all shrink-0 ml-1" />
                   </button>
                 ))}
               </div>
