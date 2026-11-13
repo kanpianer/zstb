@@ -13,7 +13,7 @@ export const shadowrocket: SoftwareTool = {
   updatedAt: '2026-11-13',
   isOpenSource: false,
   license: '专有软件；未确认完整客户端开源许可',
-  price: '美国 App Store：US$2.99（2026-11-13；其他地区以购买页为准）',
+  price: '美国 App Store：US$2.99（2026-11-13）',
   releasedAt: '2015-04-14（美国 App Store 上架日期）',
   latestVersion: '2.2.93（美国商店 API；2026-10-29 发布）',
   updatePath: 'src/data/tutorials/ios/shadowrocket.ts',

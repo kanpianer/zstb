@@ -172,6 +172,8 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
   onOpenCrowdsourceModal
 }) => {
   const [copiedSnippet, setCopiedSnippet] = useState<string | null>(null);
+  // 版本字段可包含渠道、核查日期等备注，页头仅展示首个版本号。
+  const displayVersion = tool.latestVersion.match(/\b[vV]?\d+(?:\.\d+)+(?:-[0-9A-Za-z]+(?:[.-][0-9A-Za-z]+)*)?(?:\+[0-9A-Za-z]+(?:[.-][0-9A-Za-z]+)*)?\b/)?.[0];
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -199,11 +201,13 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-start justify-between gap-6">
           <div className="flex-1">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono bg-paper-200 border border-pencil/30 px-2 py-0.5 rounded text-pencil-dark">
-                {tool.latestVersion}
-              </span>
-            </div>
+            {displayVersion && (
+              <div className="flex items-center gap-2 mb-2">
+                <span aria-label="软件版本" className="text-xs font-mono bg-paper-200 border border-pencil/30 px-2 py-0.5 rounded text-pencil-dark">
+                  {displayVersion}
+                </span>
+              </div>
+            )}
 
             <div className="flex items-center gap-3.5 mb-2">
               <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-xl border-2 border-pencil bg-paper-100/90 flex items-center justify-center p-2 shadow-pencil shrink-0 group-hover:-rotate-3 transition-transform">
