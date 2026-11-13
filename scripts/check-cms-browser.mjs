@@ -102,6 +102,31 @@ try {
   await send('Page.navigate', {url: `${origin}/?tool=${encodeURIComponent(committed.tools[0].id)}`});
   await until(`!!document.querySelector('main') && !document.querySelector('.cms-shell')`);
   assert.equal(await evaluate(`document.body.textContent.includes('GitHub 中文提交验证')`),false);
+  // Explicit local application is independent of commits and survives full navigation.
+  await send('Page.navigate', {url: `${origin}/dtms`});
+  await until(`document.querySelector('.cms-status')?.textContent.includes('committed-sh')`);
+  await setName('无需部署的本地预览');
+  await evaluate(`document.querySelector('.cms-apply').click()`);
+  await until(`document.querySelector('.cms-notice')?.textContent.includes('已应用到此浏览器')`);
+  assert.equal(writes, 2);
+  assert.equal(await evaluate(`document.querySelector('.cms-status').textContent.includes('有未提交')`), true);
+  assert.equal(await evaluate(`JSON.stringify(localStorage).includes(${JSON.stringify(token)})`), false);
+  await evaluate(`Array.from(document.querySelectorAll('button')).find(b=>b.textContent.includes('返回主站')).click()`);
+  await until(`!!document.querySelector('.local-preview-banner')`);
+  await send('Page.navigate', {url: `${origin}/?tool=${encodeURIComponent(committed.tools[0].id)}`});
+  await until(`!!document.querySelector('.local-preview-banner') && document.body.textContent.includes('无需部署的本地预览')`);
+  await evaluate(`Array.from(document.querySelectorAll('.local-preview-banner button')).find(b=>b.textContent.includes('继续编辑')).click()`);
+  await until(`document.querySelector('.cms-status')?.textContent.includes('committed-sh')`);
+  assert.equal(await evaluate(`document.querySelector('textarea[aria-label="名称"]').value`), '无需部署的本地预览');
+  await setName('再次应用后的预览');
+  await evaluate(`document.querySelector('.cms-apply').click()`);
+  await until(`document.querySelector('.cms-notice')?.textContent.includes('已应用到此浏览器')`);
+  await send('Page.navigate', {url: `${origin}/?tool=${encodeURIComponent(committed.tools[0].id)}`});
+  await until(`!!document.querySelector('.local-preview-banner') && document.body.textContent.includes('再次应用后的预览')`);
+  await evaluate(`Array.from(document.querySelectorAll('.local-preview-banner button')).find(b=>b.textContent.includes('退出本地预览')).click()`);
+  await until(`!!document.querySelector('main') && !document.querySelector('.local-preview-banner')`);
+  assert.equal(await evaluate(`document.body.textContent.includes('再次应用后的预览')`), false);
+  assert.equal(writes, 2);
   await send('Page.navigate', {url: `${origin}/`});
   await until(`!!document.querySelector('main') && !document.querySelector('.cms-shell')`);
   // Genuine pointer input, unlike DOM .click(), exercises the hidden entrance.
@@ -111,7 +136,7 @@ try {
   assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'),true);
   await writeFile(join(temporary,'cms-mobile.png'), Buffer.from((await send('Page.captureScreenshot',{format:'png'})).data,'base64'));
   if(interceptionError) throw interceptionError;
-  console.log('PASS: static /dtms, GitHub load/UTF-8 commit/SHA conflict, token privacy, commit vs deployment, trusted 5-click gesture, mobile width');
+  console.log('PASS: static /dtms, GitHub load/UTF-8 commit/SHA conflict, token privacy, commit vs deployment, persistent local apply/reapply/exit, trusted 5-click gesture, mobile width');
   console.log(`Mobile screenshot: ${temporary}/cms-mobile.png`);
   socket.close();
 } finally {

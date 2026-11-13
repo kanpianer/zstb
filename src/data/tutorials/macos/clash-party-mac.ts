@@ -1,86 +1,89 @@
 import { SoftwareTool } from '../../../types/tutorial';
 
 export const clashPartyMac: SoftwareTool = {
-  id: 'clash-party-mac',
-  name: 'Clash Party',
-  shortName: 'Clash Party',
-  system: 'macos',
-  category: 'apple',
-  tagline: '开箱即用、界面极为优雅精美的代理客户端新标杆（原 Mihomo Party）',
-  description: 'Clash Party（原名 Mihomo Party）凭借简洁极具设计感的 UI 交互、开箱即用的分流配置预设以及对 Mihomo 全特性的深度集成，在 Mac 圈子内迅速积累了极高的人气。内置 Smart 智能测速、Sub-Store 订阅聚合与免服务的 TUN 模式，被称作“专为强迫症设计的代理客户端”。',
-  iconName: 'Sparkles',
-  badgeText: '新一代美学先锋',
-  
-  updatedAt: '2026-10-18',
-  isOpenSource: true,
-  license: 'GPL-3.0 开源协议',
-  releasedAt: '2024-01-10',
-  latestVersion: 'v2.0.4',
-  updatePath: 'data/tutorials/macos/clash-party-mac.md',
-  
-  officialSite: 'https://clashparty.org',
-  githubRepo: 'https://github.com/mihomo-party-org/clash-party',
-  
-  specs: {
-    compatibility: 'macOS 12.0 或更高版本',
-    architecture: 'Apple Silicon 原生 + Intel x64',
-    coreEngine: 'Mihomo Core (Alpha / Release)',
-    protocols: ['VLESS (Reality)', 'VMess', 'Hysteria 2', 'TUIC v5', 'Trojan', 'Shadowsocks', 'WireGuard'],
-    trafficHandling: '一键系统代理 + 智能 TUN 虚拟网卡 (免额外服务安装)',
-  },
-  
-  tutorial: {
-    overview: 'Clash Party（原 Mihomo Party）主打高颜值与零门槛上手，本教程带你快速完成配置。',
-    prerequisites: [
-      'macOS 12.0 或更新版本',
-      '从官网 (https://clashparty.org) 或 GitHub 下载安装包',
-      '任何通用 Clash / Mihomo 格式的订阅链接'
+  "id": "clash-party-mac",
+  "name": "Clash Party",
+  "shortName": "Clash Party",
+  "system": "macos",
+  "category": "apple",
+  "tagline": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动",
+  "description": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。",
+  "iconName": "Sparkles",
+  "badgeText": "官方来源核查",
+  "updatedAt": "2026-11-13",
+  "isOpenSource": true,
+  "license": "GPL-3.0（详见项目许可证）",
+  "releasedAt": "未独立核实，以官方发布记录为准",
+  "latestVersion": "v2.0.4（2026-11-13 核查；以官方发布页为准）",
+  "updatePath": "src/data/tutorials/macos/clash-party-mac.ts",
+  "githubRepo": "https://github.com/mihomo-party-org/clash-party",
+  "officialSite": "https://clashparty.org",
+  "releasesUrl": "https://github.com/mihomo-party-org/clash-party/releases",
+  "specs": {
+    "compatibility": "macOS：按发布包和所含 Electron / 内核要求核对；本次未确认统一最低版本，不沿用 12.0 断言",
+    "architecture": "Apple Silicon arm64 / Intel x64",
+    "coreEngine": "Mihomo / Smart Core；依安装版本与所选内核而异",
+    "protocols": [
+      "VLESS（含 REALITY，取决于内核）",
+      "VMess",
+      "Trojan",
+      "Shadowsocks",
+      "Hysteria 2",
+      "TUIC",
+      "WireGuard"
     ],
-    steps: [
+    "trafficHandling": "系统代理与 TUN；无需手动服务模式不代表无需管理员权限或特权 Helper"
+  },
+  "tutorial": {
+    "overview": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
+    "prerequisites": [
+      "符合该版本系统与 CPU 架构要求的设备",
+      "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
+      "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
+    ],
+    "steps": [
       {
-        stepNumber: 1,
-        title: '下载并安装应用',
-        description: '从 clashparty.org 官方网站或 GitHub Releases 页面下载 `clash-party-macos-arm64.dmg`（M系列芯片）或 `x64.dmg`（Intel芯片），双击拖入应用程序。',
-        pencilTip: '首次启动支持全中文引导界面与浅色/深色主题自由切换。'
+        "stepNumber": 1,
+        "title": "从官方渠道下载安装",
+        "description": "当前 v2.0.4 发布资产为 clash-party-macos-2.0.4-arm64.pkg / x64.pkg，按芯片选择并使用系统安装器。旧版文档仍写 DMG，不能套用到本次 PKG。安装可能涉及特权 Helper，先核实来源和校验值。"
       },
       {
-        stepNumber: 2,
-        title: '粘贴订阅并一键更新',
-        description: '打开软件，直接在首页醒目位置点击【添加订阅】，粘贴链接并点击确认。软件会自动下载节点并解析分组，也支持一键关联 Sub-Store。',
-        codeSnippet: 'https://sub.provider.cc/subscribe?token=xxx&client=clash',
-        codeLanguage: 'url',
-        pencilTip: '软件默认开启了预配置规则集，无需手动繁琐微调即可规避绝大多数冲突。'
+        "stepNumber": 2,
+        "title": "导入兼容订阅并激活",
+        "description": "在订阅管理区域添加服务提供方的 Clash / Mihomo YAML URL 或本地配置，完成下载并选为当前配置。通用分享链接不等于完整 Clash 配置；如需 Sub-Store 转换，仅使用可信实例，不把密钥发送给陌生公共转换站。"
       },
       {
-        stepNumber: 3,
-        title: '启动代理与 TUN 模式',
-        description: '点击左上角【启动】按钮。在设置选项卡中，开启【TUN 模式】开关即可接管终端与游戏流量（无需额外安装系统服务守护）。',
-        pencilTip: '极具现代感的菜单栏小图标可随时掌控上下行速率。'
+        "stepNumber": 3,
+        "title": "选择节点并启用系统代理",
+        "description": "在代理策略组中选择节点，按配置需要选择规则或全局模式，再启用系统代理。客户端运行与启用系统代理不是同一状态；用目标应用和连接日志确认效果。"
+      },
+      {
+        "stepNumber": 4,
+        "title": "按需启用 TUN 并验证权限",
+        "description": "只有需要接管不遵循系统代理的程序时才启用 TUN。官方“无需服务模式”描述不等于免权限：虚拟网卡和路由需要系统授权，macOS 存在特权 Helper。若断网，关闭 TUN 并检查 DNS、排除路由与其他 VPN；不保证所有流量都接管。"
       }
     ],
-    advancedRules: [
-      '内置 Sub-Store：无缝聚合管理多个机场订阅，支持节点筛选、重命名与节点合并。',
-      'WebDAV 云备份：一键备份当前配置规则到自建或坚果云 WebDAV，跨设备秒级恢复。'
+    "advancedRules": [
+      "[当前默认 smart_core 分支 README：内核与功能](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/README.md)",
+      "[仓库 API：当前名称、主页、非归档与维护活动](https://api.github.com/repos/mihomo-party-org/clash-party)",
+      "[官方发布接口：版本与实际资产](https://api.github.com/repos/mihomo-party-org/clash-party/releases/latest)",
+      "[GPL 许可证](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/LICENSE)",
+      "[官方快速上手](https://clashparty.org/docs/handson)",
+      "[官方安装说明（部分说明仍为旧版）](https://clashparty.org/docs/install)",
+      "[Mihomo 协议与 TUN 原始配置](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
+      "Sub-Store、覆写和 WebDAV 是配置管理功能，不是客户端自动提供节点或保证匿名的服务；备份可能包含订阅凭据，上传前检查存储权限。",
+      "[macOS 官方故障排查：特权 Helper 与服务](https://clashparty.org/docs/issues/macos)"
     ],
-    faq: [
+    "faq": [
       {
-        question: 'Clash Party 与原 Mihomo Party 是什么关系？',
-        answer: 'Clash Party 是 Mihomo Party 的官方更名演进版本，官方域名统一为 clashparty.org，全面继承了原有高颜值 UI、覆写配置与 Sub-Store 深度集成。'
+        "question": "Clash Party 与 Mihomo Party 是什么关系？",
+        "answer": "当前仓库、应用 productName 和官网使用 Clash Party，旧 README、安装说明、应用标识及部分资产仍保留 Mihomo Party 名称。旧名不是另一个必需安装的内核；以同一官方组织仓库的发布记录核对，不推断确切改名日期。"
       },
       {
-        question: '它和 Clash Verge Rev 有什么区别？',
-        answer: '两者底层都采用 Mihomo 核心，内核能力基本相同；Clash Party 更加注重视觉美感、动画细节以及 Sub-Store 的原生集成，更适合重视审美的日常用户。'
+        "question": "为什么不照抄“免服务、完全没有安全隐患”？",
+        "answer": "免手动服务模式只描述使用方式，不能证明无特权代码或无风险。下载核验、最小权限、可信配置和日志排错仍然必要；macOS 官方文档明确列出 Helper 服务。"
       }
     ]
   },
-  
-  changelog: [
-    {
-      date: '2026-11-12',
-      author: 'UIArtist',
-      prNumber: 1,
-      summary: '首次更新',
-      commitHash: 'd883c91'
-    }
-  ]
+  "changelog": []
 };

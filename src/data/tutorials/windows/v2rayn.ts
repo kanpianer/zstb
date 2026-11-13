@@ -6,87 +6,69 @@ export const v2rayn: SoftwareTool = {
   shortName: 'v2rayN',
   system: 'windows',
   category: 'windows',
-  tagline: 'Windows 平台无可撼动的常青树与自建节点/多内核调试神器',
-  description: 'v2rayN 是 Windows 上最经典、支持内核最丰富（Xray、sing-box、mihomo 等多内核无缝热切换）的开源客户端。对单个节点的参数细节掌控力极强，是自建节点与硬核网络玩家的首选。',
+  tagline: '支持多种代理内核的开源桌面客户端（本篇介绍 Windows）',
+  description: 'v2rayN 是支持 Windows、Linux 和 macOS 的图形客户端，可管理 Xray、sing-box 等内核。本篇介绍 Windows 发布包、订阅导入、节点选择及系统代理；协议能否使用取决于客户端、所选内核与服务端配置的共同支持。',
   iconName: 'Monitor',
-  badgeText: 'Windows 常青树',
-  
-  updatedAt: '2026-10-11',
+  badgeText: '多内核客户端',
+  updatedAt: '2026-11-13',
   isOpenSource: true,
-  license: 'GPL-3.0 开源协议',
-  releasedAt: '2017-04-18',
-  latestVersion: 'v7.25.6',
-  updatePath: 'data/tutorials/windows/v2rayn.md',
-  
+  license: 'GPL-3.0',
+  releasedAt: '未核实首次发布日期，以项目历史为准',
+  latestVersion: '7.25.6（2026-11-13 核查）',
+  updatePath: 'src/data/tutorials/windows/v2rayn.ts',
   githubRepo: 'https://github.com/2dust/v2rayN',
-  officialSite: 'https://github.com/2dust/v2rayN/releases',
-  
+  officialSite: 'https://github.com/2dust/v2rayN/wiki',
+  releasesUrl: 'https://github.com/2dust/v2rayN/releases',
   specs: {
-    compatibility: 'Windows 10 / Windows 11 (64-bit / ARM64)',
-    architecture: 'x64 / ARM64 / x86 (需 .NET 8.0 运行时)',
-    coreEngine: 'Xray-core / sing-box / mihomo 多内核动态加载',
-    protocols: ['VLESS (Reality)', 'VMess', 'Trojan', 'Shadowsocks', 'Hysteria 2', 'TUIC v5', 'WireGuard', 'SOCKS5'],
-    trafficHandling: '一键写入系统代理 + 独立 Wintun/TUN 虚拟网卡驱动',
+    compatibility: 'Windows 10+；各内核的最低系统要求需另行确认',
+    architecture: 'x64 / arm64；x86 包是否适用以当次发布及内核为准',
+    coreEngine: 'Xray / sing-box 等（支持范围随版本变化）',
+    protocols: ['VMess', 'VLESS / REALITY', 'Trojan', 'Shadowsocks', 'SOCKS', 'HTTP', 'Hysteria 2 / TUIC（依内核）'],
+    trafficHandling: '系统代理 / PAC；可选 TUN（需提升权限并正确配置路由）',
   },
-  
   tutorial: {
-    overview: '本教程带你从零在 Windows 上解压、配置并运行 v2rayN，实现浏览器与全系统软件的科学上网。',
+    overview: '先使用系统代理验证浏览器连接，再按需配置 TUN。系统代理只影响遵循系统设置的应用，不等于整台电脑的所有流量都已被接管。版本与下载文件按官方 Releases 和 Wiki 核查，菜单文字可能随语言和界面实现变化。',
     prerequisites: [
-      'Windows 10 或 Windows 11 电脑',
-      '已安装 Microsoft .NET 8.0 Desktop Runtime (若未安装软件会提示自动下载)',
-      '机场订阅链接或自建节点链接'
+      'Windows 10 或更高版本，确认 CPU 架构与下载包相符',
+      '从官方 Releases 获取完整发布包；运行时要求以对应版本说明或启动提示为准，不统一要求额外安装 .NET 8',
+      '可信服务提供者的订阅或节点分享链接；订阅中通常含访问凭证，请勿公开'
     ],
     steps: [
       {
         stepNumber: 1,
-        title: '下载并解压客户端',
-        description: '前往官方 GitHub Releases 页面，下载带有核心文件的压缩包（推荐下载 `v2rayN-With-Core.zip`，避免手动到处寻找内核）。将其解压到一个没有中文与特殊符号的文件夹（例如 `D:\\Tools\\v2rayN`）。',
-        pencilTip: '解压后双击 `v2rayN.exe` 即可运行，建议右键发送快捷方式到桌面。'
+        title: '选择当前发布包并完整解压',
+        description: '从官方 Releases 下载。以本次核查的 7.25.6 为例，x64 的 WPF 界面为 `v2rayN-windows-64.zip`，Avalonia 界面为 `v2rayN-windows-64-desktop.zip`；ARM64 选择名称含 `arm64` 的对应包。不要继续寻找旧版 `With-Core` 文件名。解压全部内容到用户可写目录后运行 `v2rayN.exe`。',
+        pencilTip: '发布包含部分核心，其他核心需按 Wiki 补充。若启动失败先看错误和 guiLogs，再按发布要求处理运行时、权限或安全软件拦截，不要直接关闭安全防护。'
       },
       {
         stepNumber: 2,
-        title: '添加订阅并拉取节点',
-        description: '双击运行后，点击顶部菜单栏【订阅分组】-> 选择【订阅分组设置】。点击【添加】，在【可选地址 (url)】中粘贴机场订阅链接，【别名】填入机场名字，点击确定。然后再次点击【订阅分组】-> 点击【更新全部订阅 (不通过代理)】。',
-        codeSnippet: 'https://airport.com/api/v1/client/subscribe?token=v2rayn_token',
-        codeLanguage: 'url',
-        pencilTip: '订阅成功拉取后，表格中会呈现几十条节点。'
+        title: '添加并更新订阅分组',
+        description: '在订阅分组设置中新增分组，填写别名与服务商提供的订阅 URL，保存后更新该订阅。先尝试不通过代理更新；若下载路径需要代理，须先有可用节点，才能使用通过代理更新。也可使用客户端支持的剪贴板导入功能添加单个分享链接。',
+        pencilTip: 'Clash 完整 YAML、sing-box 完整 JSON 与节点订阅并非同一种格式。导入失败时先确认提供者是否提供 v2rayN 支持的格式，不要把带 token 的链接提交给陌生转换网站。'
       },
       {
         stepNumber: 3,
-        title: '选择最优节点',
-        description: '按 `Ctrl+A` 全选所有节点，右键点击选择【测试服务器真实延迟 (Ctrl+R)】。等待测速完成后，点击【真实延迟】表头升序排列，双击或者选中后回车挑选一个延迟最低的绿色节点。',
-        pencilTip: '双击选中的节点会变为蓝色高亮背景，代表当前出口。'
+        title: '测试并设为活动服务器',
+        description: '选中节点，使用右键菜单的真连接或延迟测试；根据结果设为活动服务器。具体快捷键以当前菜单显示为准。检查信息栏，确认核心启动成功，再访问需要代理的网站验证。',
+        pencilTip: '低延迟不代表高带宽，也不保证 UDP、流媒体或特定网站可用。测试报错时先检查配置、核心兼容性和本地端口占用。'
       },
       {
         stepNumber: 4,
-        title: '开启系统代理与分流',
-        description: '查看软件最底部的状态栏：将【路由】选择为【绕过大陆 (Whitelist)】；将【系统代理】切换为【自动配置系统代理】。此时托盘图标由蓝色变为红色，代表系统代理已成功接管。',
-        pencilTip: '若需要让游戏或终端走代理，勾选底部的【自动启动 Tun 模式】即可！'
+        title: '启用系统代理并设置路由',
+        description: '系统代理选择【自动配置系统代理】，路由可从【绕过大陆】开始，再按实际需求调整。二者分别决定哪些应用流量进入核心，以及进入核心后如何分流。退出前清除系统代理。',
+        pencilTip: '终端、游戏等可能忽略系统代理，需要单独配置代理或使用 TUN。TUN 应按当前文档提升权限、检查 DNS 和路由，不能只勾选开关就保证所有软件可用。'
       }
     ],
     advancedRules: [
-      '切换核心引擎：在【设置】->【核心类型设置】中，可自由选择针对不同协议调用 Xray-core 或 sing-box 核心。',
-      '自定义路由黑白名单：可以在路由设置中自由添加直连域名或强制走代理的域名。'
+      '内核与客户端应配套升级。7.25.6 发布说明明确支持并限制 sing-box 到 1.14 系列，不要把任意更高版本内核直接替换进去。',
+      '开启局域网访问会扩大代理监听范围；确有共享需求时再配置防火墙和访问限制，避免对公网开放无认证代理。',
+      '核查来源：[官方发布文件介绍](https://github.com/2dust/v2rayN/wiki/Release-files-introduction)、[系统代理和路由](https://github.com/2dust/v2rayN/wiki/Description-of-system-proxy-routing)、[FAQ](https://github.com/2dust/v2rayN/wiki/Faq)、[7.25.6 发布说明](https://github.com/2dust/v2rayN/releases/tag/7.25.6)。'
     ],
     faq: [
-      {
-        question: '为什么双击 v2rayN.exe 没有任何反应？',
-        answer: '这是缺少 .NET 8.0 运行时的典型症状。请前往微软官网搜索下载并安装“.NET 8.0 Desktop Runtime (桌面运行时)”即可正常打开。'
-      },
-      {
-        question: '关闭 v2rayN 后电脑浏览器连不上网怎么办？',
-        answer: '这是因为非正常关闭导致 Windows 系统代理没有复位。重新打开 v2rayN，将底部系统代理切换为【清除系统代理】后再退出即可。'
-      }
+      { question: '无法启动一定是没装 .NET 8 吗？', answer: '不一定。下载包不完整、架构不符、目录权限、核心启动失败及运行时问题都可能导致异常。先按发布文件介绍选择正确包，再根据错误信息和 guiLogs 处理，不要盲目安装旧运行时。' },
+      { question: '退出后浏览器无法联网怎么办？', answer: '重新打开客户端并清除系统代理；也可检查 Windows 代理设置是否残留指向已停止的本地端口。如果使用过 TUN，还需确认虚拟网卡、路由和 DNS 已恢复。' },
+      { question: 'TUN 能保证加速游戏吗？', answer: '不能。代理与游戏加速是不同需求，实际效果受 UDP 支持、线路、服务端和路由影响。先确认应用和节点的条件，再逐项排查。' }
     ]
   },
-  
-  changelog: [
-    {
-      date: '2026-11-12',
-      author: 'WinExpert',
-      prNumber: 1,
-      summary: '首次更新',
-      commitHash: 'b183fd4'
-    }
-  ]
+  changelog: []
 };

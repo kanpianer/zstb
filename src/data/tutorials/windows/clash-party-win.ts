@@ -1,86 +1,88 @@
 import { SoftwareTool } from '../../../types/tutorial';
 
 export const clashPartyWin: SoftwareTool = {
-  id: 'clash-party-win',
-  name: 'Clash Party',
-  shortName: 'Clash Party',
-  system: 'windows',
-  category: 'windows',
-  tagline: 'Windows 上极具美感、操作直观的次世代代理客户端（原 Mihomo Party）',
-  description: 'Clash Party（原名 Mihomo Party）为 Windows 用户带来了媲美 macOS 原生体验的精美视觉。支持丰富的流媒体解锁检测、直观的分组拖拽排序、免服务模式的 TUN 虚拟网卡以及深度集成的 Sub-Store 订阅聚合，让新手也能在 Windows 上享受极客级的网络体验。',
-  iconName: 'Sparkles',
-  badgeText: '精美易用',
-  
-  updatedAt: '2026-10-18',
-  isOpenSource: true,
-  license: 'GPL-3.0 开源协议',
-  releasedAt: '2024-01-10',
-  latestVersion: 'v2.0.4',
-  updatePath: 'data/tutorials/windows/clash-party-win.md',
-  
-  officialSite: 'https://clashparty.org',
-  githubRepo: 'https://github.com/mihomo-party-org/clash-party',
-  
-  specs: {
-    compatibility: 'Windows 10 / Windows 11 (64位)',
-    architecture: 'x64 / arm64',
-    coreEngine: 'Mihomo Core (Alpha/Release)',
-    protocols: ['VLESS-Reality', 'Hysteria 2', 'TUIC v5', 'VMess', 'Trojan', 'Shadowsocks', 'WireGuard'],
-    trafficHandling: 'Windows 系统代理 + 智能 TUN 虚拟网卡 (免服务模式)',
-  },
-  
-  tutorial: {
-    overview: '本教程讲解在 Windows 上安装 Clash Party（原 Mihomo Party），快速导入订阅并开启系统代理。',
-    prerequisites: [
-      'Windows 10 或 Windows 11 系统',
-      '从官网 (https://clashparty.org) 或 GitHub 下载 Windows 安装包',
-      'Clash 订阅格式或通用订阅链接'
+  "id": "clash-party-win",
+  "name": "Clash Party",
+  "shortName": "Clash Party",
+  "system": "windows",
+  "category": "windows",
+  "tagline": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动",
+  "description": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。",
+  "iconName": "Sparkles",
+  "badgeText": "官方来源核查",
+  "updatedAt": "2026-11-13",
+  "isOpenSource": true,
+  "license": "GPL-3.0（详见项目许可证）",
+  "releasedAt": "未独立核实，以官方发布记录为准",
+  "latestVersion": "v2.0.4（2026-11-13 核查；以官方发布页为准）",
+  "updatePath": "src/data/tutorials/windows/clash-party-win.ts",
+  "githubRepo": "https://github.com/mihomo-party-org/clash-party",
+  "officialSite": "https://clashparty.org",
+  "releasesUrl": "https://github.com/mihomo-party-org/clash-party/releases",
+  "specs": {
+    "compatibility": "Windows 10 / 11；具体版本要求以发布说明为准",
+    "architecture": "x64 / arm64（按实际发布资产选择）",
+    "coreEngine": "Mihomo / Smart Core；依安装版本与所选内核而异",
+    "protocols": [
+      "VLESS（含 REALITY，取决于内核）",
+      "VMess",
+      "Trojan",
+      "Shadowsocks",
+      "Hysteria 2",
+      "TUIC",
+      "WireGuard"
     ],
-    steps: [
+    "trafficHandling": "系统代理与 TUN；无需手动服务模式不代表无需管理员权限或特权 Helper"
+  },
+  "tutorial": {
+    "overview": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
+    "prerequisites": [
+      "符合该版本系统与 CPU 架构要求的设备",
+      "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
+      "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
+    ],
+    "steps": [
       {
-        stepNumber: 1,
-        title: '下载并安装',
-        description: '在 clashparty.org 官方网站或 GitHub Releases 下载 `clash-party-windows-x64-setup.exe`，安装并启动。',
-        pencilTip: '界面非常现代化，支持浅色和深色皮肤自由切换。'
+        "stepNumber": 1,
+        "title": "从官方渠道下载安装",
+        "description": "从官方 Releases 选择对应 x64 / arm64 的 Windows setup.exe 安装版；便携版为 7z，解压后运行。文件名包含版本号，不使用教程猜测的固定直链。"
       },
       {
-        stepNumber: 2,
-        title: '导入订阅',
-        description: '点击主界面的【订阅】按钮，粘贴机场链接，点击确认下载。软件也内置 Sub-Store，可一键导入节点。',
-        codeSnippet: 'https://sub.airport.cc/api/v1/client/subscribe?token=xxx&flag=clash',
-        codeLanguage: 'url',
-        pencilTip: '订阅下载后自动进行分流编排，开箱即用。'
+        "stepNumber": 2,
+        "title": "导入兼容订阅并激活",
+        "description": "在订阅管理区域添加服务提供方的 Clash / Mihomo YAML URL 或本地配置，完成下载并选为当前配置。通用分享链接不等于完整 Clash 配置；如需 Sub-Store 转换，仅使用可信实例，不把密钥发送给陌生公共转换站。"
       },
       {
-        stepNumber: 3,
-        title: '开启代理与使用',
-        description: '点击主界面的【启动】大开关，在代理列表中挑选喜欢的节点即可开启科学上网。开启 TUN 模式可全局拦截所有流量。',
-        pencilTip: '可随时在托盘右键菜单中快速切换节点。'
+        "stepNumber": 3,
+        "title": "选择节点并启用系统代理",
+        "description": "在代理策略组中选择节点，按配置需要选择规则或全局模式，再启用系统代理。客户端运行与启用系统代理不是同一状态；用目标应用和连接日志确认效果。"
+      },
+      {
+        "stepNumber": 4,
+        "title": "按需启用 TUN 并验证权限",
+        "description": "只有需要接管不遵循系统代理的程序时才启用 TUN。官方“无需服务模式”描述不等于免权限：虚拟网卡和路由需要系统授权，macOS 存在特权 Helper。若断网，关闭 TUN 并检查 DNS、排除路由与其他 VPN；不保证所有流量都接管。"
       }
     ],
-    advancedRules: [
-      '开启免服务 TUN 模式：设置中打开 TUN 模式，免去第三方软件的代理配置。',
-      'WebDAV 备份：支持将订阅和覆写规则自动同步至云端。'
+    "advancedRules": [
+      "[当前默认 smart_core 分支 README：内核与功能](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/README.md)",
+      "[仓库 API：当前名称、主页、非归档与维护活动](https://api.github.com/repos/mihomo-party-org/clash-party)",
+      "[官方发布接口：版本与实际资产](https://api.github.com/repos/mihomo-party-org/clash-party/releases/latest)",
+      "[GPL 许可证](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/LICENSE)",
+      "[官方快速上手](https://clashparty.org/docs/handson)",
+      "[官方安装说明（部分说明仍为旧版）](https://clashparty.org/docs/install)",
+      "[Mihomo 协议与 TUN 原始配置](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
+      "Sub-Store、覆写和 WebDAV 是配置管理功能，不是客户端自动提供节点或保证匿名的服务；备份可能包含订阅凭据，上传前检查存储权限。"
     ],
-    faq: [
+    "faq": [
       {
-        question: '它相比原版 Clash for Windows 有何优势？',
-        answer: '原版 CFW 早已于 2023 年底停更；Clash Party 采用全新的 Meta/Mihomo 内核，全面支持 Reality、Hysteria 2 等新协议，且开箱即用支持免服务安装 TUN 模式，完全没有安全隐患。'
+        "question": "Clash Party 与 Mihomo Party 是什么关系？",
+        "answer": "当前仓库、应用 productName 和官网使用 Clash Party，旧 README、安装说明、应用标识及部分资产仍保留 Mihomo Party 名称。旧名不是另一个必需安装的内核；以同一官方组织仓库的发布记录核对，不推断确切改名日期。"
       },
       {
-        question: 'Clash Party 与 Mihomo Party 的区别？',
-        answer: '两者为同款项目，Clash Party 为官方正式更名版本，官方网址迁移至 clashparty.org，功能持续迭代更新。'
+        "question": "为什么不照抄“免服务、完全没有安全隐患”？",
+        "answer": "免手动服务模式只描述使用方式，不能证明无特权代码或无风险。下载核验、最小权限、可信配置和日志排错仍然必要；macOS 官方文档明确列出 Helper 服务。"
       }
     ]
   },
-  
-  changelog: [
-    {
-      date: '2026-11-12',
-      author: 'ModernUIFan',
-      prNumber: 1,
-      summary: '首次更新',
-      commitHash: 'e719ea2'
-    }
-  ]
+  "changelog": []
 };

@@ -6,89 +6,41 @@ export const shadowrocket: SoftwareTool = {
   shortName: 'Shadowrocket',
   system: 'ios',
   category: 'apple',
-  tagline: 'iOS 生态装机量第一的规则分流与全协议代理客户端',
-  description: 'Shadowrocket 是一款基于 iOS NetworkExtension 架构的规则型代理工具，以极高的性价比、傻瓜式机场订阅支持以及对新兴协议极速跟进而闻名，是 iOS 平台最普及的翻墙利器。',
+  tagline: 'iPhone / iPad 规则型代理工具，需自行提供服务器',
+  description: 'Shadowrocket 是 Shadow Launch Technology Limited 发布的规则型代理客户端。商店介绍包括按域名、CIDR 与 GeoIP 配置规则、URL/iCloud Drive 规则导入、DNS 记录和加密 DNS 等功能；软件购买不包含代理服务器或节点服务。未取得装机量排名、全协议支持或性能优势的可验证证据。',
   iconName: 'Rocket',
-  badgeText: 'iOS 普及首选',
-  
-  updatedAt: '2026-10-29',
+  badgeText: '规则代理',
+  updatedAt: '2026-11-13',
   isOpenSource: false,
-  license: '商业闭源授权',
-  price: '约 $2.99 买断',
-  releasedAt: '2015-04-12',
-  latestVersion: 'v2.2.93',
-  updatePath: 'data/tutorials/ios/shadowrocket.md',
-  
+  license: '专有软件；未确认完整客户端开源许可',
+  price: '美国 App Store：US$2.99（2026-11-13；其他地区以购买页为准）',
+  releasedAt: '2015-04-14（美国 App Store 上架日期）',
+  latestVersion: '2.2.93（美国商店 API；2026-10-29 发布）',
+  updatePath: 'src/data/tutorials/ios/shadowrocket.ts',
   officialSite: 'https://shadowlaunch.com',
   appStoreUrl: 'https://apps.apple.com/us/app/shadowrocket/id932747118',
-  
   specs: {
-    compatibility: 'iOS 12.0 / iPadOS 12.0 或更高版本 (兼容 visionOS)',
-    architecture: 'ARM64 (Apple A/M 系列芯片原生优化)',
-    coreEngine: 'iOS NetworkExtension + 自研多协议引擎',
-    protocols: ['Shadowsocks', 'ShadowsocksR', 'VMess', 'VLESS (Reality)', 'Trojan', 'Hysteria 2', 'TUIC v5', 'WireGuard', 'Snell', 'HTTP/SOCKS5'],
-    trafficHandling: 'VPN TUN 虚拟网卡全局拦截 + 本地 DNS 缓存分流',
+    compatibility: 'iOS 13.0 / iPadOS 13.0 或更高（本页只介绍 iOS）',
+    architecture: 'iPhone / iPad（以商店兼容设备列表为准）',
+    coreEngine: '专有实现；未确认完整底层引擎细节',
+    protocols: ['HTTP/HTTPS 代理', 'SOCKS5', '其他节点协议需按当前版本验证'],
+    trafficHandling: '系统 VPN 接管；按所选规则配置决定流向',
   },
-  
   tutorial: {
-    overview: '本教程将带领你在 3 分钟内完成从 App Store 购买、导入节点订阅到开启智能国内直连分流的全流程。',
-    prerequisites: [
-      '一个非中国大陆地区的 Apple ID (美区/港区/日区/台区均可)',
-      '已购买 Shadowrocket (价格 $2.99 美元，支持礼品卡或外卡支付)',
-      '一份可用的机场节点订阅链接 (支持 Base64、SS、Clash 格式)'
-    ],
+    overview: '检索日期：2026-11-13。身份、价格、最低系统与版本依据 [美国 App Store](https://apps.apple.com/us/app/shadowrocket/id932747118) 和 [Apple API](https://itunes.apple.com/lookup?id=932747118&country=us)。官方商店描述未提供本次可逐屏复核的完整导入菜单说明，因此下述步骤按任务描述，不伪造固定图标、菜单名或“3 分钟完成”的承诺。',
+    prerequisites: ['iOS / iPadOS 13+，可合法购买该应用的本人 Apple 账户', '已购买应用；可信服务商明确标注适用于 Shadowrocket 的节点或订阅', '需要规则分流时，准备可信的规则配置；节点订阅不等于规则配置'],
     steps: [
-      {
-        stepNumber: 1,
-        title: '获取并安装客户端',
-        description: '在 iPhone 的 App Store 中退出国区账号，登录外区 Apple ID 后搜索 "Shadowrocket" 进行购买下载。认准原开发者为 "Shadow Launch Technology Limited"，切勿下载国区山寨诈骗应用。',
-        pencilTip: '下载完成后可切换回日常的国区 Apple ID，不影响小火箭后续正常运行与升级。'
-      },
-      {
-        stepNumber: 2,
-        title: '导入节点与订阅链接',
-        description: '打开 Shadowrocket，点击右上角的【+】加号。在最顶部的【类型】一栏点击下拉菜单选择【Subscribe】（订阅），在【URL】处粘贴机场提供的订阅链接，【备注】填入服务商名称，点击右上角【完成】保存。',
-        codeSnippet: 'https://your-airport-provider.com/api/v1/client/subscribe?token=xyz123',
-        codeLanguage: 'url',
-        pencilTip: '如果机场提供二维码，可以直接点击左上角扫描按钮进行秒级导入！'
-      },
-      {
-        stepNumber: 3,
-        title: '选择节点并开启规则分流',
-        description: '在首页节点列表中点击【连通性测试】，挑选一个延迟较低的节点（如绿色低延迟节点）。确保主界面【全局路由】保持为【配置】（Rule），切勿误选为【全局直连】或【全局代理】。',
-        pencilTip: '【配置】模式会自动使国内网站（百度、微信、网易云等）直连，仅国外被屏蔽网站才走代理，节省宝贵流量并降低延迟。'
-      },
-      {
-        stepNumber: 4,
-        title: '启动连接并授权 VPN 权限',
-        description: '将顶部的连接开关拨至打开。首次启动时 iOS 会弹出系统提示：“Shadowrocket 想要添加 VPN 配置”，点击【允许】并输入 iPhone 锁屏密码即可建立安全连接。',
-        pencilTip: '屏幕右上角灵动岛或状态栏出现【VPN】小图标即代表连接成功！'
-      }
+      { stepNumber: 1, title: '购买并确认应用身份', description: '从本页 App Store 链接进入，核对应用 ID 932747118 与销售方 Shadow Launch Technology Limited，再按当前地区价格购买。不要仅凭“小火箭”名称或图标识别应用，也不要购买不可信共享账户。', pencilTip: '付款、下载与更新受 Apple 账户、地区和商店政策影响；切换账户后不保证仍能直接更新。' },
+      { stepNumber: 2, title: '添加适用的节点或订阅', description: '使用当前应用提供的添加节点/订阅入口导入服务商明确标注支持 Shadowrocket 的数据。远程订阅填写 URL 后，检查是否成功获取节点；没有 URL 或格式错误时，应向服务提供方确认，不假定任意 Clash YAML 都可作为节点订阅。', pencilTip: '配置或 URL 可含令牌。扫码导入也必须核对来源；节点订阅与规则文件用途不同。' },
+      { stepNumber: 3, title: '选择节点并检查路由配置', description: '选择节点并测试连通性。需要按规则分流时，选择配置驱动的路由方式，并检查实际加载的规则；直连与代理范围由该配置决定，不保证所有国内站点直连或所有海外站点代理。', pencilTip: '如果银行、办公或本地网络异常，停止连接后对比，再检查对应规则、DNS 与出口，不要直接认定是账号或服务欠费。' },
+      { stepNumber: 4, title: '连接并实际验证', description: '打开连接开关，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。检查应用日志、出口和目标服务能否访问；结束使用时关闭连接。VPN 图标或系统已连接状态不等于远端节点正常。' },
     ],
-    advancedRules: [
-      '启用自动更新订阅：点击底部【设置】->【订阅】-> 勾选【打开时更新】与【自动后台更新】。',
-      '隐藏 VPN 图标：在设置中开启“按需连接 (On Demand)”，优化网络切换不掉线。',
-      '防止 DNS 污染：在【设置】->【DNS】中，将远程 DNS 设置为 8.8.8.8 或 1.1.1.1。'
-    ],
+    advancedRules: ['商店确认支持从 URL 或 iCloud Drive 导入规则文件。只使用可信规则，更新前备份；节点和规则更新应分别检查，不杜撰后台更新开关或固定路径。', '商店确认支持 DoH / DoT / DoQ，但更换成 8.8.8.8 或 1.1.1.1 本身不保证防污染或不泄漏；DNS 路由、传输加密和服务可达性需要一并验证。', '不要为普通代理需求启用 HTTPS 解密或安装来源不明的根证书。On Demand 是连接触发机制，不是隐藏系统 VPN 图标的保证。'],
     faq: [
-      {
-        question: '为什么国内 App 变慢或提示异地登录？',
-        answer: '检查首页【全局路由】是否误设成了【代理 (Proxy)】。请务必切换回【配置 (Config)】，这样国内软件将直接走本地蜂窝/Wi-Fi，不再绕道海外。'
-      },
-      {
-        question: '节点测速全部超时或出现红感叹号怎么办？',
-        answer: '通常是订阅链接过期、欠费或 Wi-Fi 路由器开启了特定拦截。可尝试切换 4G/5G 蜂窝网络再次点击连通性测试，或在小火箭中长按订阅项选择【更新订阅】。'
-      }
-    ]
+      { question: '购买软件后是否自带可用节点？', answer: '不包含。应用是客户端，需要自己有权使用的代理服务或自建服务器；软件价格与服务费用是两回事。' },
+      { question: '为什么国内应用变慢或无法连接？', answer: '先停用代理对比，再检查当前路由模式、规则、所选节点、DNS 和日志。配置模式也可能将国内地址送往代理，不能仅切换模式就保证解决。' },
+      { question: '这里的协议列表是否代表完整支持范围？', answer: '不是。本次没有足够的第一方完整协议矩阵，因此删除原来的“全协议”承诺和未证实的版本细节。购买或迁移前，向当前版本的官方说明与服务方确认所需协议和参数。' },
+    ],
   },
-  
-  changelog: [
-    {
-      date: '2026-11-12',
-      author: 'CyberPencil-Editor',
-      prNumber: 1,
-      summary: '首次更新',
-      commitHash: 'a7f3d91'
-    }
-  ]
+  changelog: [],
 };

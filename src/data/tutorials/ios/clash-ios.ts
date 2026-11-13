@@ -6,84 +6,40 @@ export const clashIos: SoftwareTool = {
   shortName: 'Clash',
   system: 'ios',
   category: 'apple',
-  tagline: '基于 SwiftUI 原生打造的现代化 Mihomo 内核分流客户端',
-  description: 'Clash (iOS) 是基于开源 Mihomo (Clash.Meta) 内核专为 Apple 生态打造的纯血原生代理客户端。采用原生 SwiftUI 编写，深度集成 iOS 系统特性（控制中心、快捷指令、小组件），支持全协议分流规则与极速自动测速选优，无任何广告与第三方追踪。',
+  tagline: 'ProjectClash 维护的 Apple 平台规则代理客户端',
+  description: '本文指 ProjectClash 的 Clash - Rule Based Proxy（App Store ID 6794257189），不是旧 Clash 内核本身，也不是 Clash for Windows。客户端采用 SwiftUI，使用 ProjectClash 的 Clash Core；商店说明该核心基于 mihomo。应用不提供服务器，需要自行准备可信配置。',
   iconName: 'Zap',
-  badgeText: '原生纯血',
-  
-  updatedAt: '2026-11-07',
+  badgeText: '规则代理',
+  updatedAt: '2026-11-13',
   isOpenSource: true,
-  license: 'GPL-3.0 开源协议',
-  releasedAt: '2024-10-15',
-  latestVersion: 'v1.0.14',
-  updatePath: 'data/tutorials/ios/clash-ios.md',
-  
+  license: 'GPL-3.0（客户端仓库；依赖许可分别适用）',
+  price: '美国 App Store：免费（2026-11-13 核查）',
+  releasedAt: '2026-08-20（美国 App Store 上架日期）',
+  latestVersion: '1.0.14（美国商店 API；2026-11-07 发布）',
+  updatePath: 'src/data/tutorials/ios/clash-ios.ts',
   officialSite: 'https://clash.md/platforms/ios',
   githubRepo: 'https://github.com/ProjectClash/Clash-Client',
   appStoreUrl: 'https://apps.apple.com/us/app/clash-rule-based-proxy/id6794257189',
-  
   specs: {
-    compatibility: 'iOS 16.0 / iPadOS 16.0 或更高版本',
-    architecture: 'Apple Silicon ARM64 原生 (SwiftUI)',
-    coreEngine: 'Mihomo Core (Clash.Meta) + Apple NetworkExtension',
-    protocols: ['Shadowsocks', 'VMess', 'VLESS (Reality)', 'Trojan', 'Hysteria 2', 'TUIC v5', 'WireGuard'],
-    trafficHandling: 'NetworkExtension PacketTunnel 虚拟网卡 (TUN 全局/分流)',
+    compatibility: 'iOS 15.0 / iPadOS 15.0 或更高；控制中心等功能另有系统限制',
+    architecture: 'iPhone / iPad（SwiftUI；以商店兼容设备列表为准）',
+    coreEngine: 'ProjectClash Clash Core（基于 mihomo）+ NetworkExtension',
+    protocols: ['Shadowsocks', 'VMess', 'VLESS', 'Trojan', 'Hysteria2', 'TUIC', 'WireGuard'],
+    trafficHandling: 'Apple NE Packet Tunnel；按当前配置规则分流',
   },
-  
   tutorial: {
-    overview: 'Clash 拥有纯正的 iOS 原生体验与强大的 Mihomo 内核，本教程带你快速完成订阅导入与规则分流。',
-    prerequisites: [
-      'iOS 16.0 或更高版本的 iPhone / iPad',
-      '从 App Store 或官方网站 (https://clash.md/platforms/ios) 获取安装',
-      '任何支持 Clash / Mihomo 格式的机场订阅或自建节点'
-    ],
+    overview: '检索日期：2026-11-13。身份、安装入口与操作依据：[客户端源码说明](https://github.com/ProjectClash/Clash-Client)、[官方入门](https://clash.md/guide/)、[美国 App Store](https://apps.apple.com/us/app/clash-rule-based-proxy/id6794257189)。版本和日期取自 [Apple 查询 API](https://itunes.apple.com/lookup?id=6794257189&country=us)；源码版本、iOS/macOS 商店版本与内核版本不能互相替代。官网和源码互链可以确认本教程对象，但不代表其与旧 Dreamacro 项目存在官方承继关系。',
+    prerequisites: ['iOS / iPadOS 15 或更高版本及可下载该应用的 Apple 账户', '可信的 Clash / mihomo 配置 URL 或 YAML 文件；软件不含代理线路'],
     steps: [
-      {
-        stepNumber: 1,
-        title: '下载安装 Clash 客户端',
-        description: '通过 App Store 搜索安装“Clash”或访问官方平台链接 (https://clash.md/platforms/ios) 获取最新安装包。首次打开时，根据系统提示授予网络与通知权限。',
-        pencilTip: '完全无广告，原生 SwiftUI 界面轻巧流畅。'
-      },
-      {
-        stepNumber: 2,
-        title: '导入 Clash 订阅配置',
-        description: '在应用中点击【配置 (Profiles)】-> 点击右上角【+】新增配置，选择【从 URL 下载】，粘贴机场提供的 Clash / Mihomo 订阅链接后保存并刷新。',
-        codeSnippet: 'https://sub.provider.com/api/v1/client/subscribe?token=xxx&flag=clash',
-        codeLanguage: 'url',
-        pencilTip: '支持扫码快速导入与本地 .yaml 配置文件导入。'
-      },
-      {
-        stepNumber: 3,
-        title: '选择分流模式与节点策略',
-        description: '进入【代理 (Proxies)】页面，顶部推荐保留【规则 (Rule)】模式。在各策略组中挑选目标节点，或直接选择自动测速分组 (Auto / URL-Test) 让内核自动调度。',
-        pencilTip: '点击右上角闪电图标可一键批量并发测速。'
-      },
-      {
-        stepNumber: 4,
-        title: '开启 VPN 隧道连接',
-        description: '回到应用首页或通过 iOS 控制中心，点击拨动主开关。系统弹出“添加 VPN 配置”弹窗时，输入锁屏密码确认即可开启代理。',
-        pencilTip: '可配合 iOS 快捷指令，实现连入家里的 Wi-Fi 时自动关闭代理、离开时自动开启。'
-      }
+      { stepNumber: 1, title: '核对应用身份并安装', description: '从本页 App Store 链接进入，核对名称 Clash - Rule Based Proxy、ID 6794257189 与销售方 OmniWide Media Limited。不同地区可用性以当前商店为准，不从同名搜索结果或非官方安装包判断身份。', pencilTip: '商店开发者显示名为 Open Sourced，销售方字段为 OmniWide Media Limited；不要把 GitHub 组织名当成商店销售方。' },
+      { stepNumber: 2, title: '打开 Profile Center 并导入配置', description: '按官方入门：iPhone 点击 Home 左上方配置名称进入 Profile Center；iPad 从侧栏进入 Profiles。选择 Add Profile，使用配置 URL、文件或粘贴内容导入；iPhone/iPad 也支持扫码。保存后确认配置已成功解析。', pencilTip: '配置和 URL 可能含密码、令牌；不要公开粘贴，也不要交给不可信在线转换服务。' },
+      { stepNumber: 3, title: '选择策略组与连接', description: '打开 Proxies 或 Nodes，检查延迟并在负责目标流量的策略组里选择路线。回到 Home 点击连接，首次按系统提示允许添加 VPN 配置。日常可选 Rule 模式，但具体直连、代理或拒绝由当前配置决定。', pencilTip: '自动组是否存在以及如何健康检查由配置决定；VPN 已连接不等于节点可用或所有网站都可访问。' },
     ],
-    advancedRules: [
-      'iCloud 同步：可将配置文件备份至 iCloud Drive，在 iPad 与 Mac 设备间无缝共享。',
-      '自定义规则覆写：支持添加自定义 parser 或 rule-providers，实现定制化防 DNS 污染与去广告。'
-    ],
+    advancedRules: ['[官方 NE/TUN 说明](https://clash.md/guide/config/inbound#tun-mode)：连接后使用 Apple Packet Tunnel，不需要额外开启桌面客户端式的 TUN 开关；不能以 tun.enable: false 推断进入仅代理端口模式。', '[客户端 LICENSE](https://github.com/ProjectClash/Clash-Client/blob/main/LICENSE) 为 GPL-3.0。源码 README 明确按提交发布，产品各平台版本分开管理；不要将内核版本或源码默认 MARKETING_VERSION 写成商店最新版本。'],
     faq: [
-      {
-        question: 'Clash (iOS) 相比原先的工具（如 Surge）有什么优势？',
-        answer: 'Clash (iOS) 采用原生 SwiftUI 架构与开源 Mihomo 内核，免费或成本极低，开箱即用支持主流新兴协议（VLESS-Reality、Hysteria 2、TUIC 等），且免去 Surge 昂贵订阅费与繁琐的手搓配置门槛。'
-      }
-    ]
+      { question: '这是原版 Clash 内核的 iOS 官方客户端吗？', answer: '本教程只确认它是 clash.md 与 ProjectClash/Clash-Client 对应的 Apple 应用，核心基于 mihomo。未取得旧 Dreamacro 项目授权或承继关系证据，不使用“原版官方续作”等说法。' },
+      { question: 'Rule 模式是否保证国内直连、海外代理？', answer: '不能保证。Rule 按所选配置匹配；检查规则、DNS、策略组和运行日志。应用免费不表示节点或网络服务免费。' },
+    ],
   },
-  
-  changelog: [
-    {
-      date: '2026-11-12',
-      author: 'ClashMaintainer',
-      prNumber: 1,
-      summary: '首次更新',
-      commitHash: 'e5f78a2'
-    }
-  ]
+  changelog: [],
 };

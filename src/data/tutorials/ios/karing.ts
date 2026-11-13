@@ -6,84 +6,40 @@ export const karing: SoftwareTool = {
   shortName: 'Karing',
   system: 'ios',
   category: 'apple',
-  tagline: '全平台覆盖、深度兼容 Clash 与 Sing-box 的新锐通用代理工具',
-  description: 'Karing 是一款基于 Flutter 框架打造、内置 Sing-box 核心的现代化跨平台代理客户端。全面兼容 Clash、Sing-box、V2Ray 等主流订阅与分流规则体系，内置智能规则集与新手简易模式，提供完全免费、开箱即用且多端体验高度一致的科学上网体验。',
+  tagline: 'Flutter 图形客户端，内置定制 sing-box 核心',
+  description: 'Karing 是开源跨平台代理客户端，使用 Flutter 与修改版 sing-box。官方说明支持 Clash、V2Ray/V2Fly、sing-box、Shadowsocks 等订阅，但明确只支持部分 clash.meta 配置；不能理解成任何内核配置都能无损运行。',
   iconName: 'Link2',
-  badgeText: '新锐全能',
-  
-  updatedAt: '2026-11-12',
+  badgeText: '多格式配置',
+  updatedAt: '2026-11-13',
   isOpenSource: true,
-  license: '开源软件 (GPL-3.0)',
-  price: '免费使用',
-  releasedAt: '2023-11-06',
-  latestVersion: 'v1.2.26',
-  updatePath: 'data/tutorials/ios/karing.md',
-  
+  license: 'GPL-3.0-or-later；附名称/关联声明限制，见 LICENSE.md',
+  price: '美国 App Store：免费（2026-11-13 核查）',
+  releasedAt: '2023-12-26（美国 App Store 上架；非项目首发）',
+  latestVersion: '1.2.25.2802（美国商店 API；2026-09-11 发布）',
+  updatePath: 'src/data/tutorials/ios/karing.ts',
   officialSite: 'https://karing.app',
   githubRepo: 'https://github.com/KaringX/karing',
   appStoreUrl: 'https://apps.apple.com/us/app/karing/id6472431552',
-  
   specs: {
-    compatibility: 'iOS 15.0 / iPadOS 15.0 / tvOS 17.0 或更高版本',
-    architecture: 'Apple Silicon ARM64 原生 (Flutter / Rust / Go)',
-    coreEngine: 'Sing-box 内核定制版 + 多源路由规则集',
-    protocols: ['Shadowsocks', 'ShadowsocksR', 'VMess', 'VLESS (Reality)', 'Trojan', 'Hysteria 2', 'TUIC', 'WireGuard', 'SSH'],
-    trafficHandling: 'TUN 虚拟网卡接管 (规则分流 / 全局代理 / 直连模式)',
+    compatibility: 'iOS 15.0 / iPadOS 15.0 或更高；本页仅介绍 iOS',
+    architecture: 'iPhone / iPad（Flutter；以商店设备列表为准）',
+    coreEngine: 'KaringX 修改版 sing-box（不是官方 SFI）',
+    protocols: ['Shadowsocks', 'VMess', 'VLESS', 'Trojan', 'Hysteria2', 'TUIC'],
+    trafficHandling: 'VPN/TUN 与 Karing 配置管理、路由规则',
   },
-  
   tutorial: {
-    overview: 'Karing 拥有跨平台一致的现代化交互，内置 Sing-box 核心并兼容 Clash 订阅，本教程指导完成从 App Store 安装、订阅节点导入到分流策略配置的完整上手流程。',
-    prerequisites: [
-      '非国区 Apple ID（在美区、港区等 App Store 免费获取 Karing）',
-      '机场订阅链接（兼容 Clash、Sing-box、V2Ray/V2fly、SS 等主流格式）'
-    ],
+    overview: '检索日期：2026-11-13。依据 [项目 README](https://github.com/KaringX/karing)、[LICENSE.md](https://github.com/KaringX/karing/blob/main/LICENSE.md)、[美国商店](https://apps.apple.com/us/app/karing/id6472431552) 与 [Apple API](https://itunes.apple.com/lookup?id=6472431552&country=us)。本页记录 iOS 商店版本，不将其他平台 GitHub release、测试版或定制核心版本当作 iOS 最新版。官方 README 与商店确认 iCloud、局域网和 WebDAV 同步，但不保证各平台交互完全相同。',
+    prerequisites: ['iOS / iPadOS 15+ 与可下载该应用的 Apple 账户', '本人有权使用的可信订阅或配置，确认所需格式和协议受当前版本支持'],
     steps: [
-      {
-        stepNumber: 1,
-        title: '安装应用并初次授权',
-        description: '在非国区 App Store 搜索【Karing】（完全免费），下载安装后打开。首次启动点击连接开关，按系统提示允许添加 VPN 配置并完成生物识别认证。',
-        pencilTip: '应用完全免费，无须付费买断，界面原生支持简体中文。'
-      },
-      {
-        stepNumber: 2,
-        title: '添加订阅配置链接',
-        description: '进入底部导航【设置】-> 点击【订阅管理】-> 点击右上角【+】号。在弹窗中粘贴机场服务商提供的订阅链接，输入自定义备注名称后点击保存。',
-        codeSnippet: 'https://sub.airport-example.com/api/v1/client/subscribe?token=karing_token',
-        codeLanguage: 'url',
-        pencilTip: '支持同时添加多家机场订阅，系统会自动合并节点并支持自动定时刷新。'
-      },
-      {
-        stepNumber: 3,
-        title: '选择优选节点与分流模式',
-        description: '回到首页，点击节点选择卡片，可点击测速按钮对全部节点进行并发 Ping 测速；分流模式默认保持【规则模式】即可智能实现大陆直连、海外代理。',
-        pencilTip: '新手建议勾选“自动选择延迟最低节点”，享受无感节点容灾体验。'
-      },
-      {
-        stepNumber: 4,
-        title: '启动主开关开启代理',
-        description: '在主界面中央点击醒目的大圆形连接按钮。状态变为已连接后，即可在浏览器或应用中无障碍访问国际互联网。',
-        pencilTip: '可在控制中心添加开关小组件，或在设置中开启“随系统启动/常驻后台”。'
-      }
+      { stepNumber: 1, title: '核对并安装 Karing', description: '从官方 README 的 App Store 链接安装，核对应用 ID 6472431552，销售方 SUPERNOVA NEBULA LLC。是否可下载与收费以当前地区商店页面为准。', pencilTip: 'Karing 免费下载不包含免费的服务器或流量。不要借用不可信共享 Apple 账户。' },
+      { stepNumber: 2, title: '添加配置来源', description: '使用应用的添加配置链接功能粘贴可信订阅 URL，填写备注并保存。官方 README 提供 add_profile_link 界面示例；本次未逐屏实测，不指定未经核实的“设置→订阅管理”固定菜单路径。确认导入结果、节点与错误提示。', pencilTip: 'Clash Meta 仅部分兼容。导入成功不保证所有 DNS、路由或特殊出站字段保留；先备份并检查结果。' },
+      { stepNumber: 3, title: '选择节点、路由并连接', description: '在节点选择界面选择有权使用的节点，检查路由规则组，再使用主页连接开关启动。首次按 iOS 提示允许添加 VPN 配置。通过日志和实际请求验证；延迟低不等于吞吐、稳定性或解锁能力有保证。', pencilTip: 'iOS 不提供让任意普通 App 随系统启动并无限常驻后台的通用开关。不要据此设置虚构的“开机常驻”。' },
     ],
-    advancedRules: [
-      '多端配置同步：Karing 支持通过 iCloud（iOS/macOS）或 WebDAV 自动同步订阅与规则配置，换机或多设备免重复配置。',
-      '新手友好模式与高级规则集：既可一键开箱即用默认分流，也能在“规则组”中精确自定义分流走向与 DNS 防污染设置。'
-    ],
+    advancedRules: ['按官方 README，支持 iCloud（iOS/macOS）、局域网、WebDAV 与 ZIP 导入导出。备份可能含节点凭据，启用同步前确认账户、服务器与访问权限，不把“支持同步”描述成自动或无风险。', 'Karing 使用修改版核心。不要把官方 sing-box 的跨版本 JSON 示例直接当作 Karing 的通用配置；更新前备份，按 Karing 自身兼容说明检查字段。'],
     faq: [
-      {
-        question: 'Karing 与其他 iOS 代理工具相比有何优势？',
-        answer: 'Karing 最大的优势是全平台跨端覆盖（iOS、tvOS、macOS、Android、Windows、Linux 界面与逻辑完全一致）、完全免费无须买断，同时基于强大的 Sing-box 现代内核，开箱即用且支持 iCloud 跨端云同步。'
-      }
-    ]
+      { question: '是否完整兼容所有 Clash / Mihomo 配置？', answer: '不是。官方 README 明确“Full clash config supported, Partial clash.meta config supported”。应逐项核对所需功能；订阅节点可以导入，不代表整个原配置无损运行。' },
+      { question: '为什么版本与 GitHub 或其他教程不同？', answer: '本页采用本次 Apple 美国商店 API 返回的 iOS 1.2.25.2802（2026-09-11）；不把其他发行渠道的版本改写成 iOS 最新。商店可能分区或分批更新，以设备当前页面为准。' },
+    ],
   },
-  
-  changelog: [
-    {
-      date: '2026-11-12',
-      author: 'KaringTeam',
-      prNumber: 1,
-      summary: '首次更新',
-      commitHash: 'b4a8e21'
-    }
-  ]
+  changelog: [],
 };

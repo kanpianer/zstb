@@ -1,91 +1,96 @@
 import { SoftwareTool } from '../../../types/tutorial';
 
 export const v2rayng: SoftwareTool = {
-  id: 'v2rayng',
-  name: 'v2rayNG',
-  shortName: 'v2rayNG',
-  system: 'android',
-  category: 'android',
-  tagline: 'Android 平台最经典的开源代理利器与装机必备常青树',
-  description: 'v2rayNG 是 Android 平台用户量最大、兼容性最强的老牌开源客户端。基于 Xray 内核与 V2Ray 协议规范，支持几乎所有常见的自建节点与机场订阅，开箱即用，稳定省心。',
-  iconName: 'Smartphone',
-  badgeText: '安卓装机必备',
-  
-  updatedAt: '2026-11-01',
-  isOpenSource: true,
-  license: 'GPL-3.0 开源协议',
-  releasedAt: '2017-06-15',
-  latestVersion: 'v2.3.15',
-  updatePath: 'data/tutorials/android/v2rayng.md',
-  
-  githubRepo: 'https://github.com/2dust/v2rayNG',
-  officialSite: 'https://github.com/2dust/v2rayNG/releases',
-  
-  specs: {
-    compatibility: 'Android 5.0 (Lollipop) 或更高版本 (全面兼容 Android 14/15)',
-    architecture: 'ARM64-v8a / armeabi-v7a / x86_64',
-    coreEngine: 'Xray-core / V2Ray-core 原生优化版',
-    protocols: ['VLESS (Reality / XTLS)', 'VMess', 'Trojan', 'Shadowsocks', 'SOCKS', 'WireGuard'],
-    trafficHandling: 'Android VpnService 虚拟专用网全局/分流拦截',
-  },
-  
-  tutorial: {
-    overview: '本教程手把手教学如何在安卓手机上快速配置 v2rayNG 并设置科学的分流与分应用策略。',
-    prerequisites: [
-      '任意 Android 手机或平板设备',
-      '一条通用的节点订阅链接（支持 Base64、SS、Vmess、Vless、Clash 格式）'
+  "id": "v2rayng",
+  "name": "v2rayNG",
+  "shortName": "v2rayNG",
+  "system": "android",
+  "category": "android",
+  "tagline": "v2rayNG：配置导入、VPN 接管与兼容性说明",
+  "description": "v2rayNG 是 Android 代理客户端，官方 2.3.15 发布仍在维护并更新 Xray-core。协议能力必须按实际内置内核与客户端生成配置核查，不能以旧版印象把它等同于仅支持 VMess 的工具。",
+  "iconName": "Smartphone",
+  "badgeText": "官方来源核查",
+  "updatedAt": "2026-11-13",
+  "isOpenSource": true,
+  "license": "GPL-3.0",
+  "releasedAt": "未独立核实，以官方发布记录为准",
+  "latestVersion": "2.3.15（2026-11-13 核查；以官方发布页为准）",
+  "updatePath": "src/data/tutorials/android/v2rayng.ts",
+  "githubRepo": "https://github.com/2dust/v2rayNG",
+  "officialSite": "https://github.com/2dust/v2rayNG",
+  "releasesUrl": "https://github.com/2dust/v2rayNG/releases",
+  "specs": {
+    "compatibility": "Android 7.0+（2.3.15 minSdk 24；不是旧版 Android 5.0 要求）",
+    "architecture": "arm64-v8a / armeabi-v7a / x86_64 / x86 / universal",
+    "coreEngine": "Xray-core；README 也注明 v2fly 支持，实际以所装构建为准",
+    "protocols": [
+      "VLESS（REALITY / Vision）",
+      "VMess",
+      "Trojan",
+      "Shadowsocks",
+      "SOCKS / HTTP",
+      "WireGuard",
+      "Hysteria 2（已核对 2.3.15 构建代码）"
     ],
-    steps: [
+    "trafficHandling": "Android VpnService 虚拟接口；受路由与应用范围限制，不是桌面系统代理"
+  },
+  "tutorial": {
+    "overview": "v2rayNG 是 Android 代理客户端，官方 2.3.15 发布仍在维护并更新 Xray-core。协议能力必须按实际内置内核与客户端生成配置核查，不能以旧版印象把它等同于仅支持 VMess 的工具。 核查时间：2026-11-13。版本为官方接口当次快照，不保证安装时仍是最新；首发日期未独立确认。",
+    "prerequisites": [
+      "符合该版本系统及 CPU 架构要求的 Android 设备",
+      "可信且兼容的订阅或自建节点参数；客户端不提供节点",
+      "订阅含凭据，请勿公开；不要同时运行冲突的 VPN"
+    ],
+    "steps": [
       {
-        stepNumber: 1,
-        title: '下载并安装 APK',
-        description: '从 GitHub Releases 官方页面下载以 `v2rayNG_xxx_arm64-v8a.apk` 结尾的安装包（绝大多数现代安卓手机均适用此架构）。点击安装包完成安装。',
-        pencilTip: '国内各大应用商店由于政策原因均未上架，切勿在非官方网站下载被植入广告的山寨包。'
+        "stepNumber": 1,
+        "title": "从官方发布页安装 APK",
+        "description": "在 2dust/v2rayNG Releases 选择匹配架构 APK，例如 v2rayNG_2.3.15_arm64-v8a.apk，不确定架构时查看发布文件说明或使用 universal。不同发行 flavor 与签名不一定能覆盖安装；按官方 GPG 说明验证下载，不作所有应用商店均未上架的断言。"
       },
       {
-        stepNumber: 2,
-        title: '配置订阅分组并更新',
-        description: '打开 v2rayNG，点击左上角【三道杠】汉堡菜单 -> 选择【订阅分组设置】。点击右上角【+】加号，在【备注】中填入机场名称，在【可选地址 (URL)】处粘贴机场订阅链接，点击右上角【√】保存。返回主界面，点击右上角【三个点】菜单，点击【更新订阅】。',
-        codeSnippet: 'https://airport-sub.org/api/v1/client/subscribe?token=v2rayng_token',
-        codeLanguage: 'url',
-        pencilTip: '稍等片刻，主页面即可瞬间刷出所有可用节点列表！'
+        "stepNumber": 2,
+        "title": "导入节点或设置订阅组",
+        "description": "单节点使用剪贴板或二维码导入。订阅则进入订阅分组设置，新增名称和 URL，保存后执行更新订阅，并检查导入数量与日志。使用服务方提供的 v2rayNG / v2rayN 节点订阅（明文 URI 列表或 Base64），不是 Clash YAML；完整自定义 Xray JSON 走自定义配置导入。"
       },
       {
-        stepNumber: 3,
-        title: '真连接测速并挑选节点',
-        description: '点击右上角【三个点】菜单 -> 点击【测试全部配置真实连接】。稍微等待数秒，节点卡片右侧会显示实际能连通的握手延迟（毫秒数字）。点击选择一个绿色低延迟的节点，左侧卡片会出现一条高亮色块。',
-        pencilTip: '“测试全部配置真实连接”比单纯 Ping 更有参考价值，能真实测试是否能连通 Google。'
+        "stepNumber": 3,
+        "title": "检查节点与传输参数",
+        "description": "选择节点，核对端口、UUID/密码、SNI、REALITY 公钥与 short ID、传输和 flow 与服务端一致。2.3.15 生成代码包含 WireGuard、Hysteria 2 与 XHTTP，不应宣称 Xray 永远不支持它们；但不由此推断旧版、任意扩展或 TUIC 均可用。"
       },
       {
-        stepNumber: 4,
-        title: '配置分流模式并启动',
-        description: '点击左上角汉堡菜单 -> 进入【设置】。找到【预定义规则】，建议选择【绕过局域网及大陆地址 (Bypass LAN and mainland China)】。设置完毕返回主界面，轻触右下角圆形的【V】按钮，在弹出的“网络连接请求”弹窗中点击【确定】。',
-        pencilTip: '当右下角按钮变为深色，顶部通知栏出现一把【小钥匙】图标时，即代表翻墙成功！'
+        "stepNumber": 4,
+        "title": "设置路由范围并启动 VPN",
+        "description": "根据需求选择路由规则和分应用范围；规则所需的 GeoIP / GeoSite 数据必须可用。启动 VPN 模式并确认系统授权，Android VPN 图标只表示服务建立，不能作为连接成功证据。仅代理模式只启动本地监听，不自动接管所有应用。"
+      },
+      {
+        "stepNumber": 5,
+        "title": "测试目标并排查",
+        "description": "用真实连接测试和实际应用验证，并查看连接与错误日志；TCP ping、URL 测试与带宽测试含义不同，不保证固定测试站点或低延迟必然可用。后台断开时同时排查电池限制、VPN 被其他应用替换和核心错误，不一概归因系统杀后台。"
       }
     ],
-    advancedRules: [
-      '分应用代理（白名单/黑名单）：在【设置】->【分应用代理】中，可指定仅 Telegram、Chrome、YouTube 等指定海外 App 走代理，微信/淘宝等直接直连，省电且不影响外卖和打车定位。',
-      '后台保活策略：在系统设置中为 v2rayNG 设置【允许后台高耗电】和【自启动】，并将多任务卡片加锁，防止系统杀后台。'
+    "advancedRules": [
+      "[官方 README：内核、下载、Geo 数据与 GPG](https://raw.githubusercontent.com/2dust/v2rayNG/master/README.md)",
+      "[2.3.15 系统要求、架构与 flavor](https://raw.githubusercontent.com/2dust/v2rayNG/2.3.15/V2rayNG/app/build.gradle.kts)",
+      "[2.3.15 协议、REALITY 与 XHTTP 生成代码](https://raw.githubusercontent.com/2dust/v2rayNG/2.3.15/V2rayNG/app/src/main/java/com/v2ray/ang/core/CoreOutboundBuilder.kt)",
+      "[2.3.15 导入器：格式兼容边界](https://raw.githubusercontent.com/2dust/v2rayNG/2.3.15/V2rayNG/app/src/main/java/com/v2ray/ang/handler/AngConfigManager.kt)",
+      "[GPL 原始许可证](https://raw.githubusercontent.com/2dust/v2rayNG/master/LICENSE)",
+      "[官方版本、日期与发布资产快照](https://api.github.com/repos/2dust/v2rayNG/releases/latest)",
+      "[Android VPN 平台机制与授权](https://developer.android.com/develop/connectivity/vpn)"
     ],
-    faq: [
+    "faq": [
       {
-        question: '为什么连上后国内 App 提示网络连接失败？',
-        answer: '请检查设置里的【预定义规则】是否误改为了全局代理，或者分应用代理是否勾选了冲突规则；请确保选择【绕过局域网及大陆地址】。'
+        "question": "支持任意 Clash 或 sing-box 配置吗？",
+        "answer": "不能这样假定。2.3.15 导入器解析节点 URI、Base64、v2rayn:// 内部分享、自定义 Xray JSON 和 WireGuard 配置；没有据此承诺完整 Clash YAML / sing-box 规则配置直接兼容。"
       },
       {
-        question: '为什么通知栏经常莫名其妙断开？',
-        answer: '这是国内各家定制安卓系统（如澎湃OS、ColorOS、OriginOS、HarmonyOS）积极杀后台所致。请在手机【应用管理】中关闭“智能省电优化”，开启“无限制后台运行”。'
+        "question": "WireGuard、Hysteria 2 和 REALITY 是不是只能换其他内核？",
+        "answer": "本次核对 2.3.15 CoreOutboundBuilder 明确生成 WireGuard、Hysteria 2、REALITY 与 XHTTP 配置。是否能运行仍要匹配所装版本、内核和服务端参数；不能把开发分支新特性当成已发布版本能力。"
+      },
+      {
+        "question": "国内应用异常时必须使用某个固定绕过菜单吗？",
+        "answer": "不必。检查路由顺序、DNS、Geo 数据与应用包含/排除范围，依据实际网络需求选择规则，不承诺某个预设适合所有设备。"
       }
     ]
   },
-  
-  changelog: [
-    {
-      date: '2026-11-12',
-      author: 'AndroidMaster',
-      prNumber: 1,
-      summary: '首次更新',
-      commitHash: 'b492aa8'
-    }
-  ]
+  "changelog": []
 };

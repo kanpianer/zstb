@@ -1,87 +1,91 @@
 import { SoftwareTool } from '../../../types/tutorial';
 
 export const clashVergeRevWin: SoftwareTool = {
-  id: 'clash-verge-rev-win',
-  name: 'Clash Verge Rev',
-  shortName: 'Clash Verge Rev',
-  system: 'windows',
-  category: 'windows',
-  tagline: '目前 Windows 端最受推荐的现代化 Mihomo GUI 客户端',
-  description: 'Clash Verge Rev 基于 Tauri 开发，内存消耗远低于老旧的 Electron 应用。内置最新的 Mihomo (Clash.Meta) 内核，对 Windows 系统的通知、暗色模式、Wintun 虚拟网卡提供了极其完美的适配。',
-  iconName: 'Monitor',
-  badgeText: 'Win 桌面主力',
-  
-  updatedAt: '2026-11-03',
-  isOpenSource: true,
-  license: 'GPL-3.0 开源协议',
-  releasedAt: '2023-11-05',
-  latestVersion: 'v2.5.10',
-  updatePath: 'data/tutorials/windows/clash-verge-rev-win.md',
-  
-  githubRepo: 'https://github.com/clash-verge-rev/clash-verge-rev',
-  officialSite: 'https://clash-verge-rev.github.io',
-  
-  specs: {
-    compatibility: 'Windows 10 / Windows 11 (64位)',
-    architecture: 'x64 / arm64',
-    coreEngine: 'Mihomo Core (原 Clash.Meta)',
-    protocols: ['VLESS (Reality)', 'VMess', 'Hysteria 2', 'TUIC v5', 'Trojan', 'Shadowsocks', 'WireGuard', 'Snell'],
-    trafficHandling: 'Windows 系统代理 + Wintun 虚拟网卡 (TUN 模式)',
-  },
-  
-  tutorial: {
-    overview: '本教程手把手教你在 Windows 电脑上安装并配置 Clash Verge Rev，开启开机自启与全局 TUN 模式。',
-    prerequisites: [
-      'Windows 10 或 Windows 11 系统',
-      '支持 Clash 格式的机场订阅'
+  "id": "clash-verge-rev-win",
+  "name": "Clash Verge Rev",
+  "shortName": "Clash Verge Rev",
+  "system": "windows",
+  "category": "windows",
+  "tagline": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动",
+  "description": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。",
+  "iconName": "Monitor",
+  "badgeText": "官方来源核查",
+  "updatedAt": "2026-11-13",
+  "isOpenSource": true,
+  "license": "GPL-3.0（详见项目许可证）",
+  "releasedAt": "未独立核实，以官方发布记录为准",
+  "latestVersion": "v2.5.10（2026-11-13 核查；以官方发布页为准）",
+  "updatePath": "src/data/tutorials/windows/clash-verge-rev-win.ts",
+  "githubRepo": "https://github.com/clash-verge-rev/clash-verge-rev",
+  "officialSite": "https://www.clashverge.dev",
+  "releasesUrl": "https://github.com/clash-verge-rev/clash-verge-rev/releases",
+  "specs": {
+    "compatibility": "Windows 10 / 11；需要 WebView2，不支持 Windows 7",
+    "architecture": "x64 / arm64，以发布资产为准",
+    "coreEngine": "内置 Mihomo；稳定版与测试内核能力可能不同",
+    "protocols": [
+      "VLESS（含 REALITY，取决于内核）",
+      "VMess",
+      "Trojan",
+      "Shadowsocks",
+      "Hysteria 2",
+      "TUIC",
+      "WireGuard"
     ],
-    steps: [
+    "trafficHandling": "系统代理仅影响遵循系统设置的应用；TUN 通过虚拟网卡和路由接管适用流量"
+  },
+  "tutorial": {
+    "overview": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
+    "prerequisites": [
+      "符合该版本系统与 CPU 架构要求的设备",
+      "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
+      "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
+    ],
+    "steps": [
       {
-        stepNumber: 1,
-        title: '下载并安装应用',
-        description: '前往官方 GitHub Releases 页面，下载带有安装程序的 `Clash.Verge_xxx_x64-setup.exe`。双击运行，根据安装向导一路下一步完成安装。',
-        pencilTip: 'Windows Defender 若提示未知发布者，点击【更多信息】->【仍要运行】即可。'
+        "stepNumber": 1,
+        "title": "核对平台并安装",
+        "description": "从官方 Releases 选择 x64-setup.exe 或 arm64-setup.exe，按安装向导安装。缺少 WebView2 时按官方安装文档处理；仅在需要时选内置 WebView2 包。安全告警先核实来源，不直接绕过。"
       },
       {
-        stepNumber: 2,
-        title: '导入订阅链接',
-        description: '打开软件，点击左侧【订阅】。在上方输入框中粘贴机场提供的 Clash 订阅链接，点击【导入】。下载完成后，右键点击该配置卡片，选择【使用】。',
-        codeSnippet: 'https://airport.com/api/v1/client/subscribe?token=xxx&flag=clash',
-        codeLanguage: 'url',
-        pencilTip: '右键点击配置卡片可以设置“自动更新间隔”，建议设为 12 小时。'
+        "stepNumber": 2,
+        "title": "导入并激活配置",
+        "description": "在订阅管理页面添加远程 Clash / Mihomo YAML 配置 URL，导入后选中该配置。也可使用本地配置。不要把单节点分享 URI、登录网页或不兼容的通用订阅直接当作完整 YAML；导入失败先看错误日志。"
       },
       {
-        stepNumber: 3,
-        title: '开启系统代理与 TUN 模式',
-        description: '在软件左下角点击【设置】。在核心设置中开启【系统代理】。若需要玩外服游戏、使用终端 CMD/Git 或 WSL，建议点击开启【TUN 模式】（若首次开启提示安装服务模式，点击安装即可）。',
-        pencilTip: 'TUN 模式会自动虚拟出一张网卡，彻底无需担心各类软件不支持系统代理的问题！'
+        "stepNumber": 3,
+        "title": "选择策略组和节点",
+        "description": "在代理页面选择配置提供的策略组及节点，按需使用规则模式。延迟测试只反映测试目标的响应，不代表带宽或所有网站可达。"
       },
       {
-        stepNumber: 4,
-        title: '选择低延迟节点',
-        description: '点击左侧【代理】，点击右上角闪电图标刷新所有节点测速，选中延迟最低的绿色节点即可畅通无阻。',
-        pencilTip: '模式务必选择【规则 (Rule)】，这样国内软件（QQ、微信、网易云）直接直连，节省流量。'
+        "stepNumber": 4,
+        "title": "先系统代理，按需启用 TUN",
+        "description": "先开启系统代理并用浏览器验证。终端等不遵循系统代理的应用可显式设置本地代理，或按官方说明安装/检查服务模式后再启用 TUN，并批准必要的系统权限。TUN 并非辅助功能权限，也不保证 WSL、容器、虚拟机或所有游戏流量都被接管。"
+      },
+      {
+        "stepNumber": 5,
+        "title": "验证并保留回退方法",
+        "description": "分别检查目标网站、DNS、应用连接与日志，确认路由符合预期。出现断网时先关闭 TUN、恢复系统代理设置，排查其他 VPN、防火墙和路由冲突。"
       }
     ],
-    advancedRules: [
-      '开机静默启动：在设置中勾选【开机启动】与【静默启动】。',
-      '快捷键调用：可设置全局快捷键一键唤起主面板或开关系统代理。'
+    "advancedRules": [
+      "[项目 README：维护分支、内核、GPL 与配置增强](https://raw.githubusercontent.com/clash-verge-rev/clash-verge-rev/main/README.md)",
+      "[安装文档：平台要求和官方发布渠道](https://www.clashverge.dev/install.html)",
+      "[官方快速入门：导入、节点、系统代理与 TUN](https://www.clashverge.dev/guide/quickstart.html)",
+      "[版本与安装资产核查](https://api.github.com/repos/clash-verge-rev/clash-verge-rev/releases/latest)",
+      "[Mihomo 配置原始示例：协议、DNS、TUN 和排除路由](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
+      "配置增强支持 Merge / Script；仅使用可信脚本，更新订阅后检查最终生效配置。规则模式依赖配置中的规则，并不自动保证特定地区或应用直连。"
     ],
-    faq: [
+    "faq": [
       {
-        question: '为什么打开 TUN 模式提示失败？',
-        answer: '请在设置页面先点击【服务模式】右侧的安装按钮，安装完成并重启软件后，即可顺畅开启 TUN 模式。'
+        "question": "为什么系统代理开启后终端仍无法连接？",
+        "answer": "系统代理不是透明转发；应用必须主动遵循系统代理，或显式使用客户端本地 HTTP/SOCKS 监听地址。TUN 是另一种接管方式，仍受路由和排除设置限制。"
+      },
+      {
+        "question": "TUN 启动失败怎么办？",
+        "answer": "先看内核与服务日志，检查服务安装状态、管理员授权、虚拟网卡、DNS 与其他 VPN 冲突。Linux 不要对猜测的旧版内核路径执行 setcap；不建议全程以 root 运行 GUI。"
       }
     ]
   },
-  
-  changelog: [
-    {
-      date: '2026-11-12',
-      author: 'WinDev',
-      prNumber: 1,
-      summary: '首次更新',
-      commitHash: 'a718cc2'
-    }
-  ]
+  "changelog": []
 };

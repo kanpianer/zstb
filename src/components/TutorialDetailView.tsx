@@ -485,6 +485,22 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
                 </div>
               )}
 
+              {step.images && step.images.length > 0 && (
+                <div
+                  className={`mt-4 grid gap-3 ${step.imageColumns === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}
+                  aria-label={`${step.title}操作截图`}
+                >
+                  {step.images.map((image) => (
+                    <figure key={image.src} className="min-w-0">
+                      <a href={image.src} target="_blank" rel="noopener noreferrer" className="block rounded-lg border border-pencil/30 overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-700" title="打开原尺寸截图">
+                        <img src={image.src} alt={image.alt} loading="lazy" className="block w-full h-auto" />
+                      </a>
+                      <figcaption className="mt-1.5 text-xs text-pencil-light font-sans leading-relaxed">{image.caption}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              )}
+
               {/* Tip */}
               {step.pencilTip && (
                 <div className="mt-3 p-2.5 bg-paper-200/70 border-l-4 border-pencil-gold rounded-r text-xs text-pencil-dark font-sans flex items-start gap-2">

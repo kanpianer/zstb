@@ -21,7 +21,7 @@ export function createDefaultContent(): SiteContent {
 
 // Validate the complete editable resource, including optional fields absent from a given tutorial.
 type Schema = 'string' | 'number' | 'boolean' | { [key: string]: Schema } | Schema[];
-const step: Schema = { stepNumber: 'number', title: 'string', description: 'string', 'codeSnippet?': 'string', 'codeLanguage?': 'string', 'pencilTip?': 'string', 'highlightWords?': ['string'] };
+const step: Schema = { stepNumber: 'number', title: 'string', description: 'string', 'codeSnippet?': 'string', 'codeLanguage?': 'string', 'pencilTip?': 'string', 'highlightWords?': ['string'], 'images?': [{ src: 'string', alt: 'string', caption: 'string' }], 'imageColumns?': 'number' };
 const action: Schema = { 'prefixText?': 'string', url: 'string', name: 'string', 'iconSrc?': 'string', 'suffixText?': 'string', 'title?': 'string' };
 const toolSchema: Schema = {
   id: 'string', name: 'string', shortName: 'string', system: 'string', category: 'string', tagline: 'string', description: 'string', iconName: 'string', badgeText: 'string',
@@ -65,6 +65,9 @@ export function validateContent(value: unknown): asserts value is SiteContent {
     const t = c.tools.find(t => t.id === original.id);
     if (!t || t.system !== original.system || t.category !== original.category) throw new Error(`不可改变软件 ${original.id} 的 ID 或所属系统`);
     if (!t.name.trim() || !t.shortName.trim()) throw new Error('软件名称和简称不能为空');
+    for (const step of t.tutorial.steps) {
+      if (step.imageColumns !== undefined && step.imageColumns !== 1 && step.imageColumns !== 2) throw new Error('截图列数仅支持 1 或 2');
+    }
   }
   for (const system of SYSTEMS) {
     const ids = c.tools.filter(t => t.system === system).map(t => t.id);

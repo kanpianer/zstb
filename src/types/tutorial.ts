@@ -9,6 +9,8 @@ export interface TutorialStep {
   codeLanguage?: string;
   pencilTip?: string;
   highlightWords?: string[];
+  images?: Array<{ src: string; alt: string; caption: string }>;
+  imageColumns?: 1 | 2;
 }
 
 export interface CrowdsourceLog {
