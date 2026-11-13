@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SoftwareTool } from '../types/tutorial';
 import { PencilSoftwareLogo } from './PencilSoftwareLogos';
+import { TutorialImagePreview } from './TutorialImagePreview';
 import { 
   ArrowLeft, 
   GitPullRequest, 
@@ -172,6 +173,7 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
   onOpenCrowdsourceModal
 }) => {
   const [copiedSnippet, setCopiedSnippet] = useState<string | null>(null);
+  const [previewImage, setPreviewImage] = useState<{ src: string; alt: string; caption: string } | null>(null);
   // 版本字段可包含渠道、核查日期等备注，页头仅展示首个版本号。
   const displayVersion = tool.latestVersion.match(/\b[vV]?\d+(?:\.\d+)+(?:-[0-9A-Za-z]+(?:[.-][0-9A-Za-z]+)*)?(?:\+[0-9A-Za-z]+(?:[.-][0-9A-Za-z]+)*)?\b/)?.[0];
 
@@ -496,9 +498,9 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
                 >
                   {step.images.map((image) => (
                     <figure key={image.src} className="min-w-0">
-                      <a href={image.src} target="_blank" rel="noopener noreferrer" className="block rounded-lg border border-pencil/30 overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-700" title="打开原尺寸截图">
+                      <button type="button" onClick={() => setPreviewImage(image)} aria-label={`放大预览：${image.alt}`} aria-haspopup="dialog" className="block w-full cursor-zoom-in rounded-lg border border-pencil/30 overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-700" title="点击放大预览">
                         <img src={image.src} alt={image.alt} loading="lazy" className="block w-full h-auto" />
-                      </a>
+                      </button>
                       <figcaption className="mt-1.5 text-xs text-pencil-light font-sans leading-relaxed">{image.caption}</figcaption>
                     </figure>
                   ))}
@@ -616,6 +618,7 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
           </table>
         </div>
       </section>
+      {previewImage && <TutorialImagePreview image={previewImage} onClose={() => setPreviewImage(null)} />}
     </article>
   );
 };

@@ -38,12 +38,11 @@ export const vpsNodes: SoftwareTool = {
       title: '前往 Akile 选购 VPS',
     },
     prerequisites: [
-      '服务器类型：建议使用独立公网 IP 的 VPS。NAT VPS 通常由多人共享公网 IPv4，仅分配部分端口，需先在服务商控制台配置端口转发，不能直接套用默认端口。准备好 SSH 登录地址、外部端口及 root 密码（或 SSH 密钥）。',
-      'NAT 端口映射：将分配到的外部端口转发至 VPS 内部服务端口；SSH 和节点端口需分别配置，VLESS-Reality 使用 TCP，Hysteria2 使用 UDP（先确认服务商支持 UDP 转发）。客户端填写共享公网 IP 或指向它的域名，以及映射后的外部端口；脚本生成的链接若使用内部端口，需修改后再导入。',
-      'NAT 证书限制：若无法映射证书验证所需的公网 80/443 端口，可在脚本支持时改用 DNS 验证申请 Let’s Encrypt 证书；不支持时建议使用独立公网 IP 的 VPS。',
+      '建议使用独立公网 IP 的 VPS，准备好 SSH 登录地址、端口及 root 密码（或 SSH 密钥）。',
       '打开 [不想搭梯](https://bxdt.sld.tw)，准备填写服务器信息；也可用本地 SSH 工具连接。',
       '教程二需自备域名：添加 A 记录指向 VPS 的 IPv4；使用 IPv6 时添加 AAAA 记录。仅开启 DNS 解析，不开启 CDN 代理，并等待解析生效。',
       '在云安全组与系统防火墙中放行 SSH 和节点实际使用的端口；Hysteria2 使用 UDP。申请证书时还需满足脚本所用验证方式的端口或 DNS 要求。',
+      'NAT 服务器：多人共享公网 IP，可用端口有限，需先配置 SSH 和节点端口转发，客户端使用外部映射端口；Hysteria2 需支持 UDP 转发。证书验证端口受限时，按脚本支持情况改用 DNS 验证。',
     ],
     steps: [
       {

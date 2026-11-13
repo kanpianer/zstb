@@ -27,12 +27,15 @@ test('VPS tutorial contains two independent scripts and ordered screenshot asset
   assert.match(aio.description, /二维码链接/);
 });
 
-test('screenshots render as a two-column grid with captions and full-size links', () => {
+test('screenshots render as a two-column grid with captions and in-page preview buttons', () => {
   const html = render();
   assert.match(html, /grid gap-3 grid-cols-2/);
   assert.equal((html.match(/<figure /g) || []).length, 5);
   assert.equal((html.match(/<figcaption /g) || []).length, 5);
-  assert.match(html, /href="\/tutorials\/vps\/vps_3.png"/);
+  assert.doesNotMatch(html, /href="\/tutorials\/vps\//);
+  assert.equal((html.match(/aria-haspopup="dialog"/g) || []).length, 5);
+  assert.equal((html.match(/title="点击放大预览"/g) || []).length, 5);
+  assert.match(html, /<button[^>]*aria-label="放大预览：/);
   assert.match(html, /loading="lazy"/);
 });
 
