@@ -7,97 +7,83 @@
       "shortName": "Shadowrocket",
       "system": "ios",
       "category": "apple",
-      "tagline": "iOS 生态装机量第一的规则分流与全协议代理客户端",
-      "description": "Shadowrocket 是一款基于 iOS NetworkExtension 架构的规则型代理工具，以极高的性价比、傻瓜式机场订阅支持以及对新兴协议极速跟进而闻名，是 iOS 平台最普及的翻墙利器。",
+      "tagline": "iPhone / iPad 规则型代理工具，需自行提供服务器",
+      "description": "Shadowrocket 是 Shadow Launch Technology Limited 发布的规则型代理客户端。商店介绍包括按域名、CIDR 与 GeoIP 配置规则、URL/iCloud Drive 规则导入、DNS 记录和加密 DNS 等功能；软件购买不包含代理服务器或节点服务。未取得装机量排名、全协议支持或性能优势的可验证证据。",
       "iconName": "Rocket",
-      "badgeText": "iOS 普及首选",
-      "updatedAt": "2026-10-29",
+      "badgeText": "规则代理",
+      "updatedAt": "2026-11-13",
       "isOpenSource": false,
-      "license": "商业闭源授权",
-      "price": "约 $2.99 买断",
-      "releasedAt": "2015-04-12",
-      "latestVersion": "v2.2.93",
-      "updatePath": "data/tutorials/ios/shadowrocket.md",
+      "license": "专有软件；未确认完整客户端开源许可",
+      "price": "美国 App Store：US$2.99（2026-11-13；其他地区以购买页为准）",
+      "releasedAt": "2015-04-14（美国 App Store 上架日期）",
+      "latestVersion": "2.2.93（美国商店 API；2026-10-29 发布）",
+      "updatePath": "src/data/tutorials/ios/shadowrocket.ts",
       "officialSite": "https://shadowlaunch.com",
       "appStoreUrl": "https://apps.apple.com/us/app/shadowrocket/id932747118",
       "specs": {
-        "compatibility": "iOS 12.0 / iPadOS 12.0 或更高版本 (兼容 visionOS)",
-        "architecture": "ARM64 (Apple A/M 系列芯片原生优化)",
-        "coreEngine": "iOS NetworkExtension + 自研多协议引擎",
+        "compatibility": "iOS 13.0 / iPadOS 13.0 或更高（本页只介绍 iOS）",
+        "architecture": "iPhone / iPad（以商店兼容设备列表为准）",
+        "coreEngine": "专有实现；未确认完整底层引擎细节",
         "protocols": [
-          "Shadowsocks",
-          "ShadowsocksR",
-          "VMess",
-          "VLESS (Reality)",
-          "Trojan",
-          "Hysteria 2",
-          "TUIC v5",
-          "WireGuard",
-          "Snell",
-          "HTTP/SOCKS5"
+          "HTTP/HTTPS 代理",
+          "SOCKS5",
+          "其他节点协议需按当前版本验证"
         ],
-        "trafficHandling": "VPN TUN 虚拟网卡全局拦截 + 本地 DNS 缓存分流"
+        "trafficHandling": "系统 VPN 接管；按所选规则配置决定流向"
       },
       "tutorial": {
-        "overview": "本教程将带领你在 3 分钟内完成从 App Store 购买、导入节点订阅到开启智能国内直连分流的全流程。",
+        "overview": "检索日期：2026-11-13。身份、价格、最低系统与版本依据 [美国 App Store](https://apps.apple.com/us/app/shadowrocket/id932747118) 和 [Apple API](https://itunes.apple.com/lookup?id=932747118&country=us)。官方商店描述未提供本次可逐屏复核的完整导入菜单说明，因此下述步骤按任务描述，不伪造固定图标、菜单名或“3 分钟完成”的承诺。",
         "prerequisites": [
-          "一个非中国大陆地区的 Apple ID (美区/港区/日区/台区均可)",
-          "已购买 Shadowrocket (价格 $2.99 美元，支持礼品卡或外卡支付)",
-          "一份可用的机场节点订阅链接 (支持 Base64、SS、Clash 格式)"
+          "iOS / iPadOS 13+，可合法购买该应用的本人 Apple 账户",
+          "已购买应用；可信服务商明确标注适用于 Shadowrocket 的节点或订阅",
+          "需要规则分流时，准备可信的规则配置；节点订阅不等于规则配置"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "获取并安装客户端",
-            "description": "在 iPhone 的 App Store 中退出国区账号，登录外区 Apple ID 后搜索 \"Shadowrocket\" 进行购买下载。认准原开发者为 \"Shadow Launch Technology Limited\"，切勿下载国区山寨诈骗应用。",
-            "pencilTip": "下载完成后可切换回日常的国区 Apple ID，不影响小火箭后续正常运行与升级。"
+            "title": "购买并确认应用身份",
+            "description": "从本页 App Store 链接进入，核对应用 ID 932747118 与销售方 Shadow Launch Technology Limited，再按当前地区价格购买。不要仅凭“小火箭”名称或图标识别应用，也不要购买不可信共享账户。",
+            "pencilTip": "付款、下载与更新受 Apple 账户、地区和商店政策影响；切换账户后不保证仍能直接更新。"
           },
           {
             "stepNumber": 2,
-            "title": "导入节点与订阅链接",
-            "description": "打开 Shadowrocket，点击右上角的【+】加号。在最顶部的【类型】一栏点击下拉菜单选择【Subscribe】（订阅），在【URL】处粘贴机场提供的订阅链接，【备注】填入服务商名称，点击右上角【完成】保存。",
-            "codeSnippet": "https://your-airport-provider.com/api/v1/client/subscribe?token=xyz123",
-            "codeLanguage": "url",
-            "pencilTip": "如果机场提供二维码，可以直接点击左上角扫描按钮进行秒级导入！"
+            "title": "添加适用的节点或订阅",
+            "description": "使用当前应用提供的添加节点/订阅入口导入服务商明确标注支持 Shadowrocket 的数据。远程订阅填写 URL 后，检查是否成功获取节点；没有 URL 或格式错误时，应向服务提供方确认，不假定任意 Clash YAML 都可作为节点订阅。",
+            "pencilTip": "配置或 URL 可含令牌。扫码导入也必须核对来源；节点订阅与规则文件用途不同。"
           },
           {
             "stepNumber": 3,
-            "title": "选择节点并开启规则分流",
-            "description": "在首页节点列表中点击【连通性测试】，挑选一个延迟较低的节点（如绿色低延迟节点）。确保主界面【全局路由】保持为【配置】（Rule），切勿误选为【全局直连】或【全局代理】。",
-            "pencilTip": "【配置】模式会自动使国内网站（百度、微信、网易云等）直连，仅国外被屏蔽网站才走代理，节省宝贵流量并降低延迟。"
+            "title": "选择节点并检查路由配置",
+            "description": "选择节点并测试连通性。需要按规则分流时，选择配置驱动的路由方式，并检查实际加载的规则；直连与代理范围由该配置决定，不保证所有国内站点直连或所有海外站点代理。",
+            "pencilTip": "如果银行、办公或本地网络异常，停止连接后对比，再检查对应规则、DNS 与出口，不要直接认定是账号或服务欠费。"
           },
           {
             "stepNumber": 4,
-            "title": "启动连接并授权 VPN 权限",
-            "description": "将顶部的连接开关拨至打开。首次启动时 iOS 会弹出系统提示：“Shadowrocket 想要添加 VPN 配置”，点击【允许】并输入 iPhone 锁屏密码即可建立安全连接。",
-            "pencilTip": "屏幕右上角灵动岛或状态栏出现【VPN】小图标即代表连接成功！"
+            "title": "连接并实际验证",
+            "description": "打开连接开关，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。检查应用日志、出口和目标服务能否访问；结束使用时关闭连接。VPN 图标或系统已连接状态不等于远端节点正常。"
           }
         ],
         "advancedRules": [
-          "启用自动更新订阅：点击底部【设置】->【订阅】-> 勾选【打开时更新】与【自动后台更新】。",
-          "隐藏 VPN 图标：在设置中开启“按需连接 (On Demand)”，优化网络切换不掉线。",
-          "防止 DNS 污染：在【设置】->【DNS】中，将远程 DNS 设置为 8.8.8.8 或 1.1.1.1。"
+          "商店确认支持从 URL 或 iCloud Drive 导入规则文件。只使用可信规则，更新前备份；节点和规则更新应分别检查，不杜撰后台更新开关或固定路径。",
+          "商店确认支持 DoH / DoT / DoQ，但更换成 8.8.8.8 或 1.1.1.1 本身不保证防污染或不泄漏；DNS 路由、传输加密和服务可达性需要一并验证。",
+          "不要为普通代理需求启用 HTTPS 解密或安装来源不明的根证书。On Demand 是连接触发机制，不是隐藏系统 VPN 图标的保证。"
         ],
         "faq": [
           {
-            "question": "为什么国内 App 变慢或提示异地登录？",
-            "answer": "检查首页【全局路由】是否误设成了【代理 (Proxy)】。请务必切换回【配置 (Config)】，这样国内软件将直接走本地蜂窝/Wi-Fi，不再绕道海外。"
+            "question": "购买软件后是否自带可用节点？",
+            "answer": "不包含。应用是客户端，需要自己有权使用的代理服务或自建服务器；软件价格与服务费用是两回事。"
           },
           {
-            "question": "节点测速全部超时或出现红感叹号怎么办？",
-            "answer": "通常是订阅链接过期、欠费或 Wi-Fi 路由器开启了特定拦截。可尝试切换 4G/5G 蜂窝网络再次点击连通性测试，或在小火箭中长按订阅项选择【更新订阅】。"
+            "question": "为什么国内应用变慢或无法连接？",
+            "answer": "先停用代理对比，再检查当前路由模式、规则、所选节点、DNS 和日志。配置模式也可能将国内地址送往代理，不能仅切换模式就保证解决。"
+          },
+          {
+            "question": "这里的协议列表是否代表完整支持范围？",
+            "answer": "不是。本次没有足够的第一方完整协议矩阵，因此删除原来的“全协议”承诺和未证实的版本细节。购买或迁移前，向当前版本的官方说明与服务方确认所需协议和参数。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "CyberPencil-Editor",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "a7f3d91"
-        }
-      ]
+      "changelog": []
     },
     {
       "id": "clash-ios",
@@ -105,173 +91,159 @@
       "shortName": "Clash",
       "system": "ios",
       "category": "apple",
-      "tagline": "基于 SwiftUI 原生打造的现代化 Mihomo 内核分流客户端",
-      "description": "Clash (iOS) 是基于开源 Mihomo (Clash.Meta) 内核专为 Apple 生态打造的纯血原生代理客户端。采用原生 SwiftUI 编写，深度集成 iOS 系统特性（控制中心、快捷指令、小组件），支持全协议分流规则与极速自动测速选优，无任何广告与第三方追踪。",
+      "tagline": "ProjectClash 维护的 Apple 平台规则代理客户端",
+      "description": "本文指 ProjectClash 的 Clash - Rule Based Proxy（App Store ID 6794257189），不是旧 Clash 内核本身，也不是 Clash for Windows。客户端采用 SwiftUI，使用 ProjectClash 的 Clash Core；商店说明该核心基于 mihomo。应用不提供服务器，需要自行准备可信配置。",
       "iconName": "Zap",
-      "badgeText": "原生纯血",
-      "updatedAt": "2026-11-07",
+      "badgeText": "规则代理",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2024-10-15",
-      "latestVersion": "v1.0.14",
-      "updatePath": "data/tutorials/ios/clash-ios.md",
+      "license": "GPL-3.0（客户端仓库；依赖许可分别适用）",
+      "price": "美国 App Store：免费（2026-11-13 核查）",
+      "releasedAt": "2026-08-20（美国 App Store 上架日期）",
+      "latestVersion": "1.0.14（美国商店 API；2026-11-07 发布）",
+      "updatePath": "src/data/tutorials/ios/clash-ios.ts",
       "officialSite": "https://clash.md/platforms/ios",
       "githubRepo": "https://github.com/ProjectClash/Clash-Client",
       "appStoreUrl": "https://apps.apple.com/us/app/clash-rule-based-proxy/id6794257189",
       "specs": {
-        "compatibility": "iOS 16.0 / iPadOS 16.0 或更高版本",
-        "architecture": "Apple Silicon ARM64 原生 (SwiftUI)",
-        "coreEngine": "Mihomo Core (Clash.Meta) + Apple NetworkExtension",
+        "compatibility": "iOS 15.0 / iPadOS 15.0 或更高；控制中心等功能另有系统限制",
+        "architecture": "iPhone / iPad（SwiftUI；以商店兼容设备列表为准）",
+        "coreEngine": "ProjectClash Clash Core（基于 mihomo）+ NetworkExtension",
         "protocols": [
           "Shadowsocks",
           "VMess",
-          "VLESS (Reality)",
+          "VLESS",
           "Trojan",
-          "Hysteria 2",
-          "TUIC v5",
+          "Hysteria2",
+          "TUIC",
           "WireGuard"
         ],
-        "trafficHandling": "NetworkExtension PacketTunnel 虚拟网卡 (TUN 全局/分流)"
+        "trafficHandling": "Apple NE Packet Tunnel；按当前配置规则分流"
       },
       "tutorial": {
-        "overview": "Clash 拥有纯正的 iOS 原生体验与强大的 Mihomo 内核，本教程带你快速完成订阅导入与规则分流。",
+        "overview": "检索日期：2026-11-13。身份、安装入口与操作依据：[客户端源码说明](https://github.com/ProjectClash/Clash-Client)、[官方入门](https://clash.md/guide/)、[美国 App Store](https://apps.apple.com/us/app/clash-rule-based-proxy/id6794257189)。版本和日期取自 [Apple 查询 API](https://itunes.apple.com/lookup?id=6794257189&country=us)；源码版本、iOS/macOS 商店版本与内核版本不能互相替代。官网和源码互链可以确认本教程对象，但不代表其与旧 Dreamacro 项目存在官方承继关系。",
         "prerequisites": [
-          "iOS 16.0 或更高版本的 iPhone / iPad",
-          "从 App Store 或官方网站 (https://clash.md/platforms/ios) 获取安装",
-          "任何支持 Clash / Mihomo 格式的机场订阅或自建节点"
+          "iOS / iPadOS 15 或更高版本及可下载该应用的 Apple 账户",
+          "可信的 Clash / mihomo 配置 URL 或 YAML 文件；软件不含代理线路"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载安装 Clash 客户端",
-            "description": "通过 App Store 搜索安装“Clash”或访问官方平台链接 (https://clash.md/platforms/ios) 获取最新安装包。首次打开时，根据系统提示授予网络与通知权限。",
-            "pencilTip": "完全无广告，原生 SwiftUI 界面轻巧流畅。"
+            "title": "核对应用身份并安装",
+            "description": "从本页 App Store 链接进入，核对名称 Clash - Rule Based Proxy、ID 6794257189 与销售方 OmniWide Media Limited。不同地区可用性以当前商店为准，不从同名搜索结果或非官方安装包判断身份。",
+            "pencilTip": "商店开发者显示名为 Open Sourced，销售方字段为 OmniWide Media Limited；不要把 GitHub 组织名当成商店销售方。"
           },
           {
             "stepNumber": 2,
-            "title": "导入 Clash 订阅配置",
-            "description": "在应用中点击【配置 (Profiles)】-> 点击右上角【+】新增配置，选择【从 URL 下载】，粘贴机场提供的 Clash / Mihomo 订阅链接后保存并刷新。",
-            "codeSnippet": "https://sub.provider.com/api/v1/client/subscribe?token=xxx&flag=clash",
-            "codeLanguage": "url",
-            "pencilTip": "支持扫码快速导入与本地 .yaml 配置文件导入。"
+            "title": "打开 Profile Center 并导入配置",
+            "description": "按官方入门：iPhone 点击 Home 左上方配置名称进入 Profile Center；iPad 从侧栏进入 Profiles。选择 Add Profile，使用配置 URL、文件或粘贴内容导入；iPhone/iPad 也支持扫码。保存后确认配置已成功解析。",
+            "pencilTip": "配置和 URL 可能含密码、令牌；不要公开粘贴，也不要交给不可信在线转换服务。"
           },
           {
             "stepNumber": 3,
-            "title": "选择分流模式与节点策略",
-            "description": "进入【代理 (Proxies)】页面，顶部推荐保留【规则 (Rule)】模式。在各策略组中挑选目标节点，或直接选择自动测速分组 (Auto / URL-Test) 让内核自动调度。",
-            "pencilTip": "点击右上角闪电图标可一键批量并发测速。"
-          },
-          {
-            "stepNumber": 4,
-            "title": "开启 VPN 隧道连接",
-            "description": "回到应用首页或通过 iOS 控制中心，点击拨动主开关。系统弹出“添加 VPN 配置”弹窗时，输入锁屏密码确认即可开启代理。",
-            "pencilTip": "可配合 iOS 快捷指令，实现连入家里的 Wi-Fi 时自动关闭代理、离开时自动开启。"
+            "title": "选择策略组与连接",
+            "description": "打开 Proxies 或 Nodes，检查延迟并在负责目标流量的策略组里选择路线。回到 Home 点击连接，首次按系统提示允许添加 VPN 配置。日常可选 Rule 模式，但具体直连、代理或拒绝由当前配置决定。",
+            "pencilTip": "自动组是否存在以及如何健康检查由配置决定；VPN 已连接不等于节点可用或所有网站都可访问。"
           }
         ],
         "advancedRules": [
-          "iCloud 同步：可将配置文件备份至 iCloud Drive，在 iPad 与 Mac 设备间无缝共享。",
-          "自定义规则覆写：支持添加自定义 parser 或 rule-providers，实现定制化防 DNS 污染与去广告。"
+          "[官方 NE/TUN 说明](https://clash.md/guide/config/inbound#tun-mode)：连接后使用 Apple Packet Tunnel，不需要额外开启桌面客户端式的 TUN 开关；不能以 tun.enable: false 推断进入仅代理端口模式。",
+          "[客户端 LICENSE](https://github.com/ProjectClash/Clash-Client/blob/main/LICENSE) 为 GPL-3.0。源码 README 明确按提交发布，产品各平台版本分开管理；不要将内核版本或源码默认 MARKETING_VERSION 写成商店最新版本。"
         ],
         "faq": [
           {
-            "question": "Clash (iOS) 相比原先的工具（如 Surge）有什么优势？",
-            "answer": "Clash (iOS) 采用原生 SwiftUI 架构与开源 Mihomo 内核，免费或成本极低，开箱即用支持主流新兴协议（VLESS-Reality、Hysteria 2、TUIC 等），且免去 Surge 昂贵订阅费与繁琐的手搓配置门槛。"
+            "question": "这是原版 Clash 内核的 iOS 官方客户端吗？",
+            "answer": "本教程只确认它是 clash.md 与 ProjectClash/Clash-Client 对应的 Apple 应用，核心基于 mihomo。未取得旧 Dreamacro 项目授权或承继关系证据，不使用“原版官方续作”等说法。"
+          },
+          {
+            "question": "Rule 模式是否保证国内直连、海外代理？",
+            "answer": "不能保证。Rule 按所选配置匹配；检查规则、DNS、策略组和运行日志。应用免费不表示节点或网络服务免费。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "ClashMaintainer",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "e5f78a2"
-        }
-      ]
+      "changelog": []
     },
     {
-      "id": "sing-box-ios",
-      "name": "Sing-box",
-      "shortName": "Sing-box",
-      "system": "ios",
-      "category": "apple",
-      "tagline": "官方纯血通用代理平台、原生 iOS 客户端",
-      "description": "Sing-box 由 SagerNet 团队打造，iOS 客户端（SFI）采用原生 Network Extension 结合高性能 Go 核心构建，采用官方标准配置语法，支持 Hysteria 2、TUIC v5、VLESS (Reality)、ShadowTLS 等前沿协议，资源开销极低。",
+      "name": "sing-box",
+      "shortName": "sing-box",
       "iconName": "Box",
-      "badgeText": "官方纯血",
-      "updatedAt": "2026-10-24",
+      "badgeText": "官方客户端",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2022-07-01",
-      "latestVersion": "v1.14.8",
-      "updatePath": "data/tutorials/ios/sing-box-ios.md",
+      "license": "GPL-3.0-or-later（核心另有名称/关联声明限制；以各仓库 LICENSE 为准）",
+      "releasedAt": "2026-08-31（当前 MT 商店条目上架；非 SFI 项目首发）",
+      "latestVersion": "App Store 1.14.8（2026-10-24）；核心 release 1.14.4",
       "releasesUrl": "https://github.com/SagerNet/sing-box/releases",
       "officialSite": "https://sing-box.sagernet.org",
-      "appStoreUrl": "https://apps.apple.com/us/app/sing-box-mt/id6785326793",
+      "id": "sing-box-ios",
+      "system": "ios",
+      "category": "apple",
+      "updatePath": "src/data/tutorials/ios/sing-box-ios.ts",
+      "price": "美国 App Store：免费（2026-11-13 核查）",
       "specs": {
-        "compatibility": "iOS 15.0 / iPadOS 15.0 或更高版本",
-        "architecture": "ARM64 原生",
-        "coreEngine": "Sing-box Universal Proxy Platform (Go)",
+        "compatibility": "iOS 15.0 / iPadOS 15.0 或更高",
+        "architecture": "iPhone / iPad（以商店兼容列表为准）",
+        "coreEngine": "sing-box（Go；功能以发行构建为准）",
         "protocols": [
           "Shadowsocks",
           "VMess",
-          "VLESS (Reality)",
+          "VLESS",
           "Trojan",
-          "Hysteria 2",
-          "TUIC v5",
+          "Hysteria2",
+          "TUIC",
           "ShadowTLS",
-          "WireGuard",
-          "Direct/Block"
+          "WireGuard（endpoint）"
         ],
-        "trafficHandling": "Network Extension 虚拟网卡 (TUN) + 官方规则路由引擎"
+        "trafficHandling": "Apple NetworkExtension / TUN；按 JSON 配置路由"
       },
       "tutorial": {
-        "overview": "本教程带你在 iOS 上安装并配置 Sing-box 客户端，导入订阅并启动代理。",
+        "overview": "检索日期：2026-11-13。安装与身份以 [官方 Apple 客户端文档](https://sing-box.sagernet.org/clients/apple/) 的外链为准；[美国商店](https://apps.apple.com/us/app/sing-box-mt/id6785326793) 与 [Apple API](https://itunes.apple.com/lookup?id=6785326793&country=us) 返回应用版本 1.14.8，而 [核心 GitHub release](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4) 为 1.14.4，二者是不同版本字段。",
         "prerequisites": [
-          "外区 Apple ID（如美区）用于下载应用",
-          "支持 Sing-box 格式的远程订阅链接或 JSON 配置文件"
+          "iOS / iPadOS 15+ 与可下载应用的 Apple 账户（官方要求非中国大陆账户）",
+          "可信且匹配已安装核心版本的完整 sing-box JSON 配置"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并初次启动",
-            "description": "使用外区 Apple ID 在 App Store 搜索 Sing-box 并安装。首次启动并开启时，需要允许添加 VPN 配置。",
-            "pencilTip": "请认准开发者与图标，避免下载到同名第三方应用。"
+            "title": "由官方文档进入商店安装",
+            "description": "从官方 Apple 文档的 App Store 链接安装 sing-box MT，核对 ID 6785326793 和销售方 Metamerism LLC。普通设备使用商店版本，不把 GitHub 的越狱 .deb 文件当作普通 iPhone 安装包。"
           },
           {
             "stepNumber": 2,
-            "title": "导入 Profile 配置文件",
-            "description": "打开软件，进入【Profiles】页面，点击右上角【+】，选择【Create Profile】。输入机场给定的 sing-box 订阅 URL，或选择【Import Local File】导入本地配置。",
-            "codeSnippet": "https://airport.domain/sub/sing-box?token=xxx",
-            "codeLanguage": "url",
-            "pencilTip": "可勾选“Auto Update”设置自动刷新节点。"
+            "title": "添加并选中完整配置",
+            "description": "在配置管理中创建本地配置，或使用 Remote Profile 添加返回完整 sing-box JSON 的 HTTPS URL。检查下载内容与错误提示后选中配置；界面名称会随版本与语言变化，不依据本教程假设固定按钮位置。",
+            "pencilTip": "普通节点订阅链接并不一定是完整 JSON 配置。若来自服务商，先询问其明确支持的 sing-box 版本。"
           },
           {
             "stepNumber": 3,
-            "title": "启动服务并选择节点",
-            "description": "在 Profiles 列表中选中刚导入的配置，返回【Dashboard】主页，点击【Start】启动。进入【Groups】展开策略组，轻触选中最优节点即可。",
-            "pencilTip": "系统状态栏显示 VPN 标志即代表已成功进入代理状态。"
+            "title": "启动并验证路由",
+            "description": "启动所选配置，按系统提示允许添加 VPN 配置。检查日志、DNS 与实际请求；若配置定义策略组，再在 Dashboard 中选择路线。停止时使用应用的服务开关。"
           }
         ],
         "advancedRules": [
-          "使用 Rule-Set 二进制规则集：在配置中引用远程 rule-set，实现按域名/IP 的精细分流。"
+          "升级前备份配置并阅读 [迁移指南](https://sing-box.sagernet.org/migration/) 和 [废弃列表](https://sing-box.sagernet.org/deprecated/)：GeoIP/Geosite 已在 1.12 移除，应迁移 rule-set；旧 block/dns 特殊出站、WireGuard outbound 和旧入站 sniff 等字段在 1.13 移除，分别迁移规则动作、WireGuard endpoint 等；旧 DNS server 格式在 1.14 移除。在线文档还列出 1.15+ 的变化，不能不看版本就套用。",
+          "[官方通用 GUI 规范](https://sing-box.sagernet.org/clients/general/) 区分 Local、iCloud 与 Remote Profile；Remote 下载的必须是完整配置。查看应用显示的核心版本再排查配置兼容性。"
         ],
         "faq": [
           {
-            "question": "为什么部分旧机场订阅无法在 Sing-box 正常导入？",
-            "answer": "Sing-box 采用全新的配置规范（JSON 语法），需要机场支持生成原生 sing-box 订阅，或使用订阅转换工具转为 sing-box 格式。"
+            "question": "URL 订阅能直接作为配置吗？",
+            "answer": "仅当 URL 返回适合已安装核心版本的完整 sing-box JSON 配置。Clash YAML、Base64 节点列表和单个分享链接不是完整配置；Remote Profile 是 GUI 的配置下载/更新功能，不是内核自动转换订阅。不要将私密链接交给不可信在线转换器。"
+          },
+          {
+            "question": "为什么没有 Groups 或模式切换？",
+            "answer": "官方通用客户端规范只在配置包含 selector/urltest 分组出站时提供策略组；模式选择也需要配置使用至少两个 clash_mode 值。不能保证任意导入配置都出现这些控件。"
+          },
+          {
+            "question": "VPN 显示连接是否就代表可用？",
+            "answer": "只说明隧道状态，不保证节点、DNS 或规则正确。查看日志及实际请求；错误中若有 unknown field 或 deprecated，按核心版本迁移配置，切勿仅反复重装应用。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "SingBoxAdvocate",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "a1b2c3d"
-        }
-      ]
+      "tagline": "官方 Apple 图形客户端：管理 sing-box JSON 配置",
+      "description": "SFI 是 sing-box 的 Apple 平台图形客户端。官方文档当前 App Store 入口指向 sing-box MT（Metamerism LLC，ID 6785326793），不能把所有同名应用都当作官方发行。它管理本地或远程完整配置，并提供 Apple 平台 TUN 实现。",
+      "appStoreUrl": "https://apps.apple.com/us/app/sing-box-mt/id6785326793",
+      "githubRepo": "https://github.com/SagerNet/sing-box-for-apple",
+      "changelog": []
     },
     {
       "id": "karing",
@@ -279,91 +251,76 @@
       "shortName": "Karing",
       "system": "ios",
       "category": "apple",
-      "tagline": "全平台覆盖、深度兼容 Clash 与 Sing-box 的新锐通用代理工具",
-      "description": "Karing 是一款基于 Flutter 框架打造、内置 Sing-box 核心的现代化跨平台代理客户端。全面兼容 Clash、Sing-box、V2Ray 等主流订阅与分流规则体系，内置智能规则集与新手简易模式，提供完全免费、开箱即用且多端体验高度一致的科学上网体验。",
+      "tagline": "Flutter 图形客户端，内置定制 sing-box 核心",
+      "description": "Karing 是开源跨平台代理客户端，使用 Flutter 与修改版 sing-box。官方说明支持 Clash、V2Ray/V2Fly、sing-box、Shadowsocks 等订阅，但明确只支持部分 clash.meta 配置；不能理解成任何内核配置都能无损运行。",
       "iconName": "Link2",
-      "badgeText": "新锐全能",
-      "updatedAt": "2026-11-12",
+      "badgeText": "多格式配置",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "开源软件 (GPL-3.0)",
-      "price": "免费使用",
-      "releasedAt": "2023-11-06",
-      "latestVersion": "v1.2.26",
-      "updatePath": "data/tutorials/ios/karing.md",
+      "license": "GPL-3.0-or-later；附名称/关联声明限制，见 LICENSE.md",
+      "price": "美国 App Store：免费（2026-11-13 核查）",
+      "releasedAt": "2023-12-26（美国 App Store 上架；非项目首发）",
+      "latestVersion": "1.2.25.2802（美国商店 API；2026-09-11 发布）",
+      "updatePath": "src/data/tutorials/ios/karing.ts",
       "officialSite": "https://karing.app",
       "githubRepo": "https://github.com/KaringX/karing",
       "appStoreUrl": "https://apps.apple.com/us/app/karing/id6472431552",
       "specs": {
-        "compatibility": "iOS 15.0 / iPadOS 15.0 / tvOS 17.0 或更高版本",
-        "architecture": "Apple Silicon ARM64 原生 (Flutter / Rust / Go)",
-        "coreEngine": "Sing-box 内核定制版 + 多源路由规则集",
+        "compatibility": "iOS 15.0 / iPadOS 15.0 或更高；本页仅介绍 iOS",
+        "architecture": "iPhone / iPad（Flutter；以商店设备列表为准）",
+        "coreEngine": "KaringX 修改版 sing-box（不是官方 SFI）",
         "protocols": [
           "Shadowsocks",
-          "ShadowsocksR",
           "VMess",
-          "VLESS (Reality)",
+          "VLESS",
           "Trojan",
-          "Hysteria 2",
-          "TUIC",
-          "WireGuard",
-          "SSH"
+          "Hysteria2",
+          "TUIC"
         ],
-        "trafficHandling": "TUN 虚拟网卡接管 (规则分流 / 全局代理 / 直连模式)"
+        "trafficHandling": "VPN/TUN 与 Karing 配置管理、路由规则"
       },
       "tutorial": {
-        "overview": "Karing 拥有跨平台一致的现代化交互，内置 Sing-box 核心并兼容 Clash 订阅，本教程指导完成从 App Store 安装、订阅节点导入到分流策略配置的完整上手流程。",
+        "overview": "检索日期：2026-11-13。依据 [项目 README](https://github.com/KaringX/karing)、[LICENSE.md](https://github.com/KaringX/karing/blob/main/LICENSE.md)、[美国商店](https://apps.apple.com/us/app/karing/id6472431552) 与 [Apple API](https://itunes.apple.com/lookup?id=6472431552&country=us)。本页记录 iOS 商店版本，不将其他平台 GitHub release、测试版或定制核心版本当作 iOS 最新版。官方 README 与商店确认 iCloud、局域网和 WebDAV 同步，但不保证各平台交互完全相同。",
         "prerequisites": [
-          "非国区 Apple ID（在美区、港区等 App Store 免费获取 Karing）",
-          "机场订阅链接（兼容 Clash、Sing-box、V2Ray/V2fly、SS 等主流格式）"
+          "iOS / iPadOS 15+ 与可下载该应用的 Apple 账户",
+          "本人有权使用的可信订阅或配置，确认所需格式和协议受当前版本支持"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "安装应用并初次授权",
-            "description": "在非国区 App Store 搜索【Karing】（完全免费），下载安装后打开。首次启动点击连接开关，按系统提示允许添加 VPN 配置并完成生物识别认证。",
-            "pencilTip": "应用完全免费，无须付费买断，界面原生支持简体中文。"
+            "title": "核对并安装 Karing",
+            "description": "从官方 README 的 App Store 链接安装，核对应用 ID 6472431552，销售方 SUPERNOVA NEBULA LLC。是否可下载与收费以当前地区商店页面为准。",
+            "pencilTip": "Karing 免费下载不包含免费的服务器或流量。不要借用不可信共享 Apple 账户。"
           },
           {
             "stepNumber": 2,
-            "title": "添加订阅配置链接",
-            "description": "进入底部导航【设置】-> 点击【订阅管理】-> 点击右上角【+】号。在弹窗中粘贴机场服务商提供的订阅链接，输入自定义备注名称后点击保存。",
-            "codeSnippet": "https://sub.airport-example.com/api/v1/client/subscribe?token=karing_token",
-            "codeLanguage": "url",
-            "pencilTip": "支持同时添加多家机场订阅，系统会自动合并节点并支持自动定时刷新。"
+            "title": "添加配置来源",
+            "description": "使用应用的添加配置链接功能粘贴可信订阅 URL，填写备注并保存。官方 README 提供 add_profile_link 界面示例；本次未逐屏实测，不指定未经核实的“设置→订阅管理”固定菜单路径。确认导入结果、节点与错误提示。",
+            "pencilTip": "Clash Meta 仅部分兼容。导入成功不保证所有 DNS、路由或特殊出站字段保留；先备份并检查结果。"
           },
           {
             "stepNumber": 3,
-            "title": "选择优选节点与分流模式",
-            "description": "回到首页，点击节点选择卡片，可点击测速按钮对全部节点进行并发 Ping 测速；分流模式默认保持【规则模式】即可智能实现大陆直连、海外代理。",
-            "pencilTip": "新手建议勾选“自动选择延迟最低节点”，享受无感节点容灾体验。"
-          },
-          {
-            "stepNumber": 4,
-            "title": "启动主开关开启代理",
-            "description": "在主界面中央点击醒目的大圆形连接按钮。状态变为已连接后，即可在浏览器或应用中无障碍访问国际互联网。",
-            "pencilTip": "可在控制中心添加开关小组件，或在设置中开启“随系统启动/常驻后台”。"
+            "title": "选择节点、路由并连接",
+            "description": "在节点选择界面选择有权使用的节点，检查路由规则组，再使用主页连接开关启动。首次按 iOS 提示允许添加 VPN 配置。通过日志和实际请求验证；延迟低不等于吞吐、稳定性或解锁能力有保证。",
+            "pencilTip": "iOS 不提供让任意普通 App 随系统启动并无限常驻后台的通用开关。不要据此设置虚构的“开机常驻”。"
           }
         ],
         "advancedRules": [
-          "多端配置同步：Karing 支持通过 iCloud（iOS/macOS）或 WebDAV 自动同步订阅与规则配置，换机或多设备免重复配置。",
-          "新手友好模式与高级规则集：既可一键开箱即用默认分流，也能在“规则组”中精确自定义分流走向与 DNS 防污染设置。"
+          "按官方 README，支持 iCloud（iOS/macOS）、局域网、WebDAV 与 ZIP 导入导出。备份可能含节点凭据，启用同步前确认账户、服务器与访问权限，不把“支持同步”描述成自动或无风险。",
+          "Karing 使用修改版核心。不要把官方 sing-box 的跨版本 JSON 示例直接当作 Karing 的通用配置；更新前备份，按 Karing 自身兼容说明检查字段。"
         ],
         "faq": [
           {
-            "question": "Karing 与其他 iOS 代理工具相比有何优势？",
-            "answer": "Karing 最大的优势是全平台跨端覆盖（iOS、tvOS、macOS、Android、Windows、Linux 界面与逻辑完全一致）、完全免费无须买断，同时基于强大的 Sing-box 现代内核，开箱即用且支持 iCloud 跨端云同步。"
+            "question": "是否完整兼容所有 Clash / Mihomo 配置？",
+            "answer": "不是。官方 README 明确“Full clash config supported, Partial clash.meta config supported”。应逐项核对所需功能；订阅节点可以导入，不代表整个原配置无损运行。"
+          },
+          {
+            "question": "为什么版本与 GitHub 或其他教程不同？",
+            "answer": "本页采用本次 Apple 美国商店 API 返回的 iOS 1.2.25.2802（2026-09-11）；不把其他发行渠道的版本改写成 iOS 最新。商店可能分区或分批更新，以设备当前页面为准。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "KaringTeam",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "b4a8e21"
-        }
-      ]
+      "changelog": []
     },
     {
       "id": "clash-verge-rev-mac",
@@ -371,88 +328,88 @@
       "shortName": "Clash Verge Rev",
       "system": "macos",
       "category": "apple",
-      "tagline": "基于 Tauri 构建的现代化 Mihomo 内核跨平台旗舰客户端",
-      "description": "在原 Clash 停更之后，Clash Verge Rev 迅速成为桌面端（macOS/Windows/Linux）最具统治力的客户端。内置高性能 Mihomo (Clash.Meta) 内核，全面支持系统代理、TUN 虚拟网卡全局拦截与现代化 UI。",
+      "tagline": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动",
+      "description": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。",
       "iconName": "Laptop",
-      "badgeText": "Mac 桌面首选",
-      "updatedAt": "2026-11-03",
+      "badgeText": "官方来源核查",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2023-11-05",
-      "latestVersion": "v2.5.10",
-      "updatePath": "data/tutorials/macos/clash-verge-rev-mac.md",
+      "license": "GPL-3.0（详见项目许可证）",
+      "releasedAt": "未独立核实，以官方发布记录为准",
+      "latestVersion": "v2.5.10（2026-11-13 核查；以官方发布页为准）",
+      "updatePath": "src/data/tutorials/macos/clash-verge-rev-mac.ts",
       "githubRepo": "https://github.com/clash-verge-rev/clash-verge-rev",
-      "officialSite": "https://clash-verge-rev.github.io",
+      "officialSite": "https://www.clashverge.dev",
+      "releasesUrl": "https://github.com/clash-verge-rev/clash-verge-rev/releases",
       "specs": {
-        "compatibility": "macOS 11.0 (Big Sur) 或更高版本 (兼容 macOS 15 Sequoia)",
-        "architecture": "Universal Binary (Apple Silicon M1/M2/M3/M4 原生 + Intel x64)",
-        "coreEngine": "Mihomo Core (原 Clash.Meta 最新稳定版)",
+        "compatibility": "当前安装文档要求 macOS 12+；README 的 11+ 与其不一致，旧系统需另核对内核兼容性",
+        "architecture": "Apple Silicon aarch64 与 Intel x64 分别下载，不是单一 Universal 包",
+        "coreEngine": "内置 Mihomo；稳定版与测试内核能力可能不同",
         "protocols": [
-          "VLESS (Reality)",
+          "VLESS（含 REALITY，取决于内核）",
           "VMess",
           "Trojan",
-          "Hysteria 2",
-          "TUIC v5",
           "Shadowsocks",
-          "WireGuard",
-          "Snell"
+          "Hysteria 2",
+          "TUIC",
+          "WireGuard"
         ],
-        "trafficHandling": "TUN 虚拟网卡 (wintun/utun) + macOS 系统 PAC / 全局代理"
+        "trafficHandling": "系统代理仅影响遵循系统设置的应用；TUN 通过虚拟网卡和路由接管适用流量"
       },
       "tutorial": {
-        "overview": "本教程手把手指导你在 Mac 上下载安装 Clash Verge Rev，并开启无死角的 TUN 虚拟网卡代理。",
+        "overview": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
         "prerequisites": [
-          "运行 macOS 11 或更高版本的 Mac 电脑（Intel 或 Apple 芯片均可）",
-          "支持 Clash 格式的机场订阅链接"
+          "符合该版本系统与 CPU 架构要求的设备",
+          "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
+          "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并安装 dmg 安装包",
-            "description": "访问官方 GitHub Releases 页面，Apple Silicon (M1/M2/M3/M4) 用户下载 `_aarch64.dmg`，Intel 用户下载 `_x64.dmg`。双击挂载后将应用拖拽到 Applications (应用程序) 文件夹中。",
-            "pencilTip": "首次打开若提示“无法验证开发者”，前往【系统设置】->【隐私与安全性】点击【仍要打开】即可。"
+            "title": "核对平台并安装",
+            "description": "从官方 Releases 选择 aarch64.dmg（Apple Silicon）或 x64.dmg（Intel），挂载后拖入应用程序。遇到系统安全警告先核实来源和文件完整性，不关闭 Gatekeeper。"
           },
           {
             "stepNumber": 2,
-            "title": "导入订阅链接",
-            "description": "启动应用，点击左侧导航栏的【订阅 (Profiles)】。在顶部输入框粘贴机场提供的 Clash 订阅链接，点击【导入】。成功下载后，在配置文件上右键选择【使用】。",
-            "codeSnippet": "https://sub.airport.io/api/v1/client/subscribe?token=secret123&flag=clash",
-            "codeLanguage": "url",
-            "pencilTip": "建议右键配置文件选择【编辑信息】，设置自动更新间隔为 720 分钟（12小时）。"
+            "title": "导入并激活配置",
+            "description": "在订阅管理页面添加远程 Clash / Mihomo YAML 配置 URL，导入后选中该配置。也可使用本地配置。不要把单节点分享 URI、登录网页或不兼容的通用订阅直接当作完整 YAML；导入失败先看错误日志。"
           },
           {
             "stepNumber": 3,
-            "title": "开启系统代理与 TUN 模式",
-            "description": "在左侧点击【设置】或在主界面开启【系统代理】开关。若经常使用终端 (Terminal)、Git Clone、Docker 或游戏，强烈推荐点击开启【TUN 模式】。开启 TUN 模式时系统会弹窗提示授予管理员辅助权限，输入 Mac 密码即可。",
-            "pencilTip": "开启 TUN 模式后，终端将自动走代理，彻底告别在 `.zshrc` 手动 export http_proxy 的繁琐！"
+            "title": "选择策略组和节点",
+            "description": "在代理页面选择配置提供的策略组及节点，按需使用规则模式。延迟测试只反映测试目标的响应，不代表带宽或所有网站可达。"
           },
           {
             "stepNumber": 4,
-            "title": "选择节点并测速",
-            "description": "点击左侧【代理 (Proxies)】，进入节点选择页面。点击右上角测速闪电图标，节点卡片上会显示当前延迟，轻触选中绿色低延迟节点即可畅快使用。",
-            "pencilTip": "模式建议保持在【规则 (Rule)】模式，兼顾国内网络极速直连与海外顺畅翻墙。"
+            "title": "先系统代理，按需启用 TUN",
+            "description": "先开启系统代理并用浏览器验证。终端等不遵循系统代理的应用可显式设置本地代理，或按官方说明安装/检查服务模式后再启用 TUN，并批准必要的系统权限。TUN 并非辅助功能权限，也不保证 WSL、容器、虚拟机或所有游戏流量都被接管。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "验证并保留回退方法",
+            "description": "分别检查目标网站、DNS、应用连接与日志，确认路由符合预期。出现断网时先关闭 TUN、恢复系统代理设置，排查其他 VPN、防火墙和路由冲突。"
           }
         ],
         "advancedRules": [
-          "配置覆写 (Merge Config)：在订阅列表中可添加本地扩展脚本，强制屏蔽测速广告或追加自定义直连域名。",
-          "开机自启与静默启动：在【设置】中勾选“开机自启动”和“静默启动（启动时最小化到菜单栏）”。"
+          "[项目 README：维护分支、内核、GPL 与配置增强](https://raw.githubusercontent.com/clash-verge-rev/clash-verge-rev/main/README.md)",
+          "[安装文档：平台要求和官方发布渠道](https://www.clashverge.dev/install.html)",
+          "[官方快速入门：导入、节点、系统代理与 TUN](https://www.clashverge.dev/guide/quickstart.html)",
+          "[版本与安装资产核查](https://api.github.com/repos/clash-verge-rev/clash-verge-rev/releases/latest)",
+          "[Mihomo 配置原始示例：协议、DNS、TUN 和排除路由](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
+          "配置增强支持 Merge / Script；仅使用可信脚本，更新订阅后检查最终生效配置。规则模式依赖配置中的规则，并不自动保证特定地区或应用直连。"
         ],
         "faq": [
           {
-            "question": "为什么开启 TUN 模式后终端依然报错超时？",
-            "answer": "检查是否开启了其他第三方 VPN 或防火墙冲突软件（如 Little Snitch）。另外确认是否在 Clash Verge Rev 设置中将内核切换为了最新的 Mihomo 内核。"
+            "question": "为什么系统代理开启后终端仍无法连接？",
+            "answer": "系统代理不是透明转发；应用必须主动遵循系统代理，或显式使用客户端本地 HTTP/SOCKS 监听地址。TUN 是另一种接管方式，仍受路由和排除设置限制。"
+          },
+          {
+            "question": "TUN 启动失败怎么办？",
+            "answer": "先看内核与服务日志，检查服务安装状态、管理员授权、虚拟网卡、DNS 与其他 VPN 冲突。Linux 不要对猜测的旧版内核路径执行 setcap；不建议全程以 root 运行 GUI。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "MacGeek",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "f49a21b"
-        }
-      ]
+      "changelog": []
     },
     {
       "id": "clash-mac",
@@ -460,93 +417,77 @@
       "shortName": "Clash",
       "system": "macos",
       "category": "apple",
-      "tagline": "常驻菜单栏、SwiftUI 原生打造的轻量高效 Mihomo 分流客户端",
-      "description": "Clash (macOS) 是专为 Mac 打造的纯血原生规则分流代理客户端。基于开源 Mihomo (Clash.Meta) 内核与 SwiftUI 框架构建，常驻菜单栏即时掌控连接状态、模式与速率；支持不同进程/应用独立分流、网络质量检测小组件与快捷指令联动，完全无任何广告与遥测追踪。",
+      "tagline": "ProjectClash 的 macOS 规则代理客户端与菜单栏控制",
+      "description": "本文介绍 ProjectClash 的 Apple 客户端 Clash，使用 ProjectClash Clash Core（商店说明基于 mihomo），不是 ClashX、Clash for Windows 或旧 Clash 内核本身。官网提供 Mac App Store 入口，源码仓库公开客户端、扩展和构建说明。",
       "iconName": "Zap",
-      "badgeText": "原生纯血",
-      "updatedAt": "2026-11-07",
+      "badgeText": "规则代理",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2024-10-15",
-      "latestVersion": "v1.0.14",
-      "updatePath": "data/tutorials/macos/clash-mac.md",
+      "license": "GPL-3.0（客户端仓库；依赖许可分别适用）",
+      "price": "美国商店页面显示免费；以 macOS 购买页为准",
+      "releasedAt": "macOS 独立首发日期未确认",
+      "latestVersion": "macOS 商店版本未独立确认；源码 README 对应产品构建 1.0.15",
+      "updatePath": "src/data/tutorials/macos/clash-mac.ts",
       "officialSite": "https://clash.md/platforms/macos",
       "githubRepo": "https://github.com/ProjectClash/Clash-Client",
       "appStoreUrl": "https://apps.apple.com/app/id6794257189?platform=mac",
       "specs": {
-        "compatibility": "macOS 14.0 (Sonoma) 或更高版本",
-        "architecture": "Universal (Apple Silicon ARM64 & Intel x86_64 原生优化)",
-        "coreEngine": "Mihomo Core (Clash.Meta) + Apple NetworkExtension",
+        "compatibility": "macOS 13.0 或更高；桌面小组件要求 macOS 14.0+",
+        "architecture": "Intel / Apple Silicon（源码提供 macOS 双架构核心切片）",
+        "coreEngine": "ProjectClash Clash Core（基于 mihomo）+ NetworkExtension",
         "protocols": [
           "Shadowsocks",
           "VMess",
-          "VLESS (Reality)",
+          "VLESS",
           "Trojan",
-          "Hysteria 2",
-          "TUIC v5",
+          "Hysteria2",
+          "TUIC",
           "WireGuard"
         ],
-        "trafficHandling": "NetworkExtension PacketTunnel (utun) + 菜单栏轻量接管 + 进程/可执行路径分流"
+        "trafficHandling": "Apple NE Packet Tunnel；支持菜单栏控制与配置规则分流"
       },
       "tutorial": {
-        "overview": "Clash Mac 版让浏览器、下载工具和开发环境按规则各行其道；连接、模式与速率就在菜单栏，掌控始终在手边。本教程演示从安装到订阅配置与日常使用的完整流程。",
+        "overview": "检索日期：2026-11-13。依据：[Mac 官方页](https://clash.md/platforms/macos)、[官方入门](https://clash.md/guide/)、[客户端 README](https://github.com/ProjectClash/Clash-Client)、[部署目标与扩展配置](https://github.com/ProjectClash/Clash-Client/blob/main/apple/ClashClient/project.yml)。官网、源码和 App Store ID 6794257189 互相对应，确认项目真实存在；未确认其与旧 Dreamacro 项目的官方承继关系。README 的产品构建、Xcode 默认值和 iOS 商店 API 数字不等于 macOS 当前上架版本。",
         "prerequisites": [
-          "macOS 14.0 或更高版本的 Mac 电脑 (Apple Silicon 或 Intel)",
-          "从 Mac App Store 或 clash.md (https://clash.md/platforms/macos) 获取应用",
-          "通用 Clash / Mihomo 格式订阅链接或本地配置文件"
+          "macOS 13 或更高版本；可使用对应商店的 Apple 账户",
+          "可信 Clash / mihomo YAML 配置或配置 URL；自行提供节点"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载与安装 Clash Mac 版",
-            "description": "访问官方网站 (https://clash.md/platforms/macos) 点击 Mac App Store 徽章安装，或通过 Telegram 申请 TestFlight Beta 资格。首次打开时，根据系统提示授予网络扩展（NetworkExtension）与 VPN 配置权限。",
-            "pencilTip": "若 Apple ID 为中国大陆地区，请切换至外区 Apple ID 登录 Mac App Store 下载安装。"
+            "title": "从官网进入 Mac App Store",
+            "description": "打开官方 Mac 页面，点击 Mac App Store 入口。核对应用 ID 6794257189、销售方 OmniWide Media Limited 和本机兼容性。官网也列出测试资格申请入口，但不保证名额或地区可用性。",
+            "pencilTip": "不要将其他同名 Clash 客户端的教程、安装包或版本号混用。"
           },
           {
             "stepNumber": 2,
-            "title": "导入订阅配置 (Profiles)",
-            "description": "打开应用进入【配置 (Profiles)】界面，点击右上角【+】新增配置，选择【从 URL 下载】，填入机场提供的 Clash / Mihomo 订阅链接并设置配置名称，点击保存并拉取节点列表。",
-            "codeSnippet": "https://sub.airport.org/api/v1/client/subscribe?token=xxx&flag=clash",
-            "codeLanguage": "url",
-            "pencilTip": "支持从本地直接导入 .yaml 配置文件，也支持多个配置文件之间随时热切换。"
+            "title": "在 Profiles 中添加配置",
+            "description": "按官方入门在 Mac 侧栏打开 Profiles，选择 Add Profile，可从配置 URL、文件、粘贴内容或空白配置开始。导入并选中配置，确认解析无错误；订阅 URL 本身不是节点可用性的保证。",
+            "pencilTip": "配置、备份和日志可能含凭证，求助前先脱敏。"
           },
           {
             "stepNumber": 3,
-            "title": "选择分流模式与节点策略",
-            "description": "进入【代理 (Proxies)】界面或在菜单栏快速面板中，将模式设置为【规则 (Rule)】。可以在各个策略组中手动选择心仪节点，或直接选择自动测速优选分组 (URL-Test / Auto)。",
-            "pencilTip": "点击延迟测速按钮可并发测试所有节点延迟；亦可在“快捷指令”中配置自动化任务。"
-          },
-          {
-            "stepNumber": 4,
-            "title": "启动代理与常驻菜单栏",
-            "description": "点击主开关启动代理服务。Clash 将常驻在 macOS 菜单栏，实时显示上行/下行速率与连接状态；需要调整节点或切换模式时随手在菜单栏即可搞定。",
-            "pencilTip": "支持小组件固定在桌面；还可利用进程规则让终端开发工具、浏览器走不同节点。"
+            "title": "选择路线并启动",
+            "description": "在 Proxies 或 Nodes 中查看负责目标流量的策略组，测试延迟并选择路线。回到 Home 连接，首次按系统提示允许 VPN 配置。Rule 模式按当前配置规则处理流量；连接后可用菜单栏查看状态和切换。",
+            "pencilTip": "这是 NetworkExtension Packet Tunnel，不是必须再开一个 TUN 开关的桌面内核包装器。以日志和实际请求验证连通性。"
           }
         ],
         "advancedRules": [
-          "进程级精细分流：在配置文件或规则列表中添加 PROCESS-NAME 规则，让指定软件（如 Terminal、Xcode、Telegram 等）走专用代理或直连线路。",
-          "小组件与快捷指令联动：将 Clash 状态与常用策略组放置在 macOS 桌面上，配合快捷指令实现按场景自动启停。"
+          "官网确认支持按进程名、可执行路径或 UID 路由，但具体规则能力取决于当前应用、核心和配置，参阅 [Mac 使用指南](https://clash.md/guide/macos)。不要直接复制其他客户端的菜单或系统代理设置。",
+          "[源码 LICENSE](https://github.com/ProjectClash/Clash-Client/blob/main/LICENSE) 为 GPL-3.0；公开源码不等于独立安全审计，也不构成省电、零遥测或性能优于其他软件的测量证据。"
         ],
         "faq": [
           {
-            "question": "Clash Mac 版相比原有的 Surge for Mac 或 Electron 客户端有何优势？",
-            "answer": "Clash Mac 版采用原生 SwiftUI 架构开发，相比 Electron 客户端更为轻巧丝滑、极度省电且常驻内存低；相比商业软件 Surge 则完全免费且核心开源，开箱即用支持最新的 Mihomo/Meta 新协议生态（Reality、Hysteria 2 等）。"
+            "question": "为什么不直接标 macOS 最新版本为 1.0.14？",
+            "answer": "相同 App Store ID 覆盖多个平台。Apple lookup 返回的 iOS 版本不能推断 macOS；README 又明确各平台产品版本独立。本次只记录 README 对应 macOS 产品构建 1.0.15，不宣称它是商店最新。"
           },
           {
-            "question": "Mac App Store 提示当前地区未上架或无法下载？",
-            "answer": "由于政策限制，Clash 未在中国大陆与俄罗斯区 App Store 上架。请切换外区（美区/港区/日区等）Apple ID 登录下载，或通过官方页面加入 TestFlight 测试体验。"
+            "question": "启用规则模式后某个应用仍走错路线？",
+            "answer": "检查选中的配置、策略组、匹配规则及 DNS/连接日志。按实际进程路径排查，不能假定规则模式自动实现所有国内直连。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "ClashMaintainer",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "c3e819b"
-        }
-      ]
+      "changelog": []
     },
     {
       "id": "clash-party-mac",
@@ -554,170 +495,172 @@
       "shortName": "Clash Party",
       "system": "macos",
       "category": "apple",
-      "tagline": "开箱即用、界面极为优雅精美的代理客户端新标杆（原 Mihomo Party）",
-      "description": "Clash Party（原名 Mihomo Party）凭借简洁极具设计感的 UI 交互、开箱即用的分流配置预设以及对 Mihomo 全特性的深度集成，在 Mac 圈子内迅速积累了极高的人气。内置 Smart 智能测速、Sub-Store 订阅聚合与免服务的 TUN 模式，被称作“专为强迫症设计的代理客户端”。",
+      "tagline": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动",
+      "description": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。",
       "iconName": "Sparkles",
-      "badgeText": "新一代美学先锋",
-      "updatedAt": "2026-10-18",
+      "badgeText": "官方来源核查",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2024-01-10",
-      "latestVersion": "v2.0.4",
-      "updatePath": "data/tutorials/macos/clash-party-mac.md",
-      "officialSite": "https://clashparty.org",
+      "license": "GPL-3.0（详见项目许可证）",
+      "releasedAt": "未独立核实，以官方发布记录为准",
+      "latestVersion": "v2.0.4（2026-11-13 核查；以官方发布页为准）",
+      "updatePath": "src/data/tutorials/macos/clash-party-mac.ts",
       "githubRepo": "https://github.com/mihomo-party-org/clash-party",
+      "officialSite": "https://clashparty.org",
+      "releasesUrl": "https://github.com/mihomo-party-org/clash-party/releases",
       "specs": {
-        "compatibility": "macOS 12.0 或更高版本",
-        "architecture": "Apple Silicon 原生 + Intel x64",
-        "coreEngine": "Mihomo Core (Alpha / Release)",
+        "compatibility": "macOS：按发布包和所含 Electron / 内核要求核对；本次未确认统一最低版本，不沿用 12.0 断言",
+        "architecture": "Apple Silicon arm64 / Intel x64",
+        "coreEngine": "Mihomo / Smart Core；依安装版本与所选内核而异",
         "protocols": [
-          "VLESS (Reality)",
+          "VLESS（含 REALITY，取决于内核）",
           "VMess",
-          "Hysteria 2",
-          "TUIC v5",
           "Trojan",
           "Shadowsocks",
+          "Hysteria 2",
+          "TUIC",
           "WireGuard"
         ],
-        "trafficHandling": "一键系统代理 + 智能 TUN 虚拟网卡 (免额外服务安装)"
+        "trafficHandling": "系统代理与 TUN；无需手动服务模式不代表无需管理员权限或特权 Helper"
       },
       "tutorial": {
-        "overview": "Clash Party（原 Mihomo Party）主打高颜值与零门槛上手，本教程带你快速完成配置。",
+        "overview": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
         "prerequisites": [
-          "macOS 12.0 或更新版本",
-          "从官网 (https://clashparty.org) 或 GitHub 下载安装包",
-          "任何通用 Clash / Mihomo 格式的订阅链接"
+          "符合该版本系统与 CPU 架构要求的设备",
+          "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
+          "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并安装应用",
-            "description": "从 clashparty.org 官方网站或 GitHub Releases 页面下载 `clash-party-macos-arm64.dmg`（M系列芯片）或 `x64.dmg`（Intel芯片），双击拖入应用程序。",
-            "pencilTip": "首次启动支持全中文引导界面与浅色/深色主题自由切换。"
+            "title": "从官方渠道下载安装",
+            "description": "当前 v2.0.4 发布资产为 clash-party-macos-2.0.4-arm64.pkg / x64.pkg，按芯片选择并使用系统安装器。旧版文档仍写 DMG，不能套用到本次 PKG。安装可能涉及特权 Helper，先核实来源和校验值。"
           },
           {
             "stepNumber": 2,
-            "title": "粘贴订阅并一键更新",
-            "description": "打开软件，直接在首页醒目位置点击【添加订阅】，粘贴链接并点击确认。软件会自动下载节点并解析分组，也支持一键关联 Sub-Store。",
-            "codeSnippet": "https://sub.provider.cc/subscribe?token=xxx&client=clash",
-            "codeLanguage": "url",
-            "pencilTip": "软件默认开启了预配置规则集，无需手动繁琐微调即可规避绝大多数冲突。"
+            "title": "导入兼容订阅并激活",
+            "description": "在订阅管理区域添加服务提供方的 Clash / Mihomo YAML URL 或本地配置，完成下载并选为当前配置。通用分享链接不等于完整 Clash 配置；如需 Sub-Store 转换，仅使用可信实例，不把密钥发送给陌生公共转换站。"
           },
           {
             "stepNumber": 3,
-            "title": "启动代理与 TUN 模式",
-            "description": "点击左上角【启动】按钮。在设置选项卡中，开启【TUN 模式】开关即可接管终端与游戏流量（无需额外安装系统服务守护）。",
-            "pencilTip": "极具现代感的菜单栏小图标可随时掌控上下行速率。"
+            "title": "选择节点并启用系统代理",
+            "description": "在代理策略组中选择节点，按配置需要选择规则或全局模式，再启用系统代理。客户端运行与启用系统代理不是同一状态；用目标应用和连接日志确认效果。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "按需启用 TUN 并验证权限",
+            "description": "只有需要接管不遵循系统代理的程序时才启用 TUN。官方“无需服务模式”描述不等于免权限：虚拟网卡和路由需要系统授权，macOS 存在特权 Helper。若断网，关闭 TUN 并检查 DNS、排除路由与其他 VPN；不保证所有流量都接管。"
           }
         ],
         "advancedRules": [
-          "内置 Sub-Store：无缝聚合管理多个机场订阅，支持节点筛选、重命名与节点合并。",
-          "WebDAV 云备份：一键备份当前配置规则到自建或坚果云 WebDAV，跨设备秒级恢复。"
+          "[当前默认 smart_core 分支 README：内核与功能](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/README.md)",
+          "[仓库 API：当前名称、主页、非归档与维护活动](https://api.github.com/repos/mihomo-party-org/clash-party)",
+          "[官方发布接口：版本与实际资产](https://api.github.com/repos/mihomo-party-org/clash-party/releases/latest)",
+          "[GPL 许可证](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/LICENSE)",
+          "[官方快速上手](https://clashparty.org/docs/handson)",
+          "[官方安装说明（部分说明仍为旧版）](https://clashparty.org/docs/install)",
+          "[Mihomo 协议与 TUN 原始配置](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
+          "Sub-Store、覆写和 WebDAV 是配置管理功能，不是客户端自动提供节点或保证匿名的服务；备份可能包含订阅凭据，上传前检查存储权限。",
+          "[macOS 官方故障排查：特权 Helper 与服务](https://clashparty.org/docs/issues/macos)"
         ],
         "faq": [
           {
-            "question": "Clash Party 与原 Mihomo Party 是什么关系？",
-            "answer": "Clash Party 是 Mihomo Party 的官方更名演进版本，官方域名统一为 clashparty.org，全面继承了原有高颜值 UI、覆写配置与 Sub-Store 深度集成。"
+            "question": "Clash Party 与 Mihomo Party 是什么关系？",
+            "answer": "当前仓库、应用 productName 和官网使用 Clash Party，旧 README、安装说明、应用标识及部分资产仍保留 Mihomo Party 名称。旧名不是另一个必需安装的内核；以同一官方组织仓库的发布记录核对，不推断确切改名日期。"
           },
           {
-            "question": "它和 Clash Verge Rev 有什么区别？",
-            "answer": "两者底层都采用 Mihomo 核心，内核能力基本相同；Clash Party 更加注重视觉美感、动画细节以及 Sub-Store 的原生集成，更适合重视审美的日常用户。"
+            "question": "为什么不照抄“免服务、完全没有安全隐患”？",
+            "answer": "免手动服务模式只描述使用方式，不能证明无特权代码或无风险。下载核验、最小权限、可信配置和日志排错仍然必要；macOS 官方文档明确列出 Helper 服务。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "UIArtist",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "d883c91"
-        }
-      ]
+      "changelog": []
     },
     {
+      "name": "sing-box",
+      "shortName": "sing-box",
+      "iconName": "Box",
+      "badgeText": "官方客户端",
+      "updatedAt": "2026-11-13",
+      "isOpenSource": true,
+      "license": "GPL-3.0-or-later（核心另有名称/关联声明限制；以各仓库 LICENSE 为准）",
+      "releasedAt": "本平台客户端首发日期未确认",
+      "latestVersion": "1.14.4（GitHub release，2026-10-24 发布）",
+      "releasesUrl": "https://github.com/SagerNet/sing-box/releases",
+      "officialSite": "https://sing-box.sagernet.org",
       "id": "sing-box-mac",
-      "name": "Sing-box",
-      "shortName": "Sing-box",
       "system": "macos",
       "category": "apple",
-      "tagline": "次世代通用网络核心、内存怪兽与官方 GUI 原生应用",
-      "description": "Sing-box 是目前代理协议演进的技术引领者，由 SagerNet 团队倾力打造。官方 macOS 客户端采用原生 Swift 结合高性能 Go 核心构建，支持几乎所有前沿协议（Hysteria 2、TUIC v5、ShadowTLS 等），资源开销近乎为零。",
-      "iconName": "Box",
-      "badgeText": "次世代核心",
-      "updatedAt": "2026-10-24",
-      "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2022-07-01",
-      "latestVersion": "v1.14.4",
-      "updatePath": "data/tutorials/macos/sing-box-mac.md",
-      "releasesUrl": "https://github.com/SagerNet/sing-box/releases",
-      "homebrewUrl": "https://formulae.brew.sh/cask/sfm",
-      "officialSite": "https://sing-box.sagernet.org",
+      "updatePath": "src/data/tutorials/macos/sing-box-mac.ts",
+      "price": "官方开源发行免费下载；代理服务另行准备",
       "specs": {
-        "compatibility": "macOS 12.0 (Monterey) 或更高版本",
-        "architecture": "Universal (Apple Silicon 原生)",
-        "coreEngine": "Sing-box Universal Proxy Platform (Go)",
+        "compatibility": "macOS 13.0 或更高（官方 Apple 文档 / SFM cask）",
+        "architecture": "Apple Silicon / Intel；有分架构与 Universal 安装包",
+        "coreEngine": "sing-box（Go；功能以发行构建为准）",
         "protocols": [
           "Shadowsocks",
           "VMess",
-          "VLESS (Reality)",
+          "VLESS",
           "Trojan",
-          "Hysteria 2",
-          "TUIC v5",
+          "Hysteria2",
+          "TUIC",
           "ShadowTLS",
-          "WireGuard",
-          "Direct/Block"
+          "WireGuard（endpoint）"
         ],
-        "trafficHandling": "原生 System Extension 虚拟网卡 (TUN) + 系统代理"
+        "trafficHandling": "官方 Apple 客户端 TUN；实际路由由配置决定"
       },
       "tutorial": {
-        "overview": "本教程讲解如何在 Mac 上安装配置官方 Sing-box 客户端（SFM / SFI），发挥其卓越的前沿协议性能。",
+        "overview": "检索日期：2026-11-13。依据 [官方 Apple 文档](https://sing-box.sagernet.org/clients/apple/)、[SFM cask](https://formulae.brew.sh/cask/sfm) 与 [1.14.4 发行资产](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4)。已确认 SFM-1.14.4-Universal.pkg（另有 Apple / Intel 包）；不再把 dmg、Mac App Store 与 SFI 当成同一安装途径。",
         "prerequisites": [
-          "macOS 12 或更高版本系统",
-          "支持 Sing-box 格式订阅或通用多协议节点"
+          "macOS 13+，允许安装官方签名包及按系统要求授权网络功能",
+          "可信且匹配已安装核心版本的完整 sing-box JSON 配置"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并安装客户端",
-            "description": "前往官方 GitHub Releases 页面或 Mac App Store（非国区）下载 Sing-box for macOS 客户端（.dmg 或 AppStore 安装）。",
-            "pencilTip": "安装后首次启动，请在弹出的系统提示中允许添加系统网络扩展。"
+            "title": "安装 SFM 图形客户端",
+            "description": "从官方 GitHub Releases 选择 SFM 的 Universal.pkg 或匹配芯片的 Apple/Intel.pkg，按安装器完成安装；也可使用官方文档链接的 Homebrew Cask。启动后仅按系统实际提示授权。",
+            "codeSnippet": "brew install --cask sfm",
+            "codeLanguage": "bash",
+            "pencilTip": "brew install sing-box 安装的是命令行核心，不是 SFM 图形界面。不要因此期待出现 Profiles 窗口。"
           },
           {
             "stepNumber": 2,
-            "title": "添加配置 Profiles",
-            "description": "在左侧点击【Profiles】，点击右上角【+】，选择【New Profile】。可直接输入机场的 Sing-box 订阅 URL，或导入本地编写的高级 `config.json` 文件。",
-            "codeSnippet": "https://api.yourproxy.net/sub/singbox?token=mytoken123",
-            "codeLanguage": "url",
-            "pencilTip": "如果是自建节点，可以编写原生的 JSON 配置，支持极其精细的路由分支规则。"
+            "title": "配置 Local 或 Remote Profile",
+            "description": "在配置管理中添加本地完整 JSON 配置，或建立 Remote Profile 并填写返回完整配置的 URL。确认下载、解析无错误后选中；具体菜单名称与位置以安装版本为准。"
           },
           {
             "stepNumber": 3,
-            "title": "启动连接与策略选择",
-            "description": "在主界面切换启用刚导入的配置，拨动右上角【Enable】开关。点击【Dashboard】即可查看当前活动连接并根据延迟选择最优节点。",
-            "pencilTip": "Sing-box 的内核占用极小，放在后台几乎完全无感，电池续航不受影响。"
+            "title": "启动配置并检查日志",
+            "description": "启动服务，按 macOS 的实际提示允许网络功能；检查日志、路由和 DNS。只有配置包含分组出站时才能在 Dashboard 中查看或切换策略组。",
+            "pencilTip": "不保证零开销、不影响电池或任意协议都可用；资源使用取决于配置、协议和负载。"
           }
         ],
         "advancedRules": [
-          "使用 Headless 模式：可以通过 `brew install sing-box` 在后台使用 launchd 作为纯守护进程运行。"
+          "升级前备份配置并阅读 [迁移指南](https://sing-box.sagernet.org/migration/) 和 [废弃列表](https://sing-box.sagernet.org/deprecated/)：GeoIP/Geosite 已在 1.12 移除，应迁移 rule-set；旧 block/dns 特殊出站、WireGuard outbound 和旧入站 sniff 等字段在 1.13 移除，分别迁移规则动作、WireGuard endpoint 等；旧 DNS server 格式在 1.14 移除。在线文档还列出 1.15+ 的变化，不能不看版本就套用。",
+          "[官方通用 GUI 规范](https://sing-box.sagernet.org/clients/general/) 区分 Local、iCloud 与 Remote Profile；Remote 下载的必须是完整配置。查看应用显示的核心版本再排查配置兼容性。",
+          "升级 SFM 到 1.14 前另读 [macOS 独立客户端数据迁移](https://sing-box.sagernet.org/migration/#migrate-the-macos-standalone-client-data)，先备份配置。CLI/launchd 是另一种部署方式，不能将 SFM 的配置更新流程直接套用到纯核心。"
         ],
         "faq": [
           {
-            "question": "为什么部分旧机场订阅无法在 Sing-box 正常导入？",
-            "answer": "Sing-box 采用全新的配置规范（JSON 语法），需要机场支持生成原生 sing-box 订阅，或使用订阅转换工具转为 sing-box 格式。"
+            "question": "URL 订阅能直接作为配置吗？",
+            "answer": "仅当 URL 返回适合已安装核心版本的完整 sing-box JSON 配置。Clash YAML、Base64 节点列表和单个分享链接不是完整配置；Remote Profile 是 GUI 的配置下载/更新功能，不是内核自动转换订阅。不要将私密链接交给不可信在线转换器。"
+          },
+          {
+            "question": "为什么没有 Groups 或模式切换？",
+            "answer": "官方通用客户端规范只在配置包含 selector/urltest 分组出站时提供策略组；模式选择也需要配置使用至少两个 clash_mode 值。不能保证任意导入配置都出现这些控件。"
+          },
+          {
+            "question": "VPN 显示连接是否就代表可用？",
+            "answer": "只说明隧道状态，不保证节点、DNS 或规则正确。查看日志及实际请求；错误中若有 unknown field 或 deprecated，按核心版本迁移配置，切勿仅反复重装应用。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "SingBoxAdvocate",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "d382ca1"
-        }
-      ]
+      "tagline": "官方 macOS 图形客户端 SFM，与命令行核心分开安装",
+      "description": "SFM 是官方 macOS 独立图形客户端，用于管理本地和远程 sing-box JSON 配置。不要与 iOS 的 SFI 或 Homebrew 的 sing-box 命令行核心混淆；本教程采用官方独立安装包，不假定 Mac App Store 提供同一个应用。",
+      "homebrewUrl": "https://formulae.brew.sh/cask/sfm",
+      "githubRepo": "https://github.com/SagerNet/sing-box-for-apple",
+      "changelog": []
     },
     {
       "id": "v2rayng",
@@ -725,90 +668,93 @@
       "shortName": "v2rayNG",
       "system": "android",
       "category": "android",
-      "tagline": "Android 平台最经典的开源代理利器与装机必备常青树",
-      "description": "v2rayNG 是 Android 平台用户量最大、兼容性最强的老牌开源客户端。基于 Xray 内核与 V2Ray 协议规范，支持几乎所有常见的自建节点与机场订阅，开箱即用，稳定省心。",
+      "tagline": "v2rayNG：配置导入、VPN 接管与兼容性说明",
+      "description": "v2rayNG 是 Android 代理客户端，官方 2.3.15 发布仍在维护并更新 Xray-core。协议能力必须按实际内置内核与客户端生成配置核查，不能以旧版印象把它等同于仅支持 VMess 的工具。",
       "iconName": "Smartphone",
-      "badgeText": "安卓装机必备",
-      "updatedAt": "2026-11-01",
+      "badgeText": "官方来源核查",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2017-06-15",
-      "latestVersion": "v2.3.15",
-      "updatePath": "data/tutorials/android/v2rayng.md",
+      "license": "GPL-3.0",
+      "releasedAt": "未独立核实，以官方发布记录为准",
+      "latestVersion": "2.3.15（2026-11-13 核查；以官方发布页为准）",
+      "updatePath": "src/data/tutorials/android/v2rayng.ts",
       "githubRepo": "https://github.com/2dust/v2rayNG",
-      "officialSite": "https://github.com/2dust/v2rayNG/releases",
+      "officialSite": "https://github.com/2dust/v2rayNG",
+      "releasesUrl": "https://github.com/2dust/v2rayNG/releases",
       "specs": {
-        "compatibility": "Android 5.0 (Lollipop) 或更高版本 (全面兼容 Android 14/15)",
-        "architecture": "ARM64-v8a / armeabi-v7a / x86_64",
-        "coreEngine": "Xray-core / V2Ray-core 原生优化版",
+        "compatibility": "Android 7.0+（2.3.15 minSdk 24；不是旧版 Android 5.0 要求）",
+        "architecture": "arm64-v8a / armeabi-v7a / x86_64 / x86 / universal",
+        "coreEngine": "Xray-core；README 也注明 v2fly 支持，实际以所装构建为准",
         "protocols": [
-          "VLESS (Reality / XTLS)",
+          "VLESS（REALITY / Vision）",
           "VMess",
           "Trojan",
           "Shadowsocks",
-          "SOCKS",
-          "WireGuard"
+          "SOCKS / HTTP",
+          "WireGuard",
+          "Hysteria 2（已核对 2.3.15 构建代码）"
         ],
-        "trafficHandling": "Android VpnService 虚拟专用网全局/分流拦截"
+        "trafficHandling": "Android VpnService 虚拟接口；受路由与应用范围限制，不是桌面系统代理"
       },
       "tutorial": {
-        "overview": "本教程手把手教学如何在安卓手机上快速配置 v2rayNG 并设置科学的分流与分应用策略。",
+        "overview": "v2rayNG 是 Android 代理客户端，官方 2.3.15 发布仍在维护并更新 Xray-core。协议能力必须按实际内置内核与客户端生成配置核查，不能以旧版印象把它等同于仅支持 VMess 的工具。 核查时间：2026-11-13。版本为官方接口当次快照，不保证安装时仍是最新；首发日期未独立确认。",
         "prerequisites": [
-          "任意 Android 手机或平板设备",
-          "一条通用的节点订阅链接（支持 Base64、SS、Vmess、Vless、Clash 格式）"
+          "符合该版本系统及 CPU 架构要求的 Android 设备",
+          "可信且兼容的订阅或自建节点参数；客户端不提供节点",
+          "订阅含凭据，请勿公开；不要同时运行冲突的 VPN"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并安装 APK",
-            "description": "从 GitHub Releases 官方页面下载以 `v2rayNG_xxx_arm64-v8a.apk` 结尾的安装包（绝大多数现代安卓手机均适用此架构）。点击安装包完成安装。",
-            "pencilTip": "国内各大应用商店由于政策原因均未上架，切勿在非官方网站下载被植入广告的山寨包。"
+            "title": "从官方发布页安装 APK",
+            "description": "在 2dust/v2rayNG Releases 选择匹配架构 APK，例如 v2rayNG_2.3.15_arm64-v8a.apk，不确定架构时查看发布文件说明或使用 universal。不同发行 flavor 与签名不一定能覆盖安装；按官方 GPG 说明验证下载，不作所有应用商店均未上架的断言。"
           },
           {
             "stepNumber": 2,
-            "title": "配置订阅分组并更新",
-            "description": "打开 v2rayNG，点击左上角【三道杠】汉堡菜单 -> 选择【订阅分组设置】。点击右上角【+】加号，在【备注】中填入机场名称，在【可选地址 (URL)】处粘贴机场订阅链接，点击右上角【√】保存。返回主界面，点击右上角【三个点】菜单，点击【更新订阅】。",
-            "codeSnippet": "https://airport-sub.org/api/v1/client/subscribe?token=v2rayng_token",
-            "codeLanguage": "url",
-            "pencilTip": "稍等片刻，主页面即可瞬间刷出所有可用节点列表！"
+            "title": "导入节点或设置订阅组",
+            "description": "单节点使用剪贴板或二维码导入。订阅则进入订阅分组设置，新增名称和 URL，保存后执行更新订阅，并检查导入数量与日志。使用服务方提供的 v2rayNG / v2rayN 节点订阅（明文 URI 列表或 Base64），不是 Clash YAML；完整自定义 Xray JSON 走自定义配置导入。"
           },
           {
             "stepNumber": 3,
-            "title": "真连接测速并挑选节点",
-            "description": "点击右上角【三个点】菜单 -> 点击【测试全部配置真实连接】。稍微等待数秒，节点卡片右侧会显示实际能连通的握手延迟（毫秒数字）。点击选择一个绿色低延迟的节点，左侧卡片会出现一条高亮色块。",
-            "pencilTip": "“测试全部配置真实连接”比单纯 Ping 更有参考价值，能真实测试是否能连通 Google。"
+            "title": "检查节点与传输参数",
+            "description": "选择节点，核对端口、UUID/密码、SNI、REALITY 公钥与 short ID、传输和 flow 与服务端一致。2.3.15 生成代码包含 WireGuard、Hysteria 2 与 XHTTP，不应宣称 Xray 永远不支持它们；但不由此推断旧版、任意扩展或 TUIC 均可用。"
           },
           {
             "stepNumber": 4,
-            "title": "配置分流模式并启动",
-            "description": "点击左上角汉堡菜单 -> 进入【设置】。找到【预定义规则】，建议选择【绕过局域网及大陆地址 (Bypass LAN and mainland China)】。设置完毕返回主界面，轻触右下角圆形的【V】按钮，在弹出的“网络连接请求”弹窗中点击【确定】。",
-            "pencilTip": "当右下角按钮变为深色，顶部通知栏出现一把【小钥匙】图标时，即代表翻墙成功！"
+            "title": "设置路由范围并启动 VPN",
+            "description": "根据需求选择路由规则和分应用范围；规则所需的 GeoIP / GeoSite 数据必须可用。启动 VPN 模式并确认系统授权，Android VPN 图标只表示服务建立，不能作为连接成功证据。仅代理模式只启动本地监听，不自动接管所有应用。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "测试目标并排查",
+            "description": "用真实连接测试和实际应用验证，并查看连接与错误日志；TCP ping、URL 测试与带宽测试含义不同，不保证固定测试站点或低延迟必然可用。后台断开时同时排查电池限制、VPN 被其他应用替换和核心错误，不一概归因系统杀后台。"
           }
         ],
         "advancedRules": [
-          "分应用代理（白名单/黑名单）：在【设置】->【分应用代理】中，可指定仅 Telegram、Chrome、YouTube 等指定海外 App 走代理，微信/淘宝等直接直连，省电且不影响外卖和打车定位。",
-          "后台保活策略：在系统设置中为 v2rayNG 设置【允许后台高耗电】和【自启动】，并将多任务卡片加锁，防止系统杀后台。"
+          "[官方 README：内核、下载、Geo 数据与 GPG](https://raw.githubusercontent.com/2dust/v2rayNG/master/README.md)",
+          "[2.3.15 系统要求、架构与 flavor](https://raw.githubusercontent.com/2dust/v2rayNG/2.3.15/V2rayNG/app/build.gradle.kts)",
+          "[2.3.15 协议、REALITY 与 XHTTP 生成代码](https://raw.githubusercontent.com/2dust/v2rayNG/2.3.15/V2rayNG/app/src/main/java/com/v2ray/ang/core/CoreOutboundBuilder.kt)",
+          "[2.3.15 导入器：格式兼容边界](https://raw.githubusercontent.com/2dust/v2rayNG/2.3.15/V2rayNG/app/src/main/java/com/v2ray/ang/handler/AngConfigManager.kt)",
+          "[GPL 原始许可证](https://raw.githubusercontent.com/2dust/v2rayNG/master/LICENSE)",
+          "[官方版本、日期与发布资产快照](https://api.github.com/repos/2dust/v2rayNG/releases/latest)",
+          "[Android VPN 平台机制与授权](https://developer.android.com/develop/connectivity/vpn)"
         ],
         "faq": [
           {
-            "question": "为什么连上后国内 App 提示网络连接失败？",
-            "answer": "请检查设置里的【预定义规则】是否误改为了全局代理，或者分应用代理是否勾选了冲突规则；请确保选择【绕过局域网及大陆地址】。"
+            "question": "支持任意 Clash 或 sing-box 配置吗？",
+            "answer": "不能这样假定。2.3.15 导入器解析节点 URI、Base64、v2rayn:// 内部分享、自定义 Xray JSON 和 WireGuard 配置；没有据此承诺完整 Clash YAML / sing-box 规则配置直接兼容。"
           },
           {
-            "question": "为什么通知栏经常莫名其妙断开？",
-            "answer": "这是国内各家定制安卓系统（如澎湃OS、ColorOS、OriginOS、HarmonyOS）积极杀后台所致。请在手机【应用管理】中关闭“智能省电优化”，开启“无限制后台运行”。"
+            "question": "WireGuard、Hysteria 2 和 REALITY 是不是只能换其他内核？",
+            "answer": "本次核对 2.3.15 CoreOutboundBuilder 明确生成 WireGuard、Hysteria 2、REALITY 与 XHTTP 配置。是否能运行仍要匹配所装版本、内核和服务端参数；不能把开发分支新特性当成已发布版本能力。"
+          },
+          {
+            "question": "国内应用异常时必须使用某个固定绕过菜单吗？",
+            "answer": "不必。检查路由顺序、DNS、Geo 数据与应用包含/排除范围，依据实际网络需求选择规则，不承诺某个预设适合所有设备。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "AndroidMaster",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "b492aa8"
-        }
-      ]
+      "changelog": []
     },
     {
       "id": "flclash",
@@ -816,79 +762,82 @@
       "shortName": "FlClash",
       "system": "android",
       "category": "android",
-      "tagline": "基于 Flutter 开发的高颜值多平台 Mihomo 内核客户端",
-      "description": "FlClash 是一款基于 Flutter 和 Mihomo 内核打造的现代代理客户端，完美继承了 Clash 的分流策略组体系，UI 设计精致动画丝滑，平板与手机双向自适应，是目前 Android 平台颜值最高的新星之一。",
+      "tagline": "FlClash：配置导入、VPN 接管与兼容性说明",
+      "description": "FlClash 是基于 Flutter 与 Mihomo 的多平台代理客户端；Android 版提供配置管理、策略组和分应用控制，官方仍有发布活动。",
       "iconName": "Smartphone",
-      "badgeText": "新锐高颜值",
-      "updatedAt": "2026-11-04",
+      "badgeText": "官方来源核查",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2023-12-18",
-      "latestVersion": "v0.9.3",
-      "updatePath": "data/tutorials/android/flclash.md",
+      "license": "GPL-3.0",
+      "releasedAt": "未独立核实，以官方发布记录为准",
+      "latestVersion": "v0.9.3（2026-11-13 核查；以官方发布页为准）",
+      "updatePath": "src/data/tutorials/android/flclash.ts",
       "githubRepo": "https://github.com/chen08209/FlClash",
+      "officialSite": "https://github.com/chen08209/FlClash",
+      "releasesUrl": "https://github.com/chen08209/FlClash/releases",
       "specs": {
-        "compatibility": "Android 7.0 及更高版本",
-        "architecture": "arm64-v8a / armeabi-v7a",
-        "coreEngine": "Mihomo Core (Clash.Meta)",
+        "compatibility": "Android；该版本 Gradle 使用 flutter.minSdkVersion，本次未独立解析其最终值，以 APK 安装要求为准",
+        "architecture": "arm64-v8a / armeabi-v7a / x86_64",
+        "coreEngine": "Mihomo（Clash.Meta）",
         "protocols": [
-          "VLESS-Reality",
+          "VLESS（含 REALITY）",
           "VMess",
-          "Hysteria 2",
-          "TUIC v5",
           "Trojan",
           "Shadowsocks",
+          "Hysteria 2",
+          "TUIC",
           "WireGuard"
         ],
-        "trafficHandling": "VpnService 虚拟网卡 + 动态规则分流"
+        "trafficHandling": "Android VpnService 虚拟接口；受路由与应用范围限制，不是桌面系统代理"
       },
       "tutorial": {
-        "overview": "本教程讲解 FlClash 在安卓系统上的安装、Clash 订阅导入以及分流策略定制。",
+        "overview": "FlClash 是基于 Flutter 与 Mihomo 的多平台代理客户端；Android 版提供配置管理、策略组和分应用控制，官方仍有发布活动。 核查时间：2026-11-13。版本为官方接口当次快照，不保证安装时仍是最新；首发日期未独立确认。",
         "prerequisites": [
-          "Android 手机一部",
-          "Clash 格式的节点订阅链接"
+          "符合该版本系统及 CPU 架构要求的 Android 设备",
+          "可信且兼容的订阅或自建节点参数；客户端不提供节点",
+          "订阅含凭据，请勿公开；不要同时运行冲突的 VPN"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并安装 APK",
-            "description": "前往 FlClash 的 GitHub Releases 页面，下载最新的 `FlClash-xxx-android-arm64-v8a.apk` 安装包完成安装。",
-            "pencilTip": "应用支持 Material You 动态主题，会根据你的手机壁纸自动变换色彩。"
+            "title": "从官方 Releases 下载 APK",
+            "description": "按设备架构下载 Android APK，例如本次确认的 FlClash-0.9.3-android-arm64-v8a.apk。核对官方 SHA256SUMS；仅为此次安装授权安装未知来源应用，勿安装来源不明同名包。"
           },
           {
             "stepNumber": 2,
-            "title": "添加订阅配置",
-            "description": "打开 FlClash，点击左侧导航栏的【配置】，点击右上角【+】号，输入配置名称并粘贴 Clash 订阅 URL，点击确定完成拉取。",
-            "codeSnippet": "https://sub.airport.net/api/v1/client/subscribe?token=xxx&flag=clash",
-            "codeLanguage": "url",
-            "pencilTip": "订阅拉取成功后，点击该配置右侧的单选按钮将其设为激活状态。"
+            "title": "添加并选择配置",
+            "description": "在配置管理页面从 URL 或本地文件导入 Clash / Mihomo YAML，下载后选为当前配置。节点分享链接、Base64 节点列表和完整规则配置不是同一种格式，不要假设均可直接导入。菜单布局随版本和屏幕尺寸变化，以配置管理功能为准。"
           },
           {
             "stepNumber": 3,
-            "title": "挑选节点并启动",
-            "description": "进入【代理】页面，点击测速图标完成节点延迟刷新，轻触选中低延迟节点。返回主页点击顶部的连接开关，在弹出的 VPN 请求中点击允许。",
-            "pencilTip": "主界面可直接查看当前流量波形图与活动连接数。"
+            "title": "选择策略并授权 VPN",
+            "description": "在代理策略组选择节点，按配置使用规则模式，启动连接后同意 Android VPN 授权。Android 版通过 VpnService 接管适用应用流量，不是桌面系统代理开关。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "检查分应用与连通性",
+            "description": "如需分应用控制，在对应设置中确认是包含还是排除模式；被排除的应用不进入 VPN。分别验证目标应用、DNS 和连接日志，延迟数值不代表带宽，也不保证所有目标可达。"
           }
         ],
         "advancedRules": [
-          "应用绕行：在设置中开启“绕过指定应用”，把微信、银行 App 添加到直连名单中。"
+          "[项目 README：GPL、下载、配置和 Android 分应用功能](https://raw.githubusercontent.com/chen08209/FlClash/main/README.md)",
+          "[v0.9.3 Gradle 系统要求来源](https://raw.githubusercontent.com/chen08209/FlClash/v0.9.3/android/app/build.gradle.kts)",
+          "[Mihomo 协议和 TUN 原始配置](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
+          "[官方版本、日期与发布资产快照](https://api.github.com/repos/chen08209/FlClash/releases/latest)",
+          "[Android VPN 平台机制与授权](https://developer.android.com/develop/connectivity/vpn)"
         ],
         "faq": [
           {
-            "question": "FlClash 与 Clash Meta for Android 哪个更好？",
-            "answer": "两者内核一致，FlClash 界面更加现代化、动画更加流畅，支持全平台多端统一体验。"
+            "question": "和 Clash Meta for Android 有何区别？",
+            "answer": "它们是不同客户端，不能仅凭内核相同推断菜单、功能或稳定性相同。按配置兼容性、系统要求和维护记录选择，不以界面审美作技术结论。"
+          },
+          {
+            "question": "为什么有 VPN 图标仍无法访问？",
+            "answer": "图标仅表示 VPN 服务已建立，不证明节点、DNS 或分流有效。检查活动配置、策略组、日志和其他 VPN；必要时停止 VPN 恢复网络。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "FlutterDev",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "e719aa2"
-        }
-      ]
+      "changelog": []
     },
     {
       "id": "nekobox-android",
@@ -896,163 +845,172 @@
       "shortName": "NekoBox",
       "system": "android",
       "category": "android",
-      "tagline": "基于 sing-box 核心的多协议极客利器与 Matsuri 正统继承者",
-      "description": "NekoBox for Android 是广受欢迎的 Matsuri（茉莉）项目分支继承者。以 sing-box 为底层核心，兼具强大的通用协议支持、精细的路由分流规则与自定义链式代理功能，是高阶极客的安卓心头好。",
+      "tagline": "NekoBox：配置导入、VPN 接管与兼容性说明",
+      "description": "NekoBox for Android 是使用 sing-box 分支的 Android 通用代理工具。官方 1.4.2 发布说明明确表示项目较少维护、不接受功能请求，非重大问题可能不修复；不是 sing-box 官方 Android 客户端。",
       "iconName": "Smartphone",
-      "badgeText": "极客多协议",
-      "updatedAt": "2026-02-09",
+      "badgeText": "官方来源核查",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2022-09-01",
-      "latestVersion": "v1.4.2",
-      "updatePath": "data/tutorials/android/nekobox-android.md",
+      "license": "GPL-3.0-or-later",
+      "releasedAt": "未独立核实，以官方发布记录为准",
+      "latestVersion": "1.4.2（2026-11-13 核查；以官方发布页为准）",
+      "updatePath": "src/data/tutorials/android/nekobox-android.ts",
       "githubRepo": "https://github.com/MatsuriDayo/NekoBoxForAndroid",
+      "officialSite": "https://github.com/MatsuriDayo/NekoBoxForAndroid",
+      "releasesUrl": "https://github.com/MatsuriDayo/NekoBoxForAndroid/releases",
       "specs": {
-        "compatibility": "Android 6.0 及更高版本",
-        "architecture": "arm64-v8a / armeabi-v7a",
-        "coreEngine": "sing-box core + 自定义插件模块",
+        "compatibility": "Android 5.0+（API 21；个别核心/插件另有要求）",
+        "architecture": "arm64-v8a / armeabi-v7a / x86 / x86_64",
+        "coreEngine": "sing-box 分支；1.4.2 内置 1.12.19-neko-1",
         "protocols": [
-          "VLESS-Reality",
-          "Hysteria 2",
-          "TUIC v5",
+          "SOCKS / HTTP(S)",
+          "SSH",
           "Shadowsocks",
-          "Trojan",
           "VMess",
+          "Trojan",
+          "VLESS",
+          "AnyTLS / ShadowTLS",
+          "TUIC",
+          "Hysteria 1/2",
           "WireGuard",
-          "NaïveProxy"
+          "NaïveProxy / Trojan-Go / Mieru（需插件）"
         ],
-        "trafficHandling": "VpnService TUN 模式 + 链式转发"
+        "trafficHandling": "Android VpnService 虚拟接口；受路由与应用范围限制，不是桌面系统代理"
       },
       "tutorial": {
-        "overview": "本教程讲解如何在安卓设备上使用 NekoBox 进行多协议订阅导入与前沿协议（如 Reality / Hysteria 2）连接。",
+        "overview": "NekoBox for Android 是使用 sing-box 分支的 Android 通用代理工具。官方 1.4.2 发布说明明确表示项目较少维护、不接受功能请求，非重大问题可能不修复；不是 sing-box 官方 Android 客户端。 核查时间：2026-11-13。版本为官方接口当次快照，不保证安装时仍是最新；首发日期未独立确认。",
         "prerequisites": [
-          "Android 手机",
-          "支持 sing-box 或常见通用格式的节点订阅"
+          "符合该版本系统及 CPU 架构要求的 Android 设备",
+          "可信且兼容的订阅或自建节点参数；客户端不提供节点",
+          "订阅含凭据，请勿公开；不要同时运行冲突的 VPN"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并安装客户端",
-            "description": "从 GitHub Releases 页面下载 `NB4A-xxx-arm64-v8a.apk`，安装到手机上。",
-            "pencilTip": "NekoBox 内置了完整的 sing-box 核心，无需额外下载插件核心。"
+            "title": "核对渠道与安装包",
+            "description": "仅从 MatsuriDayo/NekoBoxForAndroid 的 GitHub Releases 获取匹配架构 APK，本次文件名为 NekoBox-1.4.2-arm64-v8a.apk，不是旧教程猜测的 NB4A 前缀。官方 README 警告：Google Play 版本自 2024 年 5 月起被第三方控制且非开源，请不要下载；不要将商店同名包当作官方版。"
           },
           {
             "stepNumber": 2,
-            "title": "添加配置分组",
-            "description": "点击右上角【+】号，选择【分组设置】或添加单个自建节点；也可以直接选择【从剪贴板导入】或【扫描二维码】。",
-            "codeSnippet": "vless://uuid@domain:443?security=reality&sni=example.com&pbk=key&type=grpc#HK-Node",
-            "codeLanguage": "text",
-            "pencilTip": "支持多种协议混排，兼容性表现极佳。"
+            "title": "添加订阅分组或导入节点",
+            "description": "在分组管理中建立订阅分组，填写可信订阅 URL，保存并更新；单节点可使用剪贴板或二维码导入。README 列出 Shadowsocks、ClashMeta、v2rayN 常见格式及 sing-box 出站，但只解析节点，忽略分流规则等信息。"
           },
           {
             "stepNumber": 3,
-            "title": "选择出站并启动",
-            "description": "在节点列表中点击选中目标节点，轻触下方启动按钮建立连接。系统弹窗确认 VPN 授权后即可正常翻墙。",
-            "pencilTip": "可开启“URL 延迟测试”自动找出当期响应速度最快的可用节点。"
+            "title": "检查协议与插件依赖",
+            "description": "核对导入节点的协议、传输、TLS / REALITY 参数。NaïveProxy、Trojan-Go、Mieru 等需要官方文档指定的额外插件，不能宣称所有协议均由内置核心直接支持。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "选择节点并启动 VPN",
+            "description": "选中节点后启动连接，批准系统 VPN 请求。按需要在客户端设置路由与应用范围，不假定导入的 Clash 规则生效。连接后检查日志和目标应用；结束使用时停止 VPN。"
           }
         ],
         "advancedRules": [
-          "配置链式代理：把中转节点作为前置出站，落地机作为后置出站，实现双重跳板隐藏真实 IP。"
+          "[官方 README：商店警告、协议、插件与导入限制](https://raw.githubusercontent.com/MatsuriDayo/NekoBoxForAndroid/main/README.md)",
+          "[GPL-3.0-or-later 原始许可证](https://raw.githubusercontent.com/MatsuriDayo/NekoBoxForAndroid/main/LICENSE)",
+          "[API21 与架构原始构建配置](https://raw.githubusercontent.com/MatsuriDayo/NekoBoxForAndroid/main/buildSrc/src/main/kotlin/Helpers.kt)",
+          "[官方版本、日期与发布资产快照](https://api.github.com/repos/MatsuriDayo/NekoBoxForAndroid/releases/latest)",
+          "[Android VPN 平台机制与授权](https://developer.android.com/develop/connectivity/vpn)"
         ],
         "faq": [
           {
-            "question": "为什么有的 Hysteria 2 节点测速超时？",
-            "answer": "检查运营商是否对 UDP 进行了高烈度 QoS 阻断；可尝试在配置中调低端口跳跃（Port Hopping）频率或调小发包速率。"
+            "question": "Google Play 上的 NekoBox 是官方开源版吗？",
+            "answer": "不是。官方 README 明确提醒自 2024 年 5 月起该商店版本由第三方控制、非开源，不要下载。使用官方 GitHub Releases；无需寻找或信任同名商店链接。"
+          },
+          {
+            "question": "导入 Clash 订阅后为什么分流不同？",
+            "answer": "NekoBox 只从支持格式中解析节点，忽略原配置的分流规则。应在本客户端独立配置路由，不能把节点导入视作完整 Clash / sing-box 配置迁移。"
+          },
+          {
+            "question": "Hysteria 2 超时是否必须调整端口跳跃？",
+            "answer": "不能仅凭超时断定 UDP 被限速。先检查日志、UDP 可达性、服务端端口、防火墙、证书和协议参数；仅在服务端明确支持时配置端口跳跃，不盲目修改频率。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "NekoMaster",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "d220ff1"
-        }
-      ]
+      "changelog": []
     },
     {
+      "name": "sing-box",
+      "shortName": "sing-box",
+      "iconName": "Box",
+      "badgeText": "官方客户端",
+      "updatedAt": "2026-11-13",
+      "isOpenSource": true,
+      "license": "GPL-3.0-or-later（核心另有名称/关联声明限制；以各仓库 LICENSE 为准）",
+      "releasedAt": "本平台客户端首发日期未确认",
+      "latestVersion": "1.14.4（GitHub release，2026-10-24 发布）",
+      "releasesUrl": "https://github.com/SagerNet/sing-box/releases",
+      "officialSite": "https://sing-box.sagernet.org",
       "id": "sing-box-android",
-      "name": "Sing-box",
-      "shortName": "Sing-box",
       "system": "android",
       "category": "android",
-      "tagline": "官方纯血通用代理平台、极致功耗控制与纯粹性能",
-      "description": "由 SagerNet 官方团队维护的 Android 原生客户端（Sing-box for Android, SFA）。没有花哨冗余的组件，采用官方标准配置语法，功耗极低、协议适配永远处于第一线。",
-      "iconName": "Box",
-      "badgeText": "官方纯血",
-      "updatedAt": "2026-10-24",
-      "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2022-08-10",
-      "latestVersion": "v1.14.4",
-      "updatePath": "data/tutorials/android/sing-box-android.md",
-      "releasesUrl": "https://github.com/SagerNet/sing-box/releases",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=io.nekohasekai.sfa",
-      "officialSite": "https://sing-box.sagernet.org",
+      "updatePath": "src/data/tutorials/android/sing-box-android.ts",
+      "price": "官方开源发行免费下载；代理服务另行准备",
       "specs": {
-        "compatibility": "Android 7.0 及更高版本",
-        "architecture": "arm64-v8a / armeabi-v7a / x86_64",
-        "coreEngine": "Sing-box 官方核心 (Go 原生编译)",
+        "compatibility": "普通/Play 构建 Android 7.0+；legacy-android-5 构建 Android 5.0+",
+        "architecture": "arm64-v8a / armeabi-v7a / x86 / x86_64；有 universal APK",
+        "coreEngine": "sing-box（Go；功能以发行构建为准）",
         "protocols": [
           "Shadowsocks",
-          "VLESS (Reality)",
           "VMess",
+          "VLESS",
           "Trojan",
-          "Hysteria 2",
-          "TUIC v5",
-          "WireGuard",
-          "Direct/Reject"
+          "Hysteria2",
+          "TUIC",
+          "ShadowTLS",
+          "WireGuard（endpoint）"
         ],
-        "trafficHandling": "VpnService TUN 驱动 + 官方规则路由引擎"
+        "trafficHandling": "Android VpnService / TUN；按完整配置路由"
       },
       "tutorial": {
-        "overview": "本教程带你配置官方纯血 Sing-box Android 客户端，享受极致低功耗的科学上网体验。",
+        "overview": "检索日期：2026-11-13。依据 [官方 Android 文档](https://sing-box.sagernet.org/clients/android/)、[构建脚本](https://github.com/SagerNet/sing-box-for-android/blob/dev/app/build.gradle.kts) 和 [1.14.4 发行资产](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4)。文档总要求 Android 5+，源码区分普通 minSdk 24 与旧系统 minSdk 21，安装时必须选对构建。",
         "prerequisites": [
-          "Android 手机设备",
-          "支持 Sing-box 格式的远程订阅链接或 JSON 配置文件"
+          "匹配发行包最低要求的 Android 设备；确认 CPU 架构或选择 universal",
+          "可信且匹配已安装核心版本的完整 sing-box JSON 配置"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并安装 APK",
-            "description": "在 GitHub Releases 页面下载 `SFA-xxx-universal.apk` 或 `arm64-v8a.apk`，安装到手机中。",
-            "pencilTip": "SFA 代表 Sing-box For Android，没有任何第三方修改。"
+            "title": "选择官方发行渠道与 APK",
+            "description": "通过官方 Android 文档进入 Play Store、GitHub Releases 或 F-Droid。GitHub 普通包例如 SFA-1.14.4-arm64-v8a.apk；旧系统需要明确标记 legacy-android-5 的包。核对架构后安装，按需授权该来源安装 APK。",
+            "pencilTip": "不要盲目覆盖来自不同签名渠道的安装；先备份配置，核对升级说明。"
           },
           {
             "stepNumber": 2,
-            "title": "导入 Profile 配置文件",
-            "description": "打开软件，点击底部的【Profiles】，点击右上角【+】号，选择【Create Profile】。输入机场给定的 sing-box 订阅 URL 或选择【Import Local File】导入本地配置。",
-            "codeSnippet": "https://airport.domain/sub/sing-box?token=xxx",
-            "codeLanguage": "url",
-            "pencilTip": "可勾选“Auto Update”设置每日自动刷新节点。"
+            "title": "创建本地或远程配置",
+            "description": "在配置管理中添加 Local Profile 或 Remote Profile。远程地址必须返回完整 sing-box JSON，保存并确认能解析，再选中配置。自动更新是远程配置功能，更新也可能引入不兼容字段。"
           },
           {
             "stepNumber": 3,
-            "title": "启动服务并选择节点",
-            "description": "在 Profiles 列表中选中刚才导入的配置，返回【Dashboard】主页，点击【Start】启动。点击【Groups】展开策略组，轻触选中最优节点即可。",
-            "pencilTip": "在系统弹出添加 VPN 提示时点击允许。"
+            "title": "启动 VPN 服务并验证",
+            "description": "启动所选配置，首次允许 Android VPN 连接请求。通过日志和实际请求验证，配置包含 selector/urltest 时才使用对应策略组界面。若后台断连，检查系统电池限制与日志，不保证移除省电限制即可永不掉线。"
           }
         ],
         "advancedRules": [
-          "电池优化白名单：在系统设置中为 Sing-box 关闭省电限制，保证长时间挂后台不掉线。"
+          "升级前备份配置并阅读 [迁移指南](https://sing-box.sagernet.org/migration/) 和 [废弃列表](https://sing-box.sagernet.org/deprecated/)：GeoIP/Geosite 已在 1.12 移除，应迁移 rule-set；旧 block/dns 特殊出站、WireGuard outbound 和旧入站 sniff 等字段在 1.13 移除，分别迁移规则动作、WireGuard endpoint 等；旧 DNS server 格式在 1.14 移除。在线文档还列出 1.15+ 的变化，不能不看版本就套用。",
+          "[官方通用 GUI 规范](https://sing-box.sagernet.org/clients/general/) 区分 Local、iCloud 与 Remote Profile；Remote 下载的必须是完整配置。查看应用显示的核心版本再排查配置兼容性。"
         ],
         "faq": [
           {
-            "question": "为什么软件没有华丽的界面？",
-            "answer": "官方客户端追求的是纯粹、高效与低开销，以极小的系统资源保证最强悍的协议吞吐性能。"
+            "question": "URL 订阅能直接作为配置吗？",
+            "answer": "仅当 URL 返回适合已安装核心版本的完整 sing-box JSON 配置。Clash YAML、Base64 节点列表和单个分享链接不是完整配置；Remote Profile 是 GUI 的配置下载/更新功能，不是内核自动转换订阅。不要将私密链接交给不可信在线转换器。"
+          },
+          {
+            "question": "为什么没有 Groups 或模式切换？",
+            "answer": "官方通用客户端规范只在配置包含 selector/urltest 分组出站时提供策略组；模式选择也需要配置使用至少两个 clash_mode 值。不能保证任意导入配置都出现这些控件。"
+          },
+          {
+            "question": "VPN 显示连接是否就代表可用？",
+            "answer": "只说明隧道状态，不保证节点、DNS 或规则正确。查看日志及实际请求；错误中若有 unknown field 或 deprecated，按核心版本迁移配置，切勿仅反复重装应用。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "SingBoxCoreDev",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "f1892de"
-        }
-      ]
+      "tagline": "官方 Android 图形客户端 SFA，区分普通与旧系统发行包",
+      "description": "SFA 是 SagerNet 的 Android 图形客户端，管理本地或远程完整 sing-box 配置，通过 Android VPN 服务提供 TUN。普通构建与 legacy-android-5 构建有不同最低系统要求，不能只用“Android 5+”描述所有下载包。",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=io.nekohasekai.sfa",
+      "githubRepo": "https://github.com/SagerNet/sing-box-for-android",
+      "changelog": []
     },
     {
       "id": "v2rayn",
@@ -1060,93 +1018,88 @@
       "shortName": "v2rayN",
       "system": "windows",
       "category": "windows",
-      "tagline": "Windows 平台无可撼动的常青树与自建节点/多内核调试神器",
-      "description": "v2rayN 是 Windows 上最经典、支持内核最丰富（Xray、sing-box、mihomo 等多内核无缝热切换）的开源客户端。对单个节点的参数细节掌控力极强，是自建节点与硬核网络玩家的首选。",
+      "tagline": "支持多种代理内核的开源桌面客户端（本篇介绍 Windows）",
+      "description": "v2rayN 是支持 Windows、Linux 和 macOS 的图形客户端，可管理 Xray、sing-box 等内核。本篇介绍 Windows 发布包、订阅导入、节点选择及系统代理；协议能否使用取决于客户端、所选内核与服务端配置的共同支持。",
       "iconName": "Monitor",
-      "badgeText": "Windows 常青树",
-      "updatedAt": "2026-10-11",
+      "badgeText": "多内核客户端",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2017-04-18",
-      "latestVersion": "v7.25.6",
-      "updatePath": "data/tutorials/windows/v2rayn.md",
+      "license": "GPL-3.0",
+      "releasedAt": "未核实首次发布日期，以项目历史为准",
+      "latestVersion": "7.25.6（2026-11-13 核查）",
+      "updatePath": "src/data/tutorials/windows/v2rayn.ts",
       "githubRepo": "https://github.com/2dust/v2rayN",
-      "officialSite": "https://github.com/2dust/v2rayN/releases",
+      "officialSite": "https://github.com/2dust/v2rayN/wiki",
+      "releasesUrl": "https://github.com/2dust/v2rayN/releases",
       "specs": {
-        "compatibility": "Windows 10 / Windows 11 (64-bit / ARM64)",
-        "architecture": "x64 / ARM64 / x86 (需 .NET 8.0 运行时)",
-        "coreEngine": "Xray-core / sing-box / mihomo 多内核动态加载",
+        "compatibility": "Windows 10+；各内核的最低系统要求需另行确认",
+        "architecture": "x64 / arm64；x86 包是否适用以当次发布及内核为准",
+        "coreEngine": "Xray / sing-box 等（支持范围随版本变化）",
         "protocols": [
-          "VLESS (Reality)",
           "VMess",
+          "VLESS / REALITY",
           "Trojan",
           "Shadowsocks",
-          "Hysteria 2",
-          "TUIC v5",
-          "WireGuard",
-          "SOCKS5"
+          "SOCKS",
+          "HTTP",
+          "Hysteria 2 / TUIC（依内核）"
         ],
-        "trafficHandling": "一键写入系统代理 + 独立 Wintun/TUN 虚拟网卡驱动"
+        "trafficHandling": "系统代理 / PAC；可选 TUN（需提升权限并正确配置路由）"
       },
       "tutorial": {
-        "overview": "本教程带你从零在 Windows 上解压、配置并运行 v2rayN，实现浏览器与全系统软件的科学上网。",
+        "overview": "先使用系统代理验证浏览器连接，再按需配置 TUN。系统代理只影响遵循系统设置的应用，不等于整台电脑的所有流量都已被接管。版本与下载文件按官方 Releases 和 Wiki 核查，菜单文字可能随语言和界面实现变化。",
         "prerequisites": [
-          "Windows 10 或 Windows 11 电脑",
-          "已安装 Microsoft .NET 8.0 Desktop Runtime (若未安装软件会提示自动下载)",
-          "机场订阅链接或自建节点链接"
+          "Windows 10 或更高版本，确认 CPU 架构与下载包相符",
+          "从官方 Releases 获取完整发布包；运行时要求以对应版本说明或启动提示为准，不统一要求额外安装 .NET 8",
+          "可信服务提供者的订阅或节点分享链接；订阅中通常含访问凭证，请勿公开"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并解压客户端",
-            "description": "前往官方 GitHub Releases 页面，下载带有核心文件的压缩包（推荐下载 `v2rayN-With-Core.zip`，避免手动到处寻找内核）。将其解压到一个没有中文与特殊符号的文件夹（例如 `D:\\Tools\\v2rayN`）。",
-            "pencilTip": "解压后双击 `v2rayN.exe` 即可运行，建议右键发送快捷方式到桌面。"
+            "title": "选择当前发布包并完整解压",
+            "description": "从官方 Releases 下载。以本次核查的 7.25.6 为例，x64 的 WPF 界面为 `v2rayN-windows-64.zip`，Avalonia 界面为 `v2rayN-windows-64-desktop.zip`；ARM64 选择名称含 `arm64` 的对应包。不要继续寻找旧版 `With-Core` 文件名。解压全部内容到用户可写目录后运行 `v2rayN.exe`。",
+            "pencilTip": "发布包含部分核心，其他核心需按 Wiki 补充。若启动失败先看错误和 guiLogs，再按发布要求处理运行时、权限或安全软件拦截，不要直接关闭安全防护。"
           },
           {
             "stepNumber": 2,
-            "title": "添加订阅并拉取节点",
-            "description": "双击运行后，点击顶部菜单栏【订阅分组】-> 选择【订阅分组设置】。点击【添加】，在【可选地址 (url)】中粘贴机场订阅链接，【别名】填入机场名字，点击确定。然后再次点击【订阅分组】-> 点击【更新全部订阅 (不通过代理)】。",
-            "codeSnippet": "https://airport.com/api/v1/client/subscribe?token=v2rayn_token",
-            "codeLanguage": "url",
-            "pencilTip": "订阅成功拉取后，表格中会呈现几十条节点。"
+            "title": "添加并更新订阅分组",
+            "description": "在订阅分组设置中新增分组，填写别名与服务商提供的订阅 URL，保存后更新该订阅。先尝试不通过代理更新；若下载路径需要代理，须先有可用节点，才能使用通过代理更新。也可使用客户端支持的剪贴板导入功能添加单个分享链接。",
+            "pencilTip": "Clash 完整 YAML、sing-box 完整 JSON 与节点订阅并非同一种格式。导入失败时先确认提供者是否提供 v2rayN 支持的格式，不要把带 token 的链接提交给陌生转换网站。"
           },
           {
             "stepNumber": 3,
-            "title": "选择最优节点",
-            "description": "按 `Ctrl+A` 全选所有节点，右键点击选择【测试服务器真实延迟 (Ctrl+R)】。等待测速完成后，点击【真实延迟】表头升序排列，双击或者选中后回车挑选一个延迟最低的绿色节点。",
-            "pencilTip": "双击选中的节点会变为蓝色高亮背景，代表当前出口。"
+            "title": "测试并设为活动服务器",
+            "description": "选中节点，使用右键菜单的真连接或延迟测试；根据结果设为活动服务器。具体快捷键以当前菜单显示为准。检查信息栏，确认核心启动成功，再访问需要代理的网站验证。",
+            "pencilTip": "低延迟不代表高带宽，也不保证 UDP、流媒体或特定网站可用。测试报错时先检查配置、核心兼容性和本地端口占用。"
           },
           {
             "stepNumber": 4,
-            "title": "开启系统代理与分流",
-            "description": "查看软件最底部的状态栏：将【路由】选择为【绕过大陆 (Whitelist)】；将【系统代理】切换为【自动配置系统代理】。此时托盘图标由蓝色变为红色，代表系统代理已成功接管。",
-            "pencilTip": "若需要让游戏或终端走代理，勾选底部的【自动启动 Tun 模式】即可！"
+            "title": "启用系统代理并设置路由",
+            "description": "系统代理选择【自动配置系统代理】，路由可从【绕过大陆】开始，再按实际需求调整。二者分别决定哪些应用流量进入核心，以及进入核心后如何分流。退出前清除系统代理。",
+            "pencilTip": "终端、游戏等可能忽略系统代理，需要单独配置代理或使用 TUN。TUN 应按当前文档提升权限、检查 DNS 和路由，不能只勾选开关就保证所有软件可用。"
           }
         ],
         "advancedRules": [
-          "切换核心引擎：在【设置】->【核心类型设置】中，可自由选择针对不同协议调用 Xray-core 或 sing-box 核心。",
-          "自定义路由黑白名单：可以在路由设置中自由添加直连域名或强制走代理的域名。"
+          "内核与客户端应配套升级。7.25.6 发布说明明确支持并限制 sing-box 到 1.14 系列，不要把任意更高版本内核直接替换进去。",
+          "开启局域网访问会扩大代理监听范围；确有共享需求时再配置防火墙和访问限制，避免对公网开放无认证代理。",
+          "核查来源：[官方发布文件介绍](https://github.com/2dust/v2rayN/wiki/Release-files-introduction)、[系统代理和路由](https://github.com/2dust/v2rayN/wiki/Description-of-system-proxy-routing)、[FAQ](https://github.com/2dust/v2rayN/wiki/Faq)、[7.25.6 发布说明](https://github.com/2dust/v2rayN/releases/tag/7.25.6)。"
         ],
         "faq": [
           {
-            "question": "为什么双击 v2rayN.exe 没有任何反应？",
-            "answer": "这是缺少 .NET 8.0 运行时的典型症状。请前往微软官网搜索下载并安装“.NET 8.0 Desktop Runtime (桌面运行时)”即可正常打开。"
+            "question": "无法启动一定是没装 .NET 8 吗？",
+            "answer": "不一定。下载包不完整、架构不符、目录权限、核心启动失败及运行时问题都可能导致异常。先按发布文件介绍选择正确包，再根据错误信息和 guiLogs 处理，不要盲目安装旧运行时。"
           },
           {
-            "question": "关闭 v2rayN 后电脑浏览器连不上网怎么办？",
-            "answer": "这是因为非正常关闭导致 Windows 系统代理没有复位。重新打开 v2rayN，将底部系统代理切换为【清除系统代理】后再退出即可。"
+            "question": "退出后浏览器无法联网怎么办？",
+            "answer": "重新打开客户端并清除系统代理；也可检查 Windows 代理设置是否残留指向已停止的本地端口。如果使用过 TUN，还需确认虚拟网卡、路由和 DNS 已恢复。"
+          },
+          {
+            "question": "TUN 能保证加速游戏吗？",
+            "answer": "不能。代理与游戏加速是不同需求，实际效果受 UDP 支持、线路、服务端和路由影响。先确认应用和节点的条件，再逐项排查。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "WinExpert",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "b183fd4"
-        }
-      ]
+      "changelog": []
     },
     {
       "id": "clash-verge-rev-win",
@@ -1154,88 +1107,88 @@
       "shortName": "Clash Verge Rev",
       "system": "windows",
       "category": "windows",
-      "tagline": "目前 Windows 端最受推荐的现代化 Mihomo GUI 客户端",
-      "description": "Clash Verge Rev 基于 Tauri 开发，内存消耗远低于老旧的 Electron 应用。内置最新的 Mihomo (Clash.Meta) 内核，对 Windows 系统的通知、暗色模式、Wintun 虚拟网卡提供了极其完美的适配。",
+      "tagline": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动",
+      "description": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。",
       "iconName": "Monitor",
-      "badgeText": "Win 桌面主力",
-      "updatedAt": "2026-11-03",
+      "badgeText": "官方来源核查",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2023-11-05",
-      "latestVersion": "v2.5.10",
-      "updatePath": "data/tutorials/windows/clash-verge-rev-win.md",
+      "license": "GPL-3.0（详见项目许可证）",
+      "releasedAt": "未独立核实，以官方发布记录为准",
+      "latestVersion": "v2.5.10（2026-11-13 核查；以官方发布页为准）",
+      "updatePath": "src/data/tutorials/windows/clash-verge-rev-win.ts",
       "githubRepo": "https://github.com/clash-verge-rev/clash-verge-rev",
-      "officialSite": "https://clash-verge-rev.github.io",
+      "officialSite": "https://www.clashverge.dev",
+      "releasesUrl": "https://github.com/clash-verge-rev/clash-verge-rev/releases",
       "specs": {
-        "compatibility": "Windows 10 / Windows 11 (64位)",
-        "architecture": "x64 / arm64",
-        "coreEngine": "Mihomo Core (原 Clash.Meta)",
+        "compatibility": "Windows 10 / 11；需要 WebView2，不支持 Windows 7",
+        "architecture": "x64 / arm64，以发布资产为准",
+        "coreEngine": "内置 Mihomo；稳定版与测试内核能力可能不同",
         "protocols": [
-          "VLESS (Reality)",
+          "VLESS（含 REALITY，取决于内核）",
           "VMess",
-          "Hysteria 2",
-          "TUIC v5",
           "Trojan",
           "Shadowsocks",
-          "WireGuard",
-          "Snell"
+          "Hysteria 2",
+          "TUIC",
+          "WireGuard"
         ],
-        "trafficHandling": "Windows 系统代理 + Wintun 虚拟网卡 (TUN 模式)"
+        "trafficHandling": "系统代理仅影响遵循系统设置的应用；TUN 通过虚拟网卡和路由接管适用流量"
       },
       "tutorial": {
-        "overview": "本教程手把手教你在 Windows 电脑上安装并配置 Clash Verge Rev，开启开机自启与全局 TUN 模式。",
+        "overview": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
         "prerequisites": [
-          "Windows 10 或 Windows 11 系统",
-          "支持 Clash 格式的机场订阅"
+          "符合该版本系统与 CPU 架构要求的设备",
+          "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
+          "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并安装应用",
-            "description": "前往官方 GitHub Releases 页面，下载带有安装程序的 `Clash.Verge_xxx_x64-setup.exe`。双击运行，根据安装向导一路下一步完成安装。",
-            "pencilTip": "Windows Defender 若提示未知发布者，点击【更多信息】->【仍要运行】即可。"
+            "title": "核对平台并安装",
+            "description": "从官方 Releases 选择 x64-setup.exe 或 arm64-setup.exe，按安装向导安装。缺少 WebView2 时按官方安装文档处理；仅在需要时选内置 WebView2 包。安全告警先核实来源，不直接绕过。"
           },
           {
             "stepNumber": 2,
-            "title": "导入订阅链接",
-            "description": "打开软件，点击左侧【订阅】。在上方输入框中粘贴机场提供的 Clash 订阅链接，点击【导入】。下载完成后，右键点击该配置卡片，选择【使用】。",
-            "codeSnippet": "https://airport.com/api/v1/client/subscribe?token=xxx&flag=clash",
-            "codeLanguage": "url",
-            "pencilTip": "右键点击配置卡片可以设置“自动更新间隔”，建议设为 12 小时。"
+            "title": "导入并激活配置",
+            "description": "在订阅管理页面添加远程 Clash / Mihomo YAML 配置 URL，导入后选中该配置。也可使用本地配置。不要把单节点分享 URI、登录网页或不兼容的通用订阅直接当作完整 YAML；导入失败先看错误日志。"
           },
           {
             "stepNumber": 3,
-            "title": "开启系统代理与 TUN 模式",
-            "description": "在软件左下角点击【设置】。在核心设置中开启【系统代理】。若需要玩外服游戏、使用终端 CMD/Git 或 WSL，建议点击开启【TUN 模式】（若首次开启提示安装服务模式，点击安装即可）。",
-            "pencilTip": "TUN 模式会自动虚拟出一张网卡，彻底无需担心各类软件不支持系统代理的问题！"
+            "title": "选择策略组和节点",
+            "description": "在代理页面选择配置提供的策略组及节点，按需使用规则模式。延迟测试只反映测试目标的响应，不代表带宽或所有网站可达。"
           },
           {
             "stepNumber": 4,
-            "title": "选择低延迟节点",
-            "description": "点击左侧【代理】，点击右上角闪电图标刷新所有节点测速，选中延迟最低的绿色节点即可畅通无阻。",
-            "pencilTip": "模式务必选择【规则 (Rule)】，这样国内软件（QQ、微信、网易云）直接直连，节省流量。"
+            "title": "先系统代理，按需启用 TUN",
+            "description": "先开启系统代理并用浏览器验证。终端等不遵循系统代理的应用可显式设置本地代理，或按官方说明安装/检查服务模式后再启用 TUN，并批准必要的系统权限。TUN 并非辅助功能权限，也不保证 WSL、容器、虚拟机或所有游戏流量都被接管。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "验证并保留回退方法",
+            "description": "分别检查目标网站、DNS、应用连接与日志，确认路由符合预期。出现断网时先关闭 TUN、恢复系统代理设置，排查其他 VPN、防火墙和路由冲突。"
           }
         ],
         "advancedRules": [
-          "开机静默启动：在设置中勾选【开机启动】与【静默启动】。",
-          "快捷键调用：可设置全局快捷键一键唤起主面板或开关系统代理。"
+          "[项目 README：维护分支、内核、GPL 与配置增强](https://raw.githubusercontent.com/clash-verge-rev/clash-verge-rev/main/README.md)",
+          "[安装文档：平台要求和官方发布渠道](https://www.clashverge.dev/install.html)",
+          "[官方快速入门：导入、节点、系统代理与 TUN](https://www.clashverge.dev/guide/quickstart.html)",
+          "[版本与安装资产核查](https://api.github.com/repos/clash-verge-rev/clash-verge-rev/releases/latest)",
+          "[Mihomo 配置原始示例：协议、DNS、TUN 和排除路由](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
+          "配置增强支持 Merge / Script；仅使用可信脚本，更新订阅后检查最终生效配置。规则模式依赖配置中的规则，并不自动保证特定地区或应用直连。"
         ],
         "faq": [
           {
-            "question": "为什么打开 TUN 模式提示失败？",
-            "answer": "请在设置页面先点击【服务模式】右侧的安装按钮，安装完成并重启软件后，即可顺畅开启 TUN 模式。"
+            "question": "为什么系统代理开启后终端仍无法连接？",
+            "answer": "系统代理不是透明转发；应用必须主动遵循系统代理，或显式使用客户端本地 HTTP/SOCKS 监听地址。TUN 是另一种接管方式，仍受路由和排除设置限制。"
+          },
+          {
+            "question": "TUN 启动失败怎么办？",
+            "answer": "先看内核与服务日志，检查服务安装状态、管理员授权、虚拟网卡、DNS 与其他 VPN 冲突。Linux 不要对猜测的旧版内核路径执行 setcap；不建议全程以 root 运行 GUI。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "WinDev",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "a718cc2"
-        }
-      ]
+      "changelog": []
     },
     {
       "id": "clash-party-win",
@@ -1243,171 +1196,173 @@
       "shortName": "Clash Party",
       "system": "windows",
       "category": "windows",
-      "tagline": "Windows 上极具美感、操作直观的次世代代理客户端（原 Mihomo Party）",
-      "description": "Clash Party（原名 Mihomo Party）为 Windows 用户带来了媲美 macOS 原生体验的精美视觉。支持丰富的流媒体解锁检测、直观的分组拖拽排序、免服务模式的 TUN 虚拟网卡以及深度集成的 Sub-Store 订阅聚合，让新手也能在 Windows 上享受极客级的网络体验。",
+      "tagline": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动",
+      "description": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。",
       "iconName": "Sparkles",
-      "badgeText": "精美易用",
-      "updatedAt": "2026-10-18",
+      "badgeText": "官方来源核查",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2024-01-10",
-      "latestVersion": "v2.0.4",
-      "updatePath": "data/tutorials/windows/clash-party-win.md",
-      "officialSite": "https://clashparty.org",
+      "license": "GPL-3.0（详见项目许可证）",
+      "releasedAt": "未独立核实，以官方发布记录为准",
+      "latestVersion": "v2.0.4（2026-11-13 核查；以官方发布页为准）",
+      "updatePath": "src/data/tutorials/windows/clash-party-win.ts",
       "githubRepo": "https://github.com/mihomo-party-org/clash-party",
+      "officialSite": "https://clashparty.org",
+      "releasesUrl": "https://github.com/mihomo-party-org/clash-party/releases",
       "specs": {
-        "compatibility": "Windows 10 / Windows 11 (64位)",
-        "architecture": "x64 / arm64",
-        "coreEngine": "Mihomo Core (Alpha/Release)",
+        "compatibility": "Windows 10 / 11；具体版本要求以发布说明为准",
+        "architecture": "x64 / arm64（按实际发布资产选择）",
+        "coreEngine": "Mihomo / Smart Core；依安装版本与所选内核而异",
         "protocols": [
-          "VLESS-Reality",
-          "Hysteria 2",
-          "TUIC v5",
+          "VLESS（含 REALITY，取决于内核）",
           "VMess",
           "Trojan",
           "Shadowsocks",
+          "Hysteria 2",
+          "TUIC",
           "WireGuard"
         ],
-        "trafficHandling": "Windows 系统代理 + 智能 TUN 虚拟网卡 (免服务模式)"
+        "trafficHandling": "系统代理与 TUN；无需手动服务模式不代表无需管理员权限或特权 Helper"
       },
       "tutorial": {
-        "overview": "本教程讲解在 Windows 上安装 Clash Party（原 Mihomo Party），快速导入订阅并开启系统代理。",
+        "overview": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
         "prerequisites": [
-          "Windows 10 或 Windows 11 系统",
-          "从官网 (https://clashparty.org) 或 GitHub 下载 Windows 安装包",
-          "Clash 订阅格式或通用订阅链接"
+          "符合该版本系统与 CPU 架构要求的设备",
+          "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
+          "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并安装",
-            "description": "在 clashparty.org 官方网站或 GitHub Releases 下载 `clash-party-windows-x64-setup.exe`，安装并启动。",
-            "pencilTip": "界面非常现代化，支持浅色和深色皮肤自由切换。"
+            "title": "从官方渠道下载安装",
+            "description": "从官方 Releases 选择对应 x64 / arm64 的 Windows setup.exe 安装版；便携版为 7z，解压后运行。文件名包含版本号，不使用教程猜测的固定直链。"
           },
           {
             "stepNumber": 2,
-            "title": "导入订阅",
-            "description": "点击主界面的【订阅】按钮，粘贴机场链接，点击确认下载。软件也内置 Sub-Store，可一键导入节点。",
-            "codeSnippet": "https://sub.airport.cc/api/v1/client/subscribe?token=xxx&flag=clash",
-            "codeLanguage": "url",
-            "pencilTip": "订阅下载后自动进行分流编排，开箱即用。"
+            "title": "导入兼容订阅并激活",
+            "description": "在订阅管理区域添加服务提供方的 Clash / Mihomo YAML URL 或本地配置，完成下载并选为当前配置。通用分享链接不等于完整 Clash 配置；如需 Sub-Store 转换，仅使用可信实例，不把密钥发送给陌生公共转换站。"
           },
           {
             "stepNumber": 3,
-            "title": "开启代理与使用",
-            "description": "点击主界面的【启动】大开关，在代理列表中挑选喜欢的节点即可开启科学上网。开启 TUN 模式可全局拦截所有流量。",
-            "pencilTip": "可随时在托盘右键菜单中快速切换节点。"
+            "title": "选择节点并启用系统代理",
+            "description": "在代理策略组中选择节点，按配置需要选择规则或全局模式，再启用系统代理。客户端运行与启用系统代理不是同一状态；用目标应用和连接日志确认效果。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "按需启用 TUN 并验证权限",
+            "description": "只有需要接管不遵循系统代理的程序时才启用 TUN。官方“无需服务模式”描述不等于免权限：虚拟网卡和路由需要系统授权，macOS 存在特权 Helper。若断网，关闭 TUN 并检查 DNS、排除路由与其他 VPN；不保证所有流量都接管。"
           }
         ],
         "advancedRules": [
-          "开启免服务 TUN 模式：设置中打开 TUN 模式，免去第三方软件的代理配置。",
-          "WebDAV 备份：支持将订阅和覆写规则自动同步至云端。"
+          "[当前默认 smart_core 分支 README：内核与功能](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/README.md)",
+          "[仓库 API：当前名称、主页、非归档与维护活动](https://api.github.com/repos/mihomo-party-org/clash-party)",
+          "[官方发布接口：版本与实际资产](https://api.github.com/repos/mihomo-party-org/clash-party/releases/latest)",
+          "[GPL 许可证](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/LICENSE)",
+          "[官方快速上手](https://clashparty.org/docs/handson)",
+          "[官方安装说明（部分说明仍为旧版）](https://clashparty.org/docs/install)",
+          "[Mihomo 协议与 TUN 原始配置](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
+          "Sub-Store、覆写和 WebDAV 是配置管理功能，不是客户端自动提供节点或保证匿名的服务；备份可能包含订阅凭据，上传前检查存储权限。"
         ],
         "faq": [
           {
-            "question": "它相比原版 Clash for Windows 有何优势？",
-            "answer": "原版 CFW 早已于 2023 年底停更；Clash Party 采用全新的 Meta/Mihomo 内核，全面支持 Reality、Hysteria 2 等新协议，且开箱即用支持免服务安装 TUN 模式，完全没有安全隐患。"
+            "question": "Clash Party 与 Mihomo Party 是什么关系？",
+            "answer": "当前仓库、应用 productName 和官网使用 Clash Party，旧 README、安装说明、应用标识及部分资产仍保留 Mihomo Party 名称。旧名不是另一个必需安装的内核；以同一官方组织仓库的发布记录核对，不推断确切改名日期。"
           },
           {
-            "question": "Clash Party 与 Mihomo Party 的区别？",
-            "answer": "两者为同款项目，Clash Party 为官方正式更名版本，官方网址迁移至 clashparty.org，功能持续迭代更新。"
+            "question": "为什么不照抄“免服务、完全没有安全隐患”？",
+            "answer": "免手动服务模式只描述使用方式，不能证明无特权代码或无风险。下载核验、最小权限、可信配置和日志排错仍然必要；macOS 官方文档明确列出 Helper 服务。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "ModernUIFan",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "e719ea2"
-        }
-      ]
+      "changelog": []
     },
     {
-      "id": "sing-box-win",
-      "name": "Sing-box",
-      "shortName": "Sing-box",
-      "system": "windows",
-      "category": "windows",
-      "tagline": "官方纯血通用代理平台、命令行内核与配置驱动",
-      "description": "Sing-box 是由 SagerNet 团队打造的通用代理平台。Windows 版本以官方内核发行包形式提供，采用标准 JSON 配置语法，协议适配始终处于第一线，支持 Hysteria 2、TUIC v5、VLESS (Reality)、ShadowTLS 等前沿协议，并具备强大的路由分流能力。",
+      "name": "sing-box",
+      "shortName": "sing-box",
       "iconName": "Box",
-      "badgeText": "官方纯血",
-      "updatedAt": "2026-10-24",
+      "badgeText": "CLI 教程",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2022-07-01",
-      "latestVersion": "v1.14.4",
-      "updatePath": "data/tutorials/windows/sing-box-win.md",
+      "license": "GPL-3.0-or-later（核心另有名称/关联声明限制；以各仓库 LICENSE 为准）",
+      "releasedAt": "本平台客户端首发日期未确认",
+      "latestVersion": "1.14.4（GitHub release，2026-10-24 发布）",
       "releasesUrl": "https://github.com/SagerNet/sing-box/releases",
       "officialSite": "https://sing-box.sagernet.org",
+      "id": "sing-box-win",
+      "system": "windows",
+      "category": "windows",
+      "updatePath": "src/data/tutorials/windows/sing-box-win.ts",
+      "price": "官方开源发行免费下载；代理服务另行准备",
       "specs": {
-        "compatibility": "Windows 10 / Windows 11 (64位)",
-        "architecture": "amd64 / arm64",
-        "coreEngine": "Sing-box Universal Proxy Platform (Go)",
+        "compatibility": "本教程 Windows 10+；旧 Windows 7 legacy 包不在本教程范围",
+        "architecture": "核心 amd64 / arm64 / 386；官方 SFW GUI x64 / arm64 / x86",
+        "coreEngine": "sing-box（Go；功能以发行构建为准）",
         "protocols": [
           "Shadowsocks",
           "VMess",
-          "VLESS (Reality)",
+          "VLESS",
           "Trojan",
-          "Hysteria 2",
-          "TUIC v5",
+          "Hysteria2",
+          "TUIC",
           "ShadowTLS",
-          "WireGuard",
-          "Direct/Block"
+          "WireGuard（endpoint）"
         ],
-        "trafficHandling": "系统代理 + TUN 虚拟网卡（需管理员权限）"
+        "trafficHandling": "按配置使用 mixed 入站或 TUN；TUN 需要提升权限"
       },
       "tutorial": {
-        "overview": "本教程讲解在 Windows 上下载 Sing-box 官方内核、编写配置并以 TUN 模式运行。",
+        "overview": "检索日期：2026-11-13。[官方 Desktop 文档](https://sing-box.sagernet.org/clients/desktop/) 已列出 Windows 10+ GUI；[1.14.4 发行页](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4) 同时有 SFW-1.14.4-x64.exe 等 GUI 文件和 sing-box-1.14.4-windows-amd64.zip 等 CLI 包。下面仅为 CLI 步骤，没有假设 Profiles 菜单或自动导入任意订阅。",
         "prerequisites": [
-          "Windows 10/11 电脑",
-          "支持 sing-box 格式的配置文件或订阅链接"
+          "Windows 10+ 与 PowerShell；使用 TUN 时需要管理员权限",
+          "匹配 CPU 的官方 CLI zip 和可信完整 config.json；不是仅一个订阅 URL"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载与解压",
-            "description": "在 GitHub Releases 下载 `sing-box-x.x.x-windows-amd64.zip`（ARM 设备选 arm64）。解压到无中文路径的文件夹即可，绿色免安装。",
-            "pencilTip": "压缩包内包含 `sing-box.exe` 与 `libcronet.dll` 等文件，请保持在同一目录。"
+            "title": "下载 CLI 并确认版本",
+            "description": "在官方 Releases 下载 sing-box-版本-windows-amd64.zip（ARM64 选 arm64，32 位选 386），完整解压后在所在目录打开 PowerShell。不要误把 SFW 图形客户端安装器当作 CLI 压缩包。保留发行包随附文件，不假定一定包含某个 DLL。",
+            "codeSnippet": ".\\sing-box.exe version",
+            "codeLanguage": "powershell"
           },
           {
             "stepNumber": 2,
-            "title": "准备配置文件",
-            "description": "在同目录下新建 `config.json`，填入机场提供的 sing-box 配置，或自行编写。可使用以下命令校验配置语法。",
-            "codeSnippet": "sing-box.exe check -c config.json",
-            "codeLanguage": "bash",
-            "pencilTip": "修改配置后务必先执行 check，避免因语法错误启动失败。"
+            "title": "保存完整配置并校验",
+            "description": "将匹配该核心版本的完整配置保存为当前目录的 config.json。若来源是 URL，先用可信方式取得配置内容；核心不会把 Clash YAML 或 Base64 订阅自动转换成 JSON。校验错误必须先修复。",
+            "codeSnippet": ".\\sing-box.exe check -c .\\config.json",
+            "codeLanguage": "powershell",
+            "pencilTip": "PowerShell 默认不从当前目录查找可执行文件，所以命令需要 .\\ 前缀；check 通过不等于服务器连通性通过。"
           },
           {
             "stepNumber": 3,
-            "title": "以管理员权限运行",
-            "description": "以管理员身份打开终端，进入解压目录并启动。配置中包含 TUN 入站时必须使用管理员权限。",
-            "codeSnippet": "sing-box.exe run -c config.json",
-            "codeLanguage": "bash",
-            "pencilTip": "可借助任务计划程序或 NSSM 将其注册为开机自启服务。"
+            "title": "按配置运行并验证",
+            "description": "使用以下命令运行；配置包含 TUN 时在已提升管理员权限的 PowerShell 中执行。若使用本地 mixed 入站，需按配置将应用代理指向相应监听地址，不能假定全部流量自动接管。检查日志，结束可按 Ctrl+C。",
+            "codeSnippet": ".\\sing-box.exe run -c .\\config.json",
+            "codeLanguage": "powershell",
+            "pencilTip": "仅为配置中的功能授权。权限不足、驱动或安全软件冲突都需具体排查，不能保证“管理员运行即可修复”。"
           }
         ],
         "advancedRules": [
-          "路由设置：在 `route.rules` 中通过 rule-set 配置直连、代理与阻断规则，并使用 `sing-box.exe rule-set` 命令管理规则集。"
+          "升级前备份配置并阅读 [迁移指南](https://sing-box.sagernet.org/migration/) 和 [废弃列表](https://sing-box.sagernet.org/deprecated/)：GeoIP/Geosite 已在 1.12 移除，应迁移 rule-set；旧 block/dns 特殊出站、WireGuard outbound 和旧入站 sniff 等字段在 1.13 移除，分别迁移规则动作、WireGuard endpoint 等；旧 DNS server 格式在 1.14 移除。在线文档还列出 1.15+ 的变化，不能不看版本就套用。",
+          "需要 GUI 时请从 [官方 Desktop 页面](https://sing-box.sagernet.org/clients/desktop/) 获取 SFW；它与纯核心的配置管理能力不同。不要直接把 URL 当成 -c 的本地文件路径，也不要为了订阅导入安装不明包装程序。"
         ],
         "faq": [
           {
-            "question": "为什么启用 TUN 模式后报错没有权限？",
-            "answer": "请在终端上右键选择【以管理员身份运行】后再执行 `sing-box.exe run`，即可正常创建虚拟网卡。"
+            "question": "URL 订阅能直接作为配置吗？",
+            "answer": "仅当 URL 返回适合已安装核心版本的完整 sing-box JSON 配置。Clash YAML、Base64 节点列表和单个分享链接不是完整配置；Remote Profile 是 GUI 的配置下载/更新功能，不是内核自动转换订阅。不要将私密链接交给不可信在线转换器。"
+          },
+          {
+            "question": "为什么 PowerShell 提示找不到 sing-box.exe？",
+            "answer": "先确认终端所在目录含解压后的可执行文件，再用 .\\sing-box.exe；若使用完整路径含空格，需要 PowerShell 调用运算符 &。不要仅靠把目录名改成英文解决所有错误。"
+          },
+          {
+            "question": "是否必须使用 TUN？",
+            "answer": "不必须。可用 mixed/HTTP/SOCKS 入站仅代理主动配置的应用；TUN 用于按路由接管流量。配置、DNS、权限与其他 VPN 的冲突需分别验证。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "SingBoxAdvocate",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "e4f5a6b"
-        }
-      ]
+      "tagline": "Windows 官方 CLI 教程；另有独立官方 Desktop GUI",
+      "description": "sing-box 同时提供 Windows 命令行核心和官方 Desktop 图形客户端 SFW。本教程演示 CLI 的本地 JSON 配置、校验与运行，不把 GUI 的远程配置管理、订阅更新或策略组菜单归给 sing-box.exe。",
+      "githubRepo": "https://github.com/SagerNet/sing-box",
+      "changelog": []
     },
     {
       "id": "clash-verge-rev-linux",
@@ -1415,83 +1370,89 @@
       "shortName": "Clash Verge Rev",
       "system": "linux",
       "category": "linux",
-      "tagline": "Linux 桌面发行版（Ubuntu/Fedora/Arch）开箱即用图形化代理首选",
-      "description": "Clash Verge Rev 为 Linux 桌面用户提供了完整的 AppImage、Deb、RPM 与 Arch AUR 打包支持。免去终端繁琐配手搓 YAML 的苦恼，内置高性能 Mihomo 内核与 systemd 辅助服务，完美支持 TUN 全局拦截。",
+      "tagline": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动",
+      "description": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。",
       "iconName": "Terminal",
-      "badgeText": "Linux 桌面首选",
-      "updatedAt": "2026-11-03",
+      "badgeText": "官方来源核查",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2023-11-05",
-      "latestVersion": "v2.5.10",
-      "updatePath": "data/tutorials/linux/clash-verge-rev-linux.md",
+      "license": "GPL-3.0（详见项目许可证）",
+      "releasedAt": "未独立核实，以官方发布记录为准",
+      "latestVersion": "v2.5.10（2026-11-13 核查；以官方发布页为准）",
+      "updatePath": "src/data/tutorials/linux/clash-verge-rev-linux.ts",
       "githubRepo": "https://github.com/clash-verge-rev/clash-verge-rev",
-      "officialSite": "https://clash-verge-rev.github.io",
+      "officialSite": "https://www.clashverge.dev",
+      "releasesUrl": "https://github.com/clash-verge-rev/clash-verge-rev/releases",
       "specs": {
-        "compatibility": "Ubuntu 20.04+, Debian 11+, Fedora 36+, Arch Linux, openSUSE",
-        "architecture": "x86_64 / aarch64 (ARM64)",
-        "coreEngine": "Mihomo Core (原 Clash.Meta)",
+        "compatibility": "Linux 图形桌面；依赖由发行包决定；Ubuntu 20.04 存在 WebKitGTK 依赖问题，官方建议 24.04",
+        "architecture": "x86_64 / aarch64 / armv7，以 DEB/RPM 发布资产为准",
+        "coreEngine": "内置 Mihomo；稳定版与测试内核能力可能不同",
         "protocols": [
-          "VLESS (Reality)",
-          "Hysteria 2",
-          "TUIC v5",
+          "VLESS（含 REALITY，取决于内核）",
           "VMess",
           "Trojan",
           "Shadowsocks",
+          "Hysteria 2",
+          "TUIC",
           "WireGuard"
         ],
-        "trafficHandling": "GNOME/KDE 系统代理设置 + Linux TUN (iptables/nftables) 全局接管"
+        "trafficHandling": "系统代理仅影响遵循系统设置的应用；TUN 通过虚拟网卡和路由接管适用流量"
       },
       "tutorial": {
-        "overview": "本教程讲解在常见 Linux 发行版上安装 Clash Verge Rev 并赋予 TUN 虚拟网卡免密码执行权限。",
+        "overview": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
         "prerequisites": [
-          "Linux 桌面系统（已安装图形环境如 GNOME、KDE 等）",
-          "具有 sudo 管理员权限",
-          "Clash 订阅链接"
+          "符合该版本系统与 CPU 架构要求的设备",
+          "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
+          "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载并安装软件包",
-            "description": "在 GitHub Releases 页面，根据发行版选择包格式：Ubuntu/Debian 下载 `.deb`；Fedora 下载 `.rpm`；Arch 用户直接通过 AUR 安装 `yay -S clash-verge-rev-bin`；其他系统可下载 `.AppImage`。",
-            "codeSnippet": "# Ubuntu/Debian 命令行安装示例\nsudo dpkg -i clash-verge_xxx_amd64.deb",
-            "codeLanguage": "bash",
-            "pencilTip": "如果是 AppImage 格式，下载后先执行 `chmod +x Clash.Verge.AppImage` 赋予可执行权限。"
+            "title": "核对平台并安装",
+            "description": "从官方 Releases 选择匹配架构的 DEB 或 RPM，用发行版包管理器安装本地包并解决依赖，例如 apt install ./实际文件名.deb 或 dnf install ./实际文件名.rpm。当前核查的 v2.5.10 无 AppImage；AUR 是需自行审核的社区打包，不等同官方发布。"
           },
           {
             "stepNumber": 2,
-            "title": "赋予内核 TUN 虚拟网卡权限",
-            "description": "Linux 下创建虚拟网卡需要 CAP_NET_ADMIN 权限。在软件的【设置】中，点击【服务模式】旁边的安装按钮，或直接对内核二进制赋予 capability：",
-            "codeSnippet": "sudo setcap cap_net_admin,cap_net_bind_service=+ep ~/.config/clash-verge/clash-meta",
-            "codeLanguage": "bash",
-            "pencilTip": "赋予 capability 之后，启动 TUN 模式不再需要反复输入 sudo 密码！"
+            "title": "导入并激活配置",
+            "description": "在订阅管理页面添加远程 Clash / Mihomo YAML 配置 URL，导入后选中该配置。也可使用本地配置。不要把单节点分享 URI、登录网页或不兼容的通用订阅直接当作完整 YAML；导入失败先看错误日志。"
           },
           {
             "stepNumber": 3,
-            "title": "导入订阅并开启代理",
-            "description": "在左侧【订阅】粘贴订阅链接并下载。在【代理】页面选择低延迟节点，开启【系统代理】或【TUN 模式】。",
-            "pencilTip": "在终端输入 `curl -I https://google.com` 即可验证连通性。"
+            "title": "选择策略组和节点",
+            "description": "在代理页面选择配置提供的策略组及节点，按需使用规则模式。延迟测试只反映测试目标的响应，不代表带宽或所有网站可达。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "先系统代理，按需启用 TUN",
+            "description": "先开启系统代理并用浏览器验证。终端等不遵循系统代理的应用可显式设置本地代理，或按官方说明安装/检查服务模式后再启用 TUN，并批准必要的系统权限。TUN 并非辅助功能权限，也不保证 WSL、容器、虚拟机或所有游戏流量都被接管。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "验证并保留回退方法",
+            "description": "分别检查目标网站、DNS、应用连接与日志，确认路由符合预期。出现断网时先关闭 TUN、恢复系统代理设置，排查其他 VPN、防火墙和路由冲突。"
           }
         ],
         "advancedRules": [
-          "桌面托盘常驻：在 GNOME Wayland 下若托盘不显示，可安装 `AppIndicator and KStatusNotifierItem Support` 扩展。"
+          "[项目 README：维护分支、内核、GPL 与配置增强](https://raw.githubusercontent.com/clash-verge-rev/clash-verge-rev/main/README.md)",
+          "[安装文档：平台要求和官方发布渠道](https://www.clashverge.dev/install.html)",
+          "[官方快速入门：导入、节点、系统代理与 TUN](https://www.clashverge.dev/guide/quickstart.html)",
+          "[版本与安装资产核查](https://api.github.com/repos/clash-verge-rev/clash-verge-rev/releases/latest)",
+          "[Mihomo 配置原始示例：协议、DNS、TUN 和排除路由](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
+          "配置增强支持 Merge / Script；仅使用可信脚本，更新订阅后检查最终生效配置。规则模式依赖配置中的规则，并不自动保证特定地区或应用直连。",
+          "[Linux 官方故障排查：图形环境与发行版依赖](https://www.clashverge.dev/faq/linux.html)"
         ],
         "faq": [
           {
-            "question": "为什么开启系统代理后终端仍然无法翻墙？",
-            "answer": "Linux 的系统代理仅对支持环境变量的 GUI 软件生效，终端通常需要手动 export 或直接开启【TUN 模式】进行全局网卡接管。"
+            "question": "为什么系统代理开启后终端仍无法连接？",
+            "answer": "系统代理不是透明转发；应用必须主动遵循系统代理，或显式使用客户端本地 HTTP/SOCKS 监听地址。TUN 是另一种接管方式，仍受路由和排除设置限制。"
+          },
+          {
+            "question": "TUN 启动失败怎么办？",
+            "answer": "先看内核与服务日志，检查服务安装状态、管理员授权、虚拟网卡、DNS 与其他 VPN 冲突。Linux 不要对猜测的旧版内核路径执行 setcap；不建议全程以 root 运行 GUI。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "LinuxTux",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "e319bf0"
-        }
-      ]
+      "changelog": []
     },
     {
       "id": "v2raya",
@@ -1499,80 +1460,92 @@
       "shortName": "v2rayA",
       "system": "linux",
       "category": "linux",
-      "tagline": "基于 Web GUI 的高性能 Linux 透明代理管理中枢",
-      "description": "v2rayA 是为 Linux 服务器、NAS、树莓派及软路由量身定制的 Web 客户端。支持通过浏览器远程登录管理，借助 iptables/nftables 优雅实现全系统透明代理，无需安装臃肿的桌面环境。",
+      "tagline": "通过浏览器管理节点与 Linux 透明代理的服务",
+      "description": "v2rayA 以服务方式运行，通过 Web 界面管理订阅、节点组与 RoutingA 分流。当前 2.5 系列使用配套的 Xray 衍生内核 v2raya_core；不要与早期使用独立 V2Ray/Xray 的安装说明混用。Linux 透明代理需要对应权限、内核模块与网络工具。",
       "iconName": "Globe",
-      "badgeText": "Web管理/软路由",
-      "updatedAt": "2026-11-09",
+      "badgeText": "Web 管理",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "AGPL-3.0 开源协议",
-      "releasedAt": "2019-10-15",
-      "latestVersion": "v2.5.14",
-      "updatePath": "data/tutorials/linux/v2raya.md",
+      "license": "AGPL-3.0-only；配套内核为 MPL-2.0",
+      "releasedAt": "未核实首次发布日期，以项目历史为准",
+      "latestVersion": "v2.5.15（2026-11-13 核查）",
+      "updatePath": "src/data/tutorials/linux/v2raya.ts",
       "githubRepo": "https://github.com/v2rayA/v2rayA",
-      "officialSite": "https://v2raya.org",
+      "officialSite": "https://github.com/v2rayA/v2rayA#readme",
+      "releasesUrl": "https://github.com/v2rayA/v2rayA/releases",
       "specs": {
-        "compatibility": "Debian/Ubuntu/CentOS/Arch/Alpine/OpenWrt 等各类 Linux 发行版",
-        "architecture": "x86_64 / arm64 / armv7 / mips",
-        "coreEngine": "Xray-core / V2Ray-core + iptables/nftables 透明代理",
+        "compatibility": "Linux；本篇以 Debian/Ubuntu + systemd 为例，OpenWrt 包需注意版本差异",
+        "architecture": "x64 / x86 / arm64 / armv7 等，以对应发行包为准",
+        "coreEngine": "同版本 v2raya_core（基于 Xray-core）",
         "protocols": [
-          "VLESS (Reality)",
           "VMess",
-          "Trojan",
+          "VLESS",
           "Shadowsocks",
-          "HTTP",
-          "SOCKS5"
+          "Trojan",
+          "Hysteria 2",
+          "TUIC",
+          "WireGuard",
+          "SOCKS5",
+          "HTTP(S)"
         ],
-        "trafficHandling": "透明代理 (Redirect/TProxy) + 局域网网关共享"
+        "trafficHandling": "应用 HTTP/SOCKS 代理；Linux redirect / tproxy / tun 透明代理"
       },
       "tutorial": {
-        "overview": "本教程讲解在 Linux 系统上通过 apt/systemd 快速部署 v2rayA 并开启透明代理。",
+        "overview": "本篇按官方当前 README 的 2.5 系列安装路线介绍 Linux 使用方法。旧版文档与发行版仓库可能仍是 2.2 系列；安装、内核与升级方式必须以所用版本为准。官方 v2.5.15 发布说明已移除停放的旧域名 v2raya.org，故不再将其作为下载或教程入口。",
         "prerequisites": [
-          "一台运行 Linux 的机器（服务器、VPS 或软路由）",
-          "具有 root 或 sudo 权限",
-          "节点订阅链接"
+          "有 sudo/root 权限的 Linux 主机，具备恢复网络配置的本地或带外管理方式",
+          "安装前备份已有配置；2.4 之前的数据库升级会迁移且需重新注册账号",
+          "可用订阅或分享链接；先限制管理端口的可访问范围，再创建首个管理员"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "一键安装 v2rayA 与 Xray 内核",
-            "description": "在终端中执行官方脚本快速安装并启动 systemd 服务：",
-            "codeSnippet": "# 以 Debian/Ubuntu 为例\ncurl -Ls https://raw.githubusercontent.com/v2rayA/v2rayA-installer/main/installer.sh | sudo bash\nsudo systemctl start v2raya.service\nsudo systemctl enable v2raya.service",
+            "title": "安装当前版本与配套内核",
+            "description": "推荐按官方 README 使用 Dae Universe APT 仓库：APT 3.0+ 使用 `.sources`，更早版本使用 `.list`，两种方式二选一。下面示例适用于 APT 早于 3.0 的系统，添加第三方软件源与签名密钥前应先检查来源。官方安装包同时提供 v2raya 和配套内核，不再运行未经核实的旧一键脚本。",
+            "codeSnippet": "sudo apt update\nsudo apt install curl\n# 仅适用于 APT < 3.0；APT 3.0+ 请按官方 README 使用 .sources\nsudo curl -fsSL -o /etc/apt/sources.list.d/daeuniverse.list https://daeuniverse.pages.dev/daeuniverse.list\nsudo curl -fsSL -o /usr/share/keyrings/daeuniverse-archive-goose.gpg https://daeuniverse.pages.dev/daeuniverse-archive-goose.gpg\nsudo apt update\nsudo apt install v2raya\nsudo systemctl enable --now v2raya",
             "codeLanguage": "bash",
-            "pencilTip": "安装完成后服务会自动作为系统守护进程常驻开机启动。"
+            "pencilTip": "也可从官方 Releases 下载本机架构的安装包并核对 SHA-256。手工安装必须让 v2raya 与 v2raya_core 版本完全一致。仓库实际提供版本可能晚于或早于本文核查版本。"
           },
           {
             "stepNumber": 2,
-            "title": "进入 Web 管理面板",
-            "description": "在同局域网的浏览器中输入 `http://<你的Linux机IP>:2017`，首次进入需创建管理员用户名与密码。",
-            "pencilTip": "若是本机直接访问 `http://localhost:2017`。"
+            "title": "限制管理界面并创建管理员",
+            "description": "当前服务默认监听 `0.0.0.0:2017`，首个注册账号成为管理员。在防火墙中仅允许可信管理设备访问，再打开 `http://127.0.0.1:2017`（本机）或可信内网设备地址。仅本机使用时按官方说明配置启动参数 `--address 127.0.0.1:2017`，修改 systemd 服务可用 `sudo systemctl edit --full v2raya.service`，随后重载并重启。",
+            "pencilTip": "不要把未初始化面板或明文 HTTP 管理界面暴露到公网；远程管理优先使用 SSH 隧道或受保护的管理网络。"
           },
           {
             "stepNumber": 3,
-            "title": "导入订阅并开启透明代理",
-            "description": "点击左上角【创建】，粘贴订阅链接拉取节点。点击右上角【设置】，将【透明代理/系统代理实现】选择为【tproxy】或【redirect】，规则选择【绕过大陆及局域网】。回到主页勾选节点并点击左上角【就绪】启动连接。",
-            "pencilTip": "开启后，该 Linux 机器上所有的命令行、Docker 容器以及守护进程均自动透明翻墙！"
+            "title": "导入节点并先测试应用代理",
+            "description": "在页面导入订阅或分享链接，将节点加入组并选择节点与路由规则，然后从面板启动核心。先让单个应用使用默认 SOCKS5 `127.0.0.1:20170` 或 HTTP `127.0.0.1:20171` 验证连接；`20172` 为应用路由规则的 HTTP 入站。端口如已在设置中修改，以实际值为准。",
+            "pencilTip": "本地入站默认不等于开放给局域网；共享需要显式设置监听范围、防火墙和访问控制。订阅 URL 可能含凭证，勿公开。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "按主机条件开启透明代理",
+            "description": "确认单应用代理可用后，在面板开启透明代理并选择模式。Linux 的 redirect/tproxy 需要 root 及 iptables 或 nftables；tun 需要 `/dev/net/tun` 与 iproute2 的 `ip` 命令。启用后分别测试 DNS、IPv4/IPv6、局域网和目标应用，出错先停用透明代理并检查日志。",
+            "pencilTip": "Docker 网络命名空间、网关转发、静态路由和应用自带加密 DNS 都可能影响接管，不能保证主机、容器与局域网全部流量自动代理。"
           }
         ],
         "advancedRules": [
-          "局域网网关共享：在设置中开启“防止 DNS 污染”与“开启局域网共享”，其他设备将网关设置为该 Linux IP 即可免客户端翻墙。"
+          "升级前停止服务并备份配置目录（Linux 默认 `/etc/v2raya`）；v2raya 与 v2raya_core 必须一起升级。旧数据库迁移、账号重新注册和回滚应先阅读对应发布说明。",
+          "官方当前 README 提醒 OpenWrt feed 仍可能提供 2.2.7.x 与独立 xray-core；不要直接将本篇 2.5 系列的内核要求套到旧软件包。",
+          "核查来源：[当前官方 README](https://github.com/v2rayA/v2rayA/blob/main/README.md)、[v2.5.15 发布说明](https://github.com/v2rayA/v2rayA/releases/tag/v2.5.15)。"
         ],
         "faq": [
           {
-            "question": "透明代理报错 iptables 缺失怎么办？",
-            "answer": "执行 `sudo apt install iptables iproute2` 安装基础网络工具包即可。"
+            "question": "为什么新版提示内核版本不匹配？",
+            "answer": "2.5 系列要求同版本的 v2raya_core。请用相同发布的成套安装包或同时升级两个二进制文件，不能继续直接套用旧教程中的独立 Xray/V2Ray 内核。"
+          },
+          {
+            "question": "透明代理失败只要安装 iptables 就够了吗？",
+            "answer": "不一定。需结合模式检查权限、防火墙后端、内核模块；TUN 还需可用的 /dev/net/tun 与 iproute2。查看服务日志 `journalctl -u v2raya -b`，不要盲目混装或清空防火墙规则。"
+          },
+          {
+            "question": "把其他设备网关改成这台机器就能使用吗？",
+            "answer": "不能保证。还需正确的 IP 转发、DNS、转发路径、防火墙、IPv6 及代理规则。先在主机验证，不要在没有恢复手段时直接更改全网默认网关。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "SysAdminPro",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "a9821ef"
-        }
-      ]
+      "changelog": []
     },
     {
       "id": "openclash",
@@ -1580,90 +1553,89 @@
       "shortName": "OpenClash",
       "system": "linux",
       "category": "linux",
-      "tagline": "OpenWrt 全局透明代理客户端、家庭与软路由终极分流网关",
-      "description": "OpenClash 是基于 OpenWrt 系统的 LuCI 客户端，采用 Clash / Mihomo (Clash Meta) 作为底层代理核心。支持 Fake-IP、TUN 虚拟网卡及 TProxy 透明代理等多种模式，具备出色的 DNS 分流、节点延迟探测、局域网设备按 IP/MAC 细粒度控制与订阅配置转换能力。是软路由、家庭主路由/旁路由网关科学上网的绝对标杆。",
+      "tagline": "在 OpenWrt LuCI 中管理 Mihomo 与透明代理",
+      "description": "OpenClash 是 OpenWrt 的 LuCI 插件，管理 Mihomo（原 Clash Meta）内核、YAML 配置、订阅和网关透明代理。是否能接管设备流量取决于网关路径、DNS、防火墙及 IPv6 配置，不是安装后自动覆盖所有设备、应用或协议。",
       "iconName": "Router",
-      "badgeText": "软路由网关",
-      "updatedAt": "2026-10-12",
+      "badgeText": "OpenWrt 插件",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 开源协议",
-      "releasedAt": "2019-04-12",
-      "latestVersion": "v0.48.002",
-      "updatePath": "data/tutorials/linux/openclash.md",
+      "license": "MIT（插件）；内核许可证另计",
+      "releasedAt": "2019 年（项目版权记录；首次发版日未确认）",
+      "latestVersion": "v0.48.002（2026-11-13 核查）",
+      "updatePath": "src/data/tutorials/linux/openclash.ts",
       "githubRepo": "https://github.com/vernesong/OpenClash",
-      "officialSite": "https://github.com/vernesong/OpenClash/wiki",
+      "officialSite": "https://github.com/vernesong/OpenClash#readme",
+      "releasesUrl": "https://github.com/vernesong/OpenClash/releases",
       "specs": {
-        "compatibility": "OpenWrt 21.02 / 23.05 / 24.x 及衍生软路由固件 (iStoreOS, ImmortalWrt 等)",
-        "architecture": "x86_64, aarch64, armv7, mipsel, mips",
-        "coreEngine": "Mihomo (Clash Meta) / Clash Premium Core",
+        "compatibility": "OpenWrt + LuCI；按固件的 opkg/apk 及 firewall3/firewall4 选择安装路线",
+        "architecture": "插件包与 Mihomo 二进制分开选择；内核须匹配路由器 CPU/ABI",
+        "coreEngine": "Mihomo（Meta）；可选内核以插件当前文档为准",
         "protocols": [
           "Shadowsocks",
           "VMess",
-          "VLESS-Reality",
+          "VLESS / REALITY",
           "Trojan",
           "Hysteria 2",
-          "TUIC v5",
+          "TUIC",
           "WireGuard",
-          "Snell"
+          "Snell（依内核）"
         ],
-        "trafficHandling": "TProxy / Redir-Host / TUN 模式 (软路由局域网透明代理 + 智能 DNS 分流)"
+        "trafficHandling": "REDIRECT / TPROXY / TUN；DNS 可用 fake-ip 或 redir-host"
       },
       "tutorial": {
-        "overview": "OpenClash 是 OpenWrt 软路由与嵌入式路由器上功能最丰富、使用最广泛的透明网关代理插件。通过在路由器层面接管整个家庭/办公室的网络流量，所有接入 WiFi 或网线的设备（手机、PC、电视盒子、Apple TV、Switch、PS5、智能家居等）无需额外安装客户端即可无感实现科学上网、广告拦截与智能分流。",
+        "overview": "先备份路由器配置并保留恢复手段，再安装插件、准备核心与配置，最后逐项验证网关和 DNS。fake-ip/redir-host 是 DNS 处理方式，不能与 TUN/TPROXY 转发机制混为一谈。本文依据官方 README、v0.48.002 发布说明及仓库使用手册核查。",
         "prerequisites": [
-          "已安装 OpenWrt 系统的软路由（工控机、虚拟机、NanoPi、树莓派）或硬路由",
-          "具有 OpenWrt 管理员 (root) 权限及网页后台 (LuCI) 访问权限",
-          "支持 Clash / Clash Meta 格式的机场订阅链接或自建节点配置"
+          "有 root/LuCI 管理权限的 OpenWrt 路由器，有足够闪存和内存；先备份网络、DNS 与防火墙配置",
+          "确认固件包管理器为 opkg 还是 apk、防火墙为 fw3 还是 fw4，依赖必须来自匹配固件的软件源",
+          "可信的 Clash/Mihomo YAML 配置或订阅；不要向陌生在线转换服务上传含 token 的订阅",
+          "确认客户端实际经过这台网关，且没有其他透明代理插件同时争抢 DNS 和防火墙"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "安装 OpenClash 依赖与 ipk 安装包",
-            "description": "在 OpenWrt 终端（或通过 LuCI 的【系统】->【TTYD 终端】）执行更新并安装必备依赖库，随后下载安装最新的 luci-app-openclash：",
-            "codeSnippet": "# 更新软件源并安装 OpenClash 必备组件依赖\nopkg update\nopkg install coreutils-nohup bash iptables dnsmasq-full curl ca-certificates ipset ip-full iptables-mod-tproxy kmod-tun\n\n# 下载 luci-app-openclash 最新版 ipk 并安装\nwget https://github.com/vernesong/OpenClash/releases/download/v0.46.070/luci-app-openclash_0.46.070_all.ipk -O /tmp/openclash.ipk\nopkg install /tmp/openclash.ipk",
-            "codeLanguage": "bash",
-            "pencilTip": "安装完成后刷新 LuCI 页面，若菜单未出现可执行 `/etc/init.d/uhttpd restart` 重启 Web 服务。"
+            "title": "按固件安装依赖和对应安装包",
+            "description": "在官方 Releases 查看当次安装说明并下载 `luci-app-openclash_*.ipk`（opkg）或 `luci-app-openclash-*.apk`（apk），可通过 LuCI 的软件包页面上传安装。依赖需按 firewall3/iptables 与 firewall4/nftables 分别安装，不要复制旧版固定 iptables 清单，也不要安装固定旧版本链接。",
+            "pencilTip": "当前 README 的依赖包含 bash、curl、ca-bundle、ruby、ruby-yaml、dnsmasq-full、ip-full、unzip、LuCI 等；fw4 需要 kmod-nft-tproxy，TUN 还需要 kmod-tun。dnsmasq 与 dnsmasq-full 冲突时按固件指导处理，切勿为安装而强制移除网络依赖。"
           },
           {
             "stepNumber": 2,
-            "title": "下载代理内核并配置订阅",
-            "description": "进入 LuCI【服务】->【OpenClash】。首次使用先在【插件设置】->【版本更新】中一键下载更新 Clash Meta (Mihomo) 内核。接着进入【配置订阅】页面，点击【添加】，填入机场提供的订阅链接，选择【在线订阅转换】或直接拉取，保存并应用配置。",
-            "pencilTip": "强烈建议使用 Mihomo (Meta) 内核，对 VLESS-Reality、Hysteria 2、TUIC 等现代协议拥有完整原生支持。"
+            "title": "安装匹配架构的内核并导入配置",
+            "description": "进入【服务 → OpenClash】，根据首次引导在版本更新中确认内核编译版本并下载 Mihomo；手工安装时须选择路由器架构，按发布说明放入 `/etc/openclash/core/`，命名为 `clash_meta` 并设置执行权限。在配置订阅或配置管理中添加订阅/上传 YAML，更新后选为运行配置。",
+            "pencilTip": "完整 Mihomo 配置可直接使用，不应默认开启在线转换。仅有节点列表而没有策略组、规则等配置时，应使用可信模板或由提供者输出完整配置；首次启动也需能下载规则和 GEO 数据。"
           },
           {
             "stepNumber": 3,
-            "title": "运行模式选择与一键启动",
-            "description": "进入【插件设置】->【模式设置】，推荐运行模式选择【Fake-IP (增强模式)】或【混合模式 (TUN + TProxy)】，勾选【启用本地 DNS 劫持】。回到【运行状态】面板，点击【启动 OpenClash】。",
-            "codeSnippet": "# 可通过命令行查看 OpenClash 启动日志\nlogread -e \"OpenClash\" -f",
+            "title": "选择模式并启动，分步验证",
+            "description": "在插件设置的模式设置中按需求选择 Fake-IP 或 Redir-Host，以及是否启用 TUN/混合转发。初次使用先保持官方默认，再确认 DNS 接管、网关与局域网绕行规则。启动后查看运行日志，并通过运行状态页的仪表盘选择策略组节点。",
+            "codeSnippet": "# 仅读取路由器日志；Ctrl+C 结束查看\nlogread -e OpenClash -f",
             "codeLanguage": "bash",
-            "pencilTip": "启动成功后，可在主界面点击【打开 Dashboard 控制台】（默认 9090 端口）实时查看局域网连接、切换分流节点或测速。"
+            "pencilTip": "分别检查国内与代理目标、局域网设备、DNS、IPv4/IPv6。不要将 Dashboard/API/代理端口映射到公网；保持仅内网访问并设置控制密钥。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "异常时先恢复网络并收集日志",
+            "description": "若启用后断网，先停止 OpenClash，确认原始 DNS/网关连接恢复，再在运行日志页面生成调试日志。检查核心与配置校验、依赖、订阅更新、防火墙后端及 DNS 端口冲突。提交日志前删除订阅 URL、节点密码、密钥与公网地址等敏感内容。",
+            "pencilTip": "不要用关闭全部防火墙、盲目替换 DNS 或强制开启流量分载作为通用修复。每次只改一项并验证，便于回滚。"
           }
         ],
         "advancedRules": [
-          "局域网设备按 IP / MAC 分流：进入【插件设置】->【访问控制】，可指定特定设备（如电视机、NAS、PT 下载机）直接绕过代理走直连，或指定游戏主机走独立的加速节点。",
-          "防止 DNS 污染与回环：在【DNS 设置】中将上游 DNS 设为国内公共 DNS（如 223.5.5.5）+ 境外 DoH/DoT（如 1.1.1.1 / 8.8.8.8），并开启 Dnsmasq 转发劫持，彻底杜绝 DNS 泄漏。",
-          "配合防火墙硬件加速：若软路由 CPU 性能有限，在 OpenWrt【网络】->【防火墙】中开启【软件流量分载 (Software Flow Offloading)】，可在数千兆吞吐下极大降低 CPU 负载。"
+          "DNS 上游、解析策略与代理路由需要配套设计；添加公共 DNS 或 DoH 不等于彻底杜绝 DNS 泄漏。客户端自带加密 DNS、IPv6 绕行和旁路由拓扑都需单独测试。",
+          "Fake-IP 对少数应用不兼容时，可按文档添加对应域名到 fake-ip-filter、改为 Redir-Host 或对特定设备绕行；不要把“仅允许常用端口”当成 Fake-IP 的 DNS 修复选项。",
+          "流量分载不是代理加速的通用开关。官方手册的测试环境和转发路径有明确限制，不能把软件分载宣传为任何设备都能达到千兆或数千兆。",
+          "核查来源：[官方安装与依赖说明](https://github.com/vernesong/OpenClash#readme)、[v0.48.002 发布说明](https://github.com/vernesong/OpenClash/releases/tag/v0.48.002)、[模式与流量控制](https://github.com/vernesong/OpenClash/blob/dev/.github/skills/openclash-user-guide/08-settings-mode-traffic.md)、[MIT 许可证](https://github.com/vernesong/OpenClash/blob/master/LICENSE)。"
         ],
         "faq": [
           {
-            "question": "开启 OpenClash 后局域网内国内网站变慢或打不开怎么办？",
-            "answer": "请检查【DNS 设置】，确保 Fake-IP 高级设置中勾选了“仅允许常用端口流量”，并将国内常用域名和局域网 IP（192.168.x.x）加入直连规则；同时检查国内 DNS 服务器是否配置有效（如阿里 DNS、腾讯 DNSPod）。"
+            "question": "为什么安装 ipk 后仍不能启动？",
+            "answer": "插件包不等于代理内核；还要确认核心架构与执行权限、完整配置、运行依赖、GEO/规则数据及防火墙模块。用调试日志定位，勿混用其他固件版本的 kmod。apk 系统也不能直接套用 opkg 安装指令。"
           },
           {
-            "question": "为什么部分设备（如 Apple TV / 智能电视）连接 Wi-Fi 后提示无网络？",
-            "answer": "部分智能家居和电视系统对 Fake-IP 分配的 198.18.0.0/16 保留 IP 段敏感。可以在【运行模式】中切换为【Redir-Host】模式，或在【访问控制】中将该设备的 MAC 地址设置为【绕过核心直连】。"
+            "question": "电视或游戏机连 Wi-Fi 后显示无网络怎么办？",
+            "answer": "先查看实际网关/DNS和连接日志，判断是连通性检测域名、Fake-IP兼容、UDP、IPv6或规则问题。针对性调整过滤或绕行；不能仅凭设备类型断言是假 IP 地址导致。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-11-12",
-          "author": "RouterGeek",
-          "prNumber": 1,
-          "summary": "首次更新",
-          "commitHash": "c71f92e"
-        }
-      ]
+      "changelog": []
     },
     {
       "id": "vps-nodes",
@@ -1671,145 +1643,111 @@
       "shortName": "自建节点",
       "system": "linux",
       "category": "linux",
-      "tagline": "一台海外 VPS 服务器 + 开源 Web SSH / PuTTY 工具 + 主流一键脚本，从零打造专属私有高速节点",
-      "description": "自己搭建节点拥有独立纯净的公网 IP，完全告别共享机场的拥堵和封锁风险。本教程以开源免客户端且集合主流一键脚本的 Web SSH 工具 [![不想搭梯](/bxdt-icon.png) 不想搭梯](https://bxdt.sld.tw) 为例进行操作演示，同时优先推荐用户在日常运维中使用 PuTTY 等本地专业 SSH 工具（由于网页中转服务资源有限）。搭配 Akile 等高性价比海外 VPS 与主流开源一键脚本（如 3X-UI 面板、sing-box、Hysteria 2 等），在十几分钟内从零构建专属节点。",
+      "tagline": "两种搭建方式：vpn2qr 默认一键安装，或八合一脚本部署 Hysteria2",
+      "description": "通过 [不想搭梯](https://bxdt.sld.tw)（Web SSH）连接 VPS，按需选择下面一套教程即可。两套脚本建议分别在干净系统上安装，不要在同一台 VPS 上叠加运行。",
       "iconName": "Server",
-      "badgeText": "VPS 一键搭建",
-      "updatedAt": "2026-04-12",
+      "badgeText": "VPS 图文教程",
+      "updatedAt": "2026-11-13",
       "isOpenSource": true,
-      "license": "GPL-3.0 / MIT 开源协议",
-      "releasedAt": "2023-01-15",
-      "latestVersion": "v2.4.8",
+      "license": "各项目许可证见源码仓库",
+      "releasedAt": "不适用（脚本合集）",
+      "latestVersion": "以脚本仓库为准",
       "updatePath": "data/tutorials/linux/vps-nodes.md",
       "officialSite": "https://bxdt.sld.tw",
       "officialSiteLabel": "不想搭梯 Web SSH",
       "officialSiteIcon": "/bxdt-icon.png",
-      "githubRepo": "https://github.com/mhsanaei/3x-ui",
+      "githubRepo": "https://github.com/www222fff/vpn2qr",
       "specs": {
-        "compatibility": "Linux (Debian 11/12, Ubuntu 20.04/22.04/24.04, CentOS/AlmaLinux)",
-        "architecture": "x86_64 (amd64), aarch64 (arm64)",
-        "coreEngine": "Xray-core / sing-box / Hysteria 2 / 3X-UI 面板",
+        "compatibility": "Linux VPS（具体系统版本以所选脚本说明为准）",
+        "architecture": "amd64 / arm64（以脚本支持范围为准）",
+        "coreEngine": "Xray / sing-box（由所选脚本部署）",
         "protocols": [
-          "VLESS (Reality / 独立域名)",
-          "Hysteria 2",
-          "TUIC v5",
-          "VMess",
-          "Trojan",
-          "Shadowsocks"
+          "VLESS-Reality（vpn2qr）",
+          "Hysteria2（八合一示例）"
         ],
-        "trafficHandling": "VPS 原生入站监听 / 多协议端口分流 / 反向代理"
+        "trafficHandling": "客户端连接 VPS 节点端口"
       },
       "tutorial": {
-        "overview": "本教程以开源且内置聚合一键脚本的 [![不想搭梯](/bxdt-icon.png) 不想搭梯](https://bxdt.sld.tw) Web SSH 工具为例演示连接 VPS 与部署节点，同时优先建议日常使用 PuTTY 等本地 SSH 工具（因网页中转资源有限），并深入解析一键脚本内置 BBR 算法与 Reality 无域名易阻断的风险。",
+        "overview": "教程一使用默认脚本 vpn2qr；教程二使用八合一脚本，仅安装 Hysteria2。截图可点击放大，菜单名称与选项以实际脚本版本为准。",
         "prerequisiteAction": {
           "prefixText": "到",
           "url": "https://jiakuan.link/akile",
           "name": "Akile",
           "iconSrc": "/akile-favicon.png",
           "suffixText": "买服务器",
-          "title": "前往 Akile 选购海外 VPS 服务器"
+          "title": "前往 Akile 选购 VPS"
         },
         "prerequisites": [
-          "一台海外 VPS 服务器（推荐到右上角 Akile 选购，性价比高、支持多种网络优化线路，拥有独立公网 IPv4/IPv6）",
-          "掌握 VPS 的基本连接信息：公网 IP 地址、SSH 端口（默认 22）、用户名 root 及初始密码",
-          "SSH 连接工具：优先推荐下载安装 PuTTY、Termius 等本地客户端工具（日常运维更稳定）；本教程同时以开源免安装的 Web SSH [![不想搭梯](/bxdt-icon.png) 不想搭梯](https://bxdt.sld.tw) 为例进行零门槛演示",
-          "一个已解析至 VPS IP 的独立域名（强烈建议自备）：Reality 协议虽然支持借用大厂证书免买域名，但无域名易被针对性阻断；长期高可用推荐准备个人域名配置标准 TLS"
+          "一台具有公网 IP 的 VPS，以及 SSH 端口、root 用户名和密码（或 SSH 密钥）。",
+          "打开 [不想搭梯](https://bxdt.sld.tw)，准备填写服务器信息；也可用本地 SSH 工具连接。",
+          "教程二需自备域名：添加 A 记录指向 VPS 的 IPv4；使用 IPv6 时添加 AAAA 记录。仅开启 DNS 解析，不开启 CDN 代理，并等待解析生效。",
+          "在云安全组与系统防火墙中放行 SSH 和节点实际使用的端口；Hysteria2 使用 UDP。申请证书时还需满足脚本所用验证方式的端口或 DNS 要求。"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "使用 SSH 工具连接 VPS 服务器（以 不想搭梯 为例）",
-            "description": "连接海外服务器有两种常用方式：\n\n1. **优先推荐本地 SSH 工具**：日常运维中强烈建议优先使用 **PuTTY**、Termius、FinalShell 或本地系统原生终端（PowerShell / Terminal）。因为网页版 Web SSH 的公共中转服务资源有限，高并发或弱网下可能受限，而本地 SSH 工具具备极佳的稳定性、更低的延迟且完全直连无中转瓶颈。\n\n2. **以开源** [![不想搭梯](/bxdt-icon.png) 不想搭梯](https://bxdt.sld.tw) **为例演示**：为了让新手无需繁琐安装软件即可快速上手，本步骤以开源 Web SSH 工具 [![不想搭梯](/bxdt-icon.png) 不想搭梯](https://bxdt.sld.tw) 为例操作。它完全开源透明、免本地安装，同时深度聚合了社区主流的一键脚本库，非常方便一键连接与选取脚本：\n   - 浏览器打开 [![不想搭梯](/bxdt-icon.png) 不想搭梯](https://bxdt.sld.tw)；\n   - 输入 VPS 的 IP、端口（默认 22）、用户名 root 及登录密码；\n   - 点击一键连接即可在网页中唤出 Linux 终端。",
-            "codeSnippet": "# 优先推荐使用 PuTTY 或在本地终端执行标准 SSH 直连命令：\nssh root@你的VPS_IP -p 22\n\n# 亦可直接在浏览器中访问开源 不想搭梯 免安装连接（内置聚合脚本）：\n# https://bxdt.sld.tw\n# 提示：不想搭梯适合快速搭建与测试，但公共中转服务资源有限，日常推荐使用本地 SSH 工具",
+            "title": "教程一：默认一键脚本 vpn2qr",
+            "description": "脚本仓库：[www222fff/vpn2qr](https://github.com/www222fff/vpn2qr)。\n\n1. 打开不想搭梯，保留默认一键脚本 vpn2qr。\n2. 填写 VPS 公网 IP、SSH 端口、用户名和密码，点击连接并安装。\n3. 等待脚本运行完成，不要关闭页面。\n4. 成功后，用支持 VLESS-Reality 的客户端扫描二维码，或复制节点链接导入，选中节点并连接。\n\n若使用本地 SSH，登录 VPS 后执行官方安装命令：",
+            "codeSnippet": "curl -fsSL https://raw.githubusercontent.com/www222fff/vpn2qr/main/install.sh | bash",
             "codeLanguage": "bash",
-            "pencilTip": "[![不想搭梯](/bxdt-icon.png) 不想搭梯](https://bxdt.sld.tw) 代码开源且深度整合一键脚本，上手极快；但由于其中转服务资源有限，日常高频维护优先建议使用 PuTTY 等本地客户端工具。"
+            "images": [
+              {
+                "src": "/tutorials/vps/vps_0.png",
+                "alt": "vpn2qr 图 0：默认脚本与 SSH 连接页面",
+                "caption": "图 0 · 保留默认脚本 vpn2qr"
+              },
+              {
+                "src": "/tutorials/vps/vps_1.png",
+                "alt": "vpn2qr 图 1：填写 VPS 的 SSH 连接信息",
+                "caption": "图 1 · 填写服务器信息并开始安装"
+              },
+              {
+                "src": "/tutorials/vps/vps_2.png",
+                "alt": "vpn2qr 图 2：脚本安装进度与终端日志",
+                "caption": "图 2 · 等待安装完成"
+              },
+              {
+                "src": "/tutorials/vps/vps_3.png",
+                "alt": "vpn2qr 图 3：安装成功后的节点链接与随机示意二维码",
+                "caption": "图 3 · 扫码或复制链接导入（二维码为随机示意，请使用自己生成的节点）"
+              }
+            ],
+            "imageColumns": 2,
+            "pencilTip": "客户端需支持 VLESS-Reality，例如新版 v2rayN、v2rayNG、Shadowrocket，或使用 Mihomo 内核的客户端。"
           },
           {
             "stepNumber": 2,
-            "title": "系统环境更新与 BBR 拥塞控制算法说明",
-            "description": "登录 VPS 后，建议先更新 Linux 软件包。在网络加速方面需注意：**主流的自建节点一键安装脚本（如 3X-UI、各主流多合一脚本）内部通常已经内置了类似 Google BBR 这样的 TCP 拥塞控制算法**，在后续运行一键脚本时通常会自动开启或弹出提示供你一键启用，无需提前重复配置。如果你希望在安装前手动确保 BBR 开启，亦可执行以下命令：",
-            "codeSnippet": "# 1. 更新系统软件包基础依赖\napt update -y && apt upgrade -y && apt install -y curl wget socat tar\n\n# 2. 手动开启原生 BBR 拥塞控制算法（若使用的一键脚本已内置开启，可跳过此步）\necho \"net.core.default_qdisc=fq\" >> /etc/sysctl.conf\necho \"net.ipv4.tcp_congestion_control=bbr\" >> /etc/sysctl.conf\nsysctl -p\n\n# 3. 验证 BBR 是否成功生效\nsysctl net.ipv4.tcp_congestion_control\n# 输出显示 net.ipv4.tcp_congestion_control = bbr 即代表成功",
+            "title": "教程二：八合一脚本安装 Hysteria2",
+            "description": "脚本仓库：[mack-a/v2ray-agent](https://github.com/mack-a/v2ray-agent)。\n\n1. 在不想搭梯的脚本列表中选择「八合一一键脚本」，连接 VPS 并运行；也可在 SSH 终端执行下方命令。\n2. 在主菜单选择 **2. 任意组合安装**，再选择 **Hysteria2**，按提示完成配置。\n3. 输入已解析到 VPS 的自备域名。证书建议选择 **Let’s Encrypt**，按提示完成申请，不要跳过证书验证。\n4. 等待安装结束，保存输出的 **Hysteria2 协议链接**和**二维码链接**。在支持 Hysteria2 的客户端中粘贴协议链接，或打开二维码链接后扫码导入，选中节点并连接。",
+            "codeSnippet": "curl -fsSL https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh -o /root/install.sh && bash /root/install.sh",
             "codeLanguage": "bash",
-            "pencilTip": "💡 重点提示：主流一键脚本普遍内置了类似 BBR 这样的拥塞控制算法，在脚本菜单中按提示回车启用即可，无需繁琐的手动配置。"
-          },
-          {
-            "stepNumber": 3,
-            "title": "运行一键脚本搭建节点服务（以 3X-UI 可视化面板为例）",
-            "description": "在终端中执行当前社区维护最活跃的 3X-UI 多协议管理面板官方一键安装脚本（如果在 [![不想搭梯](/bxdt-icon.png) 不想搭梯](https://bxdt.sld.tw) 中，可在其内置聚合脚本列表中一键点击运行；脚本内已集成环境依赖与 BBR 优化，支持 VLESS、VMess、Trojan、Shadowsocks 等协议，自带中文可视化 Web 界面）：",
-            "codeSnippet": "# 运行 3X-UI 官方一键安装脚本（或在 不想搭梯 脚本库中选用）：\nbash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)\n\n# 根据终端提示自定义设置：\n# 1. 设置 Web 后台登录账号与密码（务必牢记）\n# 2. 设置面板访问端口（如 2053 或自定义高位端口）\n# 3. 脚本如提示是否启用 BBR 加速，输入 y 确认开启即可",
-            "codeLanguage": "bash",
-            "pencilTip": "主流一键脚本集成了依赖安装、面板管理与 BBR 拥塞控制算法优化，跟随中文终端提示操作即可完成搭建。"
-          },
-          {
-            "stepNumber": 4,
-            "title": "登录 Web 面板配置节点（⚠️ 提示 Reality 协议无域名易被阻断）",
-            "description": "在浏览器打开 `http://你的VPS_IP:设置的端口`，输入刚才设定的账号密码登录 3X-UI 面板。进入「入站列表」-> 点击「添加入站」：\n\n1. 协议选择：选择 vless（或根据需求选择 hysteria2 等）\n2. 监听端口：推荐填写 443（伪装标准 HTTPS 流量）\n3. 传输配置：若选择 Reality 传输，目标网站 (Dest) 可填入海外大厂域名（如 itunes.apple.com:443 或 www.microsoft.com:443）借用证书。\n4. ⚠️ 风险提示：Reality 协议由于「无独立域名」（借用大厂证书与 SNI 伪装），其 VPS 真实 IP 与借用域名的官方 IP 并不相符。防火墙通过反向主动探测、TLS 握手校验或 SNI 域名阻断策略，能够轻易识别出异常流量。因此 Reality 协议无域名存在易被阻断的风险！长期稳定使用强烈建议自备独立域名并申请正规 TLS 证书，或搭配 Hysteria 2 协议备用。\n5. 点击保存后，在入站行右侧点击「二维码」或「复制链接」即可获取节点链接。",
-            "codeSnippet": "# 节点链接示例 (复制后可直接导入各客户端)：\nvless://uuid-key@你的VPS_IP:443?security=reality&encryption=none&pbk=公钥&headerType=none&fp=chrome&spx=%2F&type=tcp&sni=itunes.apple.com#Akile-My-VLESS-Reality",
-            "codeLanguage": "text",
-            "pencilTip": "⚠️ 重点提示：Reality 协议虽免去购买域名的麻烦，但「无域名易被阻断」！追求长期稳定的主力节点，建议自备域名配置独立 TLS，或使用 Hysteria 2 作为互备。"
-          },
-          {
-            "stepNumber": 5,
-            "title": "将自建节点导入客户端并开启代理测试",
-            "description": "复制刚才生成的节点链接，打开你在对应设备上安装好的客户端（iOS 上的 Shadowrocket/Karing、Windows 上的 Clash Verge Rev/v2rayN、Android 上的 v2rayNG/FlClash、macOS 上的 Clash Verge 等）。在客户端中点击「从剪贴板导入」，选择刚添加的自建节点并连接，打开浏览器访问 ipinfo.io 检查公网 IP 是否已经成功变更为你的 VPS 地址。",
-            "codeSnippet": "# 终端测试连通性与代理状态：\ncurl -I --socks5 127.0.0.1:7890 https://www.google.com",
-            "codeLanguage": "bash",
-            "pencilTip": "自建节点独享 VPS 带宽与原生纯净 IP，非常适合用于流媒体解锁、AI 工具访问与跨境学习。"
+            "images": [
+              {
+                "src": "/tutorials/vps/aio.png",
+                "alt": "八合一脚本主菜单：选择 2 任意组合安装，再选择 Hysteria2",
+                "caption": "八合一主菜单 · 输入 2，随后选择 Hysteria2"
+              }
+            ],
+            "imageColumns": 1,
+            "pencilTip": "务必先自备域名并添加 DNS 记录，再申请 Let’s Encrypt 证书。安装后可运行 `vasma` 再次打开管理菜单。"
           }
         ],
         "advancedRules": [
-          "优先推荐本地 SSH 工具：日常运维建议使用 PuTTY、Termius、FinalShell 等本地客户端直连 VPS。虽然 [![不想搭梯](/bxdt-icon.png) 不想搭梯](https://bxdt.sld.tw) 开源免安装且聚合脚本很方便，但其中转服务资源有限，本地工具更稳定且无公共中转负担。",
-          "警惕 Reality 协议「无域名易被阻断」风险：Reality 借用第三方 SNI 无需自备域名，但在部分网络环境或敏感时期极易被防火墙主动探测识别并阻断。追求长期高稳定性的用户，强烈建议自备域名配置标准 TLS 证书，或同时部署基于 UDP 的 Hysteria 2 / TUIC v5 协议作为备选互补方案。",
-          "一键脚本通常内置 BBR 拥塞控制算法：绝大多数主流一键安装脚本（3X-UI、各开源多合一脚本）均已内置 Google BBR 开启功能，安装过程中跟随提示启用即可，能够有效降低跨境长途高延迟网络中的丢包率并提高吞吐速度。",
-          "服务器安全加固：建议在 VPS 上修改默认 SSH 端口（如将 22 改为 28822），关闭 root 密码登录改用 SSH 密钥，并安装 fail2ban（apt install -y fail2ban）防止恶意端口暴力破解。",
-          "云厂商安全组放行：若在 Akile 或其他云后台绑定了安全组防火墙，务必在控制台中放行你所配置的节点端口（例如 443 TCP/UDP、Web 面板端口等），否则客户端将显示超时连接失败。"
+          "节点链接、二维码、UUID 和密钥等同于访问凭据，不要公开分享。截图二维码为随机示意，不能导入节点；请使用自己安装后生成的链接或二维码。",
+          "一键脚本会以 root 权限修改系统，执行前核对仓库与命令；已有业务的服务器请先备份。使用时遵守当地法律及服务商条款。"
         ],
         "faq": [
           {
-            "question": "连接 VPS 应该用本地 SSH 工具（如 PuTTY）还是 [![不想搭梯](/bxdt-icon.png) 不想搭梯](https://bxdt.sld.tw)？",
-            "answer": "优先推荐使用 PuTTY、Termius、FinalShell 或本地系统原生终端等本地 SSH 工具。原因在于：[![不想搭梯](/bxdt-icon.png) 不想搭梯](https://bxdt.sld.tw) 是一个完全开源透明且聚合了一键脚本的优秀工具，省去了安装客户端的步骤，非常适合新手首次搭建与快速测试；但由于其中转服务资源有限，且在浏览器标签页后台休眠时容易断连，因此不建议长期作为高频运维工具。日常运维建议使用 PuTTY 等本地客户端直连 VPS，体验更稳定流畅。"
+            "question": "导入后连接超时怎么办？",
+            "answer": "检查服务是否运行、域名解析是否正确，以及云安全组和系统防火墙是否放行节点端口。Hysteria2 必须放行对应 UDP 端口，且本地网络需支持 UDP；不要为排查而直接关闭整个防火墙。"
           },
           {
-            "question": "搭建节点需要单独配置 BBR 加速吗？一键脚本里有吗？",
-            "answer": "目前绝大多数主流的自建节点一键脚本（如 3X-UI、x-ui 面板、各类 Sing-box/Xray 多合一脚本）内部通常都已经内置了类似 Google BBR 这样的 TCP 拥塞控制算法优化。在运行一键安装脚本时，脚本通常会自动检测并在终端中提示是否开启 BBR，用户直接根据提示输入 y 或回车启用即可，无需繁琐地手动修改系统内核参数。"
-          },
-          {
-            "question": "为什么提示 Reality 协议「无域名易被阻断」？",
-            "answer": "Reality 协议虽然通过偷取第三方合规网站（如苹果、微软等大厂）的证书和 SNI 实现了免自备域名伪装，但因为你的 VPS IP 并不是该大厂域名的真实官方解析 IP，防火墙能够利用反向主动探测、SNI 域名与 IP 白名单比对、握手特征审查等手段发现端倪，因此无域名 Reality 协议在遭遇严管或特定敏感期时极易被阻断端口甚至 IP。如果需要长期稳定可靠的节点，建议购买自己的域名配置正规 TLS/gRPC 伪装，或者备用 Hysteria 2 等抗封锁协议。"
-          },
-          {
-            "question": "VPS 服务器买哪家比较合适？配置需要多高？",
-            "answer": "个人自建节点对 CPU 和内存要求极低，1核 CPU、512MB 或 1GB 内存即可轻松跑满千兆带宽。推荐点击右上角「Akile」购买服务器，不仅性价比高，还针对国内三大运营商提供了多种线路优化机房（如香港、日本、新加坡、美西等），开箱即用。"
-          },
-          {
-            "question": "为什么搭建完成后客户端连接显示超时（Timeout）？",
-            "answer": "请按以下三步排查：1. 检查 VPS 云厂商后台的「防火墙 / 安全组」规则，是否放行了节点使用的端口（TCP 和 UDP）；2. 检查 Linux 系统内置防火墙（执行 ufw disable 或 iptables -P INPUT ACCEPT 测试）；3. 使用 ping.pe 检测该 VPS 的 IP 是否已被阻断，如已被阻断可在 Akile 控制台快速更换 IP。"
+            "question": "手机能用，软路由不能用怎么办？",
+            "answer": "确认软路由的代理内核支持该协议，且配置已保存并启用。可先重启路由器，通常能解决配置未生效的问题；若仍无法使用，再检查内核版本、DNS 和 UDP 连通性。"
           }
         ]
       },
-      "changelog": [
-        {
-          "date": "2026-04-12",
-          "author": "NodeMaster",
-          "prNumber": 111,
-          "summary": "为不想搭梯添加网站图标并在教程所有提及处统一展示格式；保持PuTTY等本地工具优先推荐与BBR、Reality技术提示",
-          "commitHash": "d3a7e41"
-        },
-        {
-          "date": "2026-04-12",
-          "author": "NodeMaster",
-          "prNumber": 110,
-          "summary": "以开源不想搭梯为实例演示连接并说明内置脚本便利性，同时优先推荐PuTTY等本地工具说明中转资源限制；补充BBR内置与Reality无域名阻断提示",
-          "commitHash": "c9f13e2"
-        },
-        {
-          "date": "2026-04-12",
-          "author": "NodeMaster",
-          "prNumber": 108,
-          "summary": "替换 dae 为自己搭建节点完整图文教程，涵盖 SSH 工具、Akile 服务器与主流一键脚本",
-          "commitHash": "a7c92e1"
-        }
-      ]
+      "changelog": []
     }
   ],
   "quadrants": {
