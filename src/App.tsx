@@ -256,7 +256,7 @@ export const App: React.FC = () => {
       : false;
 
   return (
-    <div className="h-full h-screen h-[100dvh] w-full overflow-hidden flex flex-col justify-center items-center p-2 sm:p-4 md:p-6 box-border select-auto">
+    <div className="h-full min-h-0 w-full overflow-hidden flex flex-col justify-center items-center p-2 sm:p-4 md:p-6 box-border select-auto">
       {/* 
         A4 Sheet Container:
         Applies standard paper margins, shadows, and subtle ruled guide lines 
@@ -265,7 +265,7 @@ export const App: React.FC = () => {
         and both desktop & mobile viewport, without expanding with content.
       */}
       <div 
-        className="w-full max-w-[1020px] h-full md:h-[773px] md:max-h-full a4-sheet border-2 sm:border-4 border-pencil rounded-2xl p-3 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-between overflow-hidden shadow-pencil-lg relative box-border"
+        className="w-full max-w-[1020px] h-full min-h-0 md:h-[773px] md:max-h-full a4-sheet border-2 sm:border-4 border-pencil rounded-2xl p-3 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-between overflow-hidden shadow-pencil-lg relative box-border"
       >
         {/* Unified Top Navigation Header: Fixed position inside the top of the frame */}
         <PencilHeader

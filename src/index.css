@@ -2,8 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-.site-root-layout { height: 100%; display: flex; flex-direction: column; }
+/* Keep viewport sizing at the outer boundary. Unlike legacy vh, dvh excludes
+   visible mobile browser toolbars; inner pages must only fill the remaining space. */
+.site-root-layout {
+  height: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 .site-root-content { flex: 1; min-height: 0; }
+.local-preview-banner { flex-shrink: 0; }
 .local-preview-banner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 16px; padding: 8px 12px; background: #f3e7c7; border-bottom: 1px dashed #94621c; font-size: 13px; }
 .local-preview-banner button { text-decoration: underline; text-underline-offset: 3px; }
 .local-preview-banner button:focus-visible { outline: 2px solid #94621c; outline-offset: 3px; }
