@@ -34,7 +34,7 @@ export const singBoxMac: SoftwareTool = {
     "trafficHandling": "官方 Apple 客户端 TUN；实际路由由配置决定"
   },
   "tutorial": {
-    "overview": "检索日期：2026-11-13。依据 [官方 Apple 文档](https://sing-box.sagernet.org/clients/apple/)、[SFM cask](https://formulae.brew.sh/cask/sfm) 与 [1.14.4 发行资产](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4)。已确认 SFM-1.14.4-Universal.pkg（另有 Apple / Intel 包）；不再把 dmg、Mac App Store 与 SFI 当成同一安装途径。",
+    "overview": "使用官方 macOS 图形客户端 SFM，导入完整配置后连接。安装说明见 [官方 Apple 文档](https://sing-box.sagernet.org/clients/apple/)；SFM 与 sing-box 命令行核心不是同一个安装包。",
     "prerequisites": [
       "macOS 13+，允许安装官方签名包及按系统要求授权网络功能",
       "可信且匹配已安装核心版本的完整 sing-box JSON 配置"
@@ -55,28 +55,38 @@ export const singBoxMac: SoftwareTool = {
       },
       {
         "stepNumber": 3,
-        "title": "启动配置并检查日志",
-        "description": "启动服务，按 macOS 的实际提示允许网络功能；检查日志、路由和 DNS。只有配置包含分组出站时才能在 Dashboard 中查看或切换策略组。",
-        "pencilTip": "不保证零开销、不影响电池或任意协议都可用；资源使用取决于配置、协议和负载。"
+        "title": "确认节点或策略组",
+        "description": "确认已选中要使用的配置。若配置提供 selector/urltest 分组，可在 Dashboard 中选择节点或自动选择组；若分组要在启动后才显示，连接后再选择。没有分组时使用配置中预设的出站。"
+      },
+      {
+        "stepNumber": 4,
+        "title": "开启连接",
+        "description": "启动所选配置，按 macOS 提示允许添加 VPN 配置或相关网络权限，等待连接状态出现。SFM 使用 TUN 接管流量，实际范围由配置决定，不需要寻找系统代理开关。"
+      },
+      {
+        "stepNumber": 5,
+        "title": "验证访问并停止连接",
+        "description": "打开浏览器访问需要代理的网站，再检查常用网站能否正常打开；失败时查看日志或更换节点。用完后在 SFM 停止连接，确认状态已断开，再检查普通上网是否恢复。"
       }
     ],
     "advancedRules": [
-      "升级前备份配置并阅读 [迁移指南](https://sing-box.sagernet.org/migration/) 和 [废弃列表](https://sing-box.sagernet.org/deprecated/)：GeoIP/Geosite 已在 1.12 移除，应迁移 rule-set；旧 block/dns 特殊出站、WireGuard outbound 和旧入站 sniff 等字段在 1.13 移除，分别迁移规则动作、WireGuard endpoint 等；旧 DNS server 格式在 1.14 移除。在线文档还列出 1.15+ 的变化，不能不看版本就套用。",
-      "[官方通用 GUI 规范](https://sing-box.sagernet.org/clients/general/) 区分 Local、iCloud 与 Remote Profile；Remote 下载的必须是完整配置。查看应用显示的核心版本再排查配置兼容性。",
-      "升级 SFM 到 1.14 前另读 [macOS 独立客户端数据迁移](https://sing-box.sagernet.org/migration/#migrate-the-macos-standalone-client-data)，先备份配置。CLI/launchd 是另一种部署方式，不能将 SFM 的配置更新流程直接套用到纯核心。"
+      "配置更新：使用 Remote Profile 时，节点失效先更新配置；下载地址必须返回完整 sing-box JSON，不是普通节点列表。",
+      "节点选择：配置提供 selector 分组时可手动切换节点；提供 urltest 分组时可使用自动选择，具体行为由配置决定。",
+      "路由与 DNS：先保留服务商提供的配置；需要分流时备份原文件，再按配置说明调整，不要直接套用其他客户端的规则。",
+      "升级备份：升级前导出或备份配置，并按当前核心版本查阅 [迁移指南](https://sing-box.sagernet.org/migration/)。"
     ],
     "faq": [
       {
         "question": "URL 订阅能直接作为配置吗？",
-        "answer": "仅当 URL 返回适合已安装核心版本的完整 sing-box JSON 配置。Clash YAML、Base64 节点列表和单个分享链接不是完整配置；Remote Profile 是 GUI 的配置下载/更新功能，不是内核自动转换订阅。不要将私密链接交给不可信在线转换器。"
+        "answer": "仅支持与当前核心兼容的完整 sing-box JSON。Clash YAML、节点列表和单个分享链接不能直接当作完整配置；请向服务商索取正确格式，不要公开订阅链接。"
       },
       {
         "question": "为什么没有 Groups 或模式切换？",
-        "answer": "官方通用客户端规范只在配置包含 selector/urltest 分组出站时提供策略组；模式选择也需要配置使用至少两个 clash_mode 值。不能保证任意导入配置都出现这些控件。"
+        "answer": "这些控件由配置决定：策略组需要 selector/urltest，模式选择需要至少两个 clash_mode 值。没有控件不一定是安装出错。"
       },
       {
         "question": "VPN 显示连接是否就代表可用？",
-        "answer": "只说明隧道状态，不保证节点、DNS 或规则正确。查看日志及实际请求；错误中若有 unknown field 或 deprecated，按核心版本迁移配置，切勿仅反复重装应用。"
+        "answer": "不一定。先实际打开网站，再查看日志；节点不可用可换节点，出现 unknown field 等配置错误则核对核心版本与配置格式。"
       }
     ]
   },

@@ -16,7 +16,7 @@ test('all 19 non-VPS tutorials retain stable IDs and traceable source paths', ()
     assert.ok(existsSync(tool.updatePath), tool.id);
     assert.ok(tool.tutorial.steps.length >= 3, tool.id);
     assert.deepEqual(tool.tutorial.steps.map(step => step.stepNumber), tool.tutorial.steps.map((_, index) => index + 1), tool.id);
-    assert.match(JSON.stringify(tool.tutorial), /https:\/\/(?:github\.com|raw\.githubusercontent\.com|api\.github\.com|sing-box\.sagernet\.org|apps\.apple\.com|karing\.app|clash\.md)/, `${tool.id} must cite sources`);
+    assert.match(JSON.stringify(tool.tutorial), /https:\/\/(?:github\.com|raw\.githubusercontent\.com|api\.github\.com|sing-box\.sagernet\.org|apps\.apple\.com|karing\.app|clash\.md|www\.clashverge\.dev|clashparty\.org)/, `${tool.id} must cite sources`);
   }
 });
 

@@ -6,8 +6,8 @@ export const clashVergeRevLinux: SoftwareTool = {
   "shortName": "Clash Verge Rev",
   "system": "linux",
   "category": "linux",
-  "tagline": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动",
-  "description": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。",
+  "tagline": "在 Linux 桌面导入订阅，让浏览器先用起来",
+  "description": "Clash Verge Rev 是使用 Mihomo 内核的图形代理客户端。导入兼容订阅、选择节点并开启系统代理后，即可用浏览器验证连接；软件不含节点服务。",
   "iconName": "Terminal",
   "badgeText": "官方来源核查",
   "updatedAt": "2026-11-13",
@@ -34,57 +34,60 @@ export const clashVergeRevLinux: SoftwareTool = {
     ],
     "trafficHandling": "系统代理仅影响遵循系统设置的应用；TUN 通过虚拟网卡和路由接管适用流量"
   },
-  "tutorial": {
-    "overview": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
+  tutorial: {
+    "overview": "第一次使用，按下面步骤安装、导入订阅并打开系统代理即可。先让浏览器能用，其他选项保持默认；需要更多功能时再看进阶设置。",
     "prerequisites": [
-      "符合该版本系统与 CPU 架构要求的设备",
-      "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
-      "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
+      "一台 Linux 桌面电脑，能够安装软件；Ubuntu 建议使用 24.04。",
+      "准备服务商提供的 Clash / Mihomo 订阅链接（用于下载节点列表和规则）。软件本身不含节点，请勿公开订阅链接。"
     ],
     "steps": [
       {
         "stepNumber": 1,
-        "title": "核对平台并安装",
-        "description": "从官方 Releases 选择匹配架构的 DEB 或 RPM，用发行版包管理器安装本地包并解决依赖，例如 apt install ./实际文件名.deb 或 dnf install ./实际文件名.rpm。当前核查的 v2.5.10 无 AppImage；AUR 是需自行审核的社区打包，不等同官方发布。"
+        "title": "下载并安装软件",
+        "description": "点击本页“软件下载”，展开发布页的 Assets（下载文件）。Ubuntu / Debian 选 .deb，Fedora 选 .rpm；普通 Intel / AMD 电脑选 x86_64，ARM 电脑选 aarch64。用系统的软件安装程序打开下载的包，安装后从应用菜单启动 Clash Verge Rev。",
+        "pencilTip": "安装提示缺依赖时，按[官方安装说明](https://github.com/clash-verge-rev/clash-verge-rev)处理，不要强行忽略错误。"
       },
       {
         "stepNumber": 2,
-        "title": "导入并激活配置",
-        "description": "在订阅管理页面添加远程 Clash / Mihomo YAML 配置 URL，导入后选中该配置。也可使用本地配置。不要把单节点分享 URI、登录网页或不兼容的通用订阅直接当作完整 YAML；导入失败先看错误日志。"
+        "title": "粘贴订阅链接",
+        "description": "打开“订阅”页面，粘贴服务商提供的 Clash / Mihomo 订阅链接并导入。出现配置卡片后，点击选中它。",
+        "pencilTip": "订阅链接不是服务商网站的登录地址；不知道复制哪个链接，就找服务商页面里的“Clash 订阅”。"
       },
       {
         "stepNumber": 3,
-        "title": "选择策略组和节点",
-        "description": "在代理页面选择配置提供的策略组及节点，按需使用规则模式。延迟测试只反映测试目标的响应，不代表带宽或所有网站可达。"
+        "title": "选择一个节点",
+        "description": "进入“代理”页面，使用“规则”模式，在节点选择组中点击一个可用节点。可以先点延迟测试，再选有结果的节点；暂时不用改其他分组。"
       },
       {
         "stepNumber": 4,
-        "title": "先系统代理，按需启用 TUN",
-        "description": "先开启系统代理并用浏览器验证。终端等不遵循系统代理的应用可显式设置本地代理，或按官方说明安装/检查服务模式后再启用 TUN，并批准必要的系统权限。TUN 并非辅助功能权限，也不保证 WSL、容器、虚拟机或所有游戏流量都被接管。"
+        "title": "打开系统代理",
+        "description": "打开“系统代理”开关，保持软件运行。第一次先不打开 TUN（虚拟网卡）模式。"
       },
       {
         "stepNumber": 5,
-        "title": "验证并保留回退方法",
-        "description": "分别检查目标网站、DNS、应用连接与日志，确认路由符合预期。出现断网时先关闭 TUN、恢复系统代理设置，排查其他 VPN、防火墙和路由冲突。"
+        "title": "打开网页确认能用",
+        "description": "用浏览器打开一个需要代理的网站，再打开平时常用的网站。两者能正常加载就完成了。不用时先关闭“系统代理”，再退出软件。",
+        "pencilTip": "连不上时，先换一个节点再试，并关闭其他正在运行的代理或 VPN。"
       }
     ],
     "advancedRules": [
-      "[项目 README：维护分支、内核、GPL 与配置增强](https://raw.githubusercontent.com/clash-verge-rev/clash-verge-rev/main/README.md)",
-      "[安装文档：平台要求和官方发布渠道](https://www.clashverge.dev/install.html)",
-      "[官方快速入门：导入、节点、系统代理与 TUN](https://www.clashverge.dev/guide/quickstart.html)",
-      "[版本与安装资产核查](https://api.github.com/repos/clash-verge-rev/clash-verge-rev/releases/latest)",
-      "[Mihomo 配置原始示例：协议、DNS、TUN 和排除路由](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
-      "配置增强支持 Merge / Script；仅使用可信脚本，更新订阅后检查最终生效配置。规则模式依赖配置中的规则，并不自动保证特定地区或应用直连。",
-      "[Linux 官方故障排查：图形环境与发行版依赖](https://www.clashverge.dev/faq/linux.html)"
+      "更新订阅：节点变少或不可用时，到“订阅”页面更新当前订阅，完成后重新选择节点。",
+      "切换节点：在“代理”页面测试延迟并换节点；日常保持“规则”模式，哪些网站直连由订阅规则决定。",
+      "让更多应用使用代理：只有浏览器可用、其他应用不行时，再按[官方快速入门](https://www.clashverge.dev/guide/quickstart.html)安装服务并尝试 TUN。需要管理员授权，出问题先关闭 TUN。",
+      "开机启动：确认连接稳定后，再在设置中开启开机启动；重启后检查系统代理是否开启，不要同时自动启动多个代理客户端。"
     ],
     "faq": [
       {
-        "question": "为什么系统代理开启后终端仍无法连接？",
-        "answer": "系统代理不是透明转发；应用必须主动遵循系统代理，或显式使用客户端本地 HTTP/SOCKS 监听地址。TUN 是另一种接管方式，仍受路由和排除设置限制。"
+        "question": "导入后没有节点怎么办？",
+        "answer": "确认选中刚导入的配置，再更新一次订阅。如果提示格式错误，请让服务商提供 Clash / Mihomo 格式，不要把私人订阅交给陌生转换网站。"
       },
       {
-        "question": "TUN 启动失败怎么办？",
-        "answer": "先看内核与服务日志，检查服务安装状态、管理员授权、虚拟网卡、DNS 与其他 VPN 冲突。Linux 不要对猜测的旧版内核路径执行 setcap；不建议全程以 root 运行 GUI。"
+        "question": "退出后浏览器无法联网怎么办？",
+        "answer": "重新打开软件，关闭系统代理后再退出。如果仍不行，检查桌面系统的网络代理设置，取消残留的手动代理。"
+      },
+      {
+        "question": "为什么终端没有一起走代理？",
+        "answer": "有些应用不读取系统代理。这不代表安装失败，先完成浏览器验证；确实需要时再看进阶设置的 TUN。"
       }
     ]
   },

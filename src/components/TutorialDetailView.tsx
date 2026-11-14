@@ -389,7 +389,7 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-5 h-5 text-pencil" />
             <h2 className="font-serif font-black text-xl text-pencil-dark">
-              使用教程
+              {tool.id === 'vps-nodes' ? '使用教程' : '新手上手'}
             </h2>
           </div>
           <div className="text-xs text-pencil-light font-sans mt-1">
@@ -530,6 +530,11 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
           </h2>
         </div>
 
+        {tool.id !== 'vps-nodes' && (
+          <p className="mb-4 text-xs text-pencil-light font-sans">
+            已经能正常使用？下面只列常用的可选功能，有需要再设置，不影响日常使用。
+          </p>
+        )}
         <ul className="space-y-2 text-xs text-pencil-light font-sans">
           {tool.tutorial.advancedRules.map((rule, idx) => (
             <li key={idx} className="p-2.5 bg-paper-100 rounded border border-pencil/20 flex items-start gap-2">

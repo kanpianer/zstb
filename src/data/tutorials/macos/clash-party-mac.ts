@@ -35,53 +35,52 @@ export const clashPartyMac: SoftwareTool = {
     "trafficHandling": "系统代理与 TUN；无需手动服务模式不代表无需管理员权限或特权 Helper"
   },
   "tutorial": {
-    "overview": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
+    "overview": "Clash Party（原 Mihomo Party）可导入 Clash / Mihomo 配置，通过系统代理连接。先按下面步骤完成首次使用，也可参考 [官方快速上手](https://clashparty.org/docs/handson)。",
     "prerequisites": [
-      "符合该版本系统与 CPU 架构要求的设备",
-      "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
-      "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
+      "符合安装包要求的 Mac；在“关于本机”确认 Apple Silicon 或 Intel 芯片",
+      "可信服务商提供的 Clash / Mihomo 配置或订阅链接，勿公开分享"
     ],
     "steps": [
       {
         "stepNumber": 1,
         "title": "从官方渠道下载安装",
-        "description": "当前 v2.0.4 发布资产为 clash-party-macos-2.0.4-arm64.pkg / x64.pkg，按芯片选择并使用系统安装器。旧版文档仍写 DMG，不能套用到本次 PKG。安装可能涉及特权 Helper，先核实来源和校验值。"
+        "description": "从官方发布页下载 macOS 安装包：Apple Silicon 选 arm64，Intel 选 x64。当前 v2.0.4 提供 PKG，双击并按系统安装器完成安装，然后打开应用；涉及 Helper 时仅对可信官方安装包授权。"
       },
       {
         "stepNumber": 2,
         "title": "导入兼容订阅并激活",
-        "description": "在订阅管理区域添加服务提供方的 Clash / Mihomo YAML URL 或本地配置，完成下载并选为当前配置。通用分享链接不等于完整 Clash 配置；如需 Sub-Store 转换，仅使用可信实例，不把密钥发送给陌生公共转换站。"
+        "description": "在订阅管理中添加服务商提供的 Clash / Mihomo YAML 链接，或导入本地配置文件。下载成功后选为当前配置，确认节点列表出现；单个节点分享链接不等于完整配置。"
       },
       {
         "stepNumber": 3,
-        "title": "选择节点并启用系统代理",
-        "description": "在代理策略组中选择节点，按配置需要选择规则或全局模式，再启用系统代理。客户端运行与启用系统代理不是同一状态；用目标应用和连接日志确认效果。"
+        "title": "选择可用节点",
+        "description": "在代理策略组中测试延迟并选择一个可用节点。初次使用保留规则模式，让配置决定哪些网站走代理。"
       },
       {
         "stepNumber": 4,
-        "title": "按需启用 TUN 并验证权限",
-        "description": "只有需要接管不遵循系统代理的程序时才启用 TUN。官方“无需服务模式”描述不等于免权限：虚拟网卡和路由需要系统授权，macOS 存在特权 Helper。若断网，关闭 TUN 并检查 DNS、排除路由与其他 VPN；不保证所有流量都接管。"
+        "title": "开启系统代理",
+        "description": "在客户端开启系统代理，让遵循系统代理的浏览器和应用使用所选节点。只打开客户端并不代表已连接；首次使用先不启用 TUN。"
+      },
+      {
+        "stepNumber": 5,
+        "title": "验证访问并停止代理",
+        "description": "用浏览器打开需要代理的网站，再检查常用网站；失败时换节点或查看连接日志。用完先关闭系统代理，如启用了 TUN 也一并关闭，再退出客户端并确认普通上网正常。"
       }
     ],
     "advancedRules": [
-      "[当前默认 smart_core 分支 README：内核与功能](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/README.md)",
-      "[仓库 API：当前名称、主页、非归档与维护活动](https://api.github.com/repos/mihomo-party-org/clash-party)",
-      "[官方发布接口：版本与实际资产](https://api.github.com/repos/mihomo-party-org/clash-party/releases/latest)",
-      "[GPL 许可证](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/LICENSE)",
-      "[官方快速上手](https://clashparty.org/docs/handson)",
-      "[官方安装说明（部分说明仍为旧版）](https://clashparty.org/docs/install)",
-      "[Mihomo 协议与 TUN 原始配置](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
-      "Sub-Store、覆写和 WebDAV 是配置管理功能，不是客户端自动提供节点或保证匿名的服务；备份可能包含订阅凭据，上传前检查存储权限。",
-      "[macOS 官方故障排查：特权 Helper 与服务](https://clashparty.org/docs/issues/macos)"
+      "订阅更新：节点失效时先在订阅管理中更新，再重新选择可用节点；不要把订阅链接发到公共转换站。",
+      "代理模式：日常使用规则模式；临时切换全局模式排查问题后，记得切回规则模式。",
+      "TUN 接管：仅在目标应用不遵循系统代理时按需启用，并按 macOS 提示授权 Helper；断网先关闭 TUN，检查是否与其他 VPN 冲突。",
+      "配置备份：使用覆写或 WebDAV 前先备份；备份可能含订阅凭据，只保存到可信且权限受控的位置。"
     ],
     "faq": [
       {
         "question": "Clash Party 与 Mihomo Party 是什么关系？",
-        "answer": "当前仓库、应用 productName 和官网使用 Clash Party，旧 README、安装说明、应用标识及部分资产仍保留 Mihomo Party 名称。旧名不是另一个必需安装的内核；以同一官方组织仓库的发布记录核对，不推断确切改名日期。"
+        "answer": "Clash Party 是 Mihomo Party 更名后的客户端。旧说明可能仍使用旧名，不需要再安装一份 Mihomo Party。"
       },
       {
-        "question": "为什么不照抄“免服务、完全没有安全隐患”？",
-        "answer": "免手动服务模式只描述使用方式，不能证明无特权代码或无风险。下载核验、最小权限、可信配置和日志排错仍然必要；macOS 官方文档明确列出 Helper 服务。"
+        "question": "浏览器可用，其他应用却连不上？",
+        "answer": "该应用可能不遵循系统代理，可按需尝试 TUN。TUN 需要系统权限；启用后断网则先关闭，并检查其他 VPN 和日志。"
       }
     ]
   },

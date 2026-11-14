@@ -7,7 +7,7 @@ export const openclash: SoftwareTool = {
   system: 'linux',
   category: 'linux',
   tagline: '在 OpenWrt LuCI 中管理 Mihomo 与透明代理',
-  description: 'OpenClash 是 OpenWrt 的 LuCI 插件，管理 Mihomo（原 Clash Meta）内核、YAML 配置、订阅和网关透明代理。是否能接管设备流量取决于网关路径、DNS、防火墙及 IPv6 配置，不是安装后自动覆盖所有设备、应用或协议。',
+  description: 'OpenClash 是安装在 OpenWrt 路由器上的代理插件，可在路由器管理页面导入订阅、选择节点，让经过这台路由器的设备按规则使用代理。需要自行准备节点服务。',
   iconName: 'Router',
   badgeText: 'OpenWrt 插件',
   updatedAt: '2026-11-13',
@@ -27,50 +27,62 @@ export const openclash: SoftwareTool = {
     trafficHandling: 'REDIRECT / TPROXY / TUN；DNS 可用 fake-ip 或 redir-host',
   },
   tutorial: {
-    overview: '先备份路由器配置并保留恢复手段，再安装插件、准备核心与配置，最后逐项验证网关和 DNS。fake-ip/redir-host 是 DNS 处理方式，不能与 TUN/TPROXY 转发机制混为一谈。本文依据官方 README、v0.48.002 发布说明及仓库使用手册核查。',
-    prerequisites: [
-      '有 root/LuCI 管理权限的 OpenWrt 路由器，有足够闪存和内存；先备份网络、DNS 与防火墙配置',
-      '确认固件包管理器为 opkg 还是 apk、防火墙为 fw3 还是 fw4，依赖必须来自匹配固件的软件源',
-      '可信的 Clash/Mihomo YAML 配置或订阅；不要向陌生在线转换服务上传含 token 的订阅',
-      '确认客户端实际经过这台网关，且没有其他透明代理插件同时争抢 DNS 和防火墙'
+    "overview": "这篇适合已经有 OpenWrt 路由器、第一次使用 OpenClash 的人。先安装插件、导入配置，让一台设备连上验证即可；不用一开始就研究 DNS 或各种转发模式。",
+    "prerequisites": [
+      "能登录 OpenWrt 的 LuCI 管理页面；先在系统的备份页面下载一份路由器备份，保留有线连接的管理方式。",
+      "准备 Clash / Mihomo 格式的完整配置订阅。插件不提供节点，订阅链接不要公开。",
+      "测试设备连接到这台路由器；先停用其他代理插件，避免互相影响。"
     ],
-    steps: [
+    "steps": [
       {
-        stepNumber: 1,
-        title: '按固件安装依赖和对应安装包',
-        description: '在官方 Releases 查看当次安装说明并下载 `luci-app-openclash_*.ipk`（opkg）或 `luci-app-openclash-*.apk`（apk），可通过 LuCI 的软件包页面上传安装。依赖需按 firewall3/iptables 与 firewall4/nftables 分别安装，不要复制旧版固定 iptables 清单，也不要安装固定旧版本链接。',
-        pencilTip: '当前 README 的依赖包含 bash、curl、ca-bundle、ruby、ruby-yaml、dnsmasq-full、ip-full、unzip、LuCI 等；fw4 需要 kmod-nft-tproxy，TUN 还需要 kmod-tun。dnsmasq 与 dnsmasq-full 冲突时按固件指导处理，切勿为安装而强制移除网络依赖。'
+        "stepNumber": 1,
+        "title": "安装 OpenClash 插件",
+        "description": "如果“服务”菜单已有 OpenClash，可跳过安装。否则从本页“软件下载”获取安装包，在 LuCI 的软件包页面上传安装：opkg 固件用 .ipk，apk 固件用 .apk。安装完成后重新登录管理页面。",
+        "pencilTip": "缺少依赖时按[官方安装说明](https://github.com/vernesong/OpenClash#readme)选择对应固件的依赖；firewall4 使用 nftables，不能照搬旧版依赖。不要强制删除网络组件。"
       },
       {
-        stepNumber: 2,
-        title: '安装匹配架构的内核并导入配置',
-        description: '进入【服务 → OpenClash】，根据首次引导在版本更新中确认内核编译版本并下载 Mihomo；手工安装时须选择路由器架构，按发布说明放入 `/etc/openclash/core/`，命名为 `clash_meta` 并设置执行权限。在配置订阅或配置管理中添加订阅/上传 YAML，更新后选为运行配置。',
-        pencilTip: '完整 Mihomo 配置可直接使用，不应默认开启在线转换。仅有节点列表而没有策略组、规则等配置时，应使用可信模板或由提供者输出完整配置；首次启动也需能下载规则和 GEO 数据。'
+        "stepNumber": 2,
+        "title": "下载运行所需的内核",
+        "description": "进入“服务 → OpenClash”，按照首次使用提示，在版本更新页面选择与路由器处理器匹配的内核并下载。页面显示内核已安装后再继续。",
+        "pencilTip": "不确定处理器型号时，先在路由器“状态 → 概览”查看型号，并对照官方安装说明，不能随意选一个。"
       },
       {
-        stepNumber: 3,
-        title: '选择模式并启动，分步验证',
-        description: '在插件设置的模式设置中按需求选择 Fake-IP 或 Redir-Host，以及是否启用 TUN/混合转发。初次使用先保持官方默认，再确认 DNS 接管、网关与局域网绕行规则。启动后查看运行日志，并通过运行状态页的仪表盘选择策略组节点。',
-        codeSnippet: '# 仅读取路由器日志；Ctrl+C 结束查看\nlogread -e OpenClash -f',
-        codeLanguage: 'bash',
-        pencilTip: '分别检查国内与代理目标、局域网设备、DNS、IPv4/IPv6。不要将 Dashboard/API/代理端口映射到公网；保持仅内网访问并设置控制密钥。'
+        "stepNumber": 3,
+        "title": "添加并选用订阅",
+        "description": "在“配置订阅”中添加订阅，填写容易识别的名称并粘贴 Clash / Mihomo 订阅链接，保存并更新。到“配置管理”选择下载成功的配置作为运行配置。",
+        "pencilTip": "如果提供者给的是完整 YAML 文件，也可以在配置管理上传。第一次不需要开启在线订阅转换。"
       },
       {
-        stepNumber: 4,
-        title: '异常时先恢复网络并收集日志',
-        description: '若启用后断网，先停止 OpenClash，确认原始 DNS/网关连接恢复，再在运行日志页面生成调试日志。检查核心与配置校验、依赖、订阅更新、防火墙后端及 DNS 端口冲突。提交日志前删除订阅 URL、节点密码、密钥与公网地址等敏感内容。',
-        pencilTip: '不要用关闭全部防火墙、盲目替换 DNS 或强制开启流量分载作为通用修复。每次只改一项并验证，便于回滚。'
+        "stepNumber": 4,
+        "title": "启动并选择节点",
+        "description": "保持其他设置默认，启动 OpenClash。运行状态正常后，打开状态页面提供的控制面板，在节点选择组里选一个可用节点，日常使用“规则”模式。",
+        "pencilTip": "启动失败先看运行日志中的错误，不要反复改 DNS 或关闭防火墙。"
+      },
+      {
+        "stepNumber": 5,
+        "title": "用一台设备测试",
+        "description": "用连接此路由器的手机或电脑打开需要代理的网站，再打开常用网站。确认能正常使用就完成了。若启用后无法上网，先回到管理页面停止 OpenClash，恢复网络后再排查。"
       }
     ],
-    advancedRules: [
-      'DNS 上游、解析策略与代理路由需要配套设计；添加公共 DNS 或 DoH 不等于彻底杜绝 DNS 泄漏。客户端自带加密 DNS、IPv6 绕行和旁路由拓扑都需单独测试。',
-      'Fake-IP 对少数应用不兼容时，可按文档添加对应域名到 fake-ip-filter、改为 Redir-Host 或对特定设备绕行；不要把“仅允许常用端口”当成 Fake-IP 的 DNS 修复选项。',
-      '流量分载不是代理加速的通用开关。官方手册的测试环境和转发路径有明确限制，不能把软件分载宣传为任何设备都能达到千兆或数千兆。',
-      '核查来源：[官方安装与依赖说明](https://github.com/vernesong/OpenClash#readme)、[v0.48.002 发布说明](https://github.com/vernesong/OpenClash/releases/tag/v0.48.002)、[模式与流量控制](https://github.com/vernesong/OpenClash/blob/dev/.github/skills/openclash-user-guide/08-settings-mode-traffic.md)、[MIT 许可证](https://github.com/vernesong/OpenClash/blob/master/LICENSE)。'
+    "advancedRules": [
+      "更新订阅：服务商调整节点后，在“配置订阅”里更新；确认成功后重新选择可用节点。需要自动更新时，再设置合适的更新周期。",
+      "切换节点和模式：在控制面板中换节点；日常使用规则模式，全局模式只用于临时测试，测试后切回规则模式。",
+      "让部分设备不走代理：有电视、办公设备不需要代理时，按插件的访问控制说明设置该设备绕过。每次只调整一台设备并验证。",
+      "备份可用配置：调整前下载当前配置并保留路由器备份。更新插件或内核后，先用一台设备测试，再让家人继续使用。"
     ],
-    faq: [
-      { question: '为什么安装 ipk 后仍不能启动？', answer: '插件包不等于代理内核；还要确认核心架构与执行权限、完整配置、运行依赖、GEO/规则数据及防火墙模块。用调试日志定位，勿混用其他固件版本的 kmod。apk 系统也不能直接套用 opkg 安装指令。' },
-      { question: '电视或游戏机连 Wi-Fi 后显示无网络怎么办？', answer: '先查看实际网关/DNS和连接日志，判断是连通性检测域名、Fake-IP兼容、UDP、IPv6或规则问题。针对性调整过滤或绕行；不能仅凭设备类型断言是假 IP 地址导致。' }
+    "faq": [
+      {
+        "question": "安装了插件，为什么还是启动不了？",
+        "answer": "插件之外还需要内核和可用配置。先检查内核是否下载成功、订阅能否更新、配置是否已选中；有依赖错误时按官方说明补齐，不要混装其他固件的软件包。"
+      },
+      {
+        "question": "手机连接 Wi-Fi 后仍不能访问怎么办？",
+        "answer": "先确认 OpenClash 正在运行，换一个节点再试。再确认手机连接的是这台路由器，并关闭手机上其他 VPN。若所有网站都打不开，先停止插件恢复网络。"
+      },
+      {
+        "question": "需要把控制面板开放到公网吗？",
+        "answer": "不需要。只在可信局域网中管理，不要把控制面板或代理端口映射到公网。"
+      }
     ]
   },
   changelog: []

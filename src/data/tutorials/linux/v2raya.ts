@@ -7,7 +7,7 @@ export const v2raya: SoftwareTool = {
   system: 'linux',
   category: 'linux',
   tagline: '通过浏览器管理节点与 Linux 透明代理的服务',
-  description: 'v2rayA 以服务方式运行，通过 Web 界面管理订阅、节点组与 RoutingA 分流。当前 2.5 系列使用配套的 Xray 衍生内核 v2raya_core；不要与早期使用独立 V2Ray/Xray 的安装说明混用。Linux 透明代理需要对应权限、内核模块与网络工具。',
+  description: 'v2rayA 在 Linux 后台运行，通过浏览器管理订阅、选择节点和连接。先完成本机浏览器代理，再按需开启更多功能；需要自行准备节点服务。',
   iconName: 'Globe',
   badgeText: 'Web 管理',
   updatedAt: '2026-11-13',
@@ -27,49 +27,62 @@ export const v2raya: SoftwareTool = {
     trafficHandling: '应用 HTTP/SOCKS 代理；Linux redirect / tproxy / tun 透明代理',
   },
   tutorial: {
-    overview: '本篇按官方当前 README 的 2.5 系列安装路线介绍 Linux 使用方法。旧版文档与发行版仓库可能仍是 2.2 系列；安装、内核与升级方式必须以所用版本为准。官方 v2.5.15 发布说明已移除停放的旧域名 v2raya.org，故不再将其作为下载或教程入口。',
-    prerequisites: [
-      '有 sudo/root 权限的 Linux 主机，具备恢复网络配置的本地或带外管理方式',
-      '安装前备份已有配置；2.4 之前的数据库升级会迁移且需重新注册账号',
-      '可用订阅或分享链接；先限制管理端口的可访问范围，再创建首个管理员'
+    "overview": "v2rayA 安装后通过浏览器操作。本篇先让本机浏览器使用代理，不要求一开始配置全机透明代理；安装以 Debian / Ubuntu 为例。",
+    "prerequisites": [
+      "一台有管理员权限的 Debian / Ubuntu 电脑，建议在本机操作。",
+      "准备服务商提供的 v2rayA 兼容订阅或节点分享链接。软件不含节点，链接中可能含密码，不要公开。"
     ],
-    steps: [
+    "steps": [
       {
-        stepNumber: 1,
-        title: '安装当前版本与配套内核',
-        description: '推荐按官方 README 使用 Dae Universe APT 仓库：APT 3.0+ 使用 `.sources`，更早版本使用 `.list`，两种方式二选一。下面示例适用于 APT 早于 3.0 的系统，添加第三方软件源与签名密钥前应先检查来源。官方安装包同时提供 v2raya 和配套内核，不再运行未经核实的旧一键脚本。',
-        codeSnippet: 'sudo apt update\nsudo apt install curl\n# 仅适用于 APT < 3.0；APT 3.0+ 请按官方 README 使用 .sources\nsudo curl -fsSL -o /etc/apt/sources.list.d/daeuniverse.list https://daeuniverse.pages.dev/daeuniverse.list\nsudo curl -fsSL -o /usr/share/keyrings/daeuniverse-archive-goose.gpg https://daeuniverse.pages.dev/daeuniverse-archive-goose.gpg\nsudo apt update\nsudo apt install v2raya\nsudo systemctl enable --now v2raya',
-        codeLanguage: 'bash',
-        pencilTip: '也可从官方 Releases 下载本机架构的安装包并核对 SHA-256。手工安装必须让 v2raya 与 v2raya_core 版本完全一致。仓库实际提供版本可能晚于或早于本文核查版本。'
+        "stepNumber": 1,
+        "title": "安装软件及配套内核",
+        "description": "点击本页“软件下载”，选择适合系统和处理器的安装包。Debian / Ubuntu 使用 .deb，普通 Intel / AMD 电脑选 x64 / amd64，ARM 电脑选 arm64。用系统软件安装程序安装，按该次发布说明安装配套的 v2raya_core，版本要一致。",
+        "pencilTip": "其他发行版或安装遇到依赖问题，查看[官方安装说明](https://github.com/v2rayA/v2rayA#readme)，不要套用旧版独立 Xray 内核教程。"
       },
       {
-        stepNumber: 2,
-        title: '限制管理界面并创建管理员',
-        description: '当前服务默认监听 `0.0.0.0:2017`，首个注册账号成为管理员。在防火墙中仅允许可信管理设备访问，再打开 `http://127.0.0.1:2017`（本机）或可信内网设备地址。仅本机使用时按官方说明配置启动参数 `--address 127.0.0.1:2017`，修改 systemd 服务可用 `sudo systemctl edit --full v2raya.service`，随后重载并重启。',
-        pencilTip: '不要把未初始化面板或明文 HTTP 管理界面暴露到公网；远程管理优先使用 SSH 隧道或受保护的管理网络。'
+        "stepNumber": 2,
+        "title": "启动服务并打开管理页面",
+        "description": "仅本机使用时，先按官方说明把服务启动参数的监听地址设为 `--address 127.0.0.1:2017`，再启动服务。在本机浏览器打开 http://127.0.0.1:2017，按页面提示创建管理员账号并记住密码。",
+        "pencilTip": "默认可能监听所有网卡；初始化前务必限制为本机或用防火墙限制可信设备，不要向公网开放管理页面。",
+        "codeSnippet": "sudo systemctl edit --full v2raya.service\n# 在已有 ExecStart 命令后添加 --address 127.0.0.1:2017，保留原有其他参数，保存退出\nsudo systemctl daemon-reload\nsudo systemctl restart v2raya",
+        "codeLanguage": "bash"
       },
       {
-        stepNumber: 3,
-        title: '导入节点并先测试应用代理',
-        description: '在页面导入订阅或分享链接，将节点加入组并选择节点与路由规则，然后从面板启动核心。先让单个应用使用默认 SOCKS5 `127.0.0.1:20170` 或 HTTP `127.0.0.1:20171` 验证连接；`20172` 为应用路由规则的 HTTP 入站。端口如已在设置中修改，以实际值为准。',
-        pencilTip: '本地入站默认不等于开放给局域网；共享需要显式设置监听范围、防火墙和访问控制。订阅 URL 可能含凭证，勿公开。'
+        "stepNumber": 3,
+        "title": "导入订阅并选择节点",
+        "description": "在管理页面点击导入，粘贴订阅或节点分享链接。订阅导入后更新列表，按页面提示选择节点或将节点加入使用的组，再启动连接。其他路由设置先保持默认。"
       },
       {
-        stepNumber: 4,
-        title: '按主机条件开启透明代理',
-        description: '确认单应用代理可用后，在面板开启透明代理并选择模式。Linux 的 redirect/tproxy 需要 root 及 iptables 或 nftables；tun 需要 `/dev/net/tun` 与 iproute2 的 `ip` 命令。启用后分别测试 DNS、IPv4/IPv6、局域网和目标应用，出错先停用透明代理并检查日志。',
-        pencilTip: 'Docker 网络命名空间、网关转发、静态路由和应用自带加密 DNS 都可能影响接管，不能保证主机、容器与局域网全部流量自动代理。'
+        "stepNumber": 4,
+        "title": "让浏览器使用代理",
+        "description": "以 Firefox 为例，打开“设置”，搜索“网络设置”，进入连接设置，选择手动代理。在 HTTP 代理填 `127.0.0.1`、端口填 `20171`，勾选也用于 HTTPS，然后保存。若你在 v2rayA 中改过端口，请填实际端口。",
+        "pencilTip": "这里先只设置一个浏览器，其他应用不会自动使用代理。"
+      },
+      {
+        "stepNumber": 5,
+        "title": "验证访问并记住关闭方法",
+        "description": "在设置过代理的浏览器打开需要代理的网站，再打开常用网站。正常加载就可以开始使用。不用时先把浏览器的连接设置恢复为原来的选项，再在 v2rayA 页面停止连接。"
       }
     ],
-    advancedRules: [
-      '升级前停止服务并备份配置目录（Linux 默认 `/etc/v2raya`）；v2raya 与 v2raya_core 必须一起升级。旧数据库迁移、账号重新注册和回滚应先阅读对应发布说明。',
-      '官方当前 README 提醒 OpenWrt feed 仍可能提供 2.2.7.x 与独立 xray-core；不要直接将本篇 2.5 系列的内核要求套到旧软件包。',
-      '核查来源：[当前官方 README](https://github.com/v2rayA/v2rayA/blob/main/README.md)、[v2.5.15 发布说明](https://github.com/v2rayA/v2rayA/releases/tag/v2.5.15)。'
+    "advancedRules": [
+      "更新或更换节点：在管理页面更新订阅，再选择其他节点并连接；速度慢时先换节点，不用急着修改底层参数。",
+      "按规则分流：需要部分网站直连时，先在面板选择合适的路由规则，再让浏览器使用应用规则的 HTTP 端口（默认 20172）。端口以当前设置为准。",
+      "让更多应用走代理：浏览器验证成功后，再考虑面板中的透明代理。它需要额外的系统权限和网络组件，按[官方说明](https://github.com/v2rayA/v2rayA#readme)选择模式；异常时先关闭透明代理。",
+      "开机启动服务：确认能正常使用后，可运行 `sudo systemctl enable v2raya`。不需要时用 `sudo systemctl disable v2raya` 取消；启动服务不等于所有应用自动走代理。"
     ],
-    faq: [
-      { question: '为什么新版提示内核版本不匹配？', answer: '2.5 系列要求同版本的 v2raya_core。请用相同发布的成套安装包或同时升级两个二进制文件，不能继续直接套用旧教程中的独立 Xray/V2Ray 内核。' },
-      { question: '透明代理失败只要安装 iptables 就够了吗？', answer: '不一定。需结合模式检查权限、防火墙后端、内核模块；TUN 还需可用的 /dev/net/tun 与 iproute2。查看服务日志 `journalctl -u v2raya -b`，不要盲目混装或清空防火墙规则。' },
-      { question: '把其他设备网关改成这台机器就能使用吗？', answer: '不能保证。还需正确的 IP 转发、DNS、转发路径、防火墙、IPv6 及代理规则。先在主机验证，不要在没有恢复手段时直接更改全网默认网关。' }
+    "faq": [
+      {
+        "question": "管理页面打不开怎么办？",
+        "answer": "确认访问的是运行 v2rayA 的本机，地址为 http://127.0.0.1:2017。运行 `systemctl status v2raya` 检查服务；如果启动失败，查看 `journalctl -u v2raya -b` 的报错。"
+      },
+      {
+        "question": "导入订阅后没有节点怎么办？",
+        "answer": "重新复制服务商提供的兼容订阅，确认不是账号登录网址，尝试更新。仍失败时向提供者确认格式和订阅是否有效。"
+      },
+      {
+        "question": "停止连接后浏览器也无法上网？",
+        "answer": "浏览器还在把请求发给已停止的代理。回到浏览器网络设置，恢复使用代理前的连接选项即可。"
+      }
     ]
   },
   changelog: []

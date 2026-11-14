@@ -35,55 +35,52 @@ export const clashVergeRevWin: SoftwareTool = {
     "trafficHandling": "系统代理仅影响遵循系统设置的应用；TUN 通过虚拟网卡和路由接管适用流量"
   },
   "tutorial": {
-    "overview": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
+    "overview": "先导入订阅、选择节点，再开启系统代理让浏览器联网。首次使用不需要开启 TUN。",
     "prerequisites": [
-      "符合该版本系统与 CPU 架构要求的设备",
-      "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
-      "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
+      "Windows 10 / 11，确认电脑使用 x64 还是 ARM64",
+      "准备服务方的 Clash / Mihomo 订阅链接或 YAML 配置，不要公开其中的凭证"
     ],
     "steps": [
       {
         "stepNumber": 1,
-        "title": "核对平台并安装",
-        "description": "从官方 Releases 选择 x64-setup.exe 或 arm64-setup.exe，按安装向导安装。缺少 WebView2 时按官方安装文档处理；仅在需要时选内置 WebView2 包。安全告警先核实来源，不直接绕过。"
+        "title": "下载并安装",
+        "description": "打开[官方发布页](https://github.com/clash-verge-rev/clash-verge-rev/releases)，按电脑架构选择 x64 或 ARM64 的 Windows 安装包，按向导安装后打开。若提示缺少 WebView2，按[官方安装文档](https://www.clashverge.dev/install.html)补齐。"
       },
       {
         "stepNumber": 2,
-        "title": "导入并激活配置",
-        "description": "在订阅管理页面添加远程 Clash / Mihomo YAML 配置 URL，导入后选中该配置。也可使用本地配置。不要把单节点分享 URI、登录网页或不兼容的通用订阅直接当作完整 YAML；导入失败先看错误日志。"
+        "title": "导入订阅",
+        "description": "打开订阅页面，粘贴服务方的 Clash / Mihomo 订阅链接并导入，然后选中该配置。已有 YAML 文件也可以从本地导入。"
       },
       {
         "stepNumber": 3,
-        "title": "选择策略组和节点",
-        "description": "在代理页面选择配置提供的策略组及节点，按需使用规则模式。延迟测试只反映测试目标的响应，不代表带宽或所有网站可达。"
+        "title": "选择节点",
+        "description": "进入代理页面，选择规则模式。在负责代理流量的策略组里测试延迟，再选择一个有响应的节点；不要选成直连。"
       },
       {
         "stepNumber": 4,
-        "title": "先系统代理，按需启用 TUN",
-        "description": "先开启系统代理并用浏览器验证。终端等不遵循系统代理的应用可显式设置本地代理，或按官方说明安装/检查服务模式后再启用 TUN，并批准必要的系统权限。TUN 并非辅助功能权限，也不保证 WSL、容器、虚拟机或所有游戏流量都被接管。"
+        "title": "开启系统代理",
+        "description": "开启系统代理，保持软件运行。第一次先不启用 TUN，也不要同时运行其他代理或 VPN；系统代理只影响遵循该设置的应用。"
       },
       {
         "stepNumber": 5,
-        "title": "验证并保留回退方法",
-        "description": "分别检查目标网站、DNS、应用连接与日志，确认路由符合预期。出现断网时先关闭 TUN、恢复系统代理设置，排查其他 VPN、防火墙和路由冲突。"
+        "title": "验证连接并停止代理",
+        "description": "用浏览器分别打开常用国内网站和需要代理的网站，失败时换一个节点重试。不用时先关闭系统代理，再退出软件；如果开过 TUN，也要先关闭，并确认浏览器还能正常上网。"
       }
     ],
     "advancedRules": [
-      "[项目 README：维护分支、内核、GPL 与配置增强](https://raw.githubusercontent.com/clash-verge-rev/clash-verge-rev/main/README.md)",
-      "[安装文档：平台要求和官方发布渠道](https://www.clashverge.dev/install.html)",
-      "[官方快速入门：导入、节点、系统代理与 TUN](https://www.clashverge.dev/guide/quickstart.html)",
-      "[版本与安装资产核查](https://api.github.com/repos/clash-verge-rev/clash-verge-rev/releases/latest)",
-      "[Mihomo 配置原始示例：协议、DNS、TUN 和排除路由](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
-      "配置增强支持 Merge / Script；仅使用可信脚本，更新订阅后检查最终生效配置。规则模式依赖配置中的规则，并不自动保证特定地区或应用直连。"
+      "订阅更新：在订阅页面更新当前配置，服务方更换节点后重新检查选择的节点是否可用。",
+      "代理模式：日常使用规则模式；排查网站时可临时切换全局并选择节点，测试后切回规则模式。",
+      "TUN 模式：应用不遵循系统代理时再尝试，按官方说明安装或检查服务模式并批准必要权限；断网时先关闭 TUN。",
+      "开机启动：确认连接稳定后再按需开启；检查是否同时自动开启系统代理，不需要常驻时关闭。"
     ],
     "faq": [
       {
-        "question": "为什么系统代理开启后终端仍无法连接？",
-        "answer": "系统代理不是透明转发；应用必须主动遵循系统代理，或显式使用客户端本地 HTTP/SOCKS 监听地址。TUN 是另一种接管方式，仍受路由和排除设置限制。"
+        "question": "导入订阅失败怎么办？",
+        "answer": "检查链接是否完整、订阅是否到期，并向服务方确认返回的是 Clash / Mihomo 配置，而不是登录网页。"
       },
       {
-        "question": "TUN 启动失败怎么办？",
-        "answer": "先看内核与服务日志，检查服务安装状态、管理员授权、虚拟网卡、DNS 与其他 VPN 冲突。Linux 不要对猜测的旧版内核路径执行 setcap；不建议全程以 root 运行 GUI。"
+        "question": "退出后无法联网怎么办？",
+        "answer": "重新打开软件并关闭系统代理和 TUN，再检查 Windows 是否残留本次使用的手动代理设置。"
       }
     ]
   },

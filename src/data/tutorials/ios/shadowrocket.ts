@@ -7,7 +7,7 @@ export const shadowrocket: SoftwareTool = {
   system: 'ios',
   category: 'apple',
   tagline: 'iPhone / iPad 规则型代理工具，需自行提供服务器',
-  description: 'Shadowrocket 是 Shadow Launch Technology Limited 发布的规则型代理客户端。商店介绍包括按域名、CIDR 与 GeoIP 配置规则、URL/iCloud Drive 规则导入、DNS 记录和加密 DNS 等功能；软件购买不包含代理服务器或节点服务。未取得装机量排名、全协议支持或性能优势的可验证证据。',
+  description: 'Shadowrocket 是 iPhone / iPad 上的规则型代理客户端，可导入兼容订阅并按规则连接。购买软件不包含节点或代理服务。',
   iconName: 'Rocket',
   badgeText: '规则代理',
   updatedAt: '2026-11-13',
@@ -26,21 +26,59 @@ export const shadowrocket: SoftwareTool = {
     protocols: ['HTTP/HTTPS 代理', 'SOCKS5', '其他节点协议需按当前版本验证'],
     trafficHandling: '系统 VPN 接管；按所选规则配置决定流向',
   },
-  tutorial: {
-    overview: '检索日期：2026-11-13。身份、价格、最低系统与版本依据 [美国 App Store](https://apps.apple.com/us/app/shadowrocket/id932747118) 和 [Apple API](https://itunes.apple.com/lookup?id=932747118&country=us)。官方商店描述未提供本次可逐屏复核的完整导入菜单说明，因此下述步骤按任务描述，不伪造固定图标、菜单名或“3 分钟完成”的承诺。',
-    prerequisites: ['iOS / iPadOS 13+，可合法购买该应用的本人 Apple 账户', '已购买应用；可信服务商明确标注适用于 Shadowrocket 的节点或订阅', '需要规则分流时，准备可信的规则配置；节点订阅不等于规则配置'],
-    steps: [
-      { stepNumber: 1, title: '购买并确认应用身份', description: '从本页 App Store 链接进入，核对应用 ID 932747118 与销售方 Shadow Launch Technology Limited，再按当前地区价格购买。不要仅凭“小火箭”名称或图标识别应用，也不要购买不可信共享账户。', pencilTip: '付款、下载与更新受 Apple 账户、地区和商店政策影响；切换账户后不保证仍能直接更新。' },
-      { stepNumber: 2, title: '添加适用的节点或订阅', description: '使用当前应用提供的添加节点/订阅入口导入服务商明确标注支持 Shadowrocket 的数据。远程订阅填写 URL 后，检查是否成功获取节点；没有 URL 或格式错误时，应向服务提供方确认，不假定任意 Clash YAML 都可作为节点订阅。', pencilTip: '配置或 URL 可含令牌。扫码导入也必须核对来源；节点订阅与规则文件用途不同。' },
-      { stepNumber: 3, title: '选择节点并检查路由配置', description: '选择节点并测试连通性。需要按规则分流时，选择配置驱动的路由方式，并检查实际加载的规则；直连与代理范围由该配置决定，不保证所有国内站点直连或所有海外站点代理。', pencilTip: '如果银行、办公或本地网络异常，停止连接后对比，再检查对应规则、DNS 与出口，不要直接认定是账号或服务欠费。' },
-      { stepNumber: 4, title: '连接并实际验证', description: '打开连接开关，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。检查应用日志、出口和目标服务能否访问；结束使用时关闭连接。VPN 图标或系统已连接状态不等于远端节点正常。' },
+  "tutorial": {
+    "overview": "Shadowrocket 用于导入节点并连接 VPN，购买应用不包含代理服务。请从 [官方 App Store 页面](https://apps.apple.com/us/app/shadowrocket/id932747118) 安装。",
+    "prerequisites": [
+      "iOS / iPadOS 13+ 与可购买应用的本人 Apple 账户",
+      "服务方明确标注适用于 Shadowrocket 的节点或订阅",
+      "订阅含凭据，请勿公开；节点订阅与规则文件用途不同"
     ],
-    advancedRules: ['商店确认支持从 URL 或 iCloud Drive 导入规则文件。只使用可信规则，更新前备份；节点和规则更新应分别检查，不杜撰后台更新开关或固定路径。', '商店确认支持 DoH / DoT / DoQ，但更换成 8.8.8.8 或 1.1.1.1 本身不保证防污染或不泄漏；DNS 路由、传输加密和服务可达性需要一并验证。', '不要为普通代理需求启用 HTTPS 解密或安装来源不明的根证书。On Demand 是连接触发机制，不是隐藏系统 VPN 图标的保证。'],
-    faq: [
-      { question: '购买软件后是否自带可用节点？', answer: '不包含。应用是客户端，需要自己有权使用的代理服务或自建服务器；软件价格与服务费用是两回事。' },
-      { question: '为什么国内应用变慢或无法连接？', answer: '先停用代理对比，再检查当前路由模式、规则、所选节点、DNS 和日志。配置模式也可能将国内地址送往代理，不能仅切换模式就保证解决。' },
-      { question: '这里的协议列表是否代表完整支持范围？', answer: '不是。本次没有足够的第一方完整协议矩阵，因此删除原来的“全协议”承诺和未证实的版本细节。购买或迁移前，向当前版本的官方说明与服务方确认所需协议和参数。' },
+    "steps": [
+      {
+        "stepNumber": 1,
+        "title": "购买并安装应用",
+        "description": "通过官方 App Store 页面核对应用 ID 932747118、销售方 Shadow Launch Technology Limited，再按当前地区价格购买安装。不使用不可信共享 Apple 账户。"
+      },
+      {
+        "stepNumber": 2,
+        "title": "添加兼容订阅",
+        "description": "使用应用的添加节点或订阅功能，填入服务方提供的 Shadowrocket 兼容订阅 URL，保存并获取节点。不要把任意 Clash YAML 当作节点订阅；扫码或粘贴节点时同样要确认来源。"
+      },
+      {
+        "stepNumber": 3,
+        "title": "选择节点",
+        "description": "在节点列表中选一个节点，可先选服务方推荐的线路。需要按规则分流时，选择并启用可信规则配置；节点订阅本身不一定附带规则。"
+      },
+      {
+        "stepNumber": 4,
+        "title": "连接并授权 VPN",
+        "description": "打开连接开关，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。连接前先停止其他 VPN。"
+      },
+      {
+        "stepNumber": 5,
+        "title": "浏览器验证与关闭",
+        "description": "打开 Safari，分别访问日常网站和需要代理的网站。确认网页能加载，而不只看 VPN 图标。结束使用时关闭 Shadowrocket 的连接开关，确认系统 VPN 状态已断开。"
+      }
     ],
+    "advancedRules": [
+      "更新节点：使用订阅更新功能获取最新节点；更新后检查所选线路，避免继续使用已删除的节点。",
+      "导入规则：需要分流时，从可信 URL 或 iCloud Drive 导入规则文件并选择使用；修改前备份原配置，再用常用网站测试。",
+      "排查域名问题：在网页打不开时查看应用的 DNS 记录，记下失败域名并检查规则；分享记录前隐藏私人域名和访问记录。普通代理不需要开启 HTTPS 解密或安装根证书。"
+    ],
+    "faq": [
+      {
+        "question": "订阅无法导入或没有节点怎么办？",
+        "answer": "检查链接是否复制完整、订阅是否有效，并让服务方提供适用于当前 Shadowrocket 的订阅。购买应用不附带节点；不要把规则文件或登录页地址当订阅。"
+      },
+      {
+        "question": "已连接但 Safari 无法访问怎么办？",
+        "answer": "先断开确认手机本身能上网，再更新订阅、换节点并重连。如果只有个别网站异常，检查当前路由方式和规则；发送日志前遮盖订阅地址和密码。"
+      },
+      {
+        "question": "连接后国内应用变慢怎么办？",
+        "answer": "先停止连接作对比。若断开后恢复，检查规则是否把该应用的网站送到了代理，再选择合适的规则配置或线路；不要一次更改多个设置。"
+      }
+    ]
   },
   changelog: [],
 };

@@ -34,50 +34,32 @@ export const singBoxAndroid: SoftwareTool = {
     "trafficHandling": "Android VpnService / TUN；按完整配置路由"
   },
   "tutorial": {
-    "overview": "检索日期：2026-11-13。依据 [官方 Android 文档](https://sing-box.sagernet.org/clients/android/)、[构建脚本](https://github.com/SagerNet/sing-box-for-android/blob/dev/app/build.gradle.kts) 和 [1.14.4 发行资产](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4)。文档总要求 Android 5+，源码区分普通 minSdk 24 与旧系统 minSdk 21，安装时必须选对构建。",
+    "overview": "使用 sing-box Android 客户端导入完整配置并连接 VPN。安装入口见 [官方 Android 文档](https://sing-box.sagernet.org/clients/android/)，应用不附带节点。",
     "prerequisites": [
       "匹配发行包最低要求的 Android 设备；确认 CPU 架构或选择 universal",
-      "可信且匹配已安装核心版本的完整 sing-box JSON 配置"
+      "服务方提供的完整 sing-box JSON 配置，需兼容所装核心版本",
+      "订阅和配置含凭据，请勿公开；连接前停止其他 VPN"
     ],
     "steps": [
-      {
-        "stepNumber": 1,
-        "title": "选择官方发行渠道与 APK",
-        "description": "通过官方 Android 文档进入 Play Store、GitHub Releases 或 F-Droid。GitHub 普通包例如 SFA-1.14.4-arm64-v8a.apk；旧系统需要明确标记 legacy-android-5 的包。核对架构后安装，按需授权该来源安装 APK。",
-        "pencilTip": "不要盲目覆盖来自不同签名渠道的安装；先备份配置，核对升级说明。"
-      },
-      {
-        "stepNumber": 2,
-        "title": "创建本地或远程配置",
-        "description": "在配置管理中添加 Local Profile 或 Remote Profile。远程地址必须返回完整 sing-box JSON，保存并确认能解析，再选中配置。自动更新是远程配置功能，更新也可能引入不兼容字段。"
-      },
-      {
-        "stepNumber": 3,
-        "title": "启动 VPN 服务并验证",
-        "description": "启动所选配置，首次允许 Android VPN 连接请求。通过日志和实际请求验证，配置包含 selector/urltest 时才使用对应策略组界面。若后台断连，检查系统电池限制与日志，不保证移除省电限制即可永不掉线。"
-      }
+      { "stepNumber": 1, "title": "安装官方客户端", "description": "通过官方 Android 文档进入下载渠道。普通构建需要 Android 7+，Android 5/6 需选择标有 legacy-android-5 的构建；下载 APK 时也要匹配手机架构，不确定可选择提供的 universal 包。" },
+      { "stepNumber": 2, "title": "导入完整配置", "description": "在配置管理中添加 Remote Profile，填入返回完整 sing-box JSON 的订阅地址，下载并保存后选中它。本地文件可使用 Local Profile。Clash YAML、普通节点列表或单节点链接不能直接替代完整配置。" },
+      { "stepNumber": 3, "title": "启动并允许 VPN", "description": "启动所选配置，首次同意 Android VPN 连接请求。若出现配置错误，先按提示检查配置，不要反复点连接。" },
+      { "stepNumber": 4, "title": "选择可用节点", "description": "配置提供策略组时，在对应分组中选择节点；自动选择组会按配置选择线路。没有分组时使用配置预设的节点，想换线路需向服务方获取带节点选择的配置。" },
+      { "stepNumber": 5, "title": "浏览器验证与关闭", "description": "打开浏览器访问日常网站及需要代理的网站，确认网页正常加载。用完回到客户端停止服务，并确认系统 VPN 状态已断开。" }
     ],
     "advancedRules": [
-      "升级前备份配置并阅读 [迁移指南](https://sing-box.sagernet.org/migration/) 和 [废弃列表](https://sing-box.sagernet.org/deprecated/)：GeoIP/Geosite 已在 1.12 移除，应迁移 rule-set；旧 block/dns 特殊出站、WireGuard outbound 和旧入站 sniff 等字段在 1.13 移除，分别迁移规则动作、WireGuard endpoint 等；旧 DNS server 格式在 1.14 移除。在线文档还列出 1.15+ 的变化，不能不看版本就套用。",
-      "[官方通用 GUI 规范](https://sing-box.sagernet.org/clients/general/) 区分 Local、iCloud 与 Remote Profile；Remote 下载的必须是完整配置。查看应用显示的核心版本再排查配置兼容性。"
+      "远程更新：在 Remote Profile 中设置自动更新；更新前保留可用配置，更新后再测试常用网站。",
+      "切换线路：配置提供手动策略组时，选另一节点再测试网页；没有分组时不要寻找不存在的节点开关。",
+      "后台连接：仅在锁屏后经常断开时，检查 Android 对此应用的电池限制，按需放宽后重新测试；这可能增加耗电。"
     ],
     "faq": [
-      {
-        "question": "URL 订阅能直接作为配置吗？",
-        "answer": "仅当 URL 返回适合已安装核心版本的完整 sing-box JSON 配置。Clash YAML、Base64 节点列表和单个分享链接不是完整配置；Remote Profile 是 GUI 的配置下载/更新功能，不是内核自动转换订阅。不要将私密链接交给不可信在线转换器。"
-      },
-      {
-        "question": "为什么没有 Groups 或模式切换？",
-        "answer": "官方通用客户端规范只在配置包含 selector/urltest 分组出站时提供策略组；模式选择也需要配置使用至少两个 clash_mode 值。不能保证任意导入配置都出现这些控件。"
-      },
-      {
-        "question": "VPN 显示连接是否就代表可用？",
-        "answer": "只说明隧道状态，不保证节点、DNS 或规则正确。查看日志及实际请求；错误中若有 unknown field 或 deprecated，按核心版本迁移配置，切勿仅反复重装应用。"
-      }
+      { "question": "订阅导入失败怎么办？", "answer": "确认地址返回完整 sing-box JSON，并让服务方确认兼容的核心版本。Clash YAML、Base64 节点列表和单节点链接不能直接作为 Remote Profile。不要将私密订阅交给不可信在线转换器。" },
+      { "question": "启动时报 unknown field 怎么办？", "answer": "配置可能不适合当前核心版本。记下应用显示的核心版本及错误字段，向配置提供方索取兼容配置；自己维护配置时参考 [官方迁移指南](https://sing-box.sagernet.org/migration/)，不要反复重装。" },
+      { "question": "已连接但浏览器打不开网页怎么办？", "answer": "先停止服务确认原网络正常，再更新配置或切换策略组中的节点。没有策略组时联系服务方检查预设线路。仍失败可查看日志，发送日志前隐藏订阅链接、密码和访问记录。" }
     ]
   },
-  "tagline": "官方 Android 图形客户端 SFA，区分普通与旧系统发行包",
-  "description": "SFA 是 SagerNet 的 Android 图形客户端，管理本地或远程完整 sing-box 配置，通过 Android VPN 服务提供 TUN。普通构建与 legacy-android-5 构建有不同最低系统要求，不能只用“Android 5+”描述所有下载包。",
+  "tagline": "导入完整 sing-box 配置并连接 VPN",
+  "description": "SFA 是 sing-box 的官方 Android 客户端，支持本地和远程完整配置。安装时需按 Android 版本选择普通或旧系统构建。",
   "playStoreUrl": "https://play.google.com/store/apps/details?id=io.nekohasekai.sfa",
   "githubRepo": "https://github.com/SagerNet/sing-box-for-android",
   "changelog": []

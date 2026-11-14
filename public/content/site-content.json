@@ -8,7 +8,7 @@
       "system": "ios",
       "category": "apple",
       "tagline": "iPhone / iPad 规则型代理工具，需自行提供服务器",
-      "description": "Shadowrocket 是 Shadow Launch Technology Limited 发布的规则型代理客户端。商店介绍包括按域名、CIDR 与 GeoIP 配置规则、URL/iCloud Drive 规则导入、DNS 记录和加密 DNS 等功能；软件购买不包含代理服务器或节点服务。未取得装机量排名、全协议支持或性能优势的可验证证据。",
+      "description": "Shadowrocket 是 iPhone / iPad 上的规则型代理客户端，可导入兼容订阅并按规则连接。购买软件不包含节点或代理服务。",
       "iconName": "Rocket",
       "badgeText": "规则代理",
       "updatedAt": "2026-11-13",
@@ -32,54 +32,56 @@
         "trafficHandling": "系统 VPN 接管；按所选规则配置决定流向"
       },
       "tutorial": {
-        "overview": "检索日期：2026-11-13。身份、价格、最低系统与版本依据 [美国 App Store](https://apps.apple.com/us/app/shadowrocket/id932747118) 和 [Apple API](https://itunes.apple.com/lookup?id=932747118&country=us)。官方商店描述未提供本次可逐屏复核的完整导入菜单说明，因此下述步骤按任务描述，不伪造固定图标、菜单名或“3 分钟完成”的承诺。",
+        "overview": "Shadowrocket 用于导入节点并连接 VPN，购买应用不包含代理服务。请从 [官方 App Store 页面](https://apps.apple.com/us/app/shadowrocket/id932747118) 安装。",
         "prerequisites": [
-          "iOS / iPadOS 13+，可合法购买该应用的本人 Apple 账户",
-          "已购买应用；可信服务商明确标注适用于 Shadowrocket 的节点或订阅",
-          "需要规则分流时，准备可信的规则配置；节点订阅不等于规则配置"
+          "iOS / iPadOS 13+ 与可购买应用的本人 Apple 账户",
+          "服务方明确标注适用于 Shadowrocket 的节点或订阅",
+          "订阅含凭据，请勿公开；节点订阅与规则文件用途不同"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "购买并确认应用身份",
-            "description": "从本页 App Store 链接进入，核对应用 ID 932747118 与销售方 Shadow Launch Technology Limited，再按当前地区价格购买。不要仅凭“小火箭”名称或图标识别应用，也不要购买不可信共享账户。",
-            "pencilTip": "付款、下载与更新受 Apple 账户、地区和商店政策影响；切换账户后不保证仍能直接更新。"
+            "title": "购买并安装应用",
+            "description": "通过官方 App Store 页面核对应用 ID 932747118、销售方 Shadow Launch Technology Limited，再按当前地区价格购买安装。不使用不可信共享 Apple 账户。"
           },
           {
             "stepNumber": 2,
-            "title": "添加适用的节点或订阅",
-            "description": "使用当前应用提供的添加节点/订阅入口导入服务商明确标注支持 Shadowrocket 的数据。远程订阅填写 URL 后，检查是否成功获取节点；没有 URL 或格式错误时，应向服务提供方确认，不假定任意 Clash YAML 都可作为节点订阅。",
-            "pencilTip": "配置或 URL 可含令牌。扫码导入也必须核对来源；节点订阅与规则文件用途不同。"
+            "title": "添加兼容订阅",
+            "description": "使用应用的添加节点或订阅功能，填入服务方提供的 Shadowrocket 兼容订阅 URL，保存并获取节点。不要把任意 Clash YAML 当作节点订阅；扫码或粘贴节点时同样要确认来源。"
           },
           {
             "stepNumber": 3,
-            "title": "选择节点并检查路由配置",
-            "description": "选择节点并测试连通性。需要按规则分流时，选择配置驱动的路由方式，并检查实际加载的规则；直连与代理范围由该配置决定，不保证所有国内站点直连或所有海外站点代理。",
-            "pencilTip": "如果银行、办公或本地网络异常，停止连接后对比，再检查对应规则、DNS 与出口，不要直接认定是账号或服务欠费。"
+            "title": "选择节点",
+            "description": "在节点列表中选一个节点，可先选服务方推荐的线路。需要按规则分流时，选择并启用可信规则配置；节点订阅本身不一定附带规则。"
           },
           {
             "stepNumber": 4,
-            "title": "连接并实际验证",
-            "description": "打开连接开关，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。检查应用日志、出口和目标服务能否访问；结束使用时关闭连接。VPN 图标或系统已连接状态不等于远端节点正常。"
+            "title": "连接并授权 VPN",
+            "description": "打开连接开关，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。连接前先停止其他 VPN。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "浏览器验证与关闭",
+            "description": "打开 Safari，分别访问日常网站和需要代理的网站。确认网页能加载，而不只看 VPN 图标。结束使用时关闭 Shadowrocket 的连接开关，确认系统 VPN 状态已断开。"
           }
         ],
         "advancedRules": [
-          "商店确认支持从 URL 或 iCloud Drive 导入规则文件。只使用可信规则，更新前备份；节点和规则更新应分别检查，不杜撰后台更新开关或固定路径。",
-          "商店确认支持 DoH / DoT / DoQ，但更换成 8.8.8.8 或 1.1.1.1 本身不保证防污染或不泄漏；DNS 路由、传输加密和服务可达性需要一并验证。",
-          "不要为普通代理需求启用 HTTPS 解密或安装来源不明的根证书。On Demand 是连接触发机制，不是隐藏系统 VPN 图标的保证。"
+          "更新节点：使用订阅更新功能获取最新节点；更新后检查所选线路，避免继续使用已删除的节点。",
+          "导入规则：需要分流时，从可信 URL 或 iCloud Drive 导入规则文件并选择使用；修改前备份原配置，再用常用网站测试。",
+          "排查域名问题：在网页打不开时查看应用的 DNS 记录，记下失败域名并检查规则；分享记录前隐藏私人域名和访问记录。普通代理不需要开启 HTTPS 解密或安装根证书。"
         ],
         "faq": [
           {
-            "question": "购买软件后是否自带可用节点？",
-            "answer": "不包含。应用是客户端，需要自己有权使用的代理服务或自建服务器；软件价格与服务费用是两回事。"
+            "question": "订阅无法导入或没有节点怎么办？",
+            "answer": "检查链接是否复制完整、订阅是否有效，并让服务方提供适用于当前 Shadowrocket 的订阅。购买应用不附带节点；不要把规则文件或登录页地址当订阅。"
           },
           {
-            "question": "为什么国内应用变慢或无法连接？",
-            "answer": "先停用代理对比，再检查当前路由模式、规则、所选节点、DNS 和日志。配置模式也可能将国内地址送往代理，不能仅切换模式就保证解决。"
+            "question": "已连接但 Safari 无法访问怎么办？",
+            "answer": "先断开确认手机本身能上网，再更新订阅、换节点并重连。如果只有个别网站异常，检查当前路由方式和规则；发送日志前遮盖订阅地址和密码。"
           },
           {
-            "question": "这里的协议列表是否代表完整支持范围？",
-            "answer": "不是。本次没有足够的第一方完整协议矩阵，因此删除原来的“全协议”承诺和未证实的版本细节。购买或迁移前，向当前版本的官方说明与服务方确认所需协议和参数。"
+            "question": "连接后国内应用变慢怎么办？",
+            "answer": "先停止连接作对比。若断开后恢复，检查规则是否把该应用的网站送到了代理，再选择合适的规则配置或线路；不要一次更改多个设置。"
           }
         ]
       },
@@ -92,7 +94,7 @@
       "system": "ios",
       "category": "apple",
       "tagline": "ProjectClash 维护的 Apple 平台规则代理客户端",
-      "description": "本文指 ProjectClash 的 Clash - Rule Based Proxy（App Store ID 6794257189），不是旧 Clash 内核本身，也不是 Clash for Windows。客户端采用 SwiftUI，使用 ProjectClash 的 Clash Core；商店说明该核心基于 mihomo。应用不提供服务器，需要自行准备可信配置。",
+      "description": "本文介绍 ProjectClash 的 Clash - Rule Based Proxy（App Store ID 6794257189）。它可导入 Clash / mihomo 配置、选择节点并按规则连接，需自行准备代理服务。",
       "iconName": "Zap",
       "badgeText": "规则代理",
       "updatedAt": "2026-11-13",
@@ -121,43 +123,52 @@
         "trafficHandling": "Apple NE Packet Tunnel；按当前配置规则分流"
       },
       "tutorial": {
-        "overview": "检索日期：2026-11-13。身份、安装入口与操作依据：[客户端源码说明](https://github.com/ProjectClash/Clash-Client)、[官方入门](https://clash.md/guide/)、[美国 App Store](https://apps.apple.com/us/app/clash-rule-based-proxy/id6794257189)。版本和日期取自 [Apple 查询 API](https://itunes.apple.com/lookup?id=6794257189&country=us)；源码版本、iOS/macOS 商店版本与内核版本不能互相替代。官网和源码互链可以确认本教程对象，但不代表其与旧 Dreamacro 项目存在官方承继关系。",
+        "overview": "本教程介绍 ProjectClash 的 Clash - Rule Based Proxy：导入配置、选择节点，再连接 VPN。安装与操作说明见 [官方入门](https://clash.md/guide/)。",
         "prerequisites": [
-          "iOS / iPadOS 15 或更高版本及可下载该应用的 Apple 账户",
-          "可信的 Clash / mihomo 配置 URL 或 YAML 文件；软件不含代理线路"
+          "iOS / iPadOS 15+ 与可下载应用的本人 Apple 账户",
+          "可信的 Clash / mihomo 配置 URL 或 YAML 文件；应用不附带节点",
+          "配置链接可能含密码和令牌，不要公开或交给不可信转换网站"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "核对应用身份并安装",
-            "description": "从本页 App Store 链接进入，核对名称 Clash - Rule Based Proxy、ID 6794257189 与销售方 OmniWide Media Limited。不同地区可用性以当前商店为准，不从同名搜索结果或非官方安装包判断身份。",
-            "pencilTip": "商店开发者显示名为 Open Sourced，销售方字段为 OmniWide Media Limited；不要把 GitHub 组织名当成商店销售方。"
+            "title": "从官方入口安装",
+            "description": "通过官网进入 App Store，核对应用名 Clash - Rule Based Proxy、ID 6794257189 与销售方 OmniWide Media Limited。地区可用性以商店页面为准，不使用不可信共享 Apple 账户。"
           },
           {
             "stepNumber": 2,
-            "title": "打开 Profile Center 并导入配置",
-            "description": "按官方入门：iPhone 点击 Home 左上方配置名称进入 Profile Center；iPad 从侧栏进入 Profiles。选择 Add Profile，使用配置 URL、文件或粘贴内容导入；iPhone/iPad 也支持扫码。保存后确认配置已成功解析。",
-            "pencilTip": "配置和 URL 可能含密码、令牌；不要公开粘贴，也不要交给不可信在线转换服务。"
+            "title": "导入并选择配置",
+            "description": "iPhone 点击 Home 左上方配置名称进入 Profile Center；iPad 从侧栏进入 Profiles。选择 Add Profile，导入服务方提供的 Clash / mihomo 配置 URL 或 YAML 文件，保存后选用该配置。普通节点链接不能代替完整配置。"
           },
           {
             "stepNumber": 3,
-            "title": "选择策略组与连接",
-            "description": "打开 Proxies 或 Nodes，检查延迟并在负责目标流量的策略组里选择路线。回到 Home 点击连接，首次按系统提示允许添加 VPN 配置。日常可选 Rule 模式，但具体直连、代理或拒绝由当前配置决定。",
-            "pencilTip": "自动组是否存在以及如何健康检查由配置决定；VPN 已连接不等于节点可用或所有网站都可访问。"
+            "title": "选择节点",
+            "description": "打开 Proxies 或 Nodes，在负责代理流量的策略组里选择节点。初次使用可先选服务方推荐的线路；日常可用 Rule 模式，具体分流由配置决定。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "连接并允许 VPN",
+            "description": "回到 Home 启动连接，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。先停止其他 VPN，避免互相影响。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "浏览器验证与关闭",
+            "description": "打开 Safari，分别访问日常网站及需要代理的网站。能正常加载才算验证通过，VPN 图标并不代表节点可用。用完回到 Home 停止连接，确认系统 VPN 状态已断开。"
           }
         ],
         "advancedRules": [
-          "[官方 NE/TUN 说明](https://clash.md/guide/config/inbound#tun-mode)：连接后使用 Apple Packet Tunnel，不需要额外开启桌面客户端式的 TUN 开关；不能以 tun.enable: false 推断进入仅代理端口模式。",
-          "[客户端 LICENSE](https://github.com/ProjectClash/Clash-Client/blob/main/LICENSE) 为 GPL-3.0。源码 README 明确按提交发布，产品各平台版本分开管理；不要将内核版本或源码默认 MARKETING_VERSION 写成商店最新版本。"
+          "切换配置：在 Profile Center / Profiles 中选择另一份已导入配置，再检查其策略组选中了哪个节点。",
+          "自动选节点：如果配置提供自动选择组，可在 Proxies / Nodes 中选用它，再通过常用网站验证效果；没有该组时仍手动选节点。",
+          "规则分流：日常选择 Rule 模式并检查当前策略组；若某网站连接异常，先恢复原配置对比，避免一次修改多项规则。"
         ],
         "faq": [
           {
-            "question": "这是原版 Clash 内核的 iOS 官方客户端吗？",
-            "answer": "本教程只确认它是 clash.md 与 ProjectClash/Clash-Client 对应的 Apple 应用，核心基于 mihomo。未取得旧 Dreamacro 项目授权或承继关系证据，不使用“原版官方续作”等说法。"
+            "question": "配置导入失败怎么办？",
+            "answer": "确认 URL 完整且订阅未过期，请服务方提供 Clash / mihomo YAML 配置。若下载的是登录页或错误页面，应先修复订阅地址，不要反复导入。"
           },
           {
-            "question": "Rule 模式是否保证国内直连、海外代理？",
-            "answer": "不能保证。Rule 按所选配置匹配；检查规则、DNS、策略组和运行日志。应用免费不表示节点或网络服务免费。"
+            "question": "连接后网页打不开怎么办？",
+            "answer": "先断开 VPN 确认原网络可用，再检查当前配置、换节点并重连。只有部分网站失败时检查 Rule 模式的规则和策略组；求助前隐藏配置里的密码与订阅令牌。"
           }
         ]
       },
@@ -197,50 +208,61 @@
         "trafficHandling": "Apple NetworkExtension / TUN；按 JSON 配置路由"
       },
       "tutorial": {
-        "overview": "检索日期：2026-11-13。安装与身份以 [官方 Apple 客户端文档](https://sing-box.sagernet.org/clients/apple/) 的外链为准；[美国商店](https://apps.apple.com/us/app/sing-box-mt/id6785326793) 与 [Apple API](https://itunes.apple.com/lookup?id=6785326793&country=us) 返回应用版本 1.14.8，而 [核心 GitHub release](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4) 为 1.14.4，二者是不同版本字段。",
+        "overview": "使用 sing-box Apple 客户端导入完整配置，再连接 VPN。请从 [官方 Apple 客户端文档](https://sing-box.sagernet.org/clients/apple/) 进入商店，避免下载同名应用。",
         "prerequisites": [
-          "iOS / iPadOS 15+ 与可下载应用的 Apple 账户（官方要求非中国大陆账户）",
-          "可信且匹配已安装核心版本的完整 sing-box JSON 配置"
+          "iOS / iPadOS 15+，以及可下载应用的本人 Apple 账户（官方要求非中国大陆账户）",
+          "服务方提供的完整 sing-box JSON 配置，需兼容所装核心版本",
+          "配置和订阅包含凭据，请勿公开或交给不可信转换网站"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "由官方文档进入商店安装",
-            "description": "从官方 Apple 文档的 App Store 链接安装 sing-box MT，核对 ID 6785326793 和销售方 Metamerism LLC。普通设备使用商店版本，不把 GitHub 的越狱 .deb 文件当作普通 iPhone 安装包。"
+            "title": "安装官方客户端",
+            "description": "通过官方 Apple 文档的 App Store 链接安装 sing-box MT，核对 ID 6785326793 和销售方 Metamerism LLC。普通 iPhone 使用商店版本，不使用 GitHub 上的越狱安装包。"
           },
           {
             "stepNumber": 2,
-            "title": "添加并选中完整配置",
-            "description": "在配置管理中创建本地配置，或使用 Remote Profile 添加返回完整 sing-box JSON 的 HTTPS URL。检查下载内容与错误提示后选中配置；界面名称会随版本与语言变化，不依据本教程假设固定按钮位置。",
-            "pencilTip": "普通节点订阅链接并不一定是完整 JSON 配置。若来自服务商，先询问其明确支持的 sing-box 版本。"
+            "title": "添加完整配置",
+            "description": "在配置管理中添加 Remote Profile，填写返回完整 sing-box JSON 的 HTTPS 地址，下载保存后选中配置。已有本地配置可用 Local Profile；Clash YAML、普通节点订阅或单个分享链接不能直接替代完整配置。"
           },
           {
             "stepNumber": 3,
-            "title": "启动并验证路由",
-            "description": "启动所选配置，按系统提示允许添加 VPN 配置。检查日志、DNS 与实际请求；若配置定义策略组，再在 Dashboard 中选择路线。停止时使用应用的服务开关。"
+            "title": "启动并允许 VPN",
+            "description": "启动所选配置，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。先停止其他 VPN；出现配置错误时先处理提示，再重新启动。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "选择节点",
+            "description": "配置提供策略组时，在 Dashboard 的相应分组中选择节点。没有策略组时使用配置预设的线路；需要手动换节点，可向服务方索取包含节点选择的完整配置。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "浏览器验证与关闭",
+            "description": "打开 Safari，分别访问日常网站及需要代理的网站。确认网页正常加载，而不只看系统 VPN 状态。用完返回应用停止服务，确认 VPN 已断开。"
           }
         ],
         "advancedRules": [
-          "升级前备份配置并阅读 [迁移指南](https://sing-box.sagernet.org/migration/) 和 [废弃列表](https://sing-box.sagernet.org/deprecated/)：GeoIP/Geosite 已在 1.12 移除，应迁移 rule-set；旧 block/dns 特殊出站、WireGuard outbound 和旧入站 sniff 等字段在 1.13 移除，分别迁移规则动作、WireGuard endpoint 等；旧 DNS server 格式在 1.14 移除。在线文档还列出 1.15+ 的变化，不能不看版本就套用。",
-          "[官方通用 GUI 规范](https://sing-box.sagernet.org/clients/general/) 区分 Local、iCloud 与 Remote Profile；Remote 下载的必须是完整配置。查看应用显示的核心版本再排查配置兼容性。"
+          "更新配置：在 Remote Profile 中按需设置自动更新；更新前保留可用副本，更新后重新验证常用网站。",
+          "切换线路：配置包含手动策略组时，在 Dashboard 中改选另一节点；自动选择组则按配置测试并选择线路。",
+          "多设备配置：需要通过 iCloud 使用配置时，可添加 iCloud Profile 并选择相应配置文件；只使用自己的账户，注意文件内含节点凭据。"
         ],
         "faq": [
           {
-            "question": "URL 订阅能直接作为配置吗？",
-            "answer": "仅当 URL 返回适合已安装核心版本的完整 sing-box JSON 配置。Clash YAML、Base64 节点列表和单个分享链接不是完整配置；Remote Profile 是 GUI 的配置下载/更新功能，不是内核自动转换订阅。不要将私密链接交给不可信在线转换器。"
+            "question": "订阅导入失败怎么办？",
+            "answer": "确认地址返回完整 sing-box JSON，并向服务方确认兼容的核心版本。Clash YAML、Base64 节点列表和单节点链接不能直接作为 Remote Profile；不要将私密订阅交给不可信在线转换器。"
           },
           {
-            "question": "为什么没有 Groups 或模式切换？",
-            "answer": "官方通用客户端规范只在配置包含 selector/urltest 分组出站时提供策略组；模式选择也需要配置使用至少两个 clash_mode 值。不能保证任意导入配置都出现这些控件。"
+            "question": "启动时报 unknown field 怎么办？",
+            "answer": "通常是配置字段与当前核心版本不兼容。记录应用显示的核心版本和错误字段，向配置提供方索取对应版本的配置；手动维护者可参考 [官方迁移指南](https://sing-box.sagernet.org/migration/)，不要靠反复重装解决。"
           },
           {
-            "question": "VPN 显示连接是否就代表可用？",
-            "answer": "只说明隧道状态，不保证节点、DNS 或规则正确。查看日志及实际请求；错误中若有 unknown field 或 deprecated，按核心版本迁移配置，切勿仅反复重装应用。"
+            "question": "显示已连接但 Safari 打不开网页怎么办？",
+            "answer": "先停止服务确认原网络正常，再尝试更新配置或更换策略组节点。如果没有分组，联系服务方检查预设线路；查看日志求助时隐藏订阅地址、密码和访问记录。"
           }
         ]
       },
-      "tagline": "官方 Apple 图形客户端：管理 sing-box JSON 配置",
-      "description": "SFI 是 sing-box 的 Apple 平台图形客户端。官方文档当前 App Store 入口指向 sing-box MT（Metamerism LLC，ID 6785326793），不能把所有同名应用都当作官方发行。它管理本地或远程完整配置，并提供 Apple 平台 TUN 实现。",
+      "tagline": "在 iPhone 上导入 sing-box 配置并连接",
+      "description": "sing-box 的 Apple 客户端可管理本地或远程完整配置。请通过官方文档安装 sing-box MT，并自行准备兼容配置与节点服务。",
       "appStoreUrl": "https://apps.apple.com/us/app/sing-box-mt/id6785326793",
       "githubRepo": "https://github.com/SagerNet/sing-box-for-apple",
       "changelog": []
@@ -251,8 +273,8 @@
       "shortName": "Karing",
       "system": "ios",
       "category": "apple",
-      "tagline": "Flutter 图形客户端，内置定制 sing-box 核心",
-      "description": "Karing 是开源跨平台代理客户端，使用 Flutter 与修改版 sing-box。官方说明支持 Clash、V2Ray/V2Fly、sing-box、Shadowsocks 等订阅，但明确只支持部分 clash.meta 配置；不能理解成任何内核配置都能无损运行。",
+      "tagline": "导入多种订阅，在 iPhone 上连接 VPN",
+      "description": "Karing 是开源代理客户端，支持多种订阅和节点选择。Clash Meta 配置仅部分兼容，建议使用服务方提供的 Karing 适用订阅。",
       "iconName": "Link2",
       "badgeText": "多格式配置",
       "updatedAt": "2026-11-13",
@@ -280,43 +302,52 @@
         "trafficHandling": "VPN/TUN 与 Karing 配置管理、路由规则"
       },
       "tutorial": {
-        "overview": "检索日期：2026-11-13。依据 [项目 README](https://github.com/KaringX/karing)、[LICENSE.md](https://github.com/KaringX/karing/blob/main/LICENSE.md)、[美国商店](https://apps.apple.com/us/app/karing/id6472431552) 与 [Apple API](https://itunes.apple.com/lookup?id=6472431552&country=us)。本页记录 iOS 商店版本，不将其他平台 GitHub release、测试版或定制核心版本当作 iOS 最新版。官方 README 与商店确认 iCloud、局域网和 WebDAV 同步，但不保证各平台交互完全相同。",
+        "overview": "Karing 可以导入多种订阅，选择节点后连接即可使用。下面从安装开始；更多说明见 [官方网站](https://karing.app)。",
         "prerequisites": [
-          "iOS / iPadOS 15+ 与可下载该应用的 Apple 账户",
-          "本人有权使用的可信订阅或配置，确认所需格式和协议受当前版本支持"
+          "iOS / iPadOS 15+ 与可下载应用的本人 Apple 账户",
+          "服务方提供的 Karing 兼容订阅；应用不附带节点",
+          "订阅包含凭据，请勿公开或交给不可信转换网站"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "核对并安装 Karing",
-            "description": "从官方 README 的 App Store 链接安装，核对应用 ID 6472431552，销售方 SUPERNOVA NEBULA LLC。是否可下载与收费以当前地区商店页面为准。",
-            "pencilTip": "Karing 免费下载不包含免费的服务器或流量。不要借用不可信共享 Apple 账户。"
+            "title": "安装 Karing",
+            "description": "通过官网的 App Store 入口安装，核对应用 ID 6472431552。地区可用性以商店为准，不使用不可信共享 Apple 账户。"
           },
           {
             "stepNumber": 2,
-            "title": "添加配置来源",
-            "description": "使用应用的添加配置链接功能粘贴可信订阅 URL，填写备注并保存。官方 README 提供 add_profile_link 界面示例；本次未逐屏实测，不指定未经核实的“设置→订阅管理”固定菜单路径。确认导入结果、节点与错误提示。",
-            "pencilTip": "Clash Meta 仅部分兼容。导入成功不保证所有 DNS、路由或特殊出站字段保留；先备份并检查结果。"
+            "title": "添加订阅",
+            "description": "使用添加配置链接功能粘贴订阅 URL，填写备注并保存，确认出现节点。支持 Clash、V2Ray 等多种格式，但 Clash Meta 配置仅部分兼容，优先使用服务方标注适用于 Karing 的订阅。"
           },
           {
             "stepNumber": 3,
-            "title": "选择节点、路由并连接",
-            "description": "在节点选择界面选择有权使用的节点，检查路由规则组，再使用主页连接开关启动。首次按 iOS 提示允许添加 VPN 配置。通过日志和实际请求验证；延迟低不等于吞吐、稳定性或解锁能力有保证。",
-            "pencilTip": "iOS 不提供让任意普通 App 随系统启动并无限常驻后台的通用开关。不要据此设置虚构的“开机常驻”。"
+            "title": "选择节点",
+            "description": "在节点选择界面选择服务方推荐的节点；如果进行延迟测试，选一个有响应的节点先试用。测试结果不等于网页一定能打开。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "启动并允许 VPN",
+            "description": "打开主页连接开关，首次按 iOS 提示允许添加 VPN 配置，并完成系统认证。先停止其他 VPN，以免互相影响。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "浏览器验证与关闭",
+            "description": "打开 Safari，分别访问日常网站和需要代理的网站。能正常加载后再使用其他应用；用完关闭 Karing 的连接开关，确认系统 VPN 状态已断开。"
           }
         ],
         "advancedRules": [
-          "按官方 README，支持 iCloud（iOS/macOS）、局域网、WebDAV 与 ZIP 导入导出。备份可能含节点凭据，启用同步前确认账户、服务器与访问权限，不把“支持同步”描述成自动或无风险。",
-          "Karing 使用修改版核心。不要把官方 sing-box 的跨版本 JSON 示例直接当作 Karing 的通用配置；更新前备份，按 Karing 自身兼容说明检查字段。"
+          "更新订阅：在配置管理中更新已有订阅，确认节点列表刷新后重新选择节点。",
+          "备份配置：使用 ZIP 导出功能保存副本，需要恢复时再导入；备份含节点凭据，请妥善保管。",
+          "同步配置：需要多设备使用时，在同步功能中选择 iCloud 或自己的 WebDAV 服务，确认账户和访问权限后再同步。"
         ],
         "faq": [
           {
-            "question": "是否完整兼容所有 Clash / Mihomo 配置？",
-            "answer": "不是。官方 README 明确“Full clash config supported, Partial clash.meta config supported”。应逐项核对所需功能；订阅节点可以导入，不代表整个原配置无损运行。"
+            "question": "订阅导入失败怎么办？",
+            "answer": "检查 URL 是否完整、订阅是否有效，并请服务方提供 Karing 兼容格式。Clash Meta 的部分配置无法直接使用；不要把错误页面当配置反复导入。"
           },
           {
-            "question": "为什么版本与 GitHub 或其他教程不同？",
-            "answer": "本页采用本次 Apple 美国商店 API 返回的 iOS 1.2.25.2802（2026-09-11）；不把其他发行渠道的版本改写成 iOS 最新。商店可能分区或分批更新，以设备当前页面为准。"
+            "question": "已连接但 Safari 打不开网页怎么办？",
+            "answer": "先断开 VPN 确认原网络正常，再更新订阅、换节点并重连。若只有个别网站异常，检查路由规则；求助时提供错误提示，但隐藏订阅链接、密码和令牌。"
           }
         ]
       },
@@ -357,55 +388,52 @@
         "trafficHandling": "系统代理仅影响遵循系统设置的应用；TUN 通过虚拟网卡和路由接管适用流量"
       },
       "tutorial": {
-        "overview": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
+        "overview": "Clash Verge Rev 可导入 Clash / Mihomo 配置，通过系统代理连接。首次使用按下面五步操作，界面说明可参考 [官方快速入门](https://www.clashverge.dev/guide/quickstart.html)。",
         "prerequisites": [
-          "符合该版本系统与 CPU 架构要求的设备",
-          "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
-          "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
+          "按当前安装文档准备 macOS 12+ 的 Mac，并确认是 Apple Silicon 还是 Intel 芯片",
+          "可信服务商提供的 Clash / Mihomo 配置或订阅链接，勿公开分享"
         ],
         "steps": [
           {
             "stepNumber": 1,
             "title": "核对平台并安装",
-            "description": "从官方 Releases 选择 aarch64.dmg（Apple Silicon）或 x64.dmg（Intel），挂载后拖入应用程序。遇到系统安全警告先核实来源和文件完整性，不关闭 Gatekeeper。"
+            "description": "从官方 Releases 下载 aarch64.dmg（Apple Silicon）或 x64.dmg（Intel）。打开 DMG，将应用拖入“应用程序”，再打开客户端。遇到安全警告先核实来源和文件完整性，不要关闭 Gatekeeper。"
           },
           {
             "stepNumber": 2,
             "title": "导入并激活配置",
-            "description": "在订阅管理页面添加远程 Clash / Mihomo YAML 配置 URL，导入后选中该配置。也可使用本地配置。不要把单节点分享 URI、登录网页或不兼容的通用订阅直接当作完整 YAML；导入失败先看错误日志。"
+            "description": "在订阅管理页面粘贴服务商提供的 Clash / Mihomo 订阅链接并导入，或导入本地 YAML 文件。成功后选中该配置，确认能看到节点；导入失败先核对是否拿到了正确格式的订阅。"
           },
           {
             "stepNumber": 3,
             "title": "选择策略组和节点",
-            "description": "在代理页面选择配置提供的策略组及节点，按需使用规则模式。延迟测试只反映测试目标的响应，不代表带宽或所有网站可达。"
+            "description": "在代理页面找到负责代理流量的策略组，测试延迟并选择一个可用节点。初次使用选择规则模式，按订阅配置分流；延迟较低不代表所有网站都一定可用。"
           },
           {
             "stepNumber": 4,
-            "title": "先系统代理，按需启用 TUN",
-            "description": "先开启系统代理并用浏览器验证。终端等不遵循系统代理的应用可显式设置本地代理，或按官方说明安装/检查服务模式后再启用 TUN，并批准必要的系统权限。TUN 并非辅助功能权限，也不保证 WSL、容器、虚拟机或所有游戏流量都被接管。"
+            "title": "开启系统代理",
+            "description": "在客户端开启系统代理，让遵循系统代理的浏览器和应用使用当前配置。首次使用先保持 TUN 关闭；仅打开客户端或选中节点，还不等于应用流量已走代理。"
           },
           {
             "stepNumber": 5,
-            "title": "验证并保留回退方法",
-            "description": "分别检查目标网站、DNS、应用连接与日志，确认路由符合预期。出现断网时先关闭 TUN、恢复系统代理设置，排查其他 VPN、防火墙和路由冲突。"
+            "title": "验证访问并停止代理",
+            "description": "用浏览器访问需要代理的网站，并确认常用网站也能打开；失败时换节点或查看连接日志。用完先关闭系统代理，若启用了 TUN 也一并关闭，再退出客户端并检查普通上网是否正常。"
           }
         ],
         "advancedRules": [
-          "[项目 README：维护分支、内核、GPL 与配置增强](https://raw.githubusercontent.com/clash-verge-rev/clash-verge-rev/main/README.md)",
-          "[安装文档：平台要求和官方发布渠道](https://www.clashverge.dev/install.html)",
-          "[官方快速入门：导入、节点、系统代理与 TUN](https://www.clashverge.dev/guide/quickstart.html)",
-          "[版本与安装资产核查](https://api.github.com/repos/clash-verge-rev/clash-verge-rev/releases/latest)",
-          "[Mihomo 配置原始示例：协议、DNS、TUN 和排除路由](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
-          "配置增强支持 Merge / Script；仅使用可信脚本，更新订阅后检查最终生效配置。规则模式依赖配置中的规则，并不自动保证特定地区或应用直连。"
+          "订阅更新：节点失效时在订阅管理中更新配置，再测试和选择节点；更新后确认当前配置没有选错。",
+          "代理模式：日常使用规则模式；全局模式可临时用于排查，测试结束后切回规则模式。",
+          "TUN 接管：遇到不遵循系统代理的应用时，再按官方说明安装或检查服务模式并启用 TUN；按提示授权，断网先关闭并排查其他 VPN。",
+          "开机启动：确认连接稳定后，再在设置中开启开机启动；重启后检查系统代理状态，避免同时启动多个代理客户端。"
         ],
         "faq": [
           {
             "question": "为什么系统代理开启后终端仍无法连接？",
-            "answer": "系统代理不是透明转发；应用必须主动遵循系统代理，或显式使用客户端本地 HTTP/SOCKS 监听地址。TUN 是另一种接管方式，仍受路由和排除设置限制。"
+            "answer": "部分终端程序不读取系统代理。可为该程序设置客户端显示的本地代理地址，或按需使用 TUN；不要猜测端口。"
           },
           {
             "question": "TUN 启动失败怎么办？",
-            "answer": "先看内核与服务日志，检查服务安装状态、管理员授权、虚拟网卡、DNS 与其他 VPN 冲突。Linux 不要对猜测的旧版内核路径执行 setcap；不建议全程以 root 运行 GUI。"
+            "answer": "先关闭 TUN 保持基本上网，再检查服务模式是否安装、系统授权是否完成及是否有其他 VPN 冲突。根据内核和服务日志排查，不要反复盲目授权。"
           }
         ]
       },
@@ -447,7 +475,7 @@
         "trafficHandling": "Apple NE Packet Tunnel；支持菜单栏控制与配置规则分流"
       },
       "tutorial": {
-        "overview": "检索日期：2026-11-13。依据：[Mac 官方页](https://clash.md/platforms/macos)、[官方入门](https://clash.md/guide/)、[客户端 README](https://github.com/ProjectClash/Clash-Client)、[部署目标与扩展配置](https://github.com/ProjectClash/Clash-Client/blob/main/apple/ClashClient/project.yml)。官网、源码和 App Store ID 6794257189 互相对应，确认项目真实存在；未确认其与旧 Dreamacro 项目的官方承继关系。README 的产品构建、Xcode 默认值和 iOS 商店 API 数字不等于 macOS 当前上架版本。",
+        "overview": "使用 ProjectClash 的 Clash Mac 客户端，导入配置并通过 VPN 连接。请从 [Mac 官方页](https://clash.md/platforms/macos) 安装，不要与 ClashX 等同名客户端混用教程。",
         "prerequisites": [
           "macOS 13 或更高版本；可使用对应商店的 Apple 账户",
           "可信 Clash / mihomo YAML 配置或配置 URL；自行提供节点"
@@ -455,35 +483,45 @@
         "steps": [
           {
             "stepNumber": 1,
-            "title": "从官网进入 Mac App Store",
-            "description": "打开官方 Mac 页面，点击 Mac App Store 入口。核对应用 ID 6794257189、销售方 OmniWide Media Limited 和本机兼容性。官网也列出测试资格申请入口，但不保证名额或地区可用性。",
-            "pencilTip": "不要将其他同名 Clash 客户端的教程、安装包或版本号混用。"
+            "title": "安装并打开 Clash",
+            "description": "打开 Mac 官方页，进入 Mac App Store 安装。核对应用 ID 6794257189 和销售方 OmniWide Media Limited，安装完成后打开应用。"
           },
           {
             "stepNumber": 2,
-            "title": "在 Profiles 中添加配置",
-            "description": "按官方入门在 Mac 侧栏打开 Profiles，选择 Add Profile，可从配置 URL、文件、粘贴内容或空白配置开始。导入并选中配置，确认解析无错误；订阅 URL 本身不是节点可用性的保证。",
-            "pencilTip": "配置、备份和日志可能含凭证，求助前先脱敏。"
+            "title": "导入并选中配置",
+            "description": "在侧栏打开 Profiles，选择 Add Profile，填写服务商提供的配置 URL 或导入 YAML 文件。保存后选中配置，确认没有解析错误。",
+            "pencilTip": "订阅链接包含凭证，不要公开分享。"
           },
           {
             "stepNumber": 3,
-            "title": "选择路线并启动",
-            "description": "在 Proxies 或 Nodes 中查看负责目标流量的策略组，测试延迟并选择路线。回到 Home 连接，首次按系统提示允许 VPN 配置。Rule 模式按当前配置规则处理流量；连接后可用菜单栏查看状态和切换。",
-            "pencilTip": "这是 NetworkExtension Packet Tunnel，不是必须再开一个 TUN 开关的桌面内核包装器。以日志和实际请求验证连通性。"
+            "title": "选择节点",
+            "description": "在 Proxies 或 Nodes 中找到负责代理流量的策略组，测试延迟并选择可用节点。初次使用保留 Rule 模式，流量按配置规则分流。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "开启 VPN 连接",
+            "description": "回到 Home 开启连接，首次按 macOS 提示允许添加 VPN 配置，等待连接成功。此客户端使用 VPN 隧道，不需要另找系统代理或额外 TUN 开关。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "验证访问并断开",
+            "description": "打开浏览器访问需要代理的网站，并确认常用网站仍能打开；失败时换节点或查看连接日志。用完后在 Home 断开连接，确认 VPN 已停止，再检查普通上网是否正常。"
           }
         ],
         "advancedRules": [
-          "官网确认支持按进程名、可执行路径或 UID 路由，但具体规则能力取决于当前应用、核心和配置，参阅 [Mac 使用指南](https://clash.md/guide/macos)。不要直接复制其他客户端的菜单或系统代理设置。",
-          "[源码 LICENSE](https://github.com/ProjectClash/Clash-Client/blob/main/LICENSE) 为 GPL-3.0；公开源码不等于独立安全审计，也不构成省电、零遥测或性能优于其他软件的测量证据。"
+          "配置管理：在 Profiles 中管理常用配置；更新配置后确认仍选中了需要使用的那一份。",
+          "节点切换：连接慢时先测试策略组内的节点，再切换到可用节点，不必反复重装。",
+          "规则分流：日常保留 Rule 模式；需要按应用分流时，参考 [Mac 使用指南](https://clash.md/guide/macos) 配置进程名或路径规则，修改前备份。",
+          "菜单栏控制：连接后可在菜单栏查看状态和切换；离开电脑前确认是否还需要保持 VPN 连接。"
         ],
         "faq": [
           {
-            "question": "为什么不直接标 macOS 最新版本为 1.0.14？",
-            "answer": "相同 App Store ID 覆盖多个平台。Apple lookup 返回的 iOS 版本不能推断 macOS；README 又明确各平台产品版本独立。本次只记录 README 对应 macOS 产品构建 1.0.15，不宣称它是商店最新。"
+            "question": "已连接却打不开网站？",
+            "answer": "先换一个可用节点，确认选中了正确配置，再查看连接日志。VPN 已连接不代表节点一定可用。"
           },
           {
-            "question": "启用规则模式后某个应用仍走错路线？",
-            "answer": "检查选中的配置、策略组、匹配规则及 DNS/连接日志。按实际进程路径排查，不能假定规则模式自动实现所有国内直连。"
+            "question": "规则模式下某个应用走错路线？",
+            "answer": "检查该连接匹配的规则和策略组；Rule 按配置执行，不会自动保证所有国内网站都直连。"
           }
         ]
       },
@@ -524,53 +562,52 @@
         "trafficHandling": "系统代理与 TUN；无需手动服务模式不代表无需管理员权限或特权 Helper"
       },
       "tutorial": {
-        "overview": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
+        "overview": "Clash Party（原 Mihomo Party）可导入 Clash / Mihomo 配置，通过系统代理连接。先按下面步骤完成首次使用，也可参考 [官方快速上手](https://clashparty.org/docs/handson)。",
         "prerequisites": [
-          "符合该版本系统与 CPU 架构要求的设备",
-          "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
-          "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
+          "符合安装包要求的 Mac；在“关于本机”确认 Apple Silicon 或 Intel 芯片",
+          "可信服务商提供的 Clash / Mihomo 配置或订阅链接，勿公开分享"
         ],
         "steps": [
           {
             "stepNumber": 1,
             "title": "从官方渠道下载安装",
-            "description": "当前 v2.0.4 发布资产为 clash-party-macos-2.0.4-arm64.pkg / x64.pkg，按芯片选择并使用系统安装器。旧版文档仍写 DMG，不能套用到本次 PKG。安装可能涉及特权 Helper，先核实来源和校验值。"
+            "description": "从官方发布页下载 macOS 安装包：Apple Silicon 选 arm64，Intel 选 x64。当前 v2.0.4 提供 PKG，双击并按系统安装器完成安装，然后打开应用；涉及 Helper 时仅对可信官方安装包授权。"
           },
           {
             "stepNumber": 2,
             "title": "导入兼容订阅并激活",
-            "description": "在订阅管理区域添加服务提供方的 Clash / Mihomo YAML URL 或本地配置，完成下载并选为当前配置。通用分享链接不等于完整 Clash 配置；如需 Sub-Store 转换，仅使用可信实例，不把密钥发送给陌生公共转换站。"
+            "description": "在订阅管理中添加服务商提供的 Clash / Mihomo YAML 链接，或导入本地配置文件。下载成功后选为当前配置，确认节点列表出现；单个节点分享链接不等于完整配置。"
           },
           {
             "stepNumber": 3,
-            "title": "选择节点并启用系统代理",
-            "description": "在代理策略组中选择节点，按配置需要选择规则或全局模式，再启用系统代理。客户端运行与启用系统代理不是同一状态；用目标应用和连接日志确认效果。"
+            "title": "选择可用节点",
+            "description": "在代理策略组中测试延迟并选择一个可用节点。初次使用保留规则模式，让配置决定哪些网站走代理。"
           },
           {
             "stepNumber": 4,
-            "title": "按需启用 TUN 并验证权限",
-            "description": "只有需要接管不遵循系统代理的程序时才启用 TUN。官方“无需服务模式”描述不等于免权限：虚拟网卡和路由需要系统授权，macOS 存在特权 Helper。若断网，关闭 TUN 并检查 DNS、排除路由与其他 VPN；不保证所有流量都接管。"
+            "title": "开启系统代理",
+            "description": "在客户端开启系统代理，让遵循系统代理的浏览器和应用使用所选节点。只打开客户端并不代表已连接；首次使用先不启用 TUN。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "验证访问并停止代理",
+            "description": "用浏览器打开需要代理的网站，再检查常用网站；失败时换节点或查看连接日志。用完先关闭系统代理，如启用了 TUN 也一并关闭，再退出客户端并确认普通上网正常。"
           }
         ],
         "advancedRules": [
-          "[当前默认 smart_core 分支 README：内核与功能](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/README.md)",
-          "[仓库 API：当前名称、主页、非归档与维护活动](https://api.github.com/repos/mihomo-party-org/clash-party)",
-          "[官方发布接口：版本与实际资产](https://api.github.com/repos/mihomo-party-org/clash-party/releases/latest)",
-          "[GPL 许可证](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/LICENSE)",
-          "[官方快速上手](https://clashparty.org/docs/handson)",
-          "[官方安装说明（部分说明仍为旧版）](https://clashparty.org/docs/install)",
-          "[Mihomo 协议与 TUN 原始配置](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
-          "Sub-Store、覆写和 WebDAV 是配置管理功能，不是客户端自动提供节点或保证匿名的服务；备份可能包含订阅凭据，上传前检查存储权限。",
-          "[macOS 官方故障排查：特权 Helper 与服务](https://clashparty.org/docs/issues/macos)"
+          "订阅更新：节点失效时先在订阅管理中更新，再重新选择可用节点；不要把订阅链接发到公共转换站。",
+          "代理模式：日常使用规则模式；临时切换全局模式排查问题后，记得切回规则模式。",
+          "TUN 接管：仅在目标应用不遵循系统代理时按需启用，并按 macOS 提示授权 Helper；断网先关闭 TUN，检查是否与其他 VPN 冲突。",
+          "配置备份：使用覆写或 WebDAV 前先备份；备份可能含订阅凭据，只保存到可信且权限受控的位置。"
         ],
         "faq": [
           {
             "question": "Clash Party 与 Mihomo Party 是什么关系？",
-            "answer": "当前仓库、应用 productName 和官网使用 Clash Party，旧 README、安装说明、应用标识及部分资产仍保留 Mihomo Party 名称。旧名不是另一个必需安装的内核；以同一官方组织仓库的发布记录核对，不推断确切改名日期。"
+            "answer": "Clash Party 是 Mihomo Party 更名后的客户端。旧说明可能仍使用旧名，不需要再安装一份 Mihomo Party。"
           },
           {
-            "question": "为什么不照抄“免服务、完全没有安全隐患”？",
-            "answer": "免手动服务模式只描述使用方式，不能证明无特权代码或无风险。下载核验、最小权限、可信配置和日志排错仍然必要；macOS 官方文档明确列出 Helper 服务。"
+            "question": "浏览器可用，其他应用却连不上？",
+            "answer": "该应用可能不遵循系统代理，可按需尝试 TUN。TUN 需要系统权限；启用后断网则先关闭，并检查其他 VPN 和日志。"
           }
         ]
       },
@@ -610,7 +647,7 @@
         "trafficHandling": "官方 Apple 客户端 TUN；实际路由由配置决定"
       },
       "tutorial": {
-        "overview": "检索日期：2026-11-13。依据 [官方 Apple 文档](https://sing-box.sagernet.org/clients/apple/)、[SFM cask](https://formulae.brew.sh/cask/sfm) 与 [1.14.4 发行资产](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4)。已确认 SFM-1.14.4-Universal.pkg（另有 Apple / Intel 包）；不再把 dmg、Mac App Store 与 SFI 当成同一安装途径。",
+        "overview": "使用官方 macOS 图形客户端 SFM，导入完整配置后连接。安装说明见 [官方 Apple 文档](https://sing-box.sagernet.org/clients/apple/)；SFM 与 sing-box 命令行核心不是同一个安装包。",
         "prerequisites": [
           "macOS 13+，允许安装官方签名包及按系统要求授权网络功能",
           "可信且匹配已安装核心版本的完整 sing-box JSON 配置"
@@ -631,28 +668,38 @@
           },
           {
             "stepNumber": 3,
-            "title": "启动配置并检查日志",
-            "description": "启动服务，按 macOS 的实际提示允许网络功能；检查日志、路由和 DNS。只有配置包含分组出站时才能在 Dashboard 中查看或切换策略组。",
-            "pencilTip": "不保证零开销、不影响电池或任意协议都可用；资源使用取决于配置、协议和负载。"
+            "title": "确认节点或策略组",
+            "description": "确认已选中要使用的配置。若配置提供 selector/urltest 分组，可在 Dashboard 中选择节点或自动选择组；若分组要在启动后才显示，连接后再选择。没有分组时使用配置中预设的出站。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "开启连接",
+            "description": "启动所选配置，按 macOS 提示允许添加 VPN 配置或相关网络权限，等待连接状态出现。SFM 使用 TUN 接管流量，实际范围由配置决定，不需要寻找系统代理开关。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "验证访问并停止连接",
+            "description": "打开浏览器访问需要代理的网站，再检查常用网站能否正常打开；失败时查看日志或更换节点。用完后在 SFM 停止连接，确认状态已断开，再检查普通上网是否恢复。"
           }
         ],
         "advancedRules": [
-          "升级前备份配置并阅读 [迁移指南](https://sing-box.sagernet.org/migration/) 和 [废弃列表](https://sing-box.sagernet.org/deprecated/)：GeoIP/Geosite 已在 1.12 移除，应迁移 rule-set；旧 block/dns 特殊出站、WireGuard outbound 和旧入站 sniff 等字段在 1.13 移除，分别迁移规则动作、WireGuard endpoint 等；旧 DNS server 格式在 1.14 移除。在线文档还列出 1.15+ 的变化，不能不看版本就套用。",
-          "[官方通用 GUI 规范](https://sing-box.sagernet.org/clients/general/) 区分 Local、iCloud 与 Remote Profile；Remote 下载的必须是完整配置。查看应用显示的核心版本再排查配置兼容性。",
-          "升级 SFM 到 1.14 前另读 [macOS 独立客户端数据迁移](https://sing-box.sagernet.org/migration/#migrate-the-macos-standalone-client-data)，先备份配置。CLI/launchd 是另一种部署方式，不能将 SFM 的配置更新流程直接套用到纯核心。"
+          "配置更新：使用 Remote Profile 时，节点失效先更新配置；下载地址必须返回完整 sing-box JSON，不是普通节点列表。",
+          "节点选择：配置提供 selector 分组时可手动切换节点；提供 urltest 分组时可使用自动选择，具体行为由配置决定。",
+          "路由与 DNS：先保留服务商提供的配置；需要分流时备份原文件，再按配置说明调整，不要直接套用其他客户端的规则。",
+          "升级备份：升级前导出或备份配置，并按当前核心版本查阅 [迁移指南](https://sing-box.sagernet.org/migration/)。"
         ],
         "faq": [
           {
             "question": "URL 订阅能直接作为配置吗？",
-            "answer": "仅当 URL 返回适合已安装核心版本的完整 sing-box JSON 配置。Clash YAML、Base64 节点列表和单个分享链接不是完整配置；Remote Profile 是 GUI 的配置下载/更新功能，不是内核自动转换订阅。不要将私密链接交给不可信在线转换器。"
+            "answer": "仅支持与当前核心兼容的完整 sing-box JSON。Clash YAML、节点列表和单个分享链接不能直接当作完整配置；请向服务商索取正确格式，不要公开订阅链接。"
           },
           {
             "question": "为什么没有 Groups 或模式切换？",
-            "answer": "官方通用客户端规范只在配置包含 selector/urltest 分组出站时提供策略组；模式选择也需要配置使用至少两个 clash_mode 值。不能保证任意导入配置都出现这些控件。"
+            "answer": "这些控件由配置决定：策略组需要 selector/urltest，模式选择需要至少两个 clash_mode 值。没有控件不一定是安装出错。"
           },
           {
             "question": "VPN 显示连接是否就代表可用？",
-            "answer": "只说明隧道状态，不保证节点、DNS 或规则正确。查看日志及实际请求；错误中若有 unknown field 或 deprecated，按核心版本迁移配置，切勿仅反复重装应用。"
+            "answer": "不一定。先实际打开网站，再查看日志；节点不可用可换节点，出现 unknown field 等配置错误则核对核心版本与配置格式。"
           }
         ]
       },
@@ -668,8 +715,8 @@
       "shortName": "v2rayNG",
       "system": "android",
       "category": "android",
-      "tagline": "v2rayNG：配置导入、VPN 接管与兼容性说明",
-      "description": "v2rayNG 是 Android 代理客户端，官方 2.3.15 发布仍在维护并更新 Xray-core。协议能力必须按实际内置内核与客户端生成配置核查，不能以旧版印象把它等同于仅支持 VMess 的工具。",
+      "tagline": "在 Android 上导入节点并连接 VPN",
+      "description": "v2rayNG 是基于 Xray-core 的 Android 代理客户端，可通过订阅、节点链接或二维码添加线路，需自行准备代理服务。",
       "iconName": "Smartphone",
       "badgeText": "官方来源核查",
       "updatedAt": "2026-11-13",
@@ -697,60 +744,56 @@
         "trafficHandling": "Android VpnService 虚拟接口；受路由与应用范围限制，不是桌面系统代理"
       },
       "tutorial": {
-        "overview": "v2rayNG 是 Android 代理客户端，官方 2.3.15 发布仍在维护并更新 Xray-core。协议能力必须按实际内置内核与客户端生成配置核查，不能以旧版印象把它等同于仅支持 VMess 的工具。 核查时间：2026-11-13。版本为官方接口当次快照，不保证安装时仍是最新；首发日期未独立确认。",
+        "overview": "跟着下面步骤在 Android 上安装 v2rayNG、导入订阅并连接。下载入口见 [官方项目](https://github.com/2dust/v2rayNG)，应用本身不提供节点。",
         "prerequisites": [
-          "符合该版本系统及 CPU 架构要求的 Android 设备",
-          "可信且兼容的订阅或自建节点参数；客户端不提供节点",
-          "订阅含凭据，请勿公开；不要同时运行冲突的 VPN"
+          "Android 7.0+ 设备及匹配架构的安装包",
+          "服务方提供的 v2rayNG / v2rayN 兼容订阅或节点链接",
+          "订阅含凭据，请勿公开；连接前停止其他 VPN"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "从官方发布页安装 APK",
-            "description": "在 2dust/v2rayNG Releases 选择匹配架构 APK，例如 v2rayNG_2.3.15_arm64-v8a.apk，不确定架构时查看发布文件说明或使用 universal。不同发行 flavor 与签名不一定能覆盖安装；按官方 GPG 说明验证下载，不作所有应用商店均未上架的断言。"
+            "title": "安装 v2rayNG",
+            "description": "从官方 Releases 下载适合手机架构的 APK，不确定时可选 universal 包。按系统提示允许此次安装，不安装来路不明的同名软件。"
           },
           {
             "stepNumber": 2,
-            "title": "导入节点或设置订阅组",
-            "description": "单节点使用剪贴板或二维码导入。订阅则进入订阅分组设置，新增名称和 URL，保存后执行更新订阅，并检查导入数量与日志。使用服务方提供的 v2rayNG / v2rayN 节点订阅（明文 URI 列表或 Base64），不是 Clash YAML；完整自定义 Xray JSON 走自定义配置导入。"
+            "title": "添加并更新订阅",
+            "description": "进入订阅分组设置，新增名称和订阅 URL，保存后执行更新订阅。使用服务方标注适用于 v2rayNG / v2rayN 的节点订阅，不要填入 Clash YAML；单节点可从剪贴板或二维码导入。"
           },
           {
             "stepNumber": 3,
-            "title": "检查节点与传输参数",
-            "description": "选择节点，核对端口、UUID/密码、SNI、REALITY 公钥与 short ID、传输和 flow 与服务端一致。2.3.15 生成代码包含 WireGuard、Hysteria 2 与 XHTTP，不应宣称 Xray 永远不支持它们；但不由此推断旧版、任意扩展或 TUIC 均可用。"
+            "title": "选择节点",
+            "description": "在节点列表中点选一个节点，初次使用可先选服务方推荐的线路。可用应用的连接测试辅助选择，但最终仍需打开网页验证。"
           },
           {
             "stepNumber": 4,
-            "title": "设置路由范围并启动 VPN",
-            "description": "根据需求选择路由规则和分应用范围；规则所需的 GeoIP / GeoSite 数据必须可用。启动 VPN 模式并确认系统授权，Android VPN 图标只表示服务建立，不能作为连接成功证据。仅代理模式只启动本地监听，不自动接管所有应用。"
+            "title": "启动 VPN 并授权",
+            "description": "使用 VPN 模式启动连接，首次同意 Android VPN 请求。不要选仅代理模式，它不会自动让浏览器等应用走 VPN。"
           },
           {
             "stepNumber": 5,
-            "title": "测试目标并排查",
-            "description": "用真实连接测试和实际应用验证，并查看连接与错误日志；TCP ping、URL 测试与带宽测试含义不同，不保证固定测试站点或低延迟必然可用。后台断开时同时排查电池限制、VPN 被其他应用替换和核心错误，不一概归因系统杀后台。"
+            "title": "浏览器验证与关闭",
+            "description": "打开浏览器，分别访问日常网站和需要代理的网站，确认正常加载。用完返回 v2rayNG 停止连接，确认系统 VPN 状态已断开。"
           }
         ],
         "advancedRules": [
-          "[官方 README：内核、下载、Geo 数据与 GPG](https://raw.githubusercontent.com/2dust/v2rayNG/master/README.md)",
-          "[2.3.15 系统要求、架构与 flavor](https://raw.githubusercontent.com/2dust/v2rayNG/2.3.15/V2rayNG/app/build.gradle.kts)",
-          "[2.3.15 协议、REALITY 与 XHTTP 生成代码](https://raw.githubusercontent.com/2dust/v2rayNG/2.3.15/V2rayNG/app/src/main/java/com/v2ray/ang/core/CoreOutboundBuilder.kt)",
-          "[2.3.15 导入器：格式兼容边界](https://raw.githubusercontent.com/2dust/v2rayNG/2.3.15/V2rayNG/app/src/main/java/com/v2ray/ang/handler/AngConfigManager.kt)",
-          "[GPL 原始许可证](https://raw.githubusercontent.com/2dust/v2rayNG/master/LICENSE)",
-          "[官方版本、日期与发布资产快照](https://api.github.com/repos/2dust/v2rayNG/releases/latest)",
-          "[Android VPN 平台机制与授权](https://developer.android.com/develop/connectivity/vpn)"
+          "更新订阅：在订阅分组设置中维护地址，再执行更新订阅；节点失效时先更新，不必删除整个应用。",
+          "分应用连接：在分应用设置中选择包含或排除的应用，确认范围后重新连接，再测试目标应用。",
+          "调整路由：需要改变哪些网站走代理时，在路由设置中选择合适规则；修改前记住原设置，网站异常时可恢复对比。"
         ],
         "faq": [
           {
-            "question": "支持任意 Clash 或 sing-box 配置吗？",
-            "answer": "不能这样假定。2.3.15 导入器解析节点 URI、Base64、v2rayn:// 内部分享、自定义 Xray JSON 和 WireGuard 配置；没有据此承诺完整 Clash YAML / sing-box 规则配置直接兼容。"
+            "question": "订阅更新后没有节点怎么办？",
+            "answer": "检查 URL 是否完整、服务是否到期，并确认拿到的是 v2rayNG / v2rayN 节点订阅，而非网页或 Clash 配置。仍报错时向服务方索取兼容链接，不要交给不可信在线转换网站。"
           },
           {
-            "question": "WireGuard、Hysteria 2 和 REALITY 是不是只能换其他内核？",
-            "answer": "本次核对 2.3.15 CoreOutboundBuilder 明确生成 WireGuard、Hysteria 2、REALITY 与 XHTTP 配置。是否能运行仍要匹配所装版本、内核和服务端参数；不能把开发分支新特性当成已发布版本能力。"
+            "question": "已连接但网页打不开怎么办？",
+            "answer": "先停止 VPN，确认原网络正常；再更新订阅、换节点并重连。如果只影响某个应用，检查分应用范围和路由。查看错误日志求助时，隐藏密码、订阅链接等凭据。"
           },
           {
-            "question": "国内应用异常时必须使用某个固定绕过菜单吗？",
-            "answer": "不必。检查路由顺序、DNS、Geo 数据与应用包含/排除范围，依据实际网络需求选择规则，不承诺某个预设适合所有设备。"
+            "question": "锁屏后经常断开怎么办？",
+            "answer": "检查是否有其他 VPN 替换连接，再查看系统对 v2rayNG 的电池限制和应用日志。可按需放宽电池限制后测试，但会增加耗电，且不能解决节点本身离线的问题。"
           }
         ]
       },
@@ -762,8 +805,8 @@
       "shortName": "FlClash",
       "system": "android",
       "category": "android",
-      "tagline": "FlClash：配置导入、VPN 接管与兼容性说明",
-      "description": "FlClash 是基于 Flutter 与 Mihomo 的多平台代理客户端；Android 版提供配置管理、策略组和分应用控制，官方仍有发布活动。",
+      "tagline": "导入 Clash 配置，在手机上选择线路",
+      "description": "FlClash 是基于 Mihomo 的代理客户端，Android 版支持订阅配置、节点选择和分应用连接。",
       "iconName": "Smartphone",
       "badgeText": "官方来源核查",
       "updatedAt": "2026-11-13",
@@ -791,7 +834,7 @@
         "trafficHandling": "Android VpnService 虚拟接口；受路由与应用范围限制，不是桌面系统代理"
       },
       "tutorial": {
-        "overview": "FlClash 是基于 Flutter 与 Mihomo 的多平台代理客户端；Android 版提供配置管理、策略组和分应用控制，官方仍有发布活动。 核查时间：2026-11-13。版本为官方接口当次快照，不保证安装时仍是最新；首发日期未独立确认。",
+        "overview": "在 Android 上用 FlClash 导入配置、选择节点并连接 VPN。下载与功能说明见 [官方项目](https://github.com/chen08209/FlClash)，应用本身不提供节点。",
         "prerequisites": [
           "符合该版本系统及 CPU 架构要求的 Android 设备",
           "可信且兼容的订阅或自建节点参数；客户端不提供节点",
@@ -800,40 +843,43 @@
         "steps": [
           {
             "stepNumber": 1,
-            "title": "从官方 Releases 下载 APK",
-            "description": "按设备架构下载 Android APK，例如本次确认的 FlClash-0.9.3-android-arm64-v8a.apk。核对官方 SHA256SUMS；仅为此次安装授权安装未知来源应用，勿安装来源不明同名包。"
+            "title": "安装 FlClash",
+            "description": "点击本页“软件下载”，在发布页的 Assets（下载文件）里找到 Android APK。大多数近年的安卓手机选择 arm64-v8a 包；不确定时先查看手机处理器信息或向设备厂商确认。按系统提示允许此次安装，安装完成后打开 FlClash。"
           },
           {
             "stepNumber": 2,
-            "title": "添加并选择配置",
-            "description": "在配置管理页面从 URL 或本地文件导入 Clash / Mihomo YAML，下载后选为当前配置。节点分享链接、Base64 节点列表和完整规则配置不是同一种格式，不要假设均可直接导入。菜单布局随版本和屏幕尺寸变化，以配置管理功能为准。"
+            "title": "导入兼容订阅",
+            "description": "在配置管理中通过 URL 添加服务方提供的 Clash / Mihomo YAML 订阅，也可导入本地 YAML 文件。保存后选为当前配置，确认能看到节点；普通节点分享链接不能代替完整配置。"
           },
           {
             "stepNumber": 3,
-            "title": "选择策略并授权 VPN",
-            "description": "在代理策略组选择节点，按配置使用规则模式，启动连接后同意 Android VPN 授权。Android 版通过 VpnService 接管适用应用流量，不是桌面系统代理开关。"
+            "title": "选择节点",
+            "description": "在代理策略组中选择一个节点，初次使用可先选服务方推荐的线路。日常使用规则模式，哪些网站直连或走代理由当前配置决定。"
           },
           {
             "stepNumber": 4,
-            "title": "检查分应用与连通性",
-            "description": "如需分应用控制，在对应设置中确认是包含还是排除模式；被排除的应用不进入 VPN。分别验证目标应用、DNS 和连接日志，延迟数值不代表带宽，也不保证所有目标可达。"
+            "title": "连接并授权 VPN",
+            "description": "启动连接，首次同意 Android 的 VPN 请求。先停止其他 VPN；若之前拒绝授权，返回 FlClash 再次启动。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "浏览器验证与关闭",
+            "description": "打开浏览器，分别访问日常网站和需要代理的网站。确认网页能加载，而不只看 VPN 图标或延迟。用完返回 FlClash 停止连接，确认系统 VPN 状态已断开。"
           }
         ],
         "advancedRules": [
-          "[项目 README：GPL、下载、配置和 Android 分应用功能](https://raw.githubusercontent.com/chen08209/FlClash/main/README.md)",
-          "[v0.9.3 Gradle 系统要求来源](https://raw.githubusercontent.com/chen08209/FlClash/v0.9.3/android/app/build.gradle.kts)",
-          "[Mihomo 协议和 TUN 原始配置](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
-          "[官方版本、日期与发布资产快照](https://api.github.com/repos/chen08209/FlClash/releases/latest)",
-          "[Android VPN 平台机制与授权](https://developer.android.com/develop/connectivity/vpn)"
+          "更新订阅：在配置管理中更新当前订阅，确认更新成功后检查所选节点是否仍可用。",
+          "分应用使用：在分应用控制中选择需要连接的应用，确认是包含还是排除模式，保存后重新连接测试。",
+          "切换线路：在策略组中改选另一节点；如果配置提供自动选择组，也可选用它，再用常用网站验证效果。"
         ],
         "faq": [
           {
-            "question": "和 Clash Meta for Android 有何区别？",
-            "answer": "它们是不同客户端，不能仅凭内核相同推断菜单、功能或稳定性相同。按配置兼容性、系统要求和维护记录选择，不以界面审美作技术结论。"
+            "question": "配置导入失败怎么办？",
+            "answer": "检查链接是否完整、订阅是否过期，并向服务方索取 Clash / Mihomo YAML 格式。网页地址、单节点链接和 Base64 节点列表不能直接当作完整配置。"
           },
           {
-            "question": "为什么有 VPN 图标仍无法访问？",
-            "answer": "图标仅表示 VPN 服务已建立，不证明节点、DNS 或分流有效。检查活动配置、策略组、日志和其他 VPN；必要时停止 VPN 恢复网络。"
+            "question": "有 VPN 图标却打不开网页怎么办？",
+            "answer": "先停止连接，确认手机网络正常；再检查当前配置与策略组、换一个节点并重连。只有某个应用失败时检查分应用范围；仍失败可查看日志，求助前隐藏链接和密码。"
           }
         ]
       },
@@ -845,8 +891,8 @@
       "shortName": "NekoBox",
       "system": "android",
       "category": "android",
-      "tagline": "NekoBox：配置导入、VPN 接管与兼容性说明",
-      "description": "NekoBox for Android 是使用 sing-box 分支的 Android 通用代理工具。官方 1.4.2 发布说明明确表示项目较少维护、不接受功能请求，非重大问题可能不修复；不是 sing-box 官方 Android 客户端。",
+      "tagline": "导入订阅，选择节点并连接 VPN",
+      "description": "NekoBox 是 Android 代理客户端，支持多种节点订阅。项目目前较少维护，使用前请确认所需功能；它不是 sing-box 官方客户端。",
       "iconName": "Smartphone",
       "badgeText": "官方来源核查",
       "updatedAt": "2026-11-13",
@@ -878,7 +924,7 @@
         "trafficHandling": "Android VpnService 虚拟接口；受路由与应用范围限制，不是桌面系统代理"
       },
       "tutorial": {
-        "overview": "NekoBox for Android 是使用 sing-box 分支的 Android 通用代理工具。官方 1.4.2 发布说明明确表示项目较少维护、不接受功能请求，非重大问题可能不修复；不是 sing-box 官方 Android 客户端。 核查时间：2026-11-13。版本为官方接口当次快照，不保证安装时仍是最新；首发日期未独立确认。",
+        "overview": "按下面步骤安装 NekoBox、导入订阅并连接。它不提供节点，也不是 sing-box 官方客户端；项目目前较少维护，安装前可查看 [官方说明](https://github.com/MatsuriDayo/NekoBoxForAndroid)。",
         "prerequisites": [
           "符合该版本系统及 CPU 架构要求的 Android 设备",
           "可信且兼容的订阅或自建节点参数；客户端不提供节点",
@@ -887,44 +933,47 @@
         "steps": [
           {
             "stepNumber": 1,
-            "title": "核对渠道与安装包",
-            "description": "仅从 MatsuriDayo/NekoBoxForAndroid 的 GitHub Releases 获取匹配架构 APK，本次文件名为 NekoBox-1.4.2-arm64-v8a.apk，不是旧教程猜测的 NB4A 前缀。官方 README 警告：Google Play 版本自 2024 年 5 月起被第三方控制且非开源，请不要下载；不要将商店同名包当作官方版。"
+            "title": "安装官方 APK",
+            "description": "点击本页“软件下载”，在发布页的 Assets（下载文件）中选择 APK。大多数近年的安卓手机使用 arm64-v8a；若该版本提供 universal 通用包，不确定时可选通用包。安装后打开应用。官方提醒 Google Play 同名版本已由第三方控制，不要从那里下载。"
           },
           {
             "stepNumber": 2,
-            "title": "添加订阅分组或导入节点",
-            "description": "在分组管理中建立订阅分组，填写可信订阅 URL，保存并更新；单节点可使用剪贴板或二维码导入。README 列出 Shadowsocks、ClashMeta、v2rayN 常见格式及 sing-box 出站，但只解析节点，忽略分流规则等信息。"
+            "title": "导入订阅",
+            "description": "在分组管理中新建订阅分组，填入服务方提供的订阅 URL，保存并更新。也可从剪贴板或二维码导入单个节点。支持的 ClashMeta、v2rayN 等格式只导入节点，不会带入原有分流规则。"
           },
           {
             "stepNumber": 3,
-            "title": "检查协议与插件依赖",
-            "description": "核对导入节点的协议、传输、TLS / REALITY 参数。NaïveProxy、Trojan-Go、Mieru 等需要官方文档指定的额外插件，不能宣称所有协议均由内置核心直接支持。"
+            "title": "选择一个节点",
+            "description": "在导入的分组中选中一个节点。初次使用优先选服务方推荐、无需额外插件的节点；提示缺少插件时，先向服务方确认要求，不要随意修改参数。"
           },
           {
             "stepNumber": 4,
-            "title": "选择节点并启动 VPN",
-            "description": "选中节点后启动连接，批准系统 VPN 请求。按需要在客户端设置路由与应用范围，不假定导入的 Clash 规则生效。连接后检查日志和目标应用；结束使用时停止 VPN。"
+            "title": "连接并允许 VPN",
+            "description": "启动连接，首次按 Android 提示允许 VPN 连接。先关闭其他 VPN，避免连接被替换；未授权时返回应用重新启动。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "用浏览器验证并关闭",
+            "description": "打开浏览器访问一个日常网站及需要代理的网站，确认都能加载。只有 VPN 图标不代表节点可用。用完回到 NekoBox 停止连接，确认系统 VPN 状态已断开。"
           }
         ],
         "advancedRules": [
-          "[官方 README：商店警告、协议、插件与导入限制](https://raw.githubusercontent.com/MatsuriDayo/NekoBoxForAndroid/main/README.md)",
-          "[GPL-3.0-or-later 原始许可证](https://raw.githubusercontent.com/MatsuriDayo/NekoBoxForAndroid/main/LICENSE)",
-          "[API21 与架构原始构建配置](https://raw.githubusercontent.com/MatsuriDayo/NekoBoxForAndroid/main/buildSrc/src/main/kotlin/Helpers.kt)",
-          "[官方版本、日期与发布资产快照](https://api.github.com/repos/MatsuriDayo/NekoBoxForAndroid/releases/latest)",
-          "[Android VPN 平台机制与授权](https://developer.android.com/develop/connectivity/vpn)"
+          "更新订阅：在订阅分组中执行更新，再确认当前节点仍然存在；更新失败时不要急着删除原分组。",
+          "按应用连接：在应用范围设置中选择需要使用 VPN 的应用，留意包含或排除的含义，保存后重新连接验证。",
+          "调整分流：需要某个网站直连时，在路由设置中添加相应规则，再用浏览器测试；导入的 Clash 规则不会自动生效。"
         ],
         "faq": [
           {
-            "question": "Google Play 上的 NekoBox 是官方开源版吗？",
-            "answer": "不是。官方 README 明确提醒自 2024 年 5 月起该商店版本由第三方控制、非开源，不要下载。使用官方 GitHub Releases；无需寻找或信任同名商店链接。"
+            "question": "订阅导入失败或没有节点怎么办？",
+            "answer": "重新复制完整订阅 URL，检查订阅是否过期，并向服务方确认格式支持 NekoBox。不要把登录页面地址当作订阅，也不要将含令牌的链接发到公开群组。"
           },
           {
-            "question": "导入 Clash 订阅后为什么分流不同？",
-            "answer": "NekoBox 只从支持格式中解析节点，忽略原配置的分流规则。应在本客户端独立配置路由，不能把节点导入视作完整 Clash / sing-box 配置迁移。"
+            "question": "显示连接但网页打不开怎么办？",
+            "answer": "先停止 VPN，确认手机本身能上网；再更新订阅、换一个节点并重新连接。仍失败时查看错误日志，向服务方确认节点或插件要求；发送日志前隐藏订阅地址和密码。"
           },
           {
-            "question": "Hysteria 2 超时是否必须调整端口跳跃？",
-            "answer": "不能仅凭超时断定 UDP 被限速。先检查日志、UDP 可达性、服务端端口、防火墙、证书和协议参数；仅在服务端明确支持时配置端口跳跃，不盲目修改频率。"
+            "question": "为什么导入后部分网站的连接方式不同？",
+            "answer": "NekoBox 只解析节点，不沿用原订阅里的分流规则。检查本应用的路由和应用范围；可以先恢复原设置对比，不必重装。"
           }
         ]
       },
@@ -964,50 +1013,61 @@
         "trafficHandling": "Android VpnService / TUN；按完整配置路由"
       },
       "tutorial": {
-        "overview": "检索日期：2026-11-13。依据 [官方 Android 文档](https://sing-box.sagernet.org/clients/android/)、[构建脚本](https://github.com/SagerNet/sing-box-for-android/blob/dev/app/build.gradle.kts) 和 [1.14.4 发行资产](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4)。文档总要求 Android 5+，源码区分普通 minSdk 24 与旧系统 minSdk 21，安装时必须选对构建。",
+        "overview": "使用 sing-box Android 客户端导入完整配置并连接 VPN。安装入口见 [官方 Android 文档](https://sing-box.sagernet.org/clients/android/)，应用不附带节点。",
         "prerequisites": [
           "匹配发行包最低要求的 Android 设备；确认 CPU 架构或选择 universal",
-          "可信且匹配已安装核心版本的完整 sing-box JSON 配置"
+          "服务方提供的完整 sing-box JSON 配置，需兼容所装核心版本",
+          "订阅和配置含凭据，请勿公开；连接前停止其他 VPN"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "选择官方发行渠道与 APK",
-            "description": "通过官方 Android 文档进入 Play Store、GitHub Releases 或 F-Droid。GitHub 普通包例如 SFA-1.14.4-arm64-v8a.apk；旧系统需要明确标记 legacy-android-5 的包。核对架构后安装，按需授权该来源安装 APK。",
-            "pencilTip": "不要盲目覆盖来自不同签名渠道的安装；先备份配置，核对升级说明。"
+            "title": "安装官方客户端",
+            "description": "通过官方 Android 文档进入下载渠道。普通构建需要 Android 7+，Android 5/6 需选择标有 legacy-android-5 的构建；下载 APK 时也要匹配手机架构，不确定可选择提供的 universal 包。"
           },
           {
             "stepNumber": 2,
-            "title": "创建本地或远程配置",
-            "description": "在配置管理中添加 Local Profile 或 Remote Profile。远程地址必须返回完整 sing-box JSON，保存并确认能解析，再选中配置。自动更新是远程配置功能，更新也可能引入不兼容字段。"
+            "title": "导入完整配置",
+            "description": "在配置管理中添加 Remote Profile，填入返回完整 sing-box JSON 的订阅地址，下载并保存后选中它。本地文件可使用 Local Profile。Clash YAML、普通节点列表或单节点链接不能直接替代完整配置。"
           },
           {
             "stepNumber": 3,
-            "title": "启动 VPN 服务并验证",
-            "description": "启动所选配置，首次允许 Android VPN 连接请求。通过日志和实际请求验证，配置包含 selector/urltest 时才使用对应策略组界面。若后台断连，检查系统电池限制与日志，不保证移除省电限制即可永不掉线。"
+            "title": "启动并允许 VPN",
+            "description": "启动所选配置，首次同意 Android VPN 连接请求。若出现配置错误，先按提示检查配置，不要反复点连接。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "选择可用节点",
+            "description": "配置提供策略组时，在对应分组中选择节点；自动选择组会按配置选择线路。没有分组时使用配置预设的节点，想换线路需向服务方获取带节点选择的配置。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "浏览器验证与关闭",
+            "description": "打开浏览器访问日常网站及需要代理的网站，确认网页正常加载。用完回到客户端停止服务，并确认系统 VPN 状态已断开。"
           }
         ],
         "advancedRules": [
-          "升级前备份配置并阅读 [迁移指南](https://sing-box.sagernet.org/migration/) 和 [废弃列表](https://sing-box.sagernet.org/deprecated/)：GeoIP/Geosite 已在 1.12 移除，应迁移 rule-set；旧 block/dns 特殊出站、WireGuard outbound 和旧入站 sniff 等字段在 1.13 移除，分别迁移规则动作、WireGuard endpoint 等；旧 DNS server 格式在 1.14 移除。在线文档还列出 1.15+ 的变化，不能不看版本就套用。",
-          "[官方通用 GUI 规范](https://sing-box.sagernet.org/clients/general/) 区分 Local、iCloud 与 Remote Profile；Remote 下载的必须是完整配置。查看应用显示的核心版本再排查配置兼容性。"
+          "远程更新：在 Remote Profile 中设置自动更新；更新前保留可用配置，更新后再测试常用网站。",
+          "切换线路：配置提供手动策略组时，选另一节点再测试网页；没有分组时不要寻找不存在的节点开关。",
+          "后台连接：仅在锁屏后经常断开时，检查 Android 对此应用的电池限制，按需放宽后重新测试；这可能增加耗电。"
         ],
         "faq": [
           {
-            "question": "URL 订阅能直接作为配置吗？",
-            "answer": "仅当 URL 返回适合已安装核心版本的完整 sing-box JSON 配置。Clash YAML、Base64 节点列表和单个分享链接不是完整配置；Remote Profile 是 GUI 的配置下载/更新功能，不是内核自动转换订阅。不要将私密链接交给不可信在线转换器。"
+            "question": "订阅导入失败怎么办？",
+            "answer": "确认地址返回完整 sing-box JSON，并让服务方确认兼容的核心版本。Clash YAML、Base64 节点列表和单节点链接不能直接作为 Remote Profile。不要将私密订阅交给不可信在线转换器。"
           },
           {
-            "question": "为什么没有 Groups 或模式切换？",
-            "answer": "官方通用客户端规范只在配置包含 selector/urltest 分组出站时提供策略组；模式选择也需要配置使用至少两个 clash_mode 值。不能保证任意导入配置都出现这些控件。"
+            "question": "启动时报 unknown field 怎么办？",
+            "answer": "配置可能不适合当前核心版本。记下应用显示的核心版本及错误字段，向配置提供方索取兼容配置；自己维护配置时参考 [官方迁移指南](https://sing-box.sagernet.org/migration/)，不要反复重装。"
           },
           {
-            "question": "VPN 显示连接是否就代表可用？",
-            "answer": "只说明隧道状态，不保证节点、DNS 或规则正确。查看日志及实际请求；错误中若有 unknown field 或 deprecated，按核心版本迁移配置，切勿仅反复重装应用。"
+            "question": "已连接但浏览器打不开网页怎么办？",
+            "answer": "先停止服务确认原网络正常，再更新配置或切换策略组中的节点。没有策略组时联系服务方检查预设线路。仍失败可查看日志，发送日志前隐藏订阅链接、密码和访问记录。"
           }
         ]
       },
-      "tagline": "官方 Android 图形客户端 SFA，区分普通与旧系统发行包",
-      "description": "SFA 是 SagerNet 的 Android 图形客户端，管理本地或远程完整 sing-box 配置，通过 Android VPN 服务提供 TUN。普通构建与 legacy-android-5 构建有不同最低系统要求，不能只用“Android 5+”描述所有下载包。",
+      "tagline": "导入完整 sing-box 配置并连接 VPN",
+      "description": "SFA 是 sing-box 的官方 Android 客户端，支持本地和远程完整配置。安装时需按 Android 版本选择普通或旧系统构建。",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=io.nekohasekai.sfa",
       "githubRepo": "https://github.com/SagerNet/sing-box-for-android",
       "changelog": []
@@ -1047,55 +1107,57 @@
         "trafficHandling": "系统代理 / PAC；可选 TUN（需提升权限并正确配置路由）"
       },
       "tutorial": {
-        "overview": "先使用系统代理验证浏览器连接，再按需配置 TUN。系统代理只影响遵循系统设置的应用，不等于整台电脑的所有流量都已被接管。版本与下载文件按官方 Releases 和 Wiki 核查，菜单文字可能随语言和界面实现变化。",
+        "overview": "按下面五步连接，先让浏览器通过系统代理联网；不用时先清除系统代理，再退出软件。",
         "prerequisites": [
-          "Windows 10 或更高版本，确认 CPU 架构与下载包相符",
-          "从官方 Releases 获取完整发布包；运行时要求以对应版本说明或启动提示为准，不统一要求额外安装 .NET 8",
-          "可信服务提供者的订阅或节点分享链接；订阅中通常含访问凭证，请勿公开"
+          "Windows 10 或更高版本，确认电脑是 x64 还是 ARM64",
+          "准备服务方提供的 v2rayN 订阅链接，不要公开其中的凭证"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "选择当前发布包并完整解压",
-            "description": "从官方 Releases 下载。以本次核查的 7.25.6 为例，x64 的 WPF 界面为 `v2rayN-windows-64.zip`，Avalonia 界面为 `v2rayN-windows-64-desktop.zip`；ARM64 选择名称含 `arm64` 的对应包。不要继续寻找旧版 `With-Core` 文件名。解压全部内容到用户可写目录后运行 `v2rayN.exe`。",
-            "pencilTip": "发布包含部分核心，其他核心需按 Wiki 补充。若启动失败先看错误和 guiLogs，再按发布要求处理运行时、权限或安全软件拦截，不要直接关闭安全防护。"
+            "title": "下载并打开软件",
+            "description": "打开[官方发布页](https://github.com/2dust/v2rayN/releases)。普通 x64 电脑下载 `v2rayN-windows-64.zip`，ARM64 电脑选择对应包。完整解压到自己的文件夹，双击 `v2rayN.exe`。",
+            "pencilTip": "不要在压缩包内直接运行；如提示缺少运行时，按该版本的发布说明安装。"
           },
           {
             "stepNumber": 2,
-            "title": "添加并更新订阅分组",
-            "description": "在订阅分组设置中新增分组，填写别名与服务商提供的订阅 URL，保存后更新该订阅。先尝试不通过代理更新；若下载路径需要代理，须先有可用节点，才能使用通过代理更新。也可使用客户端支持的剪贴板导入功能添加单个分享链接。",
-            "pencilTip": "Clash 完整 YAML、sing-box 完整 JSON 与节点订阅并非同一种格式。导入失败时先确认提供者是否提供 v2rayN 支持的格式，不要把带 token 的链接提交给陌生转换网站。"
+            "title": "导入订阅",
+            "description": "打开订阅分组设置，新增分组，填写名称并粘贴服务方的订阅链接。保存后更新该订阅，看到节点列表即表示导入成功。",
+            "pencilTip": "首次先尝试不通过代理更新；导入失败时向服务方确认链接适用于 v2rayN。"
           },
           {
             "stepNumber": 3,
-            "title": "测试并设为活动服务器",
-            "description": "选中节点，使用右键菜单的真连接或延迟测试；根据结果设为活动服务器。具体快捷键以当前菜单显示为准。检查信息栏，确认核心启动成功，再访问需要代理的网站验证。",
-            "pencilTip": "低延迟不代表高带宽，也不保证 UDP、流媒体或特定网站可用。测试报错时先检查配置、核心兼容性和本地端口占用。"
+            "title": "选择一个节点",
+            "description": "在节点列表中选中节点，右键进行延迟或真连接测试，再将可用节点设为活动服务器。查看下方信息，确认核心没有启动错误。",
+            "pencilTip": "测试超时可换一个节点再试，延迟越低不一定下载越快。"
           },
           {
             "stepNumber": 4,
-            "title": "启用系统代理并设置路由",
-            "description": "系统代理选择【自动配置系统代理】，路由可从【绕过大陆】开始，再按实际需求调整。二者分别决定哪些应用流量进入核心，以及进入核心后如何分流。退出前清除系统代理。",
-            "pencilTip": "终端、游戏等可能忽略系统代理，需要单独配置代理或使用 TUN。TUN 应按当前文档提升权限、检查 DNS 和路由，不能只勾选开关就保证所有软件可用。"
+            "title": "开启系统代理",
+            "description": "在系统代理菜单选择【自动配置系统代理】，路由先选择【绕过大陆】。保持软件运行，让遵循系统代理的浏览器使用刚选的节点。",
+            "pencilTip": "系统代理不会接管所有游戏或终端程序，首次使用不必开启 TUN。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "验证连接并学会停止",
+            "description": "用浏览器打开需要代理的网站，再打开常用国内网站，确认都能访问。不用时先在系统代理菜单清除系统代理，再退出 v2rayN。",
+            "pencilTip": "无法访问时先换节点；退出后断网则检查 Windows 的代理设置是否仍指向本地端口。"
           }
         ],
         "advancedRules": [
-          "内核与客户端应配套升级。7.25.6 发布说明明确支持并限制 sing-box 到 1.14 系列，不要把任意更高版本内核直接替换进去。",
-          "开启局域网访问会扩大代理监听范围；确有共享需求时再配置防火墙和访问限制，避免对公网开放无认证代理。",
-          "核查来源：[官方发布文件介绍](https://github.com/2dust/v2rayN/wiki/Release-files-introduction)、[系统代理和路由](https://github.com/2dust/v2rayN/wiki/Description-of-system-proxy-routing)、[FAQ](https://github.com/2dust/v2rayN/wiki/Faq)、[7.25.6 发布说明](https://github.com/2dust/v2rayN/releases/tag/7.25.6)。"
+          "路由模式：日常先用绕过大陆；排查单个网站时可临时切换全局代理，测试后恢复。",
+          "订阅更新：服务方增加或更换节点后更新订阅，再检查活动服务器是否仍然可用。",
+          "TUN 模式：仅在应用不遵循系统代理时尝试，按官方说明配置权限、DNS 和路由，不需要时关闭。",
+          "局域网访问：只在需要给其他设备共享时开启，并限制防火墙访问范围，勿向公网开放。"
         ],
         "faq": [
           {
-            "question": "无法启动一定是没装 .NET 8 吗？",
-            "answer": "不一定。下载包不完整、架构不符、目录权限、核心启动失败及运行时问题都可能导致异常。先按发布文件介绍选择正确包，再根据错误信息和 guiLogs 处理，不要盲目安装旧运行时。"
+            "question": "导入后没有节点怎么办？",
+            "answer": "检查订阅是否到期，重新更新，并向服务方确认提供的是 v2rayN 支持的订阅格式。"
           },
           {
-            "question": "退出后浏览器无法联网怎么办？",
-            "answer": "重新打开客户端并清除系统代理；也可检查 Windows 代理设置是否残留指向已停止的本地端口。如果使用过 TUN，还需确认虚拟网卡、路由和 DNS 已恢复。"
-          },
-          {
-            "question": "TUN 能保证加速游戏吗？",
-            "answer": "不能。代理与游戏加速是不同需求，实际效果受 UDP 支持、线路、服务端和路由影响。先确认应用和节点的条件，再逐项排查。"
+            "question": "退出后无法联网怎么办？",
+            "answer": "重新打开软件并清除系统代理，或关闭 Windows 设置中残留的手动代理；用过 TUN 时也要关闭它。"
           }
         ]
       },
@@ -1136,55 +1198,52 @@
         "trafficHandling": "系统代理仅影响遵循系统设置的应用；TUN 通过虚拟网卡和路由接管适用流量"
       },
       "tutorial": {
-        "overview": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
+        "overview": "先导入订阅、选择节点，再开启系统代理让浏览器联网。首次使用不需要开启 TUN。",
         "prerequisites": [
-          "符合该版本系统与 CPU 架构要求的设备",
-          "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
-          "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
+          "Windows 10 / 11，确认电脑使用 x64 还是 ARM64",
+          "准备服务方的 Clash / Mihomo 订阅链接或 YAML 配置，不要公开其中的凭证"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "核对平台并安装",
-            "description": "从官方 Releases 选择 x64-setup.exe 或 arm64-setup.exe，按安装向导安装。缺少 WebView2 时按官方安装文档处理；仅在需要时选内置 WebView2 包。安全告警先核实来源，不直接绕过。"
+            "title": "下载并安装",
+            "description": "打开[官方发布页](https://github.com/clash-verge-rev/clash-verge-rev/releases)，按电脑架构选择 x64 或 ARM64 的 Windows 安装包，按向导安装后打开。若提示缺少 WebView2，按[官方安装文档](https://www.clashverge.dev/install.html)补齐。"
           },
           {
             "stepNumber": 2,
-            "title": "导入并激活配置",
-            "description": "在订阅管理页面添加远程 Clash / Mihomo YAML 配置 URL，导入后选中该配置。也可使用本地配置。不要把单节点分享 URI、登录网页或不兼容的通用订阅直接当作完整 YAML；导入失败先看错误日志。"
+            "title": "导入订阅",
+            "description": "打开订阅页面，粘贴服务方的 Clash / Mihomo 订阅链接并导入，然后选中该配置。已有 YAML 文件也可以从本地导入。"
           },
           {
             "stepNumber": 3,
-            "title": "选择策略组和节点",
-            "description": "在代理页面选择配置提供的策略组及节点，按需使用规则模式。延迟测试只反映测试目标的响应，不代表带宽或所有网站可达。"
+            "title": "选择节点",
+            "description": "进入代理页面，选择规则模式。在负责代理流量的策略组里测试延迟，再选择一个有响应的节点；不要选成直连。"
           },
           {
             "stepNumber": 4,
-            "title": "先系统代理，按需启用 TUN",
-            "description": "先开启系统代理并用浏览器验证。终端等不遵循系统代理的应用可显式设置本地代理，或按官方说明安装/检查服务模式后再启用 TUN，并批准必要的系统权限。TUN 并非辅助功能权限，也不保证 WSL、容器、虚拟机或所有游戏流量都被接管。"
+            "title": "开启系统代理",
+            "description": "开启系统代理，保持软件运行。第一次先不启用 TUN，也不要同时运行其他代理或 VPN；系统代理只影响遵循该设置的应用。"
           },
           {
             "stepNumber": 5,
-            "title": "验证并保留回退方法",
-            "description": "分别检查目标网站、DNS、应用连接与日志，确认路由符合预期。出现断网时先关闭 TUN、恢复系统代理设置，排查其他 VPN、防火墙和路由冲突。"
+            "title": "验证连接并停止代理",
+            "description": "用浏览器分别打开常用国内网站和需要代理的网站，失败时换一个节点重试。不用时先关闭系统代理，再退出软件；如果开过 TUN，也要先关闭，并确认浏览器还能正常上网。"
           }
         ],
         "advancedRules": [
-          "[项目 README：维护分支、内核、GPL 与配置增强](https://raw.githubusercontent.com/clash-verge-rev/clash-verge-rev/main/README.md)",
-          "[安装文档：平台要求和官方发布渠道](https://www.clashverge.dev/install.html)",
-          "[官方快速入门：导入、节点、系统代理与 TUN](https://www.clashverge.dev/guide/quickstart.html)",
-          "[版本与安装资产核查](https://api.github.com/repos/clash-verge-rev/clash-verge-rev/releases/latest)",
-          "[Mihomo 配置原始示例：协议、DNS、TUN 和排除路由](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
-          "配置增强支持 Merge / Script；仅使用可信脚本，更新订阅后检查最终生效配置。规则模式依赖配置中的规则，并不自动保证特定地区或应用直连。"
+          "订阅更新：在订阅页面更新当前配置，服务方更换节点后重新检查选择的节点是否可用。",
+          "代理模式：日常使用规则模式；排查网站时可临时切换全局并选择节点，测试后切回规则模式。",
+          "TUN 模式：应用不遵循系统代理时再尝试，按官方说明安装或检查服务模式并批准必要权限；断网时先关闭 TUN。",
+          "开机启动：确认连接稳定后再按需开启；检查是否同时自动开启系统代理，不需要常驻时关闭。"
         ],
         "faq": [
           {
-            "question": "为什么系统代理开启后终端仍无法连接？",
-            "answer": "系统代理不是透明转发；应用必须主动遵循系统代理，或显式使用客户端本地 HTTP/SOCKS 监听地址。TUN 是另一种接管方式，仍受路由和排除设置限制。"
+            "question": "导入订阅失败怎么办？",
+            "answer": "检查链接是否完整、订阅是否到期，并向服务方确认返回的是 Clash / Mihomo 配置，而不是登录网页。"
           },
           {
-            "question": "TUN 启动失败怎么办？",
-            "answer": "先看内核与服务日志，检查服务安装状态、管理员授权、虚拟网卡、DNS 与其他 VPN 冲突。Linux 不要对猜测的旧版内核路径执行 setcap；不建议全程以 root 运行 GUI。"
+            "question": "退出后无法联网怎么办？",
+            "answer": "重新打开软件并关闭系统代理和 TUN，再检查 Windows 是否残留本次使用的手动代理设置。"
           }
         ]
       },
@@ -1196,8 +1255,8 @@
       "shortName": "Clash Party",
       "system": "windows",
       "category": "windows",
-      "tagline": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动",
-      "description": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。",
+      "tagline": "导入订阅、选择节点，让浏览器使用代理",
+      "description": "Clash Party（原 Mihomo Party）是使用 Mihomo 系列内核的桌面代理客户端。本篇从安装开始，带你完成订阅导入和浏览器连接。",
       "iconName": "Sparkles",
       "badgeText": "官方来源核查",
       "updatedAt": "2026-11-13",
@@ -1225,52 +1284,55 @@
         "trafficHandling": "系统代理与 TUN；无需手动服务模式不代表无需管理员权限或特权 Helper"
       },
       "tutorial": {
-        "overview": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
+        "overview": "先用系统代理连接浏览器，不必一开始就设置 TUN。界面操作可对照 [官方快速上手](https://clashparty.org/docs/handson)。",
         "prerequisites": [
-          "符合该版本系统与 CPU 架构要求的设备",
-          "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
-          "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
+          "Windows 10 / 11，确认电脑使用 x64 还是 ARM64",
+          "准备服务方的 Clash / Mihomo 订阅链接或 YAML 配置，不要公开其中的凭证"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "从官方渠道下载安装",
-            "description": "从官方 Releases 选择对应 x64 / arm64 的 Windows setup.exe 安装版；便携版为 7z，解压后运行。文件名包含版本号，不使用教程猜测的固定直链。"
+            "title": "下载安装",
+            "description": "打开 [官方发布页](https://github.com/mihomo-party-org/clash-party/releases)，按电脑架构下载 Windows setup.exe 安装包，按向导安装后打开应用。若选择 7z 便携包，先完整解压再运行。"
           },
           {
             "stepNumber": 2,
-            "title": "导入兼容订阅并激活",
-            "description": "在订阅管理区域添加服务提供方的 Clash / Mihomo YAML URL 或本地配置，完成下载并选为当前配置。通用分享链接不等于完整 Clash 配置；如需 Sub-Store 转换，仅使用可信实例，不把密钥发送给陌生公共转换站。"
+            "title": "导入订阅",
+            "description": "在订阅管理区域添加服务提供方的 Clash / Mihomo 订阅 URL，下载后选为当前配置；已有 YAML 文件也可导入。不要粘贴服务商登录网页或其他客户端专用订阅。"
           },
           {
             "stepNumber": 3,
-            "title": "选择节点并启用系统代理",
-            "description": "在代理策略组中选择节点，按配置需要选择规则或全局模式，再启用系统代理。客户端运行与启用系统代理不是同一状态；用目标应用和连接日志确认效果。"
+            "title": "选择节点",
+            "description": "进入代理区域，使用规则模式，在负责代理流量的策略组中选择一个节点。可以先测试延迟，优先尝试有响应的节点；延迟低不代表所有网站都能访问。"
           },
           {
             "stepNumber": 4,
-            "title": "按需启用 TUN 并验证权限",
-            "description": "只有需要接管不遵循系统代理的程序时才启用 TUN。官方“无需服务模式”描述不等于免权限：虚拟网卡和路由需要系统授权，macOS 存在特权 Helper。若断网，关闭 TUN 并检查 DNS、排除路由与其他 VPN；不保证所有流量都接管。"
+            "title": "开启系统代理",
+            "description": "开启应用中的系统代理，保持 Clash Party 运行。第一次先不要开启 TUN，也不要同时运行其他代理或 VPN，便于确认连接是否正常。系统代理只影响遵循该设置的应用。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "验证浏览器并关闭代理",
+            "description": "打开浏览器，分别访问平时可访问的网站和需要代理的网站；若失败，换一个节点重试并查看应用日志。不再使用时先关闭系统代理，再退出应用；用过 TUN 的话也先关闭它，最后确认浏览器仍能正常上网。"
           }
         ],
         "advancedRules": [
-          "[当前默认 smart_core 分支 README：内核与功能](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/README.md)",
-          "[仓库 API：当前名称、主页、非归档与维护活动](https://api.github.com/repos/mihomo-party-org/clash-party)",
-          "[官方发布接口：版本与实际资产](https://api.github.com/repos/mihomo-party-org/clash-party/releases/latest)",
-          "[GPL 许可证](https://raw.githubusercontent.com/mihomo-party-org/clash-party/smart_core/LICENSE)",
-          "[官方快速上手](https://clashparty.org/docs/handson)",
-          "[官方安装说明（部分说明仍为旧版）](https://clashparty.org/docs/install)",
-          "[Mihomo 协议与 TUN 原始配置](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
-          "Sub-Store、覆写和 WebDAV 是配置管理功能，不是客户端自动提供节点或保证匿名的服务；备份可能包含订阅凭据，上传前检查存储权限。"
+          "更新订阅：在订阅管理中对当前配置执行更新，再检查所选节点是否仍存在；服务商更换链接时编辑订阅地址。",
+          "切换模式：通常保持规则模式；排查单个网站时可暂时改为全局并选择节点，测试后切回规则模式。全局只改变进入客户端的流量如何转发。",
+          "接管更多应用：只有某个程序不遵循系统代理时，再按官方说明开启 TUN 并批准必要权限；若出现断网，先关闭 TUN，检查是否与其他 VPN 冲突。"
         ],
         "faq": [
           {
-            "question": "Clash Party 与 Mihomo Party 是什么关系？",
-            "answer": "当前仓库、应用 productName 和官网使用 Clash Party，旧 README、安装说明、应用标识及部分资产仍保留 Mihomo Party 名称。旧名不是另一个必需安装的内核；以同一官方组织仓库的发布记录核对，不推断确切改名日期。"
+            "question": "订阅导入失败怎么办？",
+            "answer": "重新复制完整链接，检查是否到期，并向服务方确认这是 Clash / Mihomo 格式。求助时隐藏订阅地址和密钥。"
           },
           {
-            "question": "为什么不照抄“免服务、完全没有安全隐患”？",
-            "answer": "免手动服务模式只描述使用方式，不能证明无特权代码或无风险。下载核验、最小权限、可信配置和日志排错仍然必要；macOS 官方文档明确列出 Helper 服务。"
+            "question": "有节点，但浏览器连不上？",
+            "answer": "确认已选中配置和节点、开启系统代理，再换一个节点重试；仍失败时检查订阅流量和有效期。"
+          },
+          {
+            "question": "退出后无法上网怎么办？",
+            "answer": "重新打开应用并关闭系统代理和 TUN，再检查 Windows 是否残留本次使用的手动代理；不要改动单位要求的代理设置。"
           }
         ]
       },
@@ -1310,52 +1372,66 @@
         "trafficHandling": "按配置使用 mixed 入站或 TUN；TUN 需要提升权限"
       },
       "tutorial": {
-        "overview": "检索日期：2026-11-13。[官方 Desktop 文档](https://sing-box.sagernet.org/clients/desktop/) 已列出 Windows 10+ GUI；[1.14.4 发行页](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4) 同时有 SFW-1.14.4-x64.exe 等 GUI 文件和 sing-box-1.14.4-windows-amd64.zip 等 CLI 包。下面仅为 CLI 步骤，没有假设 Profiles 菜单或自动导入任意订阅。",
+        "overview": "本篇使用命令行核心，没有图形界面的导入按钮或节点菜单。先用服务方提供的完整配置运行本地代理，再让浏览器连接。",
         "prerequisites": [
-          "Windows 10+ 与 PowerShell；使用 TUN 时需要管理员权限",
-          "匹配 CPU 的官方 CLI zip 和可信完整 config.json；不是仅一个订阅 URL"
+          "Windows 10+ 与 PowerShell，确认电脑的 CPU 架构",
+          "向服务方索取匹配核心版本、已选好节点的完整 sing-box JSON 配置，并确认本地 mixed 入站地址与端口；不要公开配置中的密钥"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "下载 CLI 并确认版本",
-            "description": "在官方 Releases 下载 sing-box-版本-windows-amd64.zip（ARM64 选 arm64，32 位选 386），完整解压后在所在目录打开 PowerShell。不要误把 SFW 图形客户端安装器当作 CLI 压缩包。保留发行包随附文件，不假定一定包含某个 DLL。",
+            "title": "下载并解压命令行版本",
+            "description": "打开[官方发布页](https://github.com/SagerNet/sing-box/releases)，下载 sing-box-版本-windows-amd64.zip；ARM64 电脑选 arm64 包。完整解压，在含 sing-box.exe 的文件夹打开 PowerShell，执行下面的命令确认可以运行。",
             "codeSnippet": ".\\sing-box.exe version",
             "codeLanguage": "powershell"
           },
           {
             "stepNumber": 2,
-            "title": "保存完整配置并校验",
-            "description": "将匹配该核心版本的完整配置保存为当前目录的 config.json。若来源是 URL，先用可信方式取得配置内容；核心不会把 Clash YAML 或 Base64 订阅自动转换成 JSON。校验错误必须先修复。",
+            "title": "保存服务方的完整配置",
+            "description": "把服务方提供的完整 JSON 配置保存为同一文件夹中的 config.json，再执行下面的校验命令。若报错，先让服务方按你的核心版本修正配置，不要继续启动。",
             "codeSnippet": ".\\sing-box.exe check -c .\\config.json",
             "codeLanguage": "powershell",
-            "pencilTip": "PowerShell 默认不从当前目录查找可执行文件，所以命令需要 .\\ 前缀；check 通过不等于服务器连通性通过。"
+            "pencilTip": "这里的导入就是保存本地配置文件；Clash YAML、节点分享链接和普通订阅 URL 不能直接当作 config.json。"
           },
           {
             "stepNumber": 3,
-            "title": "按配置运行并验证",
-            "description": "使用以下命令运行；配置包含 TUN 时在已提升管理员权限的 PowerShell 中执行。若使用本地 mixed 入站，需按配置将应用代理指向相应监听地址，不能假定全部流量自动接管。检查日志，结束可按 Ctrl+C。",
+            "title": "确认要使用的节点",
+            "description": "命令行核心没有节点列表。首次使用请让服务方在完整配置中指定你要用的节点；要换节点，就索取对应的完整配置，替换 config.json 后重新校验。",
+            "pencilTip": "无需自行拼接节点字段；包含多个出站的配置由路由或选择器决定实际使用哪个节点，请向服务方确认。"
+          },
+          {
+            "stepNumber": 4,
+            "title": "运行并开启浏览器代理",
+            "description": "执行下面的命令并保持 PowerShell 窗口打开。确认无启动错误后，打开 Windows 设置中的网络和 Internet → 代理 → 手动设置代理，填入服务方配置的本地 mixed 入站地址和端口并保存。仅本机使用时地址通常是 127.0.0.1，端口必须以配置为准。",
             "codeSnippet": ".\\sing-box.exe run -c .\\config.json",
             "codeLanguage": "powershell",
-            "pencilTip": "仅为配置中的功能授权。权限不足、驱动或安全软件冲突都需具体排查，不能保证“管理员运行即可修复”。"
+            "pencilTip": "本教程先用 mixed 入站，不必开启 TUN；系统代理只影响遵循该设置的应用。不要填写远端节点服务器的地址。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "验证连接并停止",
+            "description": "用浏览器打开常用国内网站和需要代理的网站，确认都能访问。不用时先关闭刚设置的 Windows 手动代理，再回到 PowerShell 按 Ctrl+C 停止核心。最后确认浏览器仍可正常联网。",
+            "pencilTip": "无法连接时先核对本地端口和启动日志，再向服务方确认节点有效；分享日志前隐藏密钥。"
           }
         ],
         "advancedRules": [
-          "升级前备份配置并阅读 [迁移指南](https://sing-box.sagernet.org/migration/) 和 [废弃列表](https://sing-box.sagernet.org/deprecated/)：GeoIP/Geosite 已在 1.12 移除，应迁移 rule-set；旧 block/dns 特殊出站、WireGuard outbound 和旧入站 sniff 等字段在 1.13 移除，分别迁移规则动作、WireGuard endpoint 等；旧 DNS server 格式在 1.14 移除。在线文档还列出 1.15+ 的变化，不能不看版本就套用。",
-          "需要 GUI 时请从 [官方 Desktop 页面](https://sing-box.sagernet.org/clients/desktop/) 获取 SFW；它与纯核心的配置管理能力不同。不要直接把 URL 当成 -c 的本地文件路径，也不要为了订阅导入安装不明包装程序。"
+          "更新配置：先备份当前可用配置，再保存服务方的新配置；校验通过后停止旧进程并重新运行。",
+          "本地端口：端口被占用时，请服务方协助修改 mixed 入站端口，并同步修改 Windows 手动代理中的端口。仅本机使用时保持监听 127.0.0.1。",
+          "分流设置：需要某些网站直连时，请服务方在完整配置中调整路由规则，校验后重启，不要直接套用其他客户端的规则。",
+          "TUN 模式：只有需要接管不遵循系统代理的应用时再尝试；使用服务方提供的 TUN 完整配置，并在管理员 PowerShell 中运行，停止后检查网络恢复。"
         ],
         "faq": [
           {
-            "question": "URL 订阅能直接作为配置吗？",
-            "answer": "仅当 URL 返回适合已安装核心版本的完整 sing-box JSON 配置。Clash YAML、Base64 节点列表和单个分享链接不是完整配置；Remote Profile 是 GUI 的配置下载/更新功能，不是内核自动转换订阅。不要将私密链接交给不可信在线转换器。"
+            "question": "只有订阅链接怎么办？",
+            "answer": "请服务方提供适配当前版本的完整 sing-box JSON 文件；即使链接返回完整 JSON，也要先下载保存为本地文件。"
           },
           {
-            "question": "为什么 PowerShell 提示找不到 sing-box.exe？",
-            "answer": "先确认终端所在目录含解压后的可执行文件，再用 .\\sing-box.exe；若使用完整路径含空格，需要 PowerShell 调用运算符 &。不要仅靠把目录名改成英文解决所有错误。"
+            "question": "PowerShell 找不到程序怎么办？",
+            "answer": "确认当前文件夹包含 sing-box.exe，并使用带 .\\ 前缀的命令，不要在压缩包里运行。"
           },
           {
-            "question": "是否必须使用 TUN？",
-            "answer": "不必须。可用 mixed/HTTP/SOCKS 入站仅代理主动配置的应用；TUN 用于按路由接管流量。配置、DNS、权限与其他 VPN 的冲突需分别验证。"
+            "question": "停止后浏览器断网怎么办？",
+            "answer": "关闭本次设置的 Windows 手动代理；如果使用过 TUN，也要确认核心已经退出、网络恢复。"
           }
         ]
       },
@@ -1370,8 +1446,8 @@
       "shortName": "Clash Verge Rev",
       "system": "linux",
       "category": "linux",
-      "tagline": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动",
-      "description": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。",
+      "tagline": "在 Linux 桌面导入订阅，让浏览器先用起来",
+      "description": "Clash Verge Rev 是使用 Mihomo 内核的图形代理客户端。导入兼容订阅、选择节点并开启系统代理后，即可用浏览器验证连接；软件不含节点服务。",
       "iconName": "Terminal",
       "badgeText": "官方来源核查",
       "updatedAt": "2026-11-13",
@@ -1399,56 +1475,59 @@
         "trafficHandling": "系统代理仅影响遵循系统设置的应用；TUN 通过虚拟网卡和路由接管适用流量"
       },
       "tutorial": {
-        "overview": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。 本教程于 2026-11-13 核查；版本为当次官方发布接口快照，不代表安装时仍为最新。首发日期未独立确认，以官方发布记录为准。",
+        "overview": "第一次使用，按下面步骤安装、导入订阅并打开系统代理即可。先让浏览器能用，其他选项保持默认；需要更多功能时再看进阶设置。",
         "prerequisites": [
-          "符合该版本系统与 CPU 架构要求的设备",
-          "可信来源提供的兼容配置或订阅；客户端不提供节点服务",
-          "妥善保管订阅 URL、节点密钥和备份，不上传至不可信转换站"
+          "一台 Linux 桌面电脑，能够安装软件；Ubuntu 建议使用 24.04。",
+          "准备服务商提供的 Clash / Mihomo 订阅链接（用于下载节点列表和规则）。软件本身不含节点，请勿公开订阅链接。"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "核对平台并安装",
-            "description": "从官方 Releases 选择匹配架构的 DEB 或 RPM，用发行版包管理器安装本地包并解决依赖，例如 apt install ./实际文件名.deb 或 dnf install ./实际文件名.rpm。当前核查的 v2.5.10 无 AppImage；AUR 是需自行审核的社区打包，不等同官方发布。"
+            "title": "下载并安装软件",
+            "description": "点击本页“软件下载”，展开发布页的 Assets（下载文件）。Ubuntu / Debian 选 .deb，Fedora 选 .rpm；普通 Intel / AMD 电脑选 x86_64，ARM 电脑选 aarch64。用系统的软件安装程序打开下载的包，安装后从应用菜单启动 Clash Verge Rev。",
+            "pencilTip": "安装提示缺依赖时，按[官方安装说明](https://github.com/clash-verge-rev/clash-verge-rev)处理，不要强行忽略错误。"
           },
           {
             "stepNumber": 2,
-            "title": "导入并激活配置",
-            "description": "在订阅管理页面添加远程 Clash / Mihomo YAML 配置 URL，导入后选中该配置。也可使用本地配置。不要把单节点分享 URI、登录网页或不兼容的通用订阅直接当作完整 YAML；导入失败先看错误日志。"
+            "title": "粘贴订阅链接",
+            "description": "打开“订阅”页面，粘贴服务商提供的 Clash / Mihomo 订阅链接并导入。出现配置卡片后，点击选中它。",
+            "pencilTip": "订阅链接不是服务商网站的登录地址；不知道复制哪个链接，就找服务商页面里的“Clash 订阅”。"
           },
           {
             "stepNumber": 3,
-            "title": "选择策略组和节点",
-            "description": "在代理页面选择配置提供的策略组及节点，按需使用规则模式。延迟测试只反映测试目标的响应，不代表带宽或所有网站可达。"
+            "title": "选择一个节点",
+            "description": "进入“代理”页面，使用“规则”模式，在节点选择组中点击一个可用节点。可以先点延迟测试，再选有结果的节点；暂时不用改其他分组。"
           },
           {
             "stepNumber": 4,
-            "title": "先系统代理，按需启用 TUN",
-            "description": "先开启系统代理并用浏览器验证。终端等不遵循系统代理的应用可显式设置本地代理，或按官方说明安装/检查服务模式后再启用 TUN，并批准必要的系统权限。TUN 并非辅助功能权限，也不保证 WSL、容器、虚拟机或所有游戏流量都被接管。"
+            "title": "打开系统代理",
+            "description": "打开“系统代理”开关，保持软件运行。第一次先不打开 TUN（虚拟网卡）模式。"
           },
           {
             "stepNumber": 5,
-            "title": "验证并保留回退方法",
-            "description": "分别检查目标网站、DNS、应用连接与日志，确认路由符合预期。出现断网时先关闭 TUN、恢复系统代理设置，排查其他 VPN、防火墙和路由冲突。"
+            "title": "打开网页确认能用",
+            "description": "用浏览器打开一个需要代理的网站，再打开平时常用的网站。两者能正常加载就完成了。不用时先关闭“系统代理”，再退出软件。",
+            "pencilTip": "连不上时，先换一个节点再试，并关闭其他正在运行的代理或 VPN。"
           }
         ],
         "advancedRules": [
-          "[项目 README：维护分支、内核、GPL 与配置增强](https://raw.githubusercontent.com/clash-verge-rev/clash-verge-rev/main/README.md)",
-          "[安装文档：平台要求和官方发布渠道](https://www.clashverge.dev/install.html)",
-          "[官方快速入门：导入、节点、系统代理与 TUN](https://www.clashverge.dev/guide/quickstart.html)",
-          "[版本与安装资产核查](https://api.github.com/repos/clash-verge-rev/clash-verge-rev/releases/latest)",
-          "[Mihomo 配置原始示例：协议、DNS、TUN 和排除路由](https://raw.githubusercontent.com/MetaCubeX/mihomo/Meta/docs/config.yaml)",
-          "配置增强支持 Merge / Script；仅使用可信脚本，更新订阅后检查最终生效配置。规则模式依赖配置中的规则，并不自动保证特定地区或应用直连。",
-          "[Linux 官方故障排查：图形环境与发行版依赖](https://www.clashverge.dev/faq/linux.html)"
+          "更新订阅：节点变少或不可用时，到“订阅”页面更新当前订阅，完成后重新选择节点。",
+          "切换节点：在“代理”页面测试延迟并换节点；日常保持“规则”模式，哪些网站直连由订阅规则决定。",
+          "让更多应用使用代理：只有浏览器可用、其他应用不行时，再按[官方快速入门](https://www.clashverge.dev/guide/quickstart.html)安装服务并尝试 TUN。需要管理员授权，出问题先关闭 TUN。",
+          "开机启动：确认连接稳定后，再在设置中开启开机启动；重启后检查系统代理是否开启，不要同时自动启动多个代理客户端。"
         ],
         "faq": [
           {
-            "question": "为什么系统代理开启后终端仍无法连接？",
-            "answer": "系统代理不是透明转发；应用必须主动遵循系统代理，或显式使用客户端本地 HTTP/SOCKS 监听地址。TUN 是另一种接管方式，仍受路由和排除设置限制。"
+            "question": "导入后没有节点怎么办？",
+            "answer": "确认选中刚导入的配置，再更新一次订阅。如果提示格式错误，请让服务商提供 Clash / Mihomo 格式，不要把私人订阅交给陌生转换网站。"
           },
           {
-            "question": "TUN 启动失败怎么办？",
-            "answer": "先看内核与服务日志，检查服务安装状态、管理员授权、虚拟网卡、DNS 与其他 VPN 冲突。Linux 不要对猜测的旧版内核路径执行 setcap；不建议全程以 root 运行 GUI。"
+            "question": "退出后浏览器无法联网怎么办？",
+            "answer": "重新打开软件，关闭系统代理后再退出。如果仍不行，检查桌面系统的网络代理设置，取消残留的手动代理。"
+          },
+          {
+            "question": "为什么终端没有一起走代理？",
+            "answer": "有些应用不读取系统代理。这不代表安装失败，先完成浏览器验证；确实需要时再看进阶设置的 TUN。"
           }
         ]
       },
@@ -1461,7 +1540,7 @@
       "system": "linux",
       "category": "linux",
       "tagline": "通过浏览器管理节点与 Linux 透明代理的服务",
-      "description": "v2rayA 以服务方式运行，通过 Web 界面管理订阅、节点组与 RoutingA 分流。当前 2.5 系列使用配套的 Xray 衍生内核 v2raya_core；不要与早期使用独立 V2Ray/Xray 的安装说明混用。Linux 透明代理需要对应权限、内核模块与网络工具。",
+      "description": "v2rayA 在 Linux 后台运行，通过浏览器管理订阅、选择节点和连接。先完成本机浏览器代理，再按需开启更多功能；需要自行准备节点服务。",
       "iconName": "Globe",
       "badgeText": "Web 管理",
       "updatedAt": "2026-11-13",
@@ -1491,57 +1570,61 @@
         "trafficHandling": "应用 HTTP/SOCKS 代理；Linux redirect / tproxy / tun 透明代理"
       },
       "tutorial": {
-        "overview": "本篇按官方当前 README 的 2.5 系列安装路线介绍 Linux 使用方法。旧版文档与发行版仓库可能仍是 2.2 系列；安装、内核与升级方式必须以所用版本为准。官方 v2.5.15 发布说明已移除停放的旧域名 v2raya.org，故不再将其作为下载或教程入口。",
+        "overview": "v2rayA 安装后通过浏览器操作。本篇先让本机浏览器使用代理，不要求一开始配置全机透明代理；安装以 Debian / Ubuntu 为例。",
         "prerequisites": [
-          "有 sudo/root 权限的 Linux 主机，具备恢复网络配置的本地或带外管理方式",
-          "安装前备份已有配置；2.4 之前的数据库升级会迁移且需重新注册账号",
-          "可用订阅或分享链接；先限制管理端口的可访问范围，再创建首个管理员"
+          "一台有管理员权限的 Debian / Ubuntu 电脑，建议在本机操作。",
+          "准备服务商提供的 v2rayA 兼容订阅或节点分享链接。软件不含节点，链接中可能含密码，不要公开。"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "安装当前版本与配套内核",
-            "description": "推荐按官方 README 使用 Dae Universe APT 仓库：APT 3.0+ 使用 `.sources`，更早版本使用 `.list`，两种方式二选一。下面示例适用于 APT 早于 3.0 的系统，添加第三方软件源与签名密钥前应先检查来源。官方安装包同时提供 v2raya 和配套内核，不再运行未经核实的旧一键脚本。",
-            "codeSnippet": "sudo apt update\nsudo apt install curl\n# 仅适用于 APT < 3.0；APT 3.0+ 请按官方 README 使用 .sources\nsudo curl -fsSL -o /etc/apt/sources.list.d/daeuniverse.list https://daeuniverse.pages.dev/daeuniverse.list\nsudo curl -fsSL -o /usr/share/keyrings/daeuniverse-archive-goose.gpg https://daeuniverse.pages.dev/daeuniverse-archive-goose.gpg\nsudo apt update\nsudo apt install v2raya\nsudo systemctl enable --now v2raya",
-            "codeLanguage": "bash",
-            "pencilTip": "也可从官方 Releases 下载本机架构的安装包并核对 SHA-256。手工安装必须让 v2raya 与 v2raya_core 版本完全一致。仓库实际提供版本可能晚于或早于本文核查版本。"
+            "title": "安装软件及配套内核",
+            "description": "点击本页“软件下载”，选择适合系统和处理器的安装包。Debian / Ubuntu 使用 .deb，普通 Intel / AMD 电脑选 x64 / amd64，ARM 电脑选 arm64。用系统软件安装程序安装，按该次发布说明安装配套的 v2raya_core，版本要一致。",
+            "pencilTip": "其他发行版或安装遇到依赖问题，查看[官方安装说明](https://github.com/v2rayA/v2rayA#readme)，不要套用旧版独立 Xray 内核教程。"
           },
           {
             "stepNumber": 2,
-            "title": "限制管理界面并创建管理员",
-            "description": "当前服务默认监听 `0.0.0.0:2017`，首个注册账号成为管理员。在防火墙中仅允许可信管理设备访问，再打开 `http://127.0.0.1:2017`（本机）或可信内网设备地址。仅本机使用时按官方说明配置启动参数 `--address 127.0.0.1:2017`，修改 systemd 服务可用 `sudo systemctl edit --full v2raya.service`，随后重载并重启。",
-            "pencilTip": "不要把未初始化面板或明文 HTTP 管理界面暴露到公网；远程管理优先使用 SSH 隧道或受保护的管理网络。"
+            "title": "启动服务并打开管理页面",
+            "description": "仅本机使用时，先按官方说明把服务启动参数的监听地址设为 `--address 127.0.0.1:2017`，再启动服务。在本机浏览器打开 http://127.0.0.1:2017，按页面提示创建管理员账号并记住密码。",
+            "pencilTip": "默认可能监听所有网卡；初始化前务必限制为本机或用防火墙限制可信设备，不要向公网开放管理页面。",
+            "codeSnippet": "sudo systemctl edit --full v2raya.service\n# 在已有 ExecStart 命令后添加 --address 127.0.0.1:2017，保留原有其他参数，保存退出\nsudo systemctl daemon-reload\nsudo systemctl restart v2raya",
+            "codeLanguage": "bash"
           },
           {
             "stepNumber": 3,
-            "title": "导入节点并先测试应用代理",
-            "description": "在页面导入订阅或分享链接，将节点加入组并选择节点与路由规则，然后从面板启动核心。先让单个应用使用默认 SOCKS5 `127.0.0.1:20170` 或 HTTP `127.0.0.1:20171` 验证连接；`20172` 为应用路由规则的 HTTP 入站。端口如已在设置中修改，以实际值为准。",
-            "pencilTip": "本地入站默认不等于开放给局域网；共享需要显式设置监听范围、防火墙和访问控制。订阅 URL 可能含凭证，勿公开。"
+            "title": "导入订阅并选择节点",
+            "description": "在管理页面点击导入，粘贴订阅或节点分享链接。订阅导入后更新列表，按页面提示选择节点或将节点加入使用的组，再启动连接。其他路由设置先保持默认。"
           },
           {
             "stepNumber": 4,
-            "title": "按主机条件开启透明代理",
-            "description": "确认单应用代理可用后，在面板开启透明代理并选择模式。Linux 的 redirect/tproxy 需要 root 及 iptables 或 nftables；tun 需要 `/dev/net/tun` 与 iproute2 的 `ip` 命令。启用后分别测试 DNS、IPv4/IPv6、局域网和目标应用，出错先停用透明代理并检查日志。",
-            "pencilTip": "Docker 网络命名空间、网关转发、静态路由和应用自带加密 DNS 都可能影响接管，不能保证主机、容器与局域网全部流量自动代理。"
+            "title": "让浏览器使用代理",
+            "description": "以 Firefox 为例，打开“设置”，搜索“网络设置”，进入连接设置，选择手动代理。在 HTTP 代理填 `127.0.0.1`、端口填 `20171`，勾选也用于 HTTPS，然后保存。若你在 v2rayA 中改过端口，请填实际端口。",
+            "pencilTip": "这里先只设置一个浏览器，其他应用不会自动使用代理。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "验证访问并记住关闭方法",
+            "description": "在设置过代理的浏览器打开需要代理的网站，再打开常用网站。正常加载就可以开始使用。不用时先把浏览器的连接设置恢复为原来的选项，再在 v2rayA 页面停止连接。"
           }
         ],
         "advancedRules": [
-          "升级前停止服务并备份配置目录（Linux 默认 `/etc/v2raya`）；v2raya 与 v2raya_core 必须一起升级。旧数据库迁移、账号重新注册和回滚应先阅读对应发布说明。",
-          "官方当前 README 提醒 OpenWrt feed 仍可能提供 2.2.7.x 与独立 xray-core；不要直接将本篇 2.5 系列的内核要求套到旧软件包。",
-          "核查来源：[当前官方 README](https://github.com/v2rayA/v2rayA/blob/main/README.md)、[v2.5.15 发布说明](https://github.com/v2rayA/v2rayA/releases/tag/v2.5.15)。"
+          "更新或更换节点：在管理页面更新订阅，再选择其他节点并连接；速度慢时先换节点，不用急着修改底层参数。",
+          "按规则分流：需要部分网站直连时，先在面板选择合适的路由规则，再让浏览器使用应用规则的 HTTP 端口（默认 20172）。端口以当前设置为准。",
+          "让更多应用走代理：浏览器验证成功后，再考虑面板中的透明代理。它需要额外的系统权限和网络组件，按[官方说明](https://github.com/v2rayA/v2rayA#readme)选择模式；异常时先关闭透明代理。",
+          "开机启动服务：确认能正常使用后，可运行 `sudo systemctl enable v2raya`。不需要时用 `sudo systemctl disable v2raya` 取消；启动服务不等于所有应用自动走代理。"
         ],
         "faq": [
           {
-            "question": "为什么新版提示内核版本不匹配？",
-            "answer": "2.5 系列要求同版本的 v2raya_core。请用相同发布的成套安装包或同时升级两个二进制文件，不能继续直接套用旧教程中的独立 Xray/V2Ray 内核。"
+            "question": "管理页面打不开怎么办？",
+            "answer": "确认访问的是运行 v2rayA 的本机，地址为 http://127.0.0.1:2017。运行 `systemctl status v2raya` 检查服务；如果启动失败，查看 `journalctl -u v2raya -b` 的报错。"
           },
           {
-            "question": "透明代理失败只要安装 iptables 就够了吗？",
-            "answer": "不一定。需结合模式检查权限、防火墙后端、内核模块；TUN 还需可用的 /dev/net/tun 与 iproute2。查看服务日志 `journalctl -u v2raya -b`，不要盲目混装或清空防火墙规则。"
+            "question": "导入订阅后没有节点怎么办？",
+            "answer": "重新复制服务商提供的兼容订阅，确认不是账号登录网址，尝试更新。仍失败时向提供者确认格式和订阅是否有效。"
           },
           {
-            "question": "把其他设备网关改成这台机器就能使用吗？",
-            "answer": "不能保证。还需正确的 IP 转发、DNS、转发路径、防火墙、IPv6 及代理规则。先在主机验证，不要在没有恢复手段时直接更改全网默认网关。"
+            "question": "停止连接后浏览器也无法上网？",
+            "answer": "浏览器还在把请求发给已停止的代理。回到浏览器网络设置，恢复使用代理前的连接选项即可。"
           }
         ]
       },
@@ -1554,7 +1637,7 @@
       "system": "linux",
       "category": "linux",
       "tagline": "在 OpenWrt LuCI 中管理 Mihomo 与透明代理",
-      "description": "OpenClash 是 OpenWrt 的 LuCI 插件，管理 Mihomo（原 Clash Meta）内核、YAML 配置、订阅和网关透明代理。是否能接管设备流量取决于网关路径、DNS、防火墙及 IPv6 配置，不是安装后自动覆盖所有设备、应用或协议。",
+      "description": "OpenClash 是安装在 OpenWrt 路由器上的代理插件，可在路由器管理页面导入订阅、选择节点，让经过这台路由器的设备按规则使用代理。需要自行准备节点服务。",
       "iconName": "Router",
       "badgeText": "OpenWrt 插件",
       "updatedAt": "2026-11-13",
@@ -1583,55 +1666,61 @@
         "trafficHandling": "REDIRECT / TPROXY / TUN；DNS 可用 fake-ip 或 redir-host"
       },
       "tutorial": {
-        "overview": "先备份路由器配置并保留恢复手段，再安装插件、准备核心与配置，最后逐项验证网关和 DNS。fake-ip/redir-host 是 DNS 处理方式，不能与 TUN/TPROXY 转发机制混为一谈。本文依据官方 README、v0.48.002 发布说明及仓库使用手册核查。",
+        "overview": "这篇适合已经有 OpenWrt 路由器、第一次使用 OpenClash 的人。先安装插件、导入配置，让一台设备连上验证即可；不用一开始就研究 DNS 或各种转发模式。",
         "prerequisites": [
-          "有 root/LuCI 管理权限的 OpenWrt 路由器，有足够闪存和内存；先备份网络、DNS 与防火墙配置",
-          "确认固件包管理器为 opkg 还是 apk、防火墙为 fw3 还是 fw4，依赖必须来自匹配固件的软件源",
-          "可信的 Clash/Mihomo YAML 配置或订阅；不要向陌生在线转换服务上传含 token 的订阅",
-          "确认客户端实际经过这台网关，且没有其他透明代理插件同时争抢 DNS 和防火墙"
+          "能登录 OpenWrt 的 LuCI 管理页面；先在系统的备份页面下载一份路由器备份，保留有线连接的管理方式。",
+          "准备 Clash / Mihomo 格式的完整配置订阅。插件不提供节点，订阅链接不要公开。",
+          "测试设备连接到这台路由器；先停用其他代理插件，避免互相影响。"
         ],
         "steps": [
           {
             "stepNumber": 1,
-            "title": "按固件安装依赖和对应安装包",
-            "description": "在官方 Releases 查看当次安装说明并下载 `luci-app-openclash_*.ipk`（opkg）或 `luci-app-openclash-*.apk`（apk），可通过 LuCI 的软件包页面上传安装。依赖需按 firewall3/iptables 与 firewall4/nftables 分别安装，不要复制旧版固定 iptables 清单，也不要安装固定旧版本链接。",
-            "pencilTip": "当前 README 的依赖包含 bash、curl、ca-bundle、ruby、ruby-yaml、dnsmasq-full、ip-full、unzip、LuCI 等；fw4 需要 kmod-nft-tproxy，TUN 还需要 kmod-tun。dnsmasq 与 dnsmasq-full 冲突时按固件指导处理，切勿为安装而强制移除网络依赖。"
+            "title": "安装 OpenClash 插件",
+            "description": "如果“服务”菜单已有 OpenClash，可跳过安装。否则从本页“软件下载”获取安装包，在 LuCI 的软件包页面上传安装：opkg 固件用 .ipk，apk 固件用 .apk。安装完成后重新登录管理页面。",
+            "pencilTip": "缺少依赖时按[官方安装说明](https://github.com/vernesong/OpenClash#readme)选择对应固件的依赖；firewall4 使用 nftables，不能照搬旧版依赖。不要强制删除网络组件。"
           },
           {
             "stepNumber": 2,
-            "title": "安装匹配架构的内核并导入配置",
-            "description": "进入【服务 → OpenClash】，根据首次引导在版本更新中确认内核编译版本并下载 Mihomo；手工安装时须选择路由器架构，按发布说明放入 `/etc/openclash/core/`，命名为 `clash_meta` 并设置执行权限。在配置订阅或配置管理中添加订阅/上传 YAML，更新后选为运行配置。",
-            "pencilTip": "完整 Mihomo 配置可直接使用，不应默认开启在线转换。仅有节点列表而没有策略组、规则等配置时，应使用可信模板或由提供者输出完整配置；首次启动也需能下载规则和 GEO 数据。"
+            "title": "下载运行所需的内核",
+            "description": "进入“服务 → OpenClash”，按照首次使用提示，在版本更新页面选择与路由器处理器匹配的内核并下载。页面显示内核已安装后再继续。",
+            "pencilTip": "不确定处理器型号时，先在路由器“状态 → 概览”查看型号，并对照官方安装说明，不能随意选一个。"
           },
           {
             "stepNumber": 3,
-            "title": "选择模式并启动，分步验证",
-            "description": "在插件设置的模式设置中按需求选择 Fake-IP 或 Redir-Host，以及是否启用 TUN/混合转发。初次使用先保持官方默认，再确认 DNS 接管、网关与局域网绕行规则。启动后查看运行日志，并通过运行状态页的仪表盘选择策略组节点。",
-            "codeSnippet": "# 仅读取路由器日志；Ctrl+C 结束查看\nlogread -e OpenClash -f",
-            "codeLanguage": "bash",
-            "pencilTip": "分别检查国内与代理目标、局域网设备、DNS、IPv4/IPv6。不要将 Dashboard/API/代理端口映射到公网；保持仅内网访问并设置控制密钥。"
+            "title": "添加并选用订阅",
+            "description": "在“配置订阅”中添加订阅，填写容易识别的名称并粘贴 Clash / Mihomo 订阅链接，保存并更新。到“配置管理”选择下载成功的配置作为运行配置。",
+            "pencilTip": "如果提供者给的是完整 YAML 文件，也可以在配置管理上传。第一次不需要开启在线订阅转换。"
           },
           {
             "stepNumber": 4,
-            "title": "异常时先恢复网络并收集日志",
-            "description": "若启用后断网，先停止 OpenClash，确认原始 DNS/网关连接恢复，再在运行日志页面生成调试日志。检查核心与配置校验、依赖、订阅更新、防火墙后端及 DNS 端口冲突。提交日志前删除订阅 URL、节点密码、密钥与公网地址等敏感内容。",
-            "pencilTip": "不要用关闭全部防火墙、盲目替换 DNS 或强制开启流量分载作为通用修复。每次只改一项并验证，便于回滚。"
+            "title": "启动并选择节点",
+            "description": "保持其他设置默认，启动 OpenClash。运行状态正常后，打开状态页面提供的控制面板，在节点选择组里选一个可用节点，日常使用“规则”模式。",
+            "pencilTip": "启动失败先看运行日志中的错误，不要反复改 DNS 或关闭防火墙。"
+          },
+          {
+            "stepNumber": 5,
+            "title": "用一台设备测试",
+            "description": "用连接此路由器的手机或电脑打开需要代理的网站，再打开常用网站。确认能正常使用就完成了。若启用后无法上网，先回到管理页面停止 OpenClash，恢复网络后再排查。"
           }
         ],
         "advancedRules": [
-          "DNS 上游、解析策略与代理路由需要配套设计；添加公共 DNS 或 DoH 不等于彻底杜绝 DNS 泄漏。客户端自带加密 DNS、IPv6 绕行和旁路由拓扑都需单独测试。",
-          "Fake-IP 对少数应用不兼容时，可按文档添加对应域名到 fake-ip-filter、改为 Redir-Host 或对特定设备绕行；不要把“仅允许常用端口”当成 Fake-IP 的 DNS 修复选项。",
-          "流量分载不是代理加速的通用开关。官方手册的测试环境和转发路径有明确限制，不能把软件分载宣传为任何设备都能达到千兆或数千兆。",
-          "核查来源：[官方安装与依赖说明](https://github.com/vernesong/OpenClash#readme)、[v0.48.002 发布说明](https://github.com/vernesong/OpenClash/releases/tag/v0.48.002)、[模式与流量控制](https://github.com/vernesong/OpenClash/blob/dev/.github/skills/openclash-user-guide/08-settings-mode-traffic.md)、[MIT 许可证](https://github.com/vernesong/OpenClash/blob/master/LICENSE)。"
+          "更新订阅：服务商调整节点后，在“配置订阅”里更新；确认成功后重新选择可用节点。需要自动更新时，再设置合适的更新周期。",
+          "切换节点和模式：在控制面板中换节点；日常使用规则模式，全局模式只用于临时测试，测试后切回规则模式。",
+          "让部分设备不走代理：有电视、办公设备不需要代理时，按插件的访问控制说明设置该设备绕过。每次只调整一台设备并验证。",
+          "备份可用配置：调整前下载当前配置并保留路由器备份。更新插件或内核后，先用一台设备测试，再让家人继续使用。"
         ],
         "faq": [
           {
-            "question": "为什么安装 ipk 后仍不能启动？",
-            "answer": "插件包不等于代理内核；还要确认核心架构与执行权限、完整配置、运行依赖、GEO/规则数据及防火墙模块。用调试日志定位，勿混用其他固件版本的 kmod。apk 系统也不能直接套用 opkg 安装指令。"
+            "question": "安装了插件，为什么还是启动不了？",
+            "answer": "插件之外还需要内核和可用配置。先检查内核是否下载成功、订阅能否更新、配置是否已选中；有依赖错误时按官方说明补齐，不要混装其他固件的软件包。"
           },
           {
-            "question": "电视或游戏机连 Wi-Fi 后显示无网络怎么办？",
-            "answer": "先查看实际网关/DNS和连接日志，判断是连通性检测域名、Fake-IP兼容、UDP、IPv6或规则问题。针对性调整过滤或绕行；不能仅凭设备类型断言是假 IP 地址导致。"
+            "question": "手机连接 Wi-Fi 后仍不能访问怎么办？",
+            "answer": "先确认 OpenClash 正在运行，换一个节点再试。再确认手机连接的是这台路由器，并关闭手机上其他 VPN。若所有网站都打不开，先停止插件恢复网络。"
+          },
+          {
+            "question": "需要把控制面板开放到公网吗？",
+            "answer": "不需要。只在可信局域网中管理，不要把控制面板或代理端口映射到公网。"
           }
         ]
       },
