@@ -13,7 +13,7 @@ export const clashPartyMac: SoftwareTool = {
   "updatedAt": "2026-11-13",
   "isOpenSource": true,
   "license": "GPL-3.0（详见项目许可证）",
-  "releasedAt": "未独立核实，以官方发布记录为准",
+  "releasedAt": "2024-08-13",
   "latestVersion": "v2.0.4（2026-11-13 核查；以官方发布页为准）",
   "updatePath": "src/data/tutorials/macos/clash-party-mac.ts",
   "githubRepo": "https://github.com/mihomo-party-org/clash-party",
@@ -24,13 +24,20 @@ export const clashPartyMac: SoftwareTool = {
     "architecture": "Apple Silicon arm64 / Intel x64",
     "coreEngine": "Mihomo / Smart Core；依安装版本与所选内核而异",
     "protocols": [
-      "VLESS（含 REALITY，取决于内核）",
-      "VMess",
-      "Trojan",
       "Shadowsocks",
+      "ShadowsocksR",
+      "VMess",
+      "VLESS（含 REALITY）",
+      "Trojan",
+      "Hysteria",
       "Hysteria 2",
       "TUIC",
-      "WireGuard"
+      "WireGuard",
+      "Snell",
+      "AnyTLS",
+      "SSH",
+      "SOCKS5",
+      "HTTP(S)"
     ],
     "trafficHandling": "系统代理与 TUN；无需手动服务模式不代表无需管理员权限或特权 Helper"
   },

@@ -14,7 +14,7 @@ export const clashIos: SoftwareTool = {
   isOpenSource: true,
   license: 'GPL-3.0（客户端仓库；依赖许可分别适用）',
   price: '美国 App Store：免费（2026-11-13 核查）',
-  releasedAt: '2026-08-20（美国 App Store 上架日期）',
+  releasedAt: '2026-08-20',
   latestVersion: '1.0.14（美国商店 API；2026-11-07 发布）',
   updatePath: 'src/data/tutorials/ios/clash-ios.ts',
   officialSite: 'https://clash.md/platforms/ios',
@@ -24,7 +24,8 @@ export const clashIos: SoftwareTool = {
     compatibility: 'iOS 15.0 / iPadOS 15.0 或更高；控制中心等功能另有系统限制',
     architecture: 'iPhone / iPad（SwiftUI；以商店兼容设备列表为准）',
     coreEngine: 'ProjectClash Clash Core（基于 mihomo）+ NetworkExtension',
-    protocols: ['Shadowsocks', 'VMess', 'VLESS', 'Trojan', 'Hysteria2', 'TUIC', 'WireGuard'],
+    // 主要协议来源：https://clash.md/core
+    protocols: ['Shadowsocks', 'ShadowsocksR', 'VMess', 'VLESS（含 REALITY）', 'Trojan', 'Snell', 'Hysteria', 'Hysteria 2', 'TUIC', 'WireGuard', 'AnyTLS', 'HTTP(S)', 'SOCKS5', 'SSH'],
     trafficHandling: 'Apple NE Packet Tunnel；按当前配置规则分流',
   },
   "tutorial": {

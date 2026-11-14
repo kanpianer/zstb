@@ -13,7 +13,7 @@ export const vpsNodes: SoftwareTool = {
   updatedAt: '2026-11-13',
   isOpenSource: true,
   license: '各项目许可证见源码仓库',
-  releasedAt: '不适用（脚本合集）',
+  releasedAt: '未核实',
   latestVersion: '以脚本仓库为准',
   updatePath: 'data/tutorials/linux/vps-nodes.md',
   officialSite: 'https://bxdt.sld.tw',

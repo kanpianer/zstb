@@ -13,7 +13,7 @@ export const v2rayng: SoftwareTool = {
   "updatedAt": "2026-11-13",
   "isOpenSource": true,
   "license": "GPL-3.0",
-  "releasedAt": "未独立核实，以官方发布记录为准",
+  "releasedAt": "2019-05-15",
   "latestVersion": "2.3.15（2026-11-13 核查；以官方发布页为准）",
   "updatePath": "src/data/tutorials/android/v2rayng.ts",
   "githubRepo": "https://github.com/2dust/v2rayNG",
@@ -28,9 +28,10 @@ export const v2rayng: SoftwareTool = {
       "VMess",
       "Trojan",
       "Shadowsocks",
-      "SOCKS / HTTP",
+      "SOCKS",
+      "HTTP",
       "WireGuard",
-      "Hysteria 2（已核对 2.3.15 构建代码）"
+      "Hysteria 2"
     ],
     "trafficHandling": "Android VpnService 虚拟接口；受路由与应用范围限制，不是桌面系统代理"
   },

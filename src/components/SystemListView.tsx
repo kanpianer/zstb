@@ -52,7 +52,9 @@ export const SystemListView: React.FC<SystemListViewProps> = ({
                   {tool.isOpenSource ? '开源' : '闭源'}
                 </span>
                 <span className="bg-paper-200 border border-pencil/30 px-1.5 py-0.5 rounded text-pencil-dark">
-                  {tool.latestVersion}
+                  {tool.category === 'apple'
+                    ? tool.latestVersion.match(/\b[vV]?\d+(?:\.\d+)+(?:-[0-9A-Za-z]+(?:[.-][0-9A-Za-z]+)*)?(?:\+[0-9A-Za-z]+(?:[.-][0-9A-Za-z]+)*)?\b/)?.[0] ?? '版本待确认'
+                    : tool.latestVersion}
                 </span>
               </div>
             </div>

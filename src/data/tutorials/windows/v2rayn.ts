@@ -13,7 +13,7 @@ export const v2rayn: SoftwareTool = {
   updatedAt: '2026-11-13',
   isOpenSource: true,
   license: 'GPL-3.0',
-  releasedAt: '未核实首次发布日期，以项目历史为准',
+  releasedAt: '2019-07-30',
   latestVersion: '7.25.6（2026-11-13 核查）',
   updatePath: 'src/data/tutorials/windows/v2rayn.ts',
   githubRepo: 'https://github.com/2dust/v2rayN',
@@ -23,7 +23,7 @@ export const v2rayn: SoftwareTool = {
     compatibility: 'Windows 10+；各内核的最低系统要求需另行确认',
     architecture: 'x64 / arm64；x86 包是否适用以当次发布及内核为准',
     coreEngine: 'Xray / sing-box 等（支持范围随版本变化）',
-    protocols: ['VMess', 'VLESS / REALITY', 'Trojan', 'Shadowsocks', 'SOCKS', 'HTTP', 'Hysteria 2 / TUIC（依内核）'],
+    protocols: ['VMess', 'VLESS（含 REALITY）', 'Trojan', 'Shadowsocks', 'SOCKS', 'HTTP', 'Hysteria 2（依内核）', 'TUIC（依内核）', 'WireGuard（依内核）', 'AnyTLS（依内核）', 'NaïveProxy（依内核）', 'MASQUE（依内核）'],
     trafficHandling: '系统代理 / PAC；可选 TUN（需提升权限并正确配置路由）',
   },
   tutorial: {

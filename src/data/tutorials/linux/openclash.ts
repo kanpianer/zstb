@@ -13,7 +13,7 @@ export const openclash: SoftwareTool = {
   updatedAt: '2026-11-13',
   isOpenSource: true,
   license: 'MIT（插件）；内核许可证另计',
-  releasedAt: '2019 年（项目版权记录；首次发版日未确认）',
+  releasedAt: '2019-05-29',
   latestVersion: 'v0.48.002（2026-11-13 核查）',
   updatePath: 'src/data/tutorials/linux/openclash.ts',
   githubRepo: 'https://github.com/vernesong/OpenClash',
@@ -23,7 +23,7 @@ export const openclash: SoftwareTool = {
     compatibility: 'OpenWrt + LuCI；按固件的 opkg/apk 及 firewall3/firewall4 选择安装路线',
     architecture: '插件包与 Mihomo 二进制分开选择；内核须匹配路由器 CPU/ABI',
     coreEngine: 'Mihomo（Meta）；可选内核以插件当前文档为准',
-    protocols: ['Shadowsocks', 'VMess', 'VLESS / REALITY', 'Trojan', 'Hysteria 2', 'TUIC', 'WireGuard', 'Snell（依内核）'],
+    protocols: ['Shadowsocks', 'ShadowsocksR', 'VMess', 'VLESS（含 REALITY）', 'Trojan', 'Hysteria', 'Hysteria 2', 'TUIC', 'WireGuard', 'Snell', 'AnyTLS', 'SSH', 'SOCKS5', 'HTTP(S)'],
     trafficHandling: 'REDIRECT / TPROXY / TUN；DNS 可用 fake-ip 或 redir-host',
   },
   tutorial: {

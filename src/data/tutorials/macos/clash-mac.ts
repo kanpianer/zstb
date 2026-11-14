@@ -14,7 +14,7 @@ export const clashMac: SoftwareTool = {
   isOpenSource: true,
   license: 'GPL-3.0（客户端仓库；依赖许可分别适用）',
   price: '美国商店页面显示免费；以 macOS 购买页为准',
-  releasedAt: 'macOS 独立首发日期未确认',
+  releasedAt: '2026-08-20',
   latestVersion: 'macOS 商店版本未独立确认；源码 README 对应产品构建 1.0.15',
   updatePath: 'src/data/tutorials/macos/clash-mac.ts',
   officialSite: 'https://clash.md/platforms/macos',
@@ -24,7 +24,8 @@ export const clashMac: SoftwareTool = {
     compatibility: 'macOS 13.0 或更高；桌面小组件要求 macOS 14.0+',
     architecture: 'Intel / Apple Silicon（源码提供 macOS 双架构核心切片）',
     coreEngine: 'ProjectClash Clash Core（基于 mihomo）+ NetworkExtension',
-    protocols: ['Shadowsocks', 'VMess', 'VLESS', 'Trojan', 'Hysteria2', 'TUIC', 'WireGuard'],
+    // 主要协议来源：https://clash.md/core
+    protocols: ['Shadowsocks', 'ShadowsocksR', 'VMess', 'VLESS（含 REALITY）', 'Trojan', 'Snell', 'Hysteria', 'Hysteria 2', 'TUIC', 'WireGuard', 'AnyTLS', 'HTTP(S)', 'SOCKS5', 'SSH'],
     trafficHandling: 'Apple NE Packet Tunnel；支持菜单栏控制与配置规则分流',
   },
   tutorial: {

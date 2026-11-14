@@ -13,7 +13,7 @@ export const clashVergeRevMac: SoftwareTool = {
   "updatedAt": "2026-11-13",
   "isOpenSource": true,
   "license": "GPL-3.0（详见项目许可证）",
-  "releasedAt": "未独立核实，以官方发布记录为准",
+  "releasedAt": "2023-11-22",
   "latestVersion": "v2.5.10（2026-11-13 核查；以官方发布页为准）",
   "updatePath": "src/data/tutorials/macos/clash-verge-rev-mac.ts",
   "githubRepo": "https://github.com/clash-verge-rev/clash-verge-rev",
@@ -24,13 +24,20 @@ export const clashVergeRevMac: SoftwareTool = {
     "architecture": "Apple Silicon aarch64 与 Intel x64 分别下载，不是单一 Universal 包",
     "coreEngine": "内置 Mihomo；稳定版与测试内核能力可能不同",
     "protocols": [
-      "VLESS（含 REALITY，取决于内核）",
-      "VMess",
-      "Trojan",
       "Shadowsocks",
+      "ShadowsocksR",
+      "VMess",
+      "VLESS（含 REALITY）",
+      "Trojan",
+      "Hysteria",
       "Hysteria 2",
       "TUIC",
-      "WireGuard"
+      "WireGuard",
+      "Snell",
+      "AnyTLS",
+      "SSH",
+      "SOCKS5",
+      "HTTP(S)"
     ],
     "trafficHandling": "系统代理仅影响遵循系统设置的应用；TUN 通过虚拟网卡和路由接管适用流量"
   },

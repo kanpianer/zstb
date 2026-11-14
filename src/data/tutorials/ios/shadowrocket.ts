@@ -14,7 +14,7 @@ export const shadowrocket: SoftwareTool = {
   isOpenSource: false,
   license: '专有软件；未确认完整客户端开源许可',
   price: '美国 App Store：US$2.99（2026-11-13）',
-  releasedAt: '2015-04-14（美国 App Store 上架日期）',
+  releasedAt: '2015-04-14',
   latestVersion: '2.2.93（美国商店 API；2026-10-29 发布）',
   updatePath: 'src/data/tutorials/ios/shadowrocket.ts',
   officialSite: 'https://shadowlaunch.com',
@@ -23,7 +23,8 @@ export const shadowrocket: SoftwareTool = {
     compatibility: 'iOS 13.0 / iPadOS 13.0 或更高（本页只介绍 iOS）',
     architecture: 'iPhone / iPad（以商店兼容设备列表为准）',
     coreEngine: '专有实现；未确认完整底层引擎细节',
-    protocols: ['HTTP/HTTPS 代理', 'SOCKS5', '其他节点协议需按当前版本验证'],
+    // 主要协议来源：https://t.me/ShadowrocketNews/1321；https://t.me/ShadowrocketNews/1038；https://t.me/ShadowrocketNews/1335
+    protocols: ['Shadowsocks', 'ShadowsocksR', 'VMess', 'VLESS（含 REALITY）', 'Trojan', 'Hysteria', 'Hysteria 2', 'TUIC', 'WireGuard', 'AnyTLS', 'HTTP(S)', 'SOCKS5', 'SSH', 'NaïveProxy'],
     trafficHandling: '系统 VPN 接管；按所选规则配置决定流向',
   },
   "tutorial": {

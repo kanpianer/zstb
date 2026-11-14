@@ -13,7 +13,7 @@ export const flclash: SoftwareTool = {
   "updatedAt": "2026-11-13",
   "isOpenSource": true,
   "license": "GPL-3.0",
-  "releasedAt": "未独立核实，以官方发布记录为准",
+  "releasedAt": "2024-04-30",
   "latestVersion": "v0.9.3（2026-11-13 核查；以官方发布页为准）",
   "updatePath": "src/data/tutorials/android/flclash.ts",
   "githubRepo": "https://github.com/chen08209/FlClash",
@@ -24,13 +24,20 @@ export const flclash: SoftwareTool = {
     "architecture": "arm64-v8a / armeabi-v7a / x86_64",
     "coreEngine": "Mihomo（Clash.Meta）",
     "protocols": [
-      "VLESS（含 REALITY）",
-      "VMess",
-      "Trojan",
       "Shadowsocks",
+      "ShadowsocksR",
+      "VMess",
+      "VLESS（含 REALITY）",
+      "Trojan",
+      "Hysteria",
       "Hysteria 2",
       "TUIC",
-      "WireGuard"
+      "WireGuard",
+      "Snell",
+      "AnyTLS",
+      "SSH",
+      "SOCKS5",
+      "HTTP(S)"
     ],
     "trafficHandling": "Android VpnService 虚拟接口；受路由与应用范围限制，不是桌面系统代理"
   },

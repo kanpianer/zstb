@@ -13,7 +13,7 @@ export const v2raya: SoftwareTool = {
   updatedAt: '2026-11-13',
   isOpenSource: true,
   license: 'AGPL-3.0-only；配套内核为 MPL-2.0',
-  releasedAt: '未核实首次发布日期，以项目历史为准',
+  releasedAt: '2019-11-01',
   latestVersion: 'v2.5.15（2026-11-13 核查）',
   updatePath: 'src/data/tutorials/linux/v2raya.ts',
   githubRepo: 'https://github.com/v2rayA/v2rayA',
@@ -23,7 +23,8 @@ export const v2raya: SoftwareTool = {
     compatibility: 'Linux；本篇以 Debian/Ubuntu + systemd 为例，OpenWrt 包需注意版本差异',
     architecture: 'x64 / x86 / arm64 / armv7 等，以对应发行包为准',
     coreEngine: '同版本 v2raya_core（基于 Xray-core）',
-    protocols: ['VMess', 'VLESS', 'Shadowsocks', 'Trojan', 'Hysteria 2', 'TUIC', 'WireGuard', 'SOCKS5', 'HTTP(S)'],
+    // 官方 main README：https://github.com/v2rayA/v2rayA/blob/main/README.md
+    protocols: ['VMess', 'VLESS（含 REALITY）', 'Shadowsocks', 'Trojan', 'Hysteria 2', 'TUIC', 'Juicity', 'AnyTLS', 'WireGuard', 'SOCKS5', 'HTTP(S)'],
     trafficHandling: '应用 HTTP/SOCKS 代理；Linux redirect / tproxy / tun 透明代理',
   },
   tutorial: {

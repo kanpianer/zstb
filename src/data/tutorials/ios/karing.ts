@@ -14,7 +14,7 @@ export const karing: SoftwareTool = {
   isOpenSource: true,
   license: 'GPL-3.0-or-later；附名称/关联声明限制，见 LICENSE.md',
   price: '美国 App Store：免费（2026-11-13 核查）',
-  releasedAt: '2023-12-26（美国 App Store 上架；非项目首发）',
+  releasedAt: '2023-12-26',
   latestVersion: '1.2.25.2802（美国商店 API；2026-09-11 发布）',
   updatePath: 'src/data/tutorials/ios/karing.ts',
   officialSite: 'https://karing.app',
@@ -24,7 +24,8 @@ export const karing: SoftwareTool = {
     compatibility: 'iOS 15.0 / iPadOS 15.0 或更高；本页仅介绍 iOS',
     architecture: 'iPhone / iPad（Flutter；以商店设备列表为准）',
     coreEngine: 'KaringX 修改版 sing-box（不是官方 SFI）',
-    protocols: ['Shadowsocks', 'VMess', 'VLESS', 'Trojan', 'Hysteria2', 'TUIC'],
+    // 主要协议来源：https://karing.app/en/faq#which-protocols-are-supported
+    protocols: ['Shadowsocks', 'ShadowsocksR', 'VMess', 'VLESS（含 REALITY）', 'Trojan', 'TUIC', 'SOCKS5', 'HTTP(S)', 'Hysteria', 'Hysteria 2', 'WireGuard', 'AnyTLS', 'Mieru'],
     trafficHandling: 'VPN/TUN 与 Karing 配置管理、路由规则',
   },
   tutorial: {

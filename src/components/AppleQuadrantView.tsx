@@ -72,9 +72,6 @@ export const AppleQuadrantView: React.FC<AppleQuadrantViewProps> = ({
 
                 {/* Protocol & Core Feature Tags */}
                 <div className="hidden lg:flex items-center gap-1 mt-1.5 overflow-hidden">
-                  <span className="text-[9px] font-mono bg-paper-200 border border-pencil/20 px-1 py-0.2 rounded text-pencil-dark font-semibold shrink-0">
-                    {tool.latestVersion}
-                  </span>
                   {tool.specs.protocols.slice(0, 3).map((p, i) => (
                     <span key={i} className="text-[9px] font-mono bg-white border border-pencil/20 px-1 py-0.2 rounded text-pencil-light truncate shrink-0">
                       {p}
@@ -149,9 +146,6 @@ export const AppleQuadrantView: React.FC<AppleQuadrantViewProps> = ({
 
                 {/* Protocol & Core Feature Tags */}
                 <div className="hidden lg:flex items-center gap-1 mt-1.5 overflow-hidden">
-                  <span className="text-[9px] font-mono bg-paper-200 border border-pencil/20 px-1 py-0.2 rounded text-pencil-dark font-semibold shrink-0">
-                    {tool.latestVersion}
-                  </span>
                   {tool.specs.protocols.slice(0, 3).map((p, i) => (
                     <span key={i} className="text-[9px] font-mono bg-white border border-pencil/20 px-1 py-0.2 rounded text-pencil-light truncate shrink-0">
                       {p}
