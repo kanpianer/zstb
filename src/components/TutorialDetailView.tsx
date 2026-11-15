@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SoftwareTool } from '../types/tutorial';
 import { PencilSoftwareLogo } from './PencilSoftwareLogos';
 import { TutorialImagePreview } from './TutorialImagePreview';
+import { handleJiakuanNavigation } from '../utils/jiakuanNavigation';
 import { 
   ArrowLeft, 
   GitPullRequest, 
@@ -420,6 +421,10 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
                     {action.prefixText && <span>{action.prefixText}</span>}
                     <a
                       href={action.url}
+                      onClick={action.name === '家宽导航' ? handleJiakuanNavigation : undefined}
+                      onAuxClick={action.name === '家宽导航' ? (event) => {
+                        if (event.button === 1) handleJiakuanNavigation(event);
+                      } : undefined}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`${ACTION_BUTTON_BASE_CLASSES} text-amber-950 bg-amber-100/80 border border-amber-300/80 hover:bg-amber-200/80 hover:border-amber-400`}
