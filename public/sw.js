@@ -1,7 +1,7 @@
 // Service Worker for 纸上谈兵 (tzp)
 // Provides persistent caching for Chinese webfonts and static assets
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const FONT_CACHE = `tzp-fonts-${CACHE_VERSION}`;
 const STATIC_CACHE = `tzp-static-${CACHE_VERSION}`;
 const APP_CACHE = `tzp-app-${CACHE_VERSION}`;

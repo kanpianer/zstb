@@ -5,6 +5,21 @@
  */
 
 export async function registerServiceWorker(): Promise<void> {
+  // In development mode, do not register SW and ensure any leftover SW from past visits is unregistered
+  if (import.meta.env.DEV) {
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+      try {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        for (const reg of regs) {
+          await reg.unregister();
+        }
+      } catch {
+        /* ignore */
+      }
+    }
+    return;
+  }
+
   // 1. Request persistent storage from browser to prevent cache eviction under disk pressure
   if (typeof navigator !== 'undefined' && navigator.storage && navigator.storage.persist) {
     try {

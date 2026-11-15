@@ -294,6 +294,7 @@ export const PencilQuadrantCross: React.FC<PencilQuadrantCrossProps> = ({ classN
     >
       <canvas
         ref={canvasRef}
+        className="theme-canvas"
         style={{
           width: '100%',
           height: '100%',
@@ -428,6 +429,7 @@ export const PencilMobileDivider: React.FC<{ className?: string }> = ({ classNam
     >
       <canvas
         ref={canvasRef}
+        className="theme-canvas"
         style={{
           width: '100%',
           height: '16px',

@@ -1,10 +1,11 @@
 import React from 'react';
-import { ArrowLeft, GitPullRequest } from 'lucide-react';
+import { ArrowLeft, GitPullRequest, Moon, Sun } from 'lucide-react';
 import { SubSystemCategory, SystemCategory, SoftwareTool } from '../types/tutorial';
 import { PencilAppleLogo, PencilSystemLogo } from './PencilSystemLogos';
 import { getSettings } from '../cms/content';
 import { getQuadrants } from '../data/tutorials';
 import { PencilPaperLogo } from './PencilPaperLogo';
+import { toggleTheme, useTheme } from '../theme';
 
 export interface PencilHeaderProps {
   currentCategory?: SystemCategory | null;
@@ -27,6 +28,8 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
   prevIsHome = false,
 }) => {
   const settings = getSettings();
+  const theme = useTheme();
+  const isDark = theme === 'dark';
   const isHome = !currentCategory && !currentSubSystem && !currentTool;
 
   const getSystemInfo = (sub: SubSystemCategory) => {
@@ -178,16 +181,30 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
 
     // 4. Home Page: 4 Quadrants
     return (
-      <div 
-        onClick={onNavigateHome}
-        className="cursor-pointer group flex items-center gap-2.5 sm:gap-3 select-none min-w-0"
-      >
-        <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center transform group-hover:-rotate-6 group-hover:scale-105 transition-all duration-300 shrink-0">
+      <div className="flex items-center gap-2.5 sm:gap-3 select-none min-w-0">
+        <div
+          onClick={onNavigateHome}
+          className="cursor-pointer group w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center transform hover:-rotate-6 hover:scale-105 transition-all duration-300 shrink-0"
+          title="返回主页"
+        >
           <PencilPaperLogo className="w-full h-full drop-shadow-sm" />
         </div>
         <div className="min-w-0 flex items-center">
           <h1 className="font-serif font-black text-xl sm:text-2xl md:text-3xl tracking-tight text-pencil-dark whitespace-nowrap text-ultra-bold">
-            {settings.siteName}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="theme-toggle-name"
+              title={isDark ? '切换到白天主题' : '切换到暗黑主题'}
+              aria-label={isDark ? '当前暗黑主题，点击切换到白天主题' : '当前白天主题，点击切换到暗黑主题'}
+            >
+              {settings.siteName}
+              {isDark ? (
+                <Moon className="theme-toggle-icon" strokeWidth={2.5} aria-hidden="true" />
+              ) : (
+                <Sun className="theme-toggle-icon" strokeWidth={2.5} aria-hidden="true" />
+              )}
+            </button>
           </h1>
         </div>
       </div>
@@ -226,7 +243,7 @@ export const PencilHeader: React.FC<PencilHeaderProps> = ({
       <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 z-10">
         <button
           onClick={onOpenCrowdsourceModal}
-          className="pencil-btn text-xs bg-paper-50 hover:bg-white text-pencil-dark font-medium py-1.5 px-2 sm:px-3 flex items-center justify-center gap-1 sm:gap-1.5 shrink-0 w-[58px] sm:w-auto !px-0 sm:!px-5 whitespace-nowrap"
+          className="pencil-btn text-xs bg-paper-50 hover:bg-surface text-pencil-dark font-medium py-1.5 px-2 sm:px-3 flex items-center justify-center gap-1 sm:gap-1.5 shrink-0 w-[58px] sm:w-auto !px-0 sm:!px-5 whitespace-nowrap"
           title="贡献教程"
         >
           <GitPullRequest className="w-3.5 h-3.5 text-blue-700 shrink-0" />

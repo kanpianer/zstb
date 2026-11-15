@@ -114,7 +114,7 @@ export const PencilFooter: React.FC<PencilFooterProps> = ({
               style={{
                 inset: '-1.5px',
                 borderRadius: '200px 15px 210px 15px / 15px 210px 15px 200px',
-                border: '1.6px solid #2b2e34',
+                border: '1.6px solid rgb(var(--ink))',
                 WebkitMaskImage: `conic-gradient(from 0deg at 50% 50%, #000 0deg, #000 ${progressAngle}deg, transparent ${progressAngle}deg, transparent 360deg)`,
                 maskImage: `conic-gradient(from 0deg at 50% 50%, #000 0deg, #000 ${progressAngle}deg, transparent ${progressAngle}deg, transparent 360deg)`,
               }}

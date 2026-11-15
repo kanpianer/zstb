@@ -13,9 +13,9 @@ interface PencilPaperLogoProps extends React.SVGProps<SVGSVGElement> {
  */
 export const PencilPaperLogo: React.FC<PencilPaperLogoProps> = ({
   className = 'w-10 h-10',
-  strokeDark = '#24211d',
-  strokeMedium = '#4c4740',
-  strokeLight = '#6d665e',
+  strokeDark = 'rgb(var(--logo-dark))',
+  strokeMedium = 'rgb(var(--logo-medium))',
+  strokeLight = 'rgb(var(--logo-light))',
   ...props
 }) => {
   return (
@@ -40,7 +40,7 @@ export const PencilPaperLogo: React.FC<PencilPaperLogoProps> = ({
         {/* Ambient pencil shadow behind paper (transparent background) */}
         <path
           d="M 13.5 9 L 51.5 8 L 53.5 54 L 13 54.5 Z"
-          fill="#1f1c19"
+          fill="rgb(var(--logo-shadow))"
           opacity="0.09"
           transform="translate(1.2, 1.6)"
         />
@@ -71,7 +71,7 @@ export const PencilPaperLogo: React.FC<PencilPaperLogoProps> = ({
              L 13.2 28.8
              C 13 21, 12.9 15, 13.5 9.2
              Z"
-          fill="#FAF7F0"
+          fill="rgb(var(--logo-paper))"
           stroke={strokeDark}
           strokeWidth="1.3"
           strokeLinejoin="round"
@@ -117,9 +117,9 @@ export const PencilPaperLogo: React.FC<PencilPaperLogoProps> = ({
           strokeLinecap="round"
         />
         {/* Fine fiber wisps near top tear */}
-        <line x1="27.8" y1="9.5" x2="28.4" y2="11.2" stroke="#787065" strokeWidth="0.45" />
-        <line x1="30.2" y1="9.2" x2="29.8" y2="10.5" stroke="#787065" strokeWidth="0.45" />
-        <line x1="32.8" y1="9.4" x2="32.2" y2="11" stroke="#787065" strokeWidth="0.45" />
+        <line x1="27.8" y1="9.5" x2="28.4" y2="11.2" stroke="rgb(var(--logo-fine))" strokeWidth="0.45" />
+        <line x1="30.2" y1="9.2" x2="29.8" y2="10.5" stroke="rgb(var(--logo-fine))" strokeWidth="0.45" />
+        <line x1="32.8" y1="9.4" x2="32.2" y2="11" stroke="rgb(var(--logo-fine))" strokeWidth="0.45" />
 
         {/* Left notch crack line */}
         <line

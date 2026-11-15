@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { SiteRoot } from './cms/SiteRoot'
+import './theme'
 import './index.css'
 import { registerServiceWorker } from './registerSW'
 

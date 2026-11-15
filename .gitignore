@@ -30,3 +30,6 @@ data/cms/
 
 # TypeScript cache
 *.tsbuildinfo
+
+# Local test screenshots / temporary scripts
+.shots/

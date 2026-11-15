@@ -450,7 +450,7 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
               <ul className="space-y-1 text-amber-950 font-sans">
                 {tool.tutorial.prerequisites.map((pre, idx) => (
                   <li key={idx} className="leading-relaxed flex items-baseline gap-2">
-                    <span aria-hidden="true" className="shrink-0 text-black">•</span>
+                    <span aria-hidden="true" className="shrink-0 text-pencil-dark">•</span>
                     <span className="min-w-0 flex-1 break-words [overflow-wrap:anywhere]">{renderInlineElements(pre)}</span>
                   </li>
                 ))}
@@ -480,11 +480,11 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
 
               {/* Code Snippet Box (if available) */}
               {step.codeSnippet && (
-                <div className="mt-3 p-3 bg-pencil-dark text-paper-50 rounded-lg font-mono text-xs flex items-center justify-between border border-pencil">
+                <div className="mt-3 p-3 code-snippet-box rounded-lg font-mono text-xs flex items-center justify-between border border-pencil">
                   <code className="break-all">{step.codeSnippet}</code>
                   <button
                     onClick={() => handleCopy(step.codeSnippet!)}
-                    className="p-1.5 bg-pencil-light/60 hover:bg-pencil-light rounded text-paper-50 transition-colors ml-2 flex-shrink-0"
+                    className="p-1.5 code-snippet-btn rounded transition-colors ml-2 flex-shrink-0"
                     title="复制到剪贴板"
                   >
                     {copiedSnippet === step.codeSnippet ? (

@@ -62,7 +62,7 @@ export const CrowdsourceModal: React.FC<CrowdsourceModalProps> = ({
   )}`;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-pencil-dark/60 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
       {/* Fixed-height container to guarantee tab switching never changes the window height */}
       <div className="w-full max-w-2xl h-[540px] max-h-[90vh] bg-paper-100 border-4 border-pencil rounded-2xl shadow-pencil-lg flex flex-col overflow-hidden relative a4-sheet">
         {/* Header Bar */}
@@ -276,7 +276,7 @@ export const CrowdsourceModal: React.FC<CrowdsourceModalProps> = ({
               href={githubForkUrl}
               target="_blank"
               rel="noreferrer"
-              className="pencil-btn w-full py-2.5 text-center text-xs bg-paper-50 hover:bg-white text-pencil-dark font-bold flex items-center justify-center gap-1.5"
+              className="pencil-btn w-full py-2.5 text-center text-xs bg-paper-50 hover:bg-surface text-pencil-dark font-bold flex items-center justify-center gap-1.5"
             >
               <GitFork className="w-3.5 h-3.5 text-pencil-dark" />
               <span>一键 Fork 本项目 ➔</span>
@@ -287,7 +287,7 @@ export const CrowdsourceModal: React.FC<CrowdsourceModalProps> = ({
               href={githubPrUrl}
               target="_blank"
               rel="noreferrer"
-              className="pencil-btn w-full py-2.5 text-center text-xs bg-paper-50 hover:bg-white text-pencil-dark font-bold flex items-center justify-center gap-1.5"
+              className="pencil-btn w-full py-2.5 text-center text-xs bg-paper-50 hover:bg-surface text-pencil-dark font-bold flex items-center justify-center gap-1.5"
             >
               <GitPullRequest className="w-3.5 h-3.5 text-blue-700" />
               <span>在 GitHub Web 编辑器中发起 PR ➔</span>
@@ -298,7 +298,7 @@ export const CrowdsourceModal: React.FC<CrowdsourceModalProps> = ({
               href={githubIssueUrl}
               target="_blank"
               rel="noreferrer"
-              className="pencil-btn w-full py-2.5 text-center text-xs bg-paper-50 hover:bg-white text-pencil-dark font-bold flex items-center justify-center gap-1.5"
+              className="pencil-btn w-full py-2.5 text-center text-xs bg-paper-50 hover:bg-surface text-pencil-dark font-bold flex items-center justify-center gap-1.5"
             >
               <Send className="w-3.5 h-3.5 text-pencil" />
               <span>携带模板前往 GitHub 创建 Issue ➔</span>

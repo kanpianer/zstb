@@ -220,7 +220,7 @@ export const PencilClashLogo: React.FC<PencilSoftwareLogoProps> = ({
         r="2.8"
         strokeWidth="1.8"
         strokeLinecap="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
       <circle
         cx="43"
@@ -228,7 +228,7 @@ export const PencilClashLogo: React.FC<PencilSoftwareLogoProps> = ({
         r="2.8"
         strokeWidth="1.8"
         strokeLinecap="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
       {/* 眼睛手绘微小瞳孔高光点 */}
       <circle cx="29" cy="28" r="0.8" fill="currentColor" stroke="none" />
@@ -314,7 +314,7 @@ export const PencilQuantumultXLogo: React.FC<PencilSoftwareLogoProps> = ({
         strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
       {/* 上方滑块内部素描排线 */}
       <g strokeWidth="0.9" strokeLinecap="round" opacity="0.5">
@@ -337,7 +337,7 @@ export const PencilQuantumultXLogo: React.FC<PencilSoftwareLogoProps> = ({
         strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
       {/* 中间滑块内部素描排线 */}
       <g strokeWidth="0.9" strokeLinecap="round" opacity="0.5">
@@ -360,7 +360,7 @@ export const PencilQuantumultXLogo: React.FC<PencilSoftwareLogoProps> = ({
         strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
       {/* 下方滑块内部素描排线 */}
       <g strokeWidth="0.9" strokeLinecap="round" opacity="0.5">
@@ -579,7 +579,7 @@ export const PencilClashVergeLogo: React.FC<PencilSoftwareLogoProps> = ({
         strokeWidth="2.4"
         strokeLinecap="round"
         strokeLinejoin="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
 
       {/* 猫头轮廓手绘微抖复线 */}
@@ -1175,7 +1175,7 @@ export const PencilNekoBoxLogo: React.FC<PencilSoftwareLogoProps> = ({
         rx="2.5"
         ry="3.4"
         strokeWidth="1.8"
-        fill="white"
+        fill="rgb(var(--logo-paper))"
       />
       <ellipse
         cx="37"
@@ -1183,7 +1183,7 @@ export const PencilNekoBoxLogo: React.FC<PencilSoftwareLogoProps> = ({
         rx="2.5"
         ry="3.4"
         strokeWidth="1.8"
-        fill="white"
+        fill="rgb(var(--logo-paper))"
       />
 
       {/* 脸蛋轻微红晕线条 */}
@@ -1196,7 +1196,7 @@ export const PencilNekoBoxLogo: React.FC<PencilSoftwareLogoProps> = ({
         cy="23"
         r="3.2"
         strokeWidth="1.6"
-        fill="white"
+        fill="rgb(var(--logo-paper))"
       />
       <circle cx="46.5" cy="23" r="1.5" strokeWidth="0.8" opacity="0.4" strokeDasharray="3 1" />
 
@@ -1207,7 +1207,7 @@ export const PencilNekoBoxLogo: React.FC<PencilSoftwareLogoProps> = ({
         strokeWidth="2.1"
         strokeLinecap="round"
         strokeLinejoin="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
       {/* 纸箱右侧后扬翻盖 */}
       <path
@@ -1215,7 +1215,7 @@ export const PencilNekoBoxLogo: React.FC<PencilSoftwareLogoProps> = ({
         strokeWidth="2.1"
         strokeLinecap="round"
         strokeLinejoin="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
 
       {/* 纸箱正面主体四方立面 */}
@@ -1227,7 +1227,7 @@ export const PencilNekoBoxLogo: React.FC<PencilSoftwareLogoProps> = ({
         strokeWidth="2.4"
         strokeLinecap="round"
         strokeLinejoin="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
 
       {/* 纸箱上沿折痕复线 */}
@@ -1450,7 +1450,7 @@ export const PencilOpenClashLogo: React.FC<PencilSoftwareLogoProps> = ({
         r="2.7"
         strokeWidth="1.8"
         strokeLinecap="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
       <circle
         cx="40"
@@ -1458,7 +1458,7 @@ export const PencilOpenClashLogo: React.FC<PencilSoftwareLogoProps> = ({
         r="2.7"
         strokeWidth="1.8"
         strokeLinecap="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
       {/* 瞳孔中心微小黑铅笔着力点 */}
       <circle cx="31" cy="26" r="0.8" fill="currentColor" stroke="none" />
@@ -1543,8 +1543,8 @@ export const PencilVpsLogo: React.FC<PencilSoftwareLogoProps> = ({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="10.8" cy="17.8" r="1.1" strokeWidth="1" fill="#FAF7F0" />
-      <circle cx="53.2" cy="17.8" r="1.1" strokeWidth="1" fill="#FAF7F0" />
+      <circle cx="10.8" cy="17.8" r="1.1" strokeWidth="1" fill="rgb(var(--logo-paper))" />
+      <circle cx="53.2" cy="17.8" r="1.1" strokeWidth="1" fill="rgb(var(--logo-paper))" />
 
       {/* 顶层机箱主轮廓 */}
       <path
@@ -1571,7 +1571,7 @@ export const PencilVpsLogo: React.FC<PencilSoftwareLogoProps> = ({
         r="2.6"
         strokeWidth="1.6"
         strokeLinecap="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
       <circle cx="22.5" cy="18" r="0.85" fill="currentColor" stroke="none" />
       <circle
@@ -1580,7 +1580,7 @@ export const PencilVpsLogo: React.FC<PencilSoftwareLogoProps> = ({
         r="2.6"
         strokeWidth="1.6"
         strokeLinecap="round"
-        fill="#FAF7F0"
+        fill="rgb(var(--logo-paper))"
       />
       <circle cx="28.8" cy="18" r="0.85" fill="currentColor" stroke="none" />
       {/* 散热格栅与 45 度素描排线 */}
@@ -1600,8 +1600,8 @@ export const PencilVpsLogo: React.FC<PencilSoftwareLogoProps> = ({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="10.8" cy="31.2" r="1.1" strokeWidth="1" fill="#FAF7F0" />
-      <circle cx="53.2" cy="31.2" r="1.1" strokeWidth="1" fill="#FAF7F0" />
+      <circle cx="10.8" cy="31.2" r="1.1" strokeWidth="1" fill="rgb(var(--logo-paper))" />
+      <circle cx="53.2" cy="31.2" r="1.1" strokeWidth="1" fill="rgb(var(--logo-paper))" />
 
       {/* 中层机箱主轮廓 */}
       <path
@@ -1641,8 +1641,8 @@ export const PencilVpsLogo: React.FC<PencilSoftwareLogoProps> = ({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="10.8" cy="44.8" r="1.1" strokeWidth="1" fill="#FAF7F0" />
-      <circle cx="53.2" cy="44.8" r="1.1" strokeWidth="1" fill="#FAF7F0" />
+      <circle cx="10.8" cy="44.8" r="1.1" strokeWidth="1" fill="rgb(var(--logo-paper))" />
+      <circle cx="53.2" cy="44.8" r="1.1" strokeWidth="1" fill="rgb(var(--logo-paper))" />
 
       {/* 底层机箱主轮廓 */}
       <path

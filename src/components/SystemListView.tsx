@@ -108,7 +108,7 @@ export const SystemListView: React.FC<SystemListViewProps> = ({
                 <span className="text-pencil-faint text-[10px] shrink-0">支持协议:</span>
                 <div className="flex items-center gap-1 flex-wrap overflow-hidden">
                   {tool.specs.protocols.slice(0, 4).map((p, i) => (
-                    <span key={i} className="bg-white border border-pencil/20 px-1 py-0.2 rounded text-[9px] sm:text-[10px] leading-tight shrink-0">
+                    <span key={i} className="bg-surface border border-pencil/20 px-1 py-0.2 rounded text-[9px] sm:text-[10px] leading-tight shrink-0">
                       {p}
                     </span>
                   ))}
