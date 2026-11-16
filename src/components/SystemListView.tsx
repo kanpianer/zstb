@@ -125,7 +125,10 @@ export const SystemListView: React.FC<SystemListViewProps> = ({
           {/* Bottom Actions - 适度留白与舒适点击区，避免按钮紧贴底边 */}
           <div className="mt-auto pt-2 pb-1.5 sm:pb-2.5 flex items-center justify-between gap-2 relative z-10">
             <button
-              onClick={() => onOpenCrowdsourceForTool(tool)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenCrowdsourceForTool(tool);
+              }}
               className="pencil-btn-secondary text-[11px] flex items-center gap-1 py-1 px-2.5"
               title="提交 PR 更新教程"
             >
@@ -134,7 +137,10 @@ export const SystemListView: React.FC<SystemListViewProps> = ({
             </button>
 
             <button
-              onClick={() => onSelectTool(tool.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelectTool(tool.id);
+              }}
               className="pencil-btn text-xs py-1.5 px-3 flex items-center gap-1.5"
             >
               <BookOpen className="w-3.5 h-3.5" />

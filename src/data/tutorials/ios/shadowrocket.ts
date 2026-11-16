@@ -12,7 +12,7 @@ export const shadowrocket: SoftwareTool = {
   badgeText: '规则代理',
   updatedAt: '2026-11-13',
   isOpenSource: false,
-  license: '专有软件；未确认完整客户端开源许可',
+  license: '专有软件',
   price: '美国 App Store：US$2.99（2026-11-13）',
   releasedAt: '2015-04-14',
   latestVersion: '2.2.93（美国商店 API；2026-10-29 发布）',
@@ -43,27 +43,27 @@ export const shadowrocket: SoftwareTool = {
       {
         "stepNumber": 2,
         "title": "添加兼容订阅",
-        "description": "使用应用的添加节点或订阅功能，填入服务方提供的 Shadowrocket 兼容订阅 URL，保存并获取节点。不要把任意 Clash YAML 当作节点订阅；扫码或粘贴节点时同样要确认来源。"
+        "description": "机场一般提供一键导入和扫描二维码添加订阅功能，添加订阅成功后，会在界面显示订阅的所有节点。如果是自建节点，复制节点链接后回到软件，会提示是否允许粘粘，允许后即可导入节点。"
       },
       {
         "stepNumber": 3,
         "title": "选择节点",
-        "description": "在节点列表中选一个节点，可先选服务方推荐的线路。需要按规则分流时，选择并启用可信规则配置；节点订阅本身不一定附带规则。"
+        "description": "在节点列表中选一个节点，按住节点向右滑可测试节点通性，数值越小越好，超时一般代表着节点不可用。「配置」选项的「本地文件」处一般有机场的分流规则，分流规则指的是规定哪些网址通过哪些服务器节点连接或直连。你也可以到 [Shadowrocket-ADBlock-Rules-Forever](https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever) 获取不同的分流规则。\n"
       },
       {
         "stepNumber": 4,
         "title": "连接并授权 VPN",
-        "description": "打开连接开关，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。连接前先停止其他 VPN。"
+        "description": "打开右上方的连接开关，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。通知栏显示VPN图标就代表节点已经连接，可以翻墙了。"
       },
       {
         "stepNumber": 5,
         "title": "浏览器验证与关闭",
-        "description": "打开 Safari，分别访问日常网站和需要代理的网站。确认网页能加载，而不只看 VPN 图标。结束使用时关闭 Shadowrocket 的连接开关，确认系统 VPN 状态已断开。"
+        "description": "打开浏览器，分别访问日常网站和需要代理的网站。确认网页能加载，而不只看 VPN 图标。结束使用时关闭 Shadowrocket 的连接开关，确认系统 VPN 状态已断开。"
       }
     ],
     "advancedRules": [
       "更新节点：使用订阅更新功能获取最新节点；更新后检查所选线路，避免继续使用已删除的节点。",
-      "导入规则：需要分流时，从可信 URL 或 iCloud Drive 导入规则文件并选择使用；修改前备份原配置，再用常用网站测试。",
+      "导入规则：需要分流时，从可信来源导入规则文件并选择使用，建议使用带分流规则的机场，或者自己手动添加分流规则，这样访问国内的 app 和网站时是直连，而不会 IP 绕到地球的另一边让国内 app 和网站变得很卡，甚至不能访问；修改前备份原配置，再用常用网站测试。",
       "排查域名问题：在网页打不开时查看应用的 DNS 记录，记下失败域名并检查规则；分享记录前隐藏私人域名和访问记录。普通代理不需要开启 HTTPS 解密或安装根证书。"
     ],
     "faq": [

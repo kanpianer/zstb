@@ -39,7 +39,10 @@ export const AppleQuadrantView: React.FC<AppleQuadrantViewProps> = ({
           {iosTools.map((tool) => (
             <div
               key={tool.id}
-              onClick={() => onSelectTool(tool.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelectTool(tool.id);
+              }}
               className="p-2 sm:p-2.5 lg:p-3.5 bg-paper-50/95 border-2 border-pencil rounded-xl shadow-xs hover:shadow-pencil hover:-translate-y-0.5 transition-all cursor-pointer flex flex-col justify-between backdrop-blur-sm h-[88px] sm:h-[92px] lg:h-[156px] lg:min-h-[156px] relative overflow-hidden group/card"
             >
               {/* Card Background Watermark Logo at the top */}
@@ -113,7 +116,10 @@ export const AppleQuadrantView: React.FC<AppleQuadrantViewProps> = ({
           {macosTools.map((tool) => (
             <div
               key={tool.id}
-              onClick={() => onSelectTool(tool.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelectTool(tool.id);
+              }}
               className="p-2 sm:p-2.5 lg:p-3.5 bg-paper-50/95 border-2 border-pencil rounded-xl shadow-xs hover:shadow-pencil hover:-translate-y-0.5 transition-all cursor-pointer flex flex-col justify-between backdrop-blur-sm h-[88px] sm:h-[92px] lg:h-[156px] lg:min-h-[156px] relative overflow-hidden group/card"
             >
               {/* Card Background Watermark Logo at the top */}

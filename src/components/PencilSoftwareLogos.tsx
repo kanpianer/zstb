@@ -1756,8 +1756,501 @@ export const PencilSoftwareLogo: React.FC<{
     case 'bxdt':
     case 'dae':
       return <PencilVpsLogo className={className} size={size} {...props} />;
+
+    // IP 检测工具
+    case 'ipok':
+      return <PencilIpokLogo className={className} size={size} {...props} />;
+    case 'ipcheck':
+      return <PencilIpcheckLogo className={className} size={size} {...props} />;
+    case 'ipsuper':
+      return <PencilIpsuperLogo className={className} size={size} {...props} />;
+    case 'net-coffee':
+      return <PencilNetCoffeeLogo className={className} size={size} {...props} />;
     
     default:
       return <PencilClashLogo className={className} size={size} {...props} />;
   }
+};
+
+/**
+ * IPOK 铅笔手绘 Logo
+ * 根据官方截图精准重绘：圆角方卡片外框、顶部同心圆雷达波纹与核心实心探测点、底部粗黑「IP」标志字体，与 Clash 铅笔手绘风格保持高度一致
+ */
+export const PencilIpokLogo: React.FC<PencilSoftwareLogoProps> = ({
+  className = 'w-6 h-6',
+  size,
+  ...props
+}) => {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={{
+        width: size,
+        height: size,
+        filter: 'url(#pencil-stroke)',
+      }}
+      stroke="currentColor"
+      {...props}
+    >
+      {/* 底部手绘投影基准虚线 */}
+      <line
+        x1="10"
+        y1="56"
+        x2="54"
+        y2="56"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        opacity="0.3"
+        strokeDasharray="4 3 12 3"
+      />
+
+      {/* 圆角方卡片主外框 */}
+      <rect
+        x="12"
+        y="8"
+        width="40"
+        height="45"
+        rx="10"
+        strokeWidth="2.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="currentColor"
+        fillOpacity="0.08"
+      />
+      {/* 外框手绘草图复线 */}
+      <rect
+        x="11"
+        y="7"
+        width="42"
+        height="47"
+        rx="11"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+        opacity="0.35"
+      />
+
+      {/* 顶部雷达扫描同心外圆环 */}
+      <circle
+        cx="32"
+        cy="22"
+        r="9.5"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      {/* 雷达外层虚线波纹 */}
+      <circle
+        cx="32"
+        cy="22"
+        r="12.5"
+        strokeWidth="0.9"
+        strokeDasharray="3 2"
+        opacity="0.5"
+      />
+      {/* 雷达中心核心实心探测点 */}
+      <circle
+        cx="32"
+        cy="22"
+        r="3.8"
+        fill="currentColor"
+        stroke="none"
+      />
+      {/* 核心亮点高光 */}
+      <circle
+        cx="31"
+        cy="21"
+        r="1"
+        fill="rgb(var(--logo-paper))"
+        stroke="none"
+      />
+
+      {/* 底部粗黑「IP」字体 */}
+      <g strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="currentColor">
+        {/* 字母 I */}
+        <line x1="26" y1="36" x2="26" y2="46" strokeWidth="3" />
+        
+        {/* 字母 P */}
+        <line x1="33" y1="36" x2="33" y2="46" strokeWidth="3" />
+        <path
+          d="M 33 36 C 41 36, 41 42, 33 42 Z"
+          strokeWidth="2.2"
+          fill="currentColor"
+          fillOpacity="0.15"
+        />
+      </g>
+
+      {/* 卡片边角素描阴影排线 */}
+      <g strokeWidth="0.8" strokeLinecap="round" opacity="0.35">
+        <line x1="14" y1="44" x2="18" y2="48" />
+        <line x1="17" y1="45" x2="21" y2="49" />
+        <line x1="43" y1="49" x2="47" y2="45" />
+        <line x1="46" y1="48" x2="50" y2="44" />
+      </g>
+    </svg>
+  );
+};
+
+/**
+ * IPCheck.ing 铅笔手绘 Logo
+ * 根据官方截图精准重绘：标志性神探特工造型，包含佩戴 IP 徽记的经典软呢帽、神秘墨镜、八字胡与大风衣立领，与 Clash 铅笔手绘风格保持高度一致
+ */
+export const PencilIpcheckLogo: React.FC<PencilSoftwareLogoProps> = ({
+  className = 'w-6 h-6',
+  size,
+  ...props
+}) => {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={{
+        width: size,
+        height: size,
+        filter: 'url(#pencil-stroke)',
+      }}
+      stroke="currentColor"
+      {...props}
+    >
+      {/* 底部手绘投影基准虚线 */}
+      <line
+        x1="10"
+        y1="56"
+        x2="54"
+        y2="56"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        opacity="0.3"
+        strokeDasharray="4 3 12 3"
+      />
+
+      {/* 1. 风衣大翻领与肩部剪影 */}
+      <path
+        d="M 17 38 L 8 47 L 21 53 L 43 53 L 56 47 L 47 38"
+        strokeWidth="2.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="currentColor"
+        fillOpacity="0.08"
+      />
+      {/* 左风衣领尖手绘折角 */}
+      <path d="M 8 47 L 19 43 L 20 52" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      {/* 右风衣领尖手绘折角 */}
+      <path d="M 56 47 L 45 43 L 44 52" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* 2. 侦探特工面部轮廓（包含双耳与下巴） */}
+      <path
+        d="M 18 31 
+           C 15 32, 15 36, 18 38 
+           C 20 45, 25 50, 32 50 
+           C 39 50, 44 45, 46 38 
+           C 49 36, 49 32, 46 31"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="rgb(var(--logo-paper))"
+      />
+
+      {/* 3. 经典神探软呢宽檐礼帽 (Fedora Hat) */}
+      <path
+        d="M 21 26 
+           C 19 19, 21 10, 26 8 
+           C 29 9.5, 35 9.5, 38 8 
+           C 43 10, 45 19, 43 26 Z"
+        strokeWidth="2.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="currentColor"
+        fillOpacity="0.12"
+      />
+      {/* 礼帽帽檐全弧线 */}
+      <path
+        d="M 8 28 
+           C 16 25, 48 25, 56 28 
+           C 51 31, 13 31, 8 28 Z"
+        strokeWidth="2.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="currentColor"
+        fillOpacity="0.18"
+      />
+      {/* 帽檐手绘草图复线 */}
+      <path d="M 10 27 C 18 24.5, 46 24.5, 54 27" strokeWidth="0.8" opacity="0.35" strokeLinecap="round" />
+
+      {/* 礼帽正面的标志性「IP」镂空徽记 */}
+      <g strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="rgb(var(--logo-paper))">
+        {/* 字母 I */}
+        <path d="M 25 15 L 27.5 15 L 27.5 24 L 25 24 Z" />
+        {/* 字母 P 主干与圆环 */}
+        <path d="M 30 15 L 32.5 15 L 32.5 24 L 30 24 Z" />
+        <path d="M 32.5 15 C 37 15, 37 20, 32.5 20 Z" />
+      </g>
+
+      {/* 4. 特工神秘深色墨镜 */}
+      <g fill="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+        {/* 左镜片 */}
+        <path d="M 20 32 L 30 32 C 30 37, 21 38, 20 32 Z" />
+        {/* 镜梁中梁 */}
+        <line x1="30" y1="33" x2="34" y2="33" strokeWidth="1.8" strokeLinecap="round" />
+        {/* 右镜片 */}
+        <path d="M 34 32 L 44 32 C 44 38, 35 37, 34 32 Z" />
+      </g>
+
+      {/* 5. 绅士胡须与下巴山羊胡 */}
+      <path
+        d="M 23 41.5 C 27 40, 37 40, 41 41.5 C 37 43.5, 27 43.5, 23 41.5 Z"
+        strokeWidth="1.6"
+        fill="currentColor"
+      />
+      {/* 下唇阴影与下巴胡须 */}
+      <path
+        d="M 28 46.5 C 30 48, 34 48, 36 46.5 C 34 47.5, 30 47.5, 28 46.5 Z"
+        strokeWidth="1.2"
+        fill="currentColor"
+      />
+
+      {/* 风衣肩领手绘素描排线 */}
+      <g strokeWidth="0.8" strokeLinecap="round" opacity="0.35">
+        <line x1="12" y1="50" x2="16" y2="46" />
+        <line x1="15" y1="52" x2="19" y2="48" />
+        <line x1="48" y1="46" x2="52" y2="50" />
+        <line x1="45" y1="48" x2="49" y2="52" />
+      </g>
+    </svg>
+  );
+};
+
+/**
+ * IPSuper 铅笔手绘 Logo
+ * 根据官方截图精准重绘：标志性小恶魔怪兽吉祥物剪影，双弯角、圆润拱顶头身、坚定眼神与治愈微笑，与 Clash 铅笔手绘风格保持高度一致
+ */
+export const PencilIpsuperLogo: React.FC<PencilSoftwareLogoProps> = ({
+  className = 'w-6 h-6',
+  size,
+  ...props
+}) => {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={{
+        width: size,
+        height: size,
+        filter: 'url(#pencil-stroke)',
+      }}
+      stroke="currentColor"
+      {...props}
+    >
+      {/* 底部手绘投影基准虚线 */}
+      <line
+        x1="12"
+        y1="56"
+        x2="52"
+        y2="56"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        opacity="0.3"
+        strokeDasharray="4 3 12 3"
+      />
+
+      {/* 小恶魔吉祥物主轮廓（包含对称尖角与圆角拱顶头身） */}
+      <path
+        d="M 19 23 
+           C 15 17, 13 11, 14 6 
+           C 18 8, 22 13, 23 20 
+           C 26 18, 38 18, 41 20 
+           C 42 13, 46 8, 50 6 
+           C 51 11, 49 17, 45 23 
+           C 53 30, 56 41, 54 51 
+           C 53.5 53, 50 53, 32 53 
+           C 14 53, 10.5 53, 10 51 
+           C 8 41, 11 30, 19 23 Z"
+        strokeWidth="2.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="currentColor"
+        fillOpacity="0.08"
+      />
+
+      {/* 外轮廓手绘草图复线 */}
+      <path
+        d="M 19.5 24 C 15.5 18, 13.5 12, 14.5 7.5 C 18.5 9.5, 22 14, 23 20.5 C 26 18.5, 38 18.5, 41 20.5 C 42 14, 45.5 9.5, 49.5 7.5 C 50.5 12, 48.5 18, 44.5 24 C 52 31, 55 41, 53 50.5 L 11 50.5 C 9 41, 12 31, 19.5 24 Z"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+        opacity="0.35"
+      />
+
+      {/* 左右恶魔双角内部素描阴影线 */}
+      <g strokeWidth="0.9" strokeLinecap="round" opacity="0.4">
+        <line x1="16" y1="12" x2="19" y2="16" />
+        <line x1="17" y1="9" x2="21" y2="14" />
+        <line x1="48" y1="12" x2="45" y2="16" />
+        <line x1="47" y1="9" x2="43" y2="14" />
+      </g>
+
+      {/* 头部底侧素描阴影排线 */}
+      <g strokeWidth="0.9" strokeLinecap="round" opacity="0.3">
+        <line x1="14" y1="46" x2="18" y2="50" />
+        <line x1="18" y1="46" x2="22" y2="50" />
+        <line x1="42" y1="50" x2="46" y2="46" />
+        <line x1="46" y1="50" x2="50" y2="46" />
+      </g>
+
+      {/* 标志性左眼：白色纸张底色镂空与向内微斜的坚定眼神 */}
+      <circle cx="26" cy="33.5" r="3.2" strokeWidth="1.6" fill="rgb(var(--logo-paper))" />
+      <circle cx="26.3" cy="33.5" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="25.5" cy="32.7" r="0.6" fill="rgb(var(--logo-paper))" stroke="none" />
+      {/* 眉头坚定微倾手绘短斜线 */}
+      <line x1="23.5" y1="30.5" x2="28" y2="31.8" strokeWidth="1.4" strokeLinecap="round" />
+
+      {/* 标志性右眼：与左眼对称 */}
+      <circle cx="38" cy="33.5" r="3.2" strokeWidth="1.6" fill="rgb(var(--logo-paper))" />
+      <circle cx="37.7" cy="33.5" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="37.1" cy="32.7" r="0.6" fill="rgb(var(--logo-paper))" stroke="none" />
+      {/* 眉头坚定微倾手绘短斜线 */}
+      <line x1="40.5" y1="30.5" x2="36" y2="31.8" strokeWidth="1.4" strokeLinecap="round" />
+
+      {/* 萌系微笑嘴巴 */}
+      <path
+        d="M 28 42 C 30.5 45, 33.5 45, 36 42"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+      {/* 嘴唇下方微妙阴影点 */}
+      <line x1="30.5" y1="45" x2="33.5" y2="45" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
+    </svg>
+  );
+};
+
+/**
+ * Net.Coffee 铅笔手绘 Logo
+ * 根据官方截图精准重绘：标志性微笑咖啡杯，包含圆角厚实方杯体、右侧 D 形杯把、圆圆双眼与治愈系笑容，与 Clash 铅笔手绘风格保持高度一致
+ */
+export const PencilNetCoffeeLogo: React.FC<PencilSoftwareLogoProps> = ({
+  className = 'w-6 h-6',
+  size,
+  ...props
+}) => {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={{
+        width: size,
+        height: size,
+        filter: 'url(#pencil-stroke)',
+      }}
+      stroke="currentColor"
+      {...props}
+    >
+      {/* 底部手绘投影基准虚线 */}
+      <line
+        x1="10"
+        y1="56"
+        x2="56"
+        y2="56"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        opacity="0.3"
+        strokeDasharray="4 3 12 3"
+      />
+
+      {/* 咖啡杯主体厚边框（圆角正方形轮廓） */}
+      <rect
+        x="11"
+        y="14"
+        width="38"
+        height="38"
+        rx="9"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="currentColor"
+        fillOpacity="0.08"
+      />
+
+      {/* 咖啡杯外框草图复线 */}
+      <rect
+        x="10"
+        y="13"
+        width="40"
+        height="40"
+        rx="10"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+        opacity="0.3"
+      />
+
+      {/* 右侧厚实 D 形杯把 */}
+      <path
+        d="M 49 23 
+           C 57 23, 58 43, 49 43"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* 杯把手绘双线 */}
+      <path
+        d="M 49 27 C 54 27, 54 39, 49 39"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+
+      {/* 两只圆圆的大眼睛（与 Clash 猫咪大眼睛风格一致） */}
+      <circle
+        cx="23"
+        cy="30"
+        r="3"
+        strokeWidth="1.8"
+        fill="rgb(var(--logo-paper))"
+      />
+      <circle
+        cx="37"
+        cy="30"
+        r="3"
+        strokeWidth="1.8"
+        fill="rgb(var(--logo-paper))"
+      />
+      {/* 纯黑眼珠与高光点 */}
+      <circle cx="23" cy="30" r="1.6" fill="currentColor" stroke="none" />
+      <circle cx="37" cy="30" r="1.6" fill="currentColor" stroke="none" />
+      <circle cx="22.2" cy="29.2" r="0.6" fill="rgb(var(--logo-paper))" stroke="none" />
+      <circle cx="36.2" cy="29.2" r="0.6" fill="rgb(var(--logo-paper))" stroke="none" />
+
+      {/* 治愈系开心微笑弧线 */}
+      <path
+        d="M 22 38 C 26 44, 34 44, 38 38"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+
+      {/* 杯子上方向上飘散的轻盈热气素描波纹 */}
+      <path
+        d="M 24 10 C 22.5 7.5, 25.5 5, 24 3"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        opacity="0.65"
+      />
+      <path
+        d="M 36 10 C 34.5 7.5, 37.5 5, 36 3"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        opacity="0.65"
+      />
+
+      {/* 杯身右下角素描阴影排线 */}
+      <g strokeWidth="0.8" strokeLinecap="round" opacity="0.35">
+        <line x1="39" y1="46" x2="44" y2="41" />
+        <line x1="42" y1="48" x2="46" y2="44" />
+      </g>
+    </svg>
+  );
 };

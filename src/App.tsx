@@ -1,36 +1,60 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { SubSystemCategory, SystemCategory, SoftwareTool } from './types/tutorial';
 import { getToolById } from './data/tutorials';
+import { getIpCheckSiteById } from './data/ipCheckSites';
 import { PencilHeader } from './components/PencilHeader';
 import { PencilFooter } from './components/PencilFooter';
 import { QuadrantHome } from './components/QuadrantHome';
 import { AppleQuadrantView } from './components/AppleQuadrantView';
 import { SystemListView } from './components/SystemListView';
 import { TutorialDetailView } from './components/TutorialDetailView';
+import { IpCheckListView } from './components/IpCheckListView';
+import { IpCheckDetailView } from './components/IpCheckDetailView';
 import { CrowdsourceModal } from './components/CrowdsourceModal';
 
 export interface NavigationState {
   category: SystemCategory | null;
   subSystem: SubSystemCategory | null;
   toolId: string | null;
+  isIpPage?: boolean;
+  ipSiteId?: string | null;
+}
+
+export interface HistoryEntry {
+  state: NavigationState;
+  scrollTop: number;
 }
 
 const parseNavigationStateFromUrl = (): NavigationState => {
   if (typeof window === 'undefined') {
-    return { category: null, subSystem: null, toolId: null };
+    return { category: null, subSystem: null, toolId: null, isIpPage: false, ipSiteId: null };
   }
   const params = new URLSearchParams(window.location.search);
+  const view = params.get('view');
+  const ipParam = params.get('ip');
+
+  if (view === 'ip' || ipParam !== null) {
+    const siteId = params.get('tool') || (ipParam && ipParam !== '1' && ipParam !== 'true' ? ipParam : null);
+    return {
+      category: null,
+      subSystem: null,
+      toolId: null,
+      isIpPage: true,
+      ipSiteId: siteId || null,
+    };
+  }
+
   const toolId = params.get('tool');
   if (toolId) {
     const t = getToolById(toolId);
-    if (t) return { category: t.category, subSystem: t.system, toolId };
+    if (t) return { category: t.category, subSystem: t.system, toolId, isIpPage: false, ipSiteId: null };
   }
   const sub = params.get('sub');
   if (sub === 'ios' || sub === 'macos') {
-    return { category: 'apple', subSystem: sub as SubSystemCategory, toolId: null };
+    return { category: 'apple', subSystem: sub as SubSystemCategory, toolId: null, isIpPage: false, ipSiteId: null };
   }
   if (sub === 'android' || sub === 'windows' || sub === 'linux') {
-    return { category: sub as SystemCategory, subSystem: sub as SubSystemCategory, toolId: null };
+    return { category: sub as SystemCategory, subSystem: sub as SubSystemCategory, toolId: null, isIpPage: false, ipSiteId: null };
   }
   const cat = params.get('cat');
   if (cat === 'apple' || cat === 'android' || cat === 'windows' || cat === 'linux') {
@@ -38,14 +62,21 @@ const parseNavigationStateFromUrl = (): NavigationState => {
       category: cat,
       subSystem: cat === 'apple' ? null : (cat as SubSystemCategory),
       toolId: null,
+      isIpPage: false,
+      ipSiteId: null,
     };
   }
-  return { category: null, subSystem: null, toolId: null };
+  return { category: null, subSystem: null, toolId: null, isIpPage: false, ipSiteId: null };
 };
 
 const getSearchStringFromState = (state: NavigationState): string => {
   const params = new URLSearchParams();
-  if (state.toolId) {
+  if (state.isIpPage) {
+    params.set('view', 'ip');
+    if (state.ipSiteId) {
+      params.set('tool', state.ipSiteId);
+    }
+  } else if (state.toolId) {
     params.set('tool', state.toolId);
   } else if (state.subSystem) {
     params.set('sub', state.subSystem);
@@ -56,18 +87,28 @@ const getSearchStringFromState = (state: NavigationState): string => {
 };
 
 const areStatesEqual = (a: NavigationState, b: NavigationState): boolean => {
-  return a.category === b.category && a.subSystem === b.subSystem && a.toolId === b.toolId;
+  return (
+    a.category === b.category &&
+    a.subSystem === b.subSystem &&
+    a.toolId === b.toolId &&
+    !!a.isIpPage === !!b.isIpPage &&
+    a.ipSiteId === b.ipSiteId
+  );
 };
 
 export const App: React.FC = () => {
   const [navState, setNavState] = useState<NavigationState>(parseNavigationStateFromUrl);
-  const { category: currentCategory, subSystem: currentSubSystem, toolId: currentToolId } = navState;
+  const { category: currentCategory, subSystem: currentSubSystem, toolId: currentToolId, isIpPage, ipSiteId } = navState;
+  const currentIpSite = isIpPage && ipSiteId ? getIpCheckSiteById(ipSiteId) || null : null;
 
-  // History stack records visited pages in this session to support returning to previous page
-  const historyStackRef = useRef<NavigationState[]>([]);
+  // History stack records visited pages in this session to support returning to previous page with scroll restoration
+  const historyStackRef = useRef<HistoryEntry[]>([]);
   const historyIndexRef = useRef<number>(0);
   const isInternalNavRef = useRef<boolean>(false);
   const navStateRef = useRef<NavigationState>(navState);
+  const scrollMapRef = useRef<Map<number, number>>(new Map());
+  const pageScrollMapRef = useRef<Map<string, number>>(new Map());
+  const pendingScrollTopRef = useRef<number | null>(null);
 
   useEffect(() => {
     navStateRef.current = navState;
@@ -77,9 +118,19 @@ export const App: React.FC = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     // Initialize root history entry
     const initialSearch = getSearchStringFromState(navState);
-    window.history.replaceState({ idx: 0 }, '', initialSearch);
+    const existingIdx = (window.history.state && typeof window.history.state.idx === 'number')
+      ? window.history.state.idx
+      : 0;
+    historyIndexRef.current = existingIdx;
+    if (!window.history.state || typeof window.history.state.idx !== 'number') {
+      window.history.replaceState({ idx: 0, scrollTop: 0 }, '', initialSearch);
+    }
 
     const handlePopState = (e: PopStateEvent) => {
       if (isInternalNavRef.current) {
@@ -93,14 +144,36 @@ export const App: React.FC = () => {
 
       const newState = parseNavigationStateFromUrl();
       if (newIdx < prevIdx) {
-        // Navigated backward
+        // Navigated backward (返回上一页)
+        let targetScroll = 0;
         if (historyStackRef.current.length > 0) {
-          historyStackRef.current.pop();
+          const prevEntry = historyStackRef.current.pop()!;
+          targetScroll = prevEntry.scrollTop;
+        } else if (scrollMapRef.current.has(newIdx)) {
+          targetScroll = scrollMapRef.current.get(newIdx)!;
+        } else if (typeof e.state?.scrollTop === 'number') {
+          targetScroll = e.state.scrollTop;
+        } else {
+          const pageKey = getSearchStringFromState(newState);
+          targetScroll = pageScrollMapRef.current.get(pageKey) ?? 0;
         }
+        pendingScrollTopRef.current = targetScroll;
       } else {
-        // Navigated forward
-        historyStackRef.current.push(navStateRef.current);
+        // Navigated forward in browser history
+        const currentScroll = mainContentRef.current ? mainContentRef.current.scrollTop : 0;
+        historyStackRef.current.push({
+          state: navStateRef.current,
+          scrollTop: currentScroll,
+        });
+        let targetScroll = 0;
+        if (scrollMapRef.current.has(newIdx)) {
+          targetScroll = scrollMapRef.current.get(newIdx)!;
+        } else if (typeof e.state?.scrollTop === 'number') {
+          targetScroll = e.state.scrollTop;
+        }
+        pendingScrollTopRef.current = targetScroll;
       }
+      navStateRef.current = newState;
       setNavState(newState);
     };
 
@@ -119,15 +192,78 @@ export const App: React.FC = () => {
   const mainContentRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
 
-  // Scroll inner main container to top on navigation change and reset progress
+  // Restore scroll position when returning to previous page, or scroll to top for fresh page
   useEffect(() => {
-    if (mainContentRef.current) {
-      mainContentRef.current.scrollTop = 0;
-    }
-    setScrollProgress(0);
-  }, [currentCategory, currentSubSystem, currentToolId]);
+    const el = mainContentRef.current;
+    if (!el) return;
 
-  // Track reading scroll progress inside the main container
+    const targetScroll = pendingScrollTopRef.current ?? 0;
+    pendingScrollTopRef.current = null;
+
+    if (targetScroll <= 0) {
+      el.scrollTop = 0;
+      setScrollProgress(0);
+      return;
+    }
+
+    // Returning to previous page with a saved scroll position > 0:
+    let rafId: number | null = null;
+    let cancelled = false;
+
+    const onUserInteraction = () => {
+      cancelled = true;
+      cleanup();
+    };
+
+    const cleanup = () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      el.removeEventListener('wheel', onUserInteraction);
+      el.removeEventListener('touchstart', onUserInteraction);
+      el.removeEventListener('pointerdown', onUserInteraction);
+    };
+
+    el.addEventListener('wheel', onUserInteraction, { passive: true });
+    el.addEventListener('touchstart', onUserInteraction, { passive: true });
+    el.addEventListener('pointerdown', onUserInteraction, { passive: true });
+
+    let attempts = 0;
+    const maxAttempts = 30; // Check over ~500ms for images and DOM layout to settle
+
+    const attemptRestore = () => {
+      if (cancelled) return;
+      el.scrollTop = targetScroll;
+
+      // Update scroll progress
+      const maxScroll = el.scrollHeight - el.clientHeight;
+      if (maxScroll <= 5) {
+        setScrollProgress(0);
+      } else {
+        const rawProgress = el.scrollTop / maxScroll;
+        setScrollProgress(Math.min(1, Math.max(0, rawProgress)));
+      }
+
+      attempts += 1;
+      const isAtTarget = Math.abs(el.scrollTop - targetScroll) <= 2;
+      const isAtMax = maxScroll > 0 && Math.abs(el.scrollTop - maxScroll) <= 2;
+
+      if (isAtTarget || (isAtMax && attempts > 10) || attempts >= maxAttempts) {
+        cleanup();
+      } else {
+        rafId = requestAnimationFrame(attemptRestore);
+      }
+    };
+
+    attemptRestore();
+
+    return () => {
+      cleanup();
+    };
+  }, [currentCategory, currentSubSystem, currentToolId, isIpPage, ipSiteId]);
+
+  // Track reading scroll progress inside the main container and maintain live scroll positions
   useEffect(() => {
     const el = mainContentRef.current;
     if (!el) return;
@@ -136,6 +272,9 @@ export const App: React.FC = () => {
 
     const updateScrollProgress = () => {
       const { scrollTop, scrollHeight, clientHeight } = el;
+      scrollMapRef.current.set(historyIndexRef.current, scrollTop);
+      pageScrollMapRef.current.set(getSearchStringFromState(navStateRef.current), scrollTop);
+
       const maxScroll = scrollHeight - clientHeight;
       if (maxScroll <= 5) {
         setScrollProgress(0);
@@ -153,6 +292,9 @@ export const App: React.FC = () => {
     };
 
     const handleScroll = () => {
+      scrollMapRef.current.set(historyIndexRef.current, el.scrollTop);
+      pageScrollMapRef.current.set(getSearchStringFromState(navStateRef.current), el.scrollTop);
+
       if (!ticking) {
         window.requestAnimationFrame(updateScrollProgress);
         ticking = true;
@@ -177,7 +319,7 @@ export const App: React.FC = () => {
       window.removeEventListener('resize', handleScroll);
       ro.disconnect();
     };
-  }, [currentCategory, currentSubSystem, currentToolId]);
+  }, [currentCategory, currentSubSystem, currentToolId, isIpPage, ipSiteId]);
 
   // Scroll to top handler for inner content
   const handleScrollContentToTop = () => {
@@ -188,23 +330,50 @@ export const App: React.FC = () => {
 
   // Forward navigation: pushes to session history stack and browser history
   const navigateTo = (nextState: NavigationState) => {
-    if (areStatesEqual(navState, nextState)) return;
-    historyStackRef.current.push(navState);
+    if (areStatesEqual(navStateRef.current, nextState)) return;
+    const currentScroll = mainContentRef.current ? mainContentRef.current.scrollTop : 0;
+    historyStackRef.current.push({
+      state: navStateRef.current,
+      scrollTop: currentScroll,
+    });
+    scrollMapRef.current.set(historyIndexRef.current, currentScroll);
+    pageScrollMapRef.current.set(getSearchStringFromState(navStateRef.current), currentScroll);
+
+    if (typeof window !== 'undefined' && window.history) {
+      window.history.replaceState(
+        { ...(window.history.state || {}), idx: historyIndexRef.current, scrollTop: currentScroll },
+        ''
+      );
+    }
+
     historyIndexRef.current += 1;
+    // 前进到新页面时，从页面顶部开始浏览
+    pendingScrollTopRef.current = 0;
+
+    navStateRef.current = nextState;
     setNavState(nextState);
     if (typeof window !== 'undefined' && window.history) {
       const searchStr = getSearchStringFromState(nextState);
-      window.history.pushState({ idx: historyIndexRef.current }, '', searchStr);
+      window.history.pushState({ idx: historyIndexRef.current, scrollTop: 0 }, '', searchStr);
     }
   };
 
-  // 返回按钮：返回到进入当前页面之前的上一个页面，而不是返回到上一级
+  // 返回按钮：返回到进入当前页面之前的上一个页面，回到页面当时的浏览位置
   const handleBack = () => {
     if (historyStackRef.current.length > 0) {
-      const prevState = historyStackRef.current.pop()!;
+      const currentScroll = mainContentRef.current ? mainContentRef.current.scrollTop : 0;
+      scrollMapRef.current.set(historyIndexRef.current, currentScroll);
+      pageScrollMapRef.current.set(getSearchStringFromState(navStateRef.current), currentScroll);
+
+      const prevEntry = historyStackRef.current.pop()!;
       isInternalNavRef.current = true;
       historyIndexRef.current = Math.max(0, historyIndexRef.current - 1);
-      setNavState(prevState);
+
+      // 回到页面当时的浏览位置，而不是回到上一个页面的顶部
+      pendingScrollTopRef.current = prevEntry.scrollTop;
+
+      navStateRef.current = prevEntry.state;
+      setNavState(prevEntry.state);
       if (typeof window !== 'undefined' && window.history) {
         window.history.back();
         setTimeout(() => {
@@ -218,26 +387,34 @@ export const App: React.FC = () => {
   };
 
   const handleNavigateHome = () => {
-    navigateTo({ category: null, subSystem: null, toolId: null });
+    navigateTo({ category: null, subSystem: null, toolId: null, isIpPage: false, ipSiteId: null });
+  };
+
+  const handleNavigateIpCheck = () => {
+    navigateTo({ category: null, subSystem: null, toolId: null, isIpPage: true, ipSiteId: null });
+  };
+
+  const handleSelectIpSite = (siteId: string) => {
+    navigateTo({ category: null, subSystem: null, toolId: null, isIpPage: true, ipSiteId: siteId });
   };
 
   const handleSelectCategory = (cat: SystemCategory) => {
     if (cat === 'apple') {
-      navigateTo({ category: 'apple', subSystem: null, toolId: null });
+      navigateTo({ category: 'apple', subSystem: null, toolId: null, isIpPage: false, ipSiteId: null });
     } else {
-      navigateTo({ category: cat, subSystem: cat as SubSystemCategory, toolId: null });
+      navigateTo({ category: cat, subSystem: cat as SubSystemCategory, toolId: null, isIpPage: false, ipSiteId: null });
     }
   };
 
   const handleSelectSubSystem = (sub: SubSystemCategory) => {
     const cat = (sub === 'ios' || sub === 'macos') ? 'apple' : (sub as SystemCategory);
-    navigateTo({ category: cat, subSystem: sub, toolId: null });
+    navigateTo({ category: cat, subSystem: sub, toolId: null, isIpPage: false, ipSiteId: null });
   };
 
   const handleSelectTool = (toolId: string) => {
     const tool = getToolById(toolId);
     if (tool) {
-      navigateTo({ category: tool.category, subSystem: tool.system, toolId });
+      navigateTo({ category: tool.category, subSystem: tool.system, toolId, isIpPage: false, ipSiteId: null });
     }
   };
 
@@ -249,10 +426,13 @@ export const App: React.FC = () => {
 
   const currentTool = currentToolId ? getToolById(currentToolId) : null;
 
-  // 判断上一页是否为主页：若历史栈末项的 category 为 null，则返回按钮会回到主页，无需额外显示「主页」按钮
+  // 判断上一页是否为主页：若历史栈末项的 category 为 null 且非 IP 页面，则返回按钮会回到主页，无需额外显示「主页」按钮
+  const lastHistoryEntry = historyStackRef.current.length > 0
+    ? historyStackRef.current[historyStackRef.current.length - 1]
+    : null;
   const prevIsHome =
-    historyStackRef.current.length > 0
-      ? historyStackRef.current[historyStackRef.current.length - 1].category === null
+    lastHistoryEntry
+      ? lastHistoryEntry.state.category === null && !lastHistoryEntry.state.isIpPage
       : false;
 
   return (
@@ -272,6 +452,8 @@ export const App: React.FC = () => {
           currentCategory={currentCategory}
           currentSubSystem={currentSubSystem}
           currentTool={currentTool}
+          isIpPage={isIpPage}
+          currentIpSite={currentIpSite}
           onNavigateHome={handleNavigateHome}
           onBack={handleBack}
           onOpenCrowdsourceModal={() => handleOpenCrowdsource(null, 'guide')}
@@ -283,8 +465,27 @@ export const App: React.FC = () => {
           ref={mainContentRef}
           className="w-full flex-1 min-h-0 overflow-y-auto overscroll-contain no-scrollbar flex flex-col justify-start"
         >
+          {/* VIEW 5: IP Check Detail View (使用教程与功能核对详细页面) */}
+          {currentIpSite && (
+            <IpCheckDetailView
+              site={currentIpSite}
+              onBack={handleBack}
+              onNavigateHome={handleNavigateHome}
+            />
+          )}
+
+          {/* VIEW 6: IP Check Tools List (4个 IP 地址检测网站卡片展示) */}
+          {isIpPage && !currentIpSite && (
+            <div className="w-full md:my-auto">
+              <IpCheckListView
+                onSelectSite={handleSelectIpSite}
+                onNavigateHome={handleNavigateHome}
+              />
+            </div>
+          )}
+
           {/* VIEW 1: Four Quadrants Home Page */}
-          {!currentCategory && (
+          {!currentCategory && !isIpPage && (
             <div className="w-full my-auto">
               <QuadrantHome
                 onSelectCategory={handleSelectCategory}
@@ -326,6 +527,7 @@ export const App: React.FC = () => {
               tool={currentTool}
               onBack={handleBack}
               onNavigateHome={handleNavigateHome}
+              onNavigateIpCheck={handleNavigateIpCheck}
               onOpenCrowdsourceModal={(t, mode) => handleOpenCrowdsource(t, mode || 'pr')}
             />
           )}
@@ -335,6 +537,7 @@ export const App: React.FC = () => {
         <PencilFooter
           onOpenCrowdsource={() => handleOpenCrowdsource(null, 'guide')}
           onScrollToTop={handleScrollContentToTop}
+          onNavigateIpCheck={handleNavigateIpCheck}
           scrollProgress={scrollProgress}
         />
       </div>

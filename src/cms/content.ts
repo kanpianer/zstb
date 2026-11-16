@@ -14,7 +14,7 @@ export interface SiteContent {
 export function createDefaultContent(): SiteContent {
   const order = Object.fromEntries(SYSTEMS.map(system => [system, ALL_TOOLS.filter(t => t.system === system).map(t => t.id)])) as Record<SubSystemCategory, string[]>;
   return structuredClone({ version: 1, tools: ALL_TOOLS, quadrants: QUADRANTS_CONFIG, settings: {
-    siteName: '紙上談兵', siteSubtitle: '翻墙教程', footerText: '© 2026 纸上谈兵 · 主流翻墙工具教程',
+    siteName: '紙上談兵', siteSubtitle: '翻墙教程', footerText: '主流翻墙工具使用教程',
     footerLinkLabel: 'Github', footerLinkUrl: 'https://github.com/kanpianer/zstb',
   }, cardOrder: order, homeOrder: structuredClone(order), appleOrder: ['ios', 'macos'] });
 }

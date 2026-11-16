@@ -26,7 +26,27 @@ interface TutorialDetailViewProps {
   tool: SoftwareTool;
   onBack: () => void;
   onNavigateHome?: () => void;
+  onNavigateIpCheck?: () => void;
   onOpenCrowdsourceModal: (tool: SoftwareTool, mode?: 'pr' | 'issue') => void;
+}
+
+/**
+ * 判断是否为连接代理/开启 VPN 步骤（在此步骤右上角展示 IP 检测快捷入口）
+ */
+export function isVpnConnectStep(step: { stepNumber: number; title: string; description?: string }): boolean {
+  const t = step.title;
+  // 排除浏览器验证、测试、断开与关闭步骤
+  if (/验证|停止|关闭|测试/i.test(t)) return false;
+
+  if (/连接.*VPN|启动.*VPN|授权.*VPN|允许.*VPN|开启.*VPN|VPN.*授权|开启.*连接/i.test(t)) return true;
+  if (/开启系统代理|打开系统代理|使用代理|运行并开启.*代理|让浏览器使用代理|启动并选择节点/i.test(t)) return true;
+  if (t.includes('VPN') && (t.includes('连接') || t.includes('启动') || t.includes('授权') || t.includes('允许') || t.includes('开启'))) return true;
+  if (t.includes('系统代理') || t.includes('开启连接')) return true;
+
+  if (step.description && /连接开关|开启系统代理|允许添加 VPN 配置|首次同意.*VPN|首次按.*VPN/i.test(step.description)) {
+    return true;
+  }
+  return false;
 }
 
 const formatOpenSourceLicense = (license?: string): string => {
@@ -171,6 +191,7 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
   tool,
   onBack,
   onNavigateHome,
+  onNavigateIpCheck,
   onOpenCrowdsourceModal
 }) => {
   const [copiedSnippet, setCopiedSnippet] = useState<string | null>(null);
@@ -461,22 +482,38 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
 
         {/* Steps Timeline */}
         <div className="flex flex-col gap-6">
-          {tool.tutorial.steps.map((step) => (
-            <div
-              key={step.stepNumber}
-              className="relative p-5 bg-paper-100 rounded-xl border-2 border-pencil shadow-sm"
-            >
-              {/* Step Number Tag */}
-              <div className="flex items-center gap-3 mb-2.5">
-                <span className="w-7 h-7 rounded-full bg-pencil text-paper-50 flex items-center justify-center font-bold text-xs font-mono shadow-pencil">
-                  {step.stepNumber}
-                </span>
-                <h3 className="font-bold text-base text-pencil-dark font-serif">
-                  {step.title}
-                </h3>
-              </div>
+          {tool.tutorial.steps.map((step) => {
+            const isConnect = isVpnConnectStep(step);
+            return (
+              <div
+                key={step.stepNumber}
+                className="relative p-5 bg-paper-100 rounded-xl border-2 border-pencil shadow-sm"
+              >
+                {/* Step Header: Step Number, Title & Top-Right IP Detection Button */}
+                <div className="flex items-start justify-between gap-2 mb-2.5">
+                  <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                    <span className="w-7 h-7 rounded-full bg-pencil text-paper-50 flex items-center justify-center font-bold text-xs font-mono shadow-pencil shrink-0">
+                      {step.stepNumber}
+                    </span>
+                    <h3 className="font-bold text-base text-pencil-dark font-serif">
+                      {step.title}
+                    </h3>
+                  </div>
 
-              <FormattedRichText text={step.description} className="text-xs text-pencil-light font-sans" />
+                  {isConnect && onNavigateIpCheck && (
+                    <button
+                      type="button"
+                      onClick={onNavigateIpCheck}
+                      className="pencil-btn-secondary py-1 px-2.5 flex items-center gap-1.5 text-xs font-bold text-pencil-dark hover:bg-paper-200 active:scale-95 transition-all shrink-0 shadow-xs group"
+                      title="已开启连接？点击前往 IP 地址检测页面核验出口与泄露"
+                    >
+                      <ShieldCheck className="w-3.5 h-3.5 text-pencil-dark shrink-0 group-hover:scale-105 transition-transform" />
+                      <span>IP检测</span>
+                    </button>
+                  )}
+                </div>
+
+                <FormattedRichText text={step.description} className="text-xs text-pencil-light font-sans" />
 
               {/* Code Snippet Box (if available) */}
               {step.codeSnippet && (
@@ -522,7 +559,8 @@ export const TutorialDetailView: React.FC<TutorialDetailViewProps> = ({
                 </div>
               )}
             </div>
-          ))}
+          );
+        })}
         </div>
       </section>
 
