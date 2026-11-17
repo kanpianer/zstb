@@ -27,5 +27,14 @@
       "sizes": "180x180",
       "type": "image/png"
     }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1024x609",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "紙上談兵 · 主流翻墙工具及教程导航"
+    }
   ]
 }

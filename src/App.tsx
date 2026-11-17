@@ -11,6 +11,7 @@ import { TutorialDetailView } from './components/TutorialDetailView';
 import { IpCheckListView } from './components/IpCheckListView';
 import { IpCheckDetailView } from './components/IpCheckDetailView';
 import { CrowdsourceModal } from './components/CrowdsourceModal';
+import { updatePageMetadata, DEFAULT_SITE_METADATA } from './utils/meta';
 
 export interface NavigationState {
   category: SystemCategory | null;
@@ -182,6 +183,59 @@ export const App: React.FC = () => {
       window.removeEventListener('popstate', handlePopState);
     };
   }, []);
+
+  // Synchronize document title and Open Graph social metadata with current view
+  useEffect(() => {
+    if (navState.isIpPage) {
+      if (navState.ipSiteId) {
+        const site = getIpCheckSiteById(navState.ipSiteId);
+        updatePageMetadata({
+          title: `${site ? site.name : 'IP 检测'} · 紙上談兵`,
+          description: site ? site.description : '精选主流 IP 质量与欺诈分检测工具，分析代理出口纯净度、原生度与风险等级。',
+          url: `https://zstb.sld.tw/?view=ip&tool=${encodeURIComponent(navState.ipSiteId)}`,
+        });
+      } else {
+        updatePageMetadata({
+          title: 'IP 纯净度与欺诈分检测 · 紙上談兵',
+          description: '精选主流 IP 质量与欺诈分检测工具，分析代理出口纯净度、原生度与风险等级。',
+          url: 'https://zstb.sld.tw/?view=ip',
+        });
+      }
+    } else if (navState.toolId) {
+      const tool = getToolById(navState.toolId);
+      if (tool) {
+        updatePageMetadata({
+          title: `${tool.name} 教程 · 紙上談兵`,
+          description: tool.description || tool.tagline || DEFAULT_SITE_METADATA.description,
+          url: `https://zstb.sld.tw/?tool=${encodeURIComponent(tool.id)}`,
+        });
+      } else {
+        updatePageMetadata(DEFAULT_SITE_METADATA);
+      }
+    } else if (navState.subSystem) {
+      const systemNames: Record<string, string> = {
+        ios: 'iOS',
+        macos: 'macOS',
+        android: '安卓',
+        windows: 'Windows',
+        linux: 'Linux / 软路由',
+      };
+      const name = systemNames[navState.subSystem] || navState.subSystem;
+      updatePageMetadata({
+        title: `${name} 翻墙工具及教程 · 紙上談兵`,
+        description: `主流 ${name} 平台科学上网客户端使用教程与众包知识库。`,
+        url: `https://zstb.sld.tw/?sub=${encodeURIComponent(navState.subSystem)}`,
+      });
+    } else if (navState.category === 'apple') {
+      updatePageMetadata({
+        title: '苹果系统 (iOS / macOS) 翻墙工具及教程 · 紙上談兵',
+        description: '精选 iOS 与 macOS 平台主流规则型代理客户端与科学上网使用教程。',
+        url: 'https://zstb.sld.tw/?cat=apple',
+      });
+    } else {
+      updatePageMetadata(DEFAULT_SITE_METADATA);
+    }
+  }, [navState]);
 
   // Crowdsource modal state
   const [isCrowdsourceModalOpen, setIsCrowdsourceModalOpen] = useState<boolean>(false);
