@@ -4,7 +4,7 @@ export const singBoxWin: SoftwareTool = {
   "name": "sing-box",
   "shortName": "sing-box",
   "iconName": "Box",
-  "badgeText": "CLI 教程",
+  "badgeText": "官方核心客户端",
   "updatedAt": "2026-11-13",
   "isOpenSource": true,
   "license": "GPL-3.0-or-later（核心另有名称/关联声明限制；以各仓库 LICENSE 为准）",

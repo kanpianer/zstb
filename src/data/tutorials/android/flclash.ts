@@ -9,7 +9,7 @@ export const flclash: SoftwareTool = {
   "tagline": "导入 Clash 配置，在手机上选择线路",
   "description": "FlClash 是基于 Mihomo 的代理客户端，Android 版支持订阅配置、节点选择和分应用连接。",
   "iconName": "Smartphone",
-  "badgeText": "官方来源核查",
+  "badgeText": "Clash 多平台客户端",
   "updatedAt": "2026-11-13",
   "isOpenSource": true,
   "license": "GPL-3.0",

@@ -9,7 +9,7 @@ export const clashMetaAndroid: SoftwareTool = {
   tagline: '基于 Mihomo 内核的 Android 规则代理客户端',
   description: 'ClashMetaForAndroid（简称 CMFA）是运行在 Android 上的开源规则代理工具，基于开源 Mihomo（Clash.Meta）内核开发，支持多种现代化代理协议、分应用代理及订阅配置。',
   iconName: 'Smartphone',
-  badgeText: '官方来源核查',
+  badgeText: 'Mihomo 规则代理',
   updatedAt: '2026-11-13',
   isOpenSource: true,
   license: 'GPL-3.0',

@@ -2163,10 +2163,10 @@
       "sing-box-win"
     ],
     "linux": [
+      "vps-nodes",
       "clash-verge-rev-linux",
       "v2raya",
-      "openclash",
-      "vps-nodes"
+      "openclash"
     ]
   },
   "appleOrder": [

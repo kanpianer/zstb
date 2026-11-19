@@ -9,7 +9,7 @@ export const v2raya: SoftwareTool = {
   tagline: '通过浏览器管理节点与 Linux 透明代理的服务',
   description: 'v2rayA 在 Linux 后台运行，通过浏览器管理订阅、选择节点和连接。先完成本机浏览器代理，再按需开启更多功能；需要自行准备节点服务。',
   iconName: 'Globe',
-  badgeText: 'Web 管理',
+  badgeText: 'Web 管理透明代理',
   updatedAt: '2026-11-13',
   isOpenSource: true,
   license: 'AGPL-3.0-only；配套内核为 MPL-2.0',

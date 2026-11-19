@@ -9,7 +9,7 @@ export const shadowrocket: SoftwareTool = {
   tagline: 'iPhone / iPad 规则型代理工具，需自行提供服务器',
   description: 'Shadowrocket 是 iPhone / iPad 上的规则型代理客户端，可导入兼容订阅并按规则连接。购买软件不包含节点或代理服务。',
   iconName: 'Rocket',
-  badgeText: '规则代理',
+  badgeText: '轻量规则代理',
   updatedAt: '2026-11-13',
   isOpenSource: false,
   license: '专有软件',

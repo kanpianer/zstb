@@ -9,7 +9,7 @@ export const clashPartyWin: SoftwareTool = {
   tagline: '导入订阅、选择节点，让浏览器使用代理',
   description: 'Clash Party（原 Mihomo Party）是使用 Mihomo 系列内核的桌面代理客户端。本篇从安装开始，带你完成订阅导入和浏览器连接。',
   iconName: 'Sparkles',
-  badgeText: '官方来源核查',
+  badgeText: 'Mihomo 桌面客户端',
   updatedAt: '2026-11-13',
   isOpenSource: true,
   license: 'GPL-3.0（详见项目许可证）',

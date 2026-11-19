@@ -9,7 +9,7 @@ export const clashMac: SoftwareTool = {
   tagline: 'ProjectClash 的 macOS 规则代理客户端与菜单栏控制',
   description: '本文介绍 ProjectClash 的 Apple 客户端 Clash，使用 ProjectClash Clash Core（商店说明基于 mihomo），不是 ClashX、Clash for Windows 或旧 Clash 内核本身。官网提供 Mac App Store 入口，源码仓库公开客户端、扩展和构建说明。',
   iconName: 'Zap',
-  badgeText: '规则代理',
+  badgeText: '规则分流代理',
   updatedAt: '2026-11-13',
   isOpenSource: true,
   license: 'GPL-3.0（客户端仓库；依赖许可分别适用）',

@@ -9,7 +9,7 @@ export const clashPartyMac: SoftwareTool = {
   "tagline": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动",
   "description": "Clash Party 是原 Mihomo Party 更名后的桌面代理客户端，使用 Electron 与 Mihomo 系列内核；当前官方仓库和发布页仍有活动。",
   "iconName": "Sparkles",
-  "badgeText": "官方来源核查",
+  "badgeText": "Mihomo 桌面客户端",
   "updatedAt": "2026-11-13",
   "isOpenSource": true,
   "license": "GPL-3.0（详见项目许可证）",

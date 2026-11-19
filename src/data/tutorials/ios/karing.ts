@@ -9,7 +9,7 @@ export const karing: SoftwareTool = {
   tagline: '导入多种订阅，在 iPhone 上连接 VPN',
   description: 'Karing 是开源代理客户端，支持多种订阅和节点选择。Clash Meta 配置仅部分兼容，建议使用服务方提供的 Karing 适用订阅。',
   iconName: 'Link2',
-  badgeText: '多格式配置',
+  badgeText: '多格式订阅代理',
   updatedAt: '2026-11-13',
   isOpenSource: true,
   license: 'GPL-3.0-or-later；附名称/关联声明限制，见 LICENSE.md',

@@ -9,7 +9,7 @@ export const nekoboxAndroid: SoftwareTool = {
   "tagline": "导入订阅，选择节点并连接 VPN",
   "description": "NekoBox 是 Android 代理客户端，支持多种节点订阅。项目目前较少维护，使用前请确认所需功能；它不是 sing-box 官方客户端。",
   "iconName": "Smartphone",
-  "badgeText": "官方来源核查",
+  "badgeText": "多协议代理客户端",
   "hidden": true,
   "updatedAt": "2026-11-13",
   "isOpenSource": true,

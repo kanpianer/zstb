@@ -9,7 +9,7 @@ export const clashIos: SoftwareTool = {
   tagline: 'ProjectClash 维护的 Apple 平台规则代理客户端',
   description: '本文介绍 ProjectClash 的 Clash - Rule Based Proxy（App Store ID 6794257189）。它可导入 Clash / mihomo 配置、选择节点并按规则连接，需自行准备代理服务。',
   iconName: 'Zap',
-  badgeText: '规则代理',
+  badgeText: '规则分流代理',
   updatedAt: '2026-11-13',
   isOpenSource: true,
   license: 'GPL-3.0（客户端仓库；依赖许可分别适用）',

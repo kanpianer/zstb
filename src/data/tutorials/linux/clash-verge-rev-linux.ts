@@ -9,7 +9,7 @@ export const clashVergeRevLinux: SoftwareTool = {
   "tagline": "在 Linux 桌面导入订阅，让浏览器先用起来",
   "description": "Clash Verge Rev 是使用 Mihomo 内核的图形代理客户端。导入兼容订阅、选择节点并开启系统代理后，即可用浏览器验证连接；软件不含节点服务。",
   "iconName": "Terminal",
-  "badgeText": "官方来源核查",
+  "badgeText": "Mihomo 桌面客户端",
   "updatedAt": "2026-11-13",
   "isOpenSource": true,
   "license": "GPL-3.0（详见项目许可证）",

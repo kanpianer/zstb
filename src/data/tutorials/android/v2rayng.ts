@@ -9,7 +9,7 @@ export const v2rayng: SoftwareTool = {
   "tagline": "在 Android 上导入节点并连接 VPN",
   "description": "v2rayNG 是基于 Xray-core 的 Android 代理客户端，可通过订阅、节点链接或二维码添加线路，需自行准备代理服务。",
   "iconName": "Smartphone",
-  "badgeText": "官方来源核查",
+  "badgeText": "轻量代理客户端",
   "updatedAt": "2026-11-13",
   "isOpenSource": true,
   "license": "GPL-3.0",
