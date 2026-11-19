@@ -56,16 +56,34 @@ function Field({ name, value, baseline, template, onChange, lockIdentity = false
   const reset = <button type="button" className="cms-text-btn" disabled={!changed} onClick={() => onChange(clone(baseline))} aria-label={`重置${label}`}>重置</button>;
   if (value === undefined) return <div className="cms-optional"><span>{label} <small>未设置（可选）</small></span><button type="button" className="cms-text-btn" onClick={() => onChange(fresh(template))}>＋ 添加字段</button>{reset}</div>;
   if (Array.isArray(value)) {
+    const isSteps = name === 'steps';
     const base = Array.isArray(baseline) ? baseline : [];
     const example = Array.isArray(template) ? template[0] : value[0];
     const reorder = (index: number, delta: number) => {
       const items = [...value];
       [items[index], items[index + delta]] = [items[index + delta], items[index]];
-      onChange(name === 'steps' ? items.map((item, i) => ({ ...object(item), stepNumber: i + 1 })) : items);
+      onChange(isSteps ? items.map((item, i) => ({ ...object(item), stepNumber: i + 1 })) : items);
     };
-    return <fieldset className="cms-group"><legend>{label} <small>{value.length} 项</small></legend><div className="cms-group-actions">{reset}<button type="button" className="cms-text-btn" onClick={() => { const item = fresh(example); onChange([...value, name === 'steps' ? { ...object(item), stepNumber: value.length + 1 } : item]); }}>＋ 添加一项</button></div>
+    return <fieldset className={`cms-group ${isSteps ? 'cms-steps-group' : ''}`} id={isSteps ? 'cms-steps-fieldset' : undefined}><legend>{label} <small>{value.length} 项</small></legend><div className="cms-group-actions">{reset}<button type="button" className="cms-text-btn" onClick={() => { const item = fresh(example); onChange([...value, isSteps ? { ...object(item), stepNumber: value.length + 1 } : item]); }}>＋ 添加一项</button></div>
       {value.length === 0 && <p className="cms-muted">暂无内容，点击「添加一项」开始填写。</p>}
-      {value.map((item, index) => <div className="cms-array-item" key={index}><div className="cms-array-toolbar"><strong>第 {index + 1} 项</strong><div><button type="button" className="cms-text-btn" disabled={index === 0} onClick={() => reorder(index, -1)} aria-label={`${label}第${index + 1}项上移`}>↑ 上移</button><button type="button" className="cms-text-btn" disabled={index === value.length - 1} onClick={() => reorder(index, 1)} aria-label={`${label}第${index + 1}项下移`}>↓ 下移</button><button type="button" className="cms-text-btn cms-danger" onClick={() => { const items = value.filter((_, i) => i !== index); onChange(name === 'steps' ? items.map((entry, i) => ({ ...object(entry), stepNumber: i + 1 })) : items); }}>删除</button></div></div><Field name={typeof item === 'object' ? '内容' : '条目内容'} value={item} baseline={base[index]} template={example} onChange={next => onChange(value.map((entry, i) => i === index ? next ?? '' : entry))} /></div>)}
+      {value.map((item, index) => {
+        const stepRecord = isSteps && typeof item === 'object' && item !== null ? item as Record<string, unknown> : null;
+        const rawTitle = stepRecord && typeof stepRecord.title === 'string' ? stepRecord.title.trim() : '';
+        const stepId = isSteps ? `cms-step-${index + 1}` : undefined;
+        return (
+          <div className={`cms-array-item ${isSteps ? 'cms-step-item' : ''}`} key={index} id={stepId} data-step-number={isSteps ? index + 1 : undefined}>
+            <div className="cms-array-toolbar">
+              <strong>{isSteps ? `第 ${index + 1} 步${rawTitle ? ` · ${rawTitle}` : ''}` : `第 ${index + 1} 项`}</strong>
+              <div>
+                <button type="button" className="cms-text-btn" disabled={index === 0} onClick={() => reorder(index, -1)} aria-label={`${label}第${index + 1}项上移`}>↑ 上移</button>
+                <button type="button" className="cms-text-btn" disabled={index === value.length - 1} onClick={() => reorder(index, 1)} aria-label={`${label}第${index + 1}项下移`}>↓ 下移</button>
+                <button type="button" className="cms-text-btn cms-danger" onClick={() => { const items = value.filter((_, i) => i !== index); onChange(isSteps ? items.map((entry, i) => ({ ...object(entry), stepNumber: i + 1 })) : items); }}>删除</button>
+              </div>
+            </div>
+            <Field name={typeof item === 'object' ? '内容' : '条目内容'} value={item} baseline={base[index]} template={example} onChange={next => onChange(value.map((entry, i) => i === index ? next ?? '' : entry))} />
+          </div>
+        );
+      })}
     </fieldset>;
   }
   if (value !== null && typeof value === 'object') {
@@ -73,6 +91,169 @@ function Field({ name, value, baseline, template, onChange, lockIdentity = false
     return <fieldset className="cms-group"><legend>{label}</legend><div className="cms-group-actions">{reset}</div>{keys.map(key => lockIdentity && ['id', 'system', 'category'].includes(key) ? <label className="cms-field" key={key}><span>{LABELS[key]} <small>关联字段 · 只读</small></span><input readOnly value={String(value[key] ?? '')} /></label> : <Field key={key} name={key} value={value[key]} baseline={object(baseline)[key]} template={object(template)[key]} onChange={next => { const result = { ...value }; if (next === undefined) delete result[key]; else result[key] = next; onChange(result); }} />)}</fieldset>;
   }
   return <div className="cms-field"><div className="cms-field-heading"><label htmlFor={undefined}>{label}</label>{reset}</div>{typeof value === 'boolean' ? <label className="cms-checkbox"><input type="checkbox" checked={value} onChange={event => onChange(event.target.checked)} />{value ? '是 / 已启用' : '否 / 未启用'} · {label}</label> : typeof value === 'number' ? <input aria-label={label} type="number" step="any" value={value} onChange={event => { if (Number.isFinite(event.target.valueAsNumber)) onChange(event.target.valueAsNumber); }} /> : <textarea aria-label={label} rows={['description', 'overview', 'codeSnippet', 'answer', 'note'].includes(name) ? 4 : 2} value={String(value ?? '')} spellCheck={false} onChange={event => onChange(event.target.value)} />}</div>;
+}
+
+interface CmsStepDirectoryProps {
+  steps: unknown[];
+  toolId: string;
+  onAddStep: () => void;
+}
+
+function CmsStepDirectory({ steps, toolId, onAddStep }: CmsStepDirectoryProps) {
+  const [collapsed, setCollapsed] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+  const [activeStep, setActiveStep] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return;
+    const rootEl = document.querySelector('.cms-shell');
+    const stepEls = document.querySelectorAll('.cms-step-item');
+    if (stepEls.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        const visible = entries.filter(e => e.isIntersecting);
+        if (visible.length > 0) {
+          const sorted = visible.sort(
+            (a, b) => Math.abs(a.boundingClientRect.top - 120) - Math.abs(b.boundingClientRect.top - 120)
+          );
+          const num = sorted[0].target.getAttribute('data-step-number');
+          if (num) setActiveStep(Number(num));
+        }
+      },
+      {
+        root: rootEl,
+        rootMargin: '-10% 0px -40% 0px',
+        threshold: [0, 0.25, 0.5],
+      }
+    );
+
+    stepEls.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [steps.length, toolId]);
+
+  const clickedFromTocRef = useRef(false);
+
+  useEffect(() => {
+    if (activeStep === null) return;
+    if (clickedFromTocRef.current) {
+      clickedFromTocRef.current = false;
+      return;
+    }
+    const itemEl = document.querySelector(`.cms-step-toc-item[data-step="${activeStep}"]`);
+    itemEl?.scrollIntoView({ behavior: 'auto', block: 'nearest' });
+  }, [activeStep]);
+
+  const jumpToStep = (num: number) => {
+    clickedFromTocRef.current = true;
+    setActiveStep(num);
+    const target = document.getElementById(`cms-step-${num}`);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.classList.remove('is-step-highlight');
+      void target.offsetWidth;
+      target.classList.add('is-step-highlight');
+      setTimeout(() => {
+        target.classList.remove('is-step-highlight');
+      }, 1800);
+    }
+  };
+
+  if (collapsed) {
+    return (
+      <aside className="cms-step-toc-container" aria-label="教程步骤悬浮目录">
+        <button
+          type="button"
+          className="pencil-btn cms-step-toc-pill"
+          onClick={() => setCollapsed(false)}
+          title="展开教程步骤悬浮目录"
+          aria-label={`展开教程步骤目录，共 ${steps.length} 步`}
+        >
+          <span className="cms-step-toc-icon">📑</span>
+          <span>步骤目录 <small>({steps.length})</small></span>
+          <span className="cms-step-toc-arrow">▴</span>
+        </button>
+      </aside>
+    );
+  }
+
+  return (
+    <aside className="cms-step-toc-container" aria-label="教程步骤悬浮目录">
+      <div className="cms-step-toc-panel a4-sheet">
+        <div className="cms-step-toc-header">
+          <div className="cms-step-toc-title">
+            <span className="cms-step-toc-icon">📑</span>
+            <strong>步骤目录</strong>
+            <span className="cms-step-toc-badge">{steps.length} 步</span>
+          </div>
+          <button
+            type="button"
+            className="cms-step-toc-toggle"
+            onClick={() => setCollapsed(true)}
+            title="收起目录"
+            aria-label="收起目录"
+          >
+            收起 ▾
+          </button>
+        </div>
+
+        <nav className="cms-step-toc-list" aria-label="步骤快速跳转导航">
+          {steps.length === 0 ? (
+            <p className="cms-step-toc-empty">暂无步骤，点击下方添加。</p>
+          ) : (
+            steps.map((step, index) => {
+              const num = index + 1;
+              const stepRecord = typeof step === 'object' && step !== null ? step as Record<string, unknown> : null;
+              const rawTitle = stepRecord && typeof stepRecord.title === 'string' ? stepRecord.title.trim() : '';
+              const title = rawTitle || `步骤 ${num}（未填标题）`;
+              const isActive = activeStep === num;
+
+              return (
+                <button
+                  type="button"
+                  key={num}
+                  data-step={num}
+                  className={`cms-step-toc-item ${isActive ? 'is-active' : ''}`}
+                  onClick={() => jumpToStep(num)}
+                  title={`快速跳转至第 ${num} 步：${title}`}
+                  aria-current={isActive ? 'true' : undefined}
+                >
+                  <span className="cms-step-toc-item-num">{String(num).padStart(2, '0')}</span>
+                  <span className="cms-step-toc-item-title">{title}</span>
+                  {isActive && <span className="cms-step-toc-active-dot" aria-hidden="true" />}
+                </button>
+              );
+            })
+          )}
+        </nav>
+
+        <div className="cms-step-toc-footer">
+          <button
+            type="button"
+            className="cms-text-btn cms-step-toc-add"
+            onClick={onAddStep}
+            title="在末尾添加新步骤并跳转"
+          >
+            ＋ 添加步骤
+          </button>
+          <button
+            type="button"
+            className="cms-text-btn"
+            onClick={() => {
+              const shell = document.querySelector('.cms-shell');
+              if (shell) {
+                shell.scrollTo({ top: 0, behavior: 'smooth' });
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+            title="滚动到网页最顶部"
+          >
+            ↑ 回到顶部
+          </button>
+        </div>
+      </div>
+    </aside>
+  );
 }
 
 export default function CmsView({ initialContent, loadError, onExit, onApply, localPreview = false, isLocalServer = false }: CmsViewProps) {
@@ -219,11 +400,58 @@ export default function CmsView({ initialContent, loadError, onExit, onApply, lo
       setError(errorText(err));
     }
   }
-  return <div className="cms-shell"><header className="cms-topbar a4-sheet"><div><p className="cms-eyebrow">紙上談兵 / 内容工作台</p><h1>把好内容，写在纸上。</h1><p className={`cms-status ${dirty ? 'is-dirty' : ''}`} role="status">{dirty ? (isLocalServer ? '● 有未保存的本地修改' : '● 有未提交的修改') : (isLocalServer ? '✓ 本地内容已是最新' : '✓ 没有未提交的修改')} <span>{isLocalServer ? (currentRevision ? `GitHub SHA：${currentRevision.slice(0, 12)}` : '模式：本地代码库（直接读写文件）') : `GitHub SHA：${currentRevision ? currentRevision.slice(0, 12) : '尚未载入'}`}</span></p></div><div className="cms-publish"><div className="cms-button-row"><button type="button" className="pencil-btn cms-apply" disabled={busy || autoLoading} onClick={() => void handleApply()}>应用</button><button type="button" className="pencil-btn cms-primary" disabled={busy || autoLoading || !connected || !dirty} onClick={() => void publish()}>{autoLoading ? '正在载入仓库…' : testing ? '正在测试…' : busy ? '请求处理中…' : '提交到 GitHub'}</button><button type="button" className="pencil-btn-secondary" disabled={busy || autoLoading} onClick={() => { if (isLocalServer) { if (!dirty || window.confirm('有尚未保存到本地代码库的修改，确定离开工作台？')) onExit(); } else { if (!dirty || (hasPreview && same(content, applied)) || window.confirm('有尚未应用到本地预览的修改，确定离开工作台？')) onExit(); } }}>返回主站 ↗</button></div>{connected && <small>{`已连接 ${repo.owner}/${repo.repo} · ${repo.branch}`}</small>}</div></header>
+  const handleAddTutorialStep = () => {
+    if (!selected) return;
+    const currentTutorial = selected.tutorial || {
+      overview: '',
+      prerequisites: [''],
+      prerequisiteAction: actionTemplate as unknown as SiteContent['tools'][number]['tutorial']['prerequisiteAction'],
+      prerequisiteActions: [actionTemplate as unknown as SiteContent['tools'][number]['tutorial']['prerequisiteAction']],
+      steps: [],
+      advancedRules: [''],
+      faq: [{ question: '', answer: '' }],
+    };
+    const currentSteps = Array.isArray(currentTutorial.steps) ? currentTutorial.steps : [];
+    const newStep = {
+      stepNumber: currentSteps.length + 1,
+      title: '',
+      description: '',
+      codeSnippet: '',
+      codeLanguage: '',
+      pencilTip: '',
+      highlightWords: [''],
+    };
+    const nextSteps = [...currentSteps, newStep];
+    setContent(previous => ({
+      ...previous,
+      tools: previous.tools.map(tool =>
+        tool.id === selected.id
+          ? {
+              ...tool,
+              tutorial: {
+                ...tool.tutorial,
+                steps: nextSteps,
+              },
+            }
+          : tool
+      ),
+    }));
+    setTimeout(() => {
+      const target = document.getElementById(`cms-step-${nextSteps.length}`);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.remove('is-step-highlight');
+        void target.offsetWidth;
+        target.classList.add('is-step-highlight');
+        setTimeout(() => target.classList.remove('is-step-highlight'), 1800);
+      }
+    }, 120);
+  };
+  return <div className="cms-shell"><header className="cms-topbar a4-sheet"><div><h1 className="cms-title">内容工作台</h1><p className={`cms-status ${dirty ? 'is-dirty' : ''}`} role="status">{dirty ? (isLocalServer ? '● 有未保存的本地修改' : '● 有未提交的修改') : (isLocalServer ? '✓ 本地内容已是最新' : '✓ 没有未提交的修改')} <span>{isLocalServer ? (currentRevision ? `GitHub SHA：${currentRevision.slice(0, 12)}` : '模式：本地代码库（直接读写文件）') : `GitHub SHA：${currentRevision ? currentRevision.slice(0, 12) : '尚未载入'}`}</span></p></div><div className="cms-publish"><div className="cms-button-row"><button type="button" className="pencil-btn cms-apply" disabled={busy || autoLoading} onClick={() => void handleApply()}>应用</button><button type="button" className="pencil-btn cms-primary" disabled={busy || autoLoading || !connected || !dirty} onClick={() => void publish()}>{autoLoading ? '正在载入仓库…' : testing ? '正在测试…' : busy ? '请求处理中…' : '提交到 GitHub'}</button><button type="button" className="pencil-btn-secondary" disabled={busy || autoLoading} onClick={() => { if (isLocalServer) { if (!dirty || window.confirm('有尚未保存到本地代码库的修改，确定离开工作台？')) onExit(); } else { if (!dirty || (hasPreview && same(content, applied)) || window.confirm('有尚未应用到本地预览的修改，确定离开工作台？')) onExit(); } }}>返回主站 ↗</button></div>{connected && <small>{`已连接 ${repo.owner}/${repo.repo} · ${repo.branch}`}</small>}</div></header>
     {error && <div className="cms-notice cms-error" role="alert">操作未完成：{error}</div>}{message && <div className="cms-notice" role="status">{message}</div>}
-    <nav className="cms-tabs" aria-label="内容管理导航">{([['tools', '软件 / 教程'], ['order', '排序'], ['site', '站点文案'], ['data', '数据 / 备份'], ['github', '连接内容仓库']] as const).map(([id, label], i) => <button type="button" key={id} aria-current={tab === id ? 'page' : undefined} onClick={() => setTab(id)}><span>0{i + 1}</span>{label}</button>)}</nav>
+    <nav className="cms-tabs" aria-label="内容管理导航">{([['tools', '教程'], ['order', '排序'], ['site', '文案'], ['data', '备份'], ['github', '仓库']] as const).map(([id, label], i) => <button type="button" key={id} aria-current={tab === id ? 'page' : undefined} onClick={() => setTab(id)}><span>0{i + 1}</span>{label}</button>)}</nav>
     <main className="cms-main"><fieldset disabled={busy || (autoLoading && tab !== 'github')} className="cms-workspace">
-      {tab === 'tools' && <div className="cms-tool-layout"><aside className="cms-sidebar a4-sheet"><h2>软件笔记簿 <small>{content.tools.length} 款</small></h2><label className="cms-field">搜索软件<input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="名称、简介或 ID…" /></label><label className="cms-field">筛选系统<select value={system} onChange={event => setSystem(event.target.value)}><option value="all">全部系统</option>{SYSTEMS.map(id => <option key={id} value={id}>{SYSTEM_NAMES[id]}</option>)}</select></label><div className="cms-tool-list">{filtered.map(tool => <button type="button" key={tool.id} className={`${selectedId === tool.id ? 'is-selected' : ''} ${tool.hidden ? 'is-hidden-tool' : ''}`} onClick={() => setSelectedId(tool.id)} aria-pressed={selectedId === tool.id}><div className="cms-tool-item-title"><strong>{tool.shortName}</strong>{tool.hidden && <span className="cms-hidden-badge">已隐藏</span>}</div><small>{SYSTEM_NAMES[tool.system]} · {tool.id}</small></button>)}{filtered.length === 0 && <p className="cms-muted">没有找到匹配的软件。</p>}</div></aside><section className="cms-editor a4-sheet">{selected ? <><div className="cms-section-heading"><div><p className="cms-eyebrow">软件与教程 · 完整字段编辑</p><h2>{selected.name}{selected.hidden && <span className="cms-hidden-badge" style={{ marginLeft: '10px', verticalAlign: 'middle' }}>已隐藏</span>}</h2></div><a className="pencil-btn-secondary" href={`/?tool=${encodeURIComponent(selected.id)}`} target="_blank" rel="noopener noreferrer">{isLocalServer ? '查看页面 ↗' : hasPreview ? '查看本地预览 ↗' : '查看已发布页面 ↗'}</a></div><div className="cms-hide-control"><label className="cms-checkbox"><input type="checkbox" checked={Boolean(selected.hidden)} onChange={event => { const isHidden = event.target.checked; setContent(previous => ({ ...previous, tools: previous.tools.map(tool => tool.id === selected.id ? { ...tool, hidden: isHidden } : tool) })); }} /><strong>隐藏此软件</strong><small>（开启后在主站首页四象限与卡片列表中隐藏；直达链接仍可查看教程）</small></label></div><p className="cms-muted">{isLocalServer ? (dirty ? '检测到本地修改尚未保存到代码库，点击「应用」直接写入本地文件。' : '当前内容已保存至本地代码库文件。') : (hasPreview ? (same(content, applied) ? '当前编辑已应用到此浏览器的本地预览，尚未发布到线上。' : '有尚未应用的新修改，请再次点击「应用」更新本地预览。') : '点击「应用」后可在此浏览器预览修改，无需提交或部署。')} 关联字段不可修改；每个字段可重置到最近保存版本。数组支持添加、删除和排序。</p><Field name="软件资料" value={asJson(selected)} baseline={asJson(saved.tools.find(tool => tool.id === selected.id))} template={toolTemplate} lockIdentity onChange={next => setContent(previous => ({ ...previous, tools: previous.tools.map(tool => tool.id === selected.id ? next as unknown as typeof tool : tool) }))} /></> : <p>请从左侧选择一款软件。</p>}</section></div>}
+      {tab === 'tools' && <div className="cms-tool-layout"><aside className="cms-sidebar a4-sheet"><h2>软件笔记簿 <small>{content.tools.length} 款</small></h2><label className="cms-field">搜索软件<input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="名称、简介或 ID…" /></label><label className="cms-field">筛选系统<select value={system} onChange={event => setSystem(event.target.value)}><option value="all">全部系统</option>{SYSTEMS.map(id => <option key={id} value={id}>{SYSTEM_NAMES[id]}</option>)}</select></label><div className="cms-tool-list">{filtered.map(tool => <button type="button" key={tool.id} className={`${selectedId === tool.id ? 'is-selected' : ''} ${tool.hidden ? 'is-hidden-tool' : ''}`} onClick={() => setSelectedId(tool.id)} aria-pressed={selectedId === tool.id}><div className="cms-tool-item-title"><strong>{tool.shortName}</strong>{tool.hidden && <span className="cms-hidden-badge">已隐藏</span>}</div><small>{SYSTEM_NAMES[tool.system]} · {tool.id}</small></button>)}{filtered.length === 0 && <p className="cms-muted">没有找到匹配的软件。</p>}</div></aside><section className="cms-editor a4-sheet">{selected ? <><div className="cms-section-heading"><div><p className="cms-eyebrow">软件与教程 · 完整字段编辑</p><h2>{selected.name}{selected.hidden && <span className="cms-hidden-badge" style={{ marginLeft: '10px', verticalAlign: 'middle' }}>已隐藏</span>}</h2></div><a className="pencil-btn-secondary" href={`/?tool=${encodeURIComponent(selected.id)}`} target="_blank" rel="noopener noreferrer">{isLocalServer ? '查看页面 ↗' : hasPreview ? '查看本地预览 ↗' : '查看已发布页面 ↗'}</a></div><div className="cms-hide-control"><label className="cms-checkbox"><input type="checkbox" checked={Boolean(selected.hidden)} onChange={event => { const isHidden = event.target.checked; setContent(previous => ({ ...previous, tools: previous.tools.map(tool => tool.id === selected.id ? { ...tool, hidden: isHidden } : tool) })); }} /><strong>隐藏此软件</strong><small>（开启后在主站首页四象限与卡片列表中隐藏；直达链接仍可查看教程）</small></label></div><p className="cms-muted">{isLocalServer ? (dirty ? '检测到本地修改尚未保存到代码库，点击「应用」直接写入本地文件。' : '当前内容已保存至本地代码库文件。') : (hasPreview ? (same(content, applied) ? '当前编辑已应用到此浏览器的本地预览，尚未发布到线上。' : '有尚未应用的新修改，请再次点击「应用」更新本地预览。') : '点击「应用」后可在此浏览器预览修改，无需提交或部署。')} 关联字段不可修改；每个字段可重置到最近保存版本。数组支持添加、删除和排序。</p><Field name="软件资料" value={asJson(selected)} baseline={asJson(saved.tools.find(tool => tool.id === selected.id))} template={toolTemplate} lockIdentity onChange={next => setContent(previous => ({ ...previous, tools: previous.tools.map(tool => tool.id === selected.id ? next as unknown as typeof tool : tool) }))} /><CmsStepDirectory steps={Array.isArray(selected.tutorial?.steps) ? selected.tutorial.steps : []} toolId={selected.id} onAddStep={handleAddTutorialStep} /></> : <p>请从左侧选择一款软件。</p>}</section></div>}
       {tab === 'order' && <section className="cms-editor a4-sheet"><p className="cms-eyebrow">独立排序，互不影响</p><h2>安排阅读顺序</h2><p className="cms-muted">卡片顺序决定系统列表；首页按钮顺序单独维护。调整后请提交到 GitHub。</p><div className="cms-order-grid">{SYSTEMS.map(id => <section className="cms-order-section" key={id}><h3>{SYSTEM_NAMES[id]}</h3><h4>系统列表 · 软件卡片</h4>{orderList(content.cardOrder[id], ids => setContent(previous => ({ ...previous, cardOrder: { ...previous.cardOrder, [id]: ids } })))}<h4>首页 · 软件按钮</h4>{orderList(content.homeOrder[id], ids => setContent(previous => ({ ...previous, homeOrder: { ...previous.homeOrder, [id]: ids } })))}</section>)}<section className="cms-order-section"><h3>苹果象限 · 系统先后</h3>{orderList(content.appleOrder, ids => setContent(previous => ({ ...previous, appleOrder: ids as SiteContent['appleOrder'] })), SYSTEM_NAMES)}</section></div></section>}
       {tab === 'site' && <section className="cms-editor a4-sheet"><p className="cms-eyebrow">每一个字，都值得打磨</p><h2>站点与象限文案</h2><Field name="全站设置" value={asJson(content.settings)} baseline={asJson(saved.settings)} onChange={next => setContent(previous => ({ ...previous, settings: next as unknown as SiteContent['settings'] }))} />{(['apple', 'android', 'windows', 'linux'] as const).map(id => <Field key={id} name={`${SYSTEM_NAMES[id]}象限`} value={asJson(content.quadrants[id])} baseline={asJson(saved.quadrants[id])} template={{ badge: '' }} lockIdentity onChange={next => setContent(previous => ({ ...previous, quadrants: { ...previous.quadrants, [id]: next as unknown as SiteContent['quadrants'][typeof id] } }))} />)}</section>}
       {tab === 'data' && <section className="cms-editor a4-sheet"><p className="cms-eyebrow">先留一份底稿，再安心修改</p><h2>数据与本地备份</h2><div className="cms-backup-panel"><h3>本地草稿</h3><p>仅在此浏览器手动保存，不会自动发布，也不会保存管理令牌。清理浏览器数据可能丢失草稿，请另行下载备份。</p><div className="cms-button-row"><button type="button" className="pencil-btn-secondary" onClick={saveDraft}>保存本地草稿</button><button type="button" className="pencil-btn-secondary" onClick={restoreDraft}>恢复本地草稿</button></div>{draftTime && <p className="cms-muted">草稿时间：{new Date(draftTime).toLocaleString('zh-CN')}</p>}</div><div className="cms-button-row"><button type="button" className="pencil-btn" onClick={download}>↓ 下载 JSON 备份</button><button type="button" className="pencil-btn-secondary" onClick={() => setJson(JSON.stringify(content, null, 2))}>生成当前 JSON</button><button type="button" className="pencil-btn-secondary" onClick={() => importInput.current?.click()}>从文件导入</button><input ref={importInput} hidden type="file" accept=".json,application/json" onChange={event => { const file = event.target.files?.[0]; event.target.value = ''; if (file) void file.text().then(text => guard(() => applyImport(text))).catch(err => setError(errorText(err))); }} /></div><label className="cms-field cms-json-label">JSON 数据<textarea className="cms-json" value={json} onChange={event => setJson(event.target.value)} spellCheck={false} rows={18} placeholder="粘贴完整 SiteContent JSON，或点击「生成当前 JSON」。" /></label><p className="cms-muted">导入和恢复均经过完整数据校验。导入只替换编辑内容，不会立即发布，也不会改动当前仓库文件 SHA。</p><button type="button" className="pencil-btn" onClick={() => guard(() => applyImport(json))}>校验并导入 JSON</button></section>}

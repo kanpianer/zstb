@@ -60,9 +60,18 @@ try {
   assert.equal(await evaluate(`document.querySelectorAll('.cms-tool-list button').length`),21);
   assert.equal(await evaluate(`document.querySelector('.cms-primary').disabled`), true);
   assert.equal(await evaluate(`/手绘设备展示|资源占用/.test(document.querySelector('.cms-editor').textContent)`), false);
-  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.cms-tabs button')).map(b=>b.textContent.replace(/^0\\d/, ''))`), ['软件 / 教程', '排序', '站点文案', '数据 / 备份', '连接内容仓库']);
+  assert.equal(await evaluate(`document.body.innerText.includes('把好内容，写在纸上。')`), false);
+  assert.equal(await evaluate(`document.body.innerText.includes('紙上談兵 / 内容工作台')`), false);
+  assert.equal(await evaluate(`document.querySelector('.cms-title')?.textContent`), '内容工作台');
+  assert.ok(parseInt(await evaluate(`window.getComputedStyle(document.querySelector('.cms-title')).fontSize`), 10) >= 22);
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.cms-tabs button')).map(b=>b.textContent.replace(/^0\\d/, ''))`), ['教程', '排序', '文案', '备份', '仓库']);
   assert.equal(await evaluate(`document.querySelector('[aria-label="GitHub 仓库连接"]') === null`), true);
-  await evaluate(`Array.from(document.querySelectorAll('.cms-tabs button')).find(b=>b.textContent.includes('连接内容仓库')).click()`);
+  // Verify sticky tabs on desktop
+  await evaluate(`document.querySelector('.cms-shell').scrollTop = 300`);
+  assert.equal(await evaluate(`document.querySelector('.cms-tabs').getBoundingClientRect().top`), 0);
+  await writeFile(join(temporary,'cms-desktop-sticky.png'), Buffer.from((await send('Page.captureScreenshot',{format:'png'})).data,'base64'));
+  await evaluate(`document.querySelector('.cms-shell').scrollTop = 0`);
+  await evaluate(`Array.from(document.querySelectorAll('.cms-tabs button')).find(b=>b.textContent.includes('仓库')).click()`);
   await until(`!!document.querySelector('[aria-label="GitHub 仓库连接"]')`);
   await evaluate(`(() => { const input=document.querySelector('input[type="password"]'); Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(input,${JSON.stringify(token)}); input.dispatchEvent(new Event('input',{bubbles:true})); })()`);
   assert.equal(await evaluate(`document.body.textContent.includes('请到「连接内容仓库」选项卡完成连接')`), false);
@@ -74,10 +83,43 @@ try {
   assert.equal(await evaluate(`Math.abs(document.querySelector('.cms-tabs').getBoundingClientRect().left - document.querySelector('.cms-main').getBoundingClientRect().left) < 1`), true);
   await evaluate(`document.querySelector('.cms-tabs button').click()`);
   await until(`!!document.querySelector('textarea[aria-label="名称"]')`);
+  // Verify floating step TOC has no animations on items and clicking title causes no animation/movement
+  assert.equal(await evaluate(`window.getComputedStyle(document.querySelector('.cms-step-toc-item')).transition.startsWith('none') || window.getComputedStyle(document.querySelector('.cms-step-toc-item')).transition === ''`), true);
+  assert.equal(await evaluate(`window.getComputedStyle(document.querySelector('.cms-step-toc-item')).transform`), 'none');
+  const tocInitialScroll = await evaluate(`document.querySelector('.cms-step-toc-list').scrollTop`);
+  await evaluate(`document.querySelector('.cms-step-toc-item[data-step="2"]').click()`);
+  assert.equal(await evaluate(`document.querySelector('.cms-step-toc-item[data-step="2"]').classList.contains('is-active')`), true);
+  assert.equal(await evaluate(`document.querySelector('.cms-step-toc-list').scrollTop`), tocInitialScroll);
+  // Verify desktop alignment: sidebar width matches Tab 0 ("教程"), editor matches Tabs 1-4, gaps match
+  const alignment = await evaluate(`(() => {
+    const tabs = Array.from(document.querySelectorAll('.cms-tabs button')).map(b => b.getBoundingClientRect());
+    const sidebar = document.querySelector('.cms-sidebar').getBoundingClientRect();
+    const editor = document.querySelector('.cms-editor').getBoundingClientRect();
+    return {
+      sidebarLeftDiff: Math.abs(sidebar.left - tabs[0].left),
+      sidebarRightDiff: Math.abs(sidebar.right - tabs[0].right),
+      sidebarWidthDiff: Math.abs(sidebar.width - tabs[0].width),
+      editorLeftDiff: Math.abs(editor.left - tabs[1].left),
+      editorRightDiff: Math.abs(editor.right - tabs[4].right),
+      gapDiff: Math.abs((editor.left - sidebar.right) - (tabs[1].left - tabs[0].right))
+    };
+  })()`);
+  assert.ok(alignment.sidebarLeftDiff < 1, 'Sidebar left should match Tab 0 left');
+  assert.ok(alignment.sidebarRightDiff < 1, 'Sidebar right should match Tab 0 right');
+  assert.ok(alignment.sidebarWidthDiff < 1, 'Sidebar width should match Tab 0 width');
+  assert.ok(alignment.editorLeftDiff < 1, 'Editor left should match Tab 1 left');
+  assert.ok(alignment.editorRightDiff < 1, 'Editor right should match Tab 4 right');
+  assert.ok(alignment.gapDiff < 1, 'Sidebar-editor gap should match Tab 0-1 gap');
+
+  // Verify "回到顶部" scrolls webpage to the very top (scrollTop 0)
+  await evaluate(`document.querySelector('.cms-shell').scrollTop = 400`);
+  assert.ok((await evaluate(`document.querySelector('.cms-shell').scrollTop`)) > 100);
+  await evaluate(`Array.from(document.querySelectorAll('.cms-step-toc-footer button')).find(b => b.textContent.includes('回到顶部')).click()`);
+  await until(`document.querySelector('.cms-shell').scrollTop === 0`);
   const setName = name => evaluate(`(() => { const el=document.querySelector('textarea[aria-label="名称"]'); Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set.call(el,${JSON.stringify(name)}); el.dispatchEvent(new Event('input',{bubbles:true})); })()`);
   await setName('GitHub 中文提交验证');
   await until(`document.querySelector('.cms-status').textContent.includes('有未提交')`);
-  await evaluate(`Array.from(document.querySelectorAll('.cms-tabs button')).find(b=>b.textContent.includes('连接内容仓库')).click()`);
+  await evaluate(`Array.from(document.querySelectorAll('.cms-tabs button')).find(b=>b.textContent.includes('仓库')).click()`);
   await evaluate(`document.querySelector('.cms-test-connection').click()`);
   await until(`document.querySelector('.cms-notice')?.textContent.includes('测试通过')`);
   assert.equal(writes, 0);
@@ -134,6 +176,25 @@ try {
   await until(`location.pathname === '/dtms' && !!document.querySelector('.cms-shell')`);
   await send('Emulation.setDeviceMetricsOverride', {width:390,height:844,deviceScaleFactor:1,mobile:true});
   assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'),true);
+  const mobileButtons = await evaluate(`(() => {
+    const tr = document.querySelector('.cms-topbar').getBoundingClientRect();
+    const topbar = { left: tr.left, width: tr.width, right: tr.right };
+    const btns = Array.from(document.querySelectorAll('.cms-publish .cms-button-row button')).map(b => {
+      const r = b.getBoundingClientRect();
+      return { text: b.textContent.trim(), left: r.left, right: r.right, top: r.top, bottom: r.bottom };
+    });
+    return { topbar, btns };
+  })()`);
+  assert.equal(mobileButtons.btns.length, 3);
+  // Vertically stacked
+  assert.ok(mobileButtons.btns[0].bottom <= mobileButtons.btns[1].top + 2, 'Mobile button 1 should be above button 2');
+  assert.ok(mobileButtons.btns[1].bottom <= mobileButtons.btns[2].top + 2, 'Mobile button 2 should be above button 3');
+  // Right side of topbar
+  assert.ok(mobileButtons.btns[0].left > mobileButtons.topbar.left + (mobileButtons.topbar.width / 2) - 30, 'Buttons should be on right side');
+  // Mobile sticky tabs
+  await evaluate(`document.querySelector('.cms-shell').scrollTop = 200`);
+  assert.equal(await evaluate(`document.querySelector('.cms-tabs').getBoundingClientRect().top`), 0);
+  await evaluate(`document.querySelector('.cms-shell').scrollTop = 0`);
   await writeFile(join(temporary,'cms-mobile.png'), Buffer.from((await send('Page.captureScreenshot',{format:'png'})).data,'base64'));
   if(interceptionError) throw interceptionError;
   console.log('PASS: static /dtms, GitHub load/UTF-8 commit/SHA conflict, token privacy, commit vs deployment, persistent local apply/reapply/exit, trusted 5-click gesture, mobile width');
