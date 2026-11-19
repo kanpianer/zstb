@@ -395,7 +395,7 @@
       "tagline": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动",
       "description": "Clash Verge Rev 是基于 Tauri 的 Mihomo 桌面客户端，延续 Clash Verge 项目；官方仓库仍有发布活动。",
       "iconName": "Laptop",
-      "badgeText": "Mihomo 桌面客户端",
+      "badgeText": "Mihomo 客户端",
       "updatedAt": "2026-11-13",
       "isOpenSource": true,
       "license": "GPL-3.0（详见项目许可证）",
