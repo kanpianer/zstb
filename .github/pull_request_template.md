@@ -3,7 +3,7 @@
 ### 1. 变更范围
 - **目标软件**: <!-- 填写软件名称，如 Shadowrocket -->
 - **所属系统象限**: <!-- 苹果系统 (iOS/macOS) / 安卓系统 / Windows / Linux -->
-- **独立更新路径**: `data/tutorials/<!-- 路径 -->.md`
+- **独立更新路径**: `src/data/tutorials/<!-- 系统 -->/<!-- 工具 -->.ts`
 
 ---
 

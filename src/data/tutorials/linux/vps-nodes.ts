@@ -15,7 +15,7 @@ export const vpsNodes: SoftwareTool = {
   license: '各项目许可证见源码仓库',
   releasedAt: '未核实',
   latestVersion: '以脚本仓库为准',
-  updatePath: 'data/tutorials/linux/vps-nodes.md',
+  updatePath: 'src/data/tutorials/linux/vps-nodes.ts',
   officialSite: 'https://bxdt.sld.tw',
   officialSiteLabel: '不想搭梯 Web SSH',
   officialSiteIcon: '/bxdt-icon.png',

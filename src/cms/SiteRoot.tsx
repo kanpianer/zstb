@@ -4,6 +4,7 @@ const CmsView = lazy(() => import('../components/CmsView'));
 import { createDefaultContent, fetchContent, setActiveContent, SiteContent } from './content';
 import { createBlankClickGesture } from './gesture';
 import { clearLocalPreview, loadLocalPreview, saveLocalPreview } from './preview';
+import { isLocalServer } from './env';
 
 export function SiteRoot() {
   const [cms, setCms] = useState(() => /^\/dtms\/?$/.test(location.pathname));
@@ -19,10 +20,12 @@ export function SiteRoot() {
       let next = createDefaultContent();
       try { next = await fetchContent(); }
       catch (err) { if (!cancelled) setError(err instanceof Error ? err.message : '内容加载失败'); }
-      try {
-        const local = loadLocalPreview(localStorage);
-        if (local) { next = local; if (!cancelled) setPreview(true); }
-      } catch { if (!cancelled) setPreviewError('本地预览无法读取，已使用已部署内容。可进入 CMS 重新应用，或退出本地预览。'); }
+      if (!isLocalServer()) {
+        try {
+          const local = loadLocalPreview(localStorage);
+          if (local) { next = local; if (!cancelled) setPreview(true); }
+        } catch { if (!cancelled) setPreviewError('本地预览无法读取，已使用已部署内容。可进入 CMS 重新应用，或退出本地预览。'); }
+      }
       if (!cancelled) { setActiveContent(next); setContent(next); setLoaded(true); }
     }
     void load();
@@ -41,18 +44,30 @@ export function SiteRoot() {
   useEffect(() => { document.title = cms ? `DTMS · ${content.settings.siteName}` : `${content.settings.siteName} · ${content.settings.siteSubtitle}`; }, [cms, content]);
   const exit = () => { history.pushState({}, '', '/'); setCms(false); };
   if (!loaded) return <div className="h-full flex items-center justify-center" role="status">正在加载站点内容…</div>;
-  const apply = (next: SiteContent) => {
-    const snapshot = saveLocalPreview(localStorage, next);
-    setActiveContent(snapshot); setContent(snapshot); setPreview(true); setPreviewError('');
-    setRevision(previous => previous + 1);
-    // In the local dev server, also write the content directly to the source file so
-    // changes are immediately visible in the codebase without a manual export step.
-    if (import.meta.env.DEV) {
-      fetch('/api/cms/write-content', {
+  const apply = async (next: SiteContent) => {
+    if (isLocalServer()) {
+      const res = await fetch('/api/cms/write-content', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(snapshot),
-      }).catch(() => { /* Non-critical: file write failure does not block the preview. */ });
+        body: JSON.stringify(next),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || '写入本地代码库失败');
+      }
+      setActiveContent(next);
+      setContent(next);
+      setPreview(false);
+      setPreviewError('');
+      setRevision(previous => previous + 1);
+      clearLocalPreview(localStorage);
+    } else {
+      const snapshot = saveLocalPreview(localStorage, next);
+      setActiveContent(snapshot);
+      setContent(snapshot);
+      setPreview(true);
+      setPreviewError('');
+      setRevision(previous => previous + 1);
     }
   };
   const stopPreview = () => {
@@ -60,7 +75,7 @@ export function SiteRoot() {
     catch { setPreviewError('无法清除本地预览，请检查浏览器存储权限后重试。'); }
   };
   // A GitHub commit alone never applies content; local previews require an explicit action.
-  if (cms) return <Suspense fallback={<div className="h-full flex items-center justify-center" role="status">正在加载内容工作台…</div>}><CmsView initialContent={content} loadError={error} onExit={exit} onApply={apply} localPreview={preview} /></Suspense>;
+  if (cms) return <Suspense fallback={<div className="h-full flex items-center justify-center" role="status">正在加载内容工作台…</div>}><CmsView initialContent={content} loadError={error} onExit={exit} onApply={apply} localPreview={preview} isLocalServer={isLocalServer()} /></Suspense>;
   return <div className="site-root-layout">
     {(preview || previewError) && <aside className="local-preview-banner" aria-label="本地预览"><span role="status">{previewError || '本地预览中 · 仅此浏览器可见，尚未发布到线上'}</span><button type="button" onClick={() => { history.pushState({}, '', '/dtms'); setCms(true); }}>继续编辑</button><button type="button" onClick={stopPreview}>退出本地预览</button></aside>}
     <div className="site-root-content"><App key={revision} /></div>

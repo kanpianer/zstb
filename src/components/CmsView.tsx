@@ -11,8 +11,9 @@ export interface CmsViewProps {
   initialContent: SiteContent;
   loadError?: string;
   onExit: () => void;
-  onApply: (content: SiteContent) => void;
+  onApply: (content: SiteContent) => void | Promise<void>;
   localPreview?: boolean;
+  isLocalServer?: boolean;
 }
 const SYSTEMS = ['ios', 'macos', 'android', 'windows', 'linux'] as const;
 const SYSTEM_NAMES: Record<string, string> = { ios: 'iOS', macos: 'macOS', android: '安卓', windows: 'Windows', linux: 'Linux', apple: '苹果' };
@@ -74,7 +75,7 @@ function Field({ name, value, baseline, template, onChange, lockIdentity = false
   return <div className="cms-field"><div className="cms-field-heading"><label htmlFor={undefined}>{label}</label>{reset}</div>{typeof value === 'boolean' ? <label className="cms-checkbox"><input type="checkbox" checked={value} onChange={event => onChange(event.target.checked)} />{value ? '是 / 已启用' : '否 / 未启用'} · {label}</label> : typeof value === 'number' ? <input aria-label={label} type="number" step="any" value={value} onChange={event => { if (Number.isFinite(event.target.valueAsNumber)) onChange(event.target.valueAsNumber); }} /> : <textarea aria-label={label} rows={['description', 'overview', 'codeSnippet', 'answer', 'note'].includes(name) ? 4 : 2} value={String(value ?? '')} spellCheck={false} onChange={event => onChange(event.target.value)} />}</div>;
 }
 
-export default function CmsView({ initialContent, loadError, onExit, onApply, localPreview = false }: CmsViewProps) {
+export default function CmsView({ initialContent, loadError, onExit, onApply, localPreview = false, isLocalServer = false }: CmsViewProps) {
   const [applied, setApplied] = useState(() => clone(initialContent));
   const [hasPreview, setHasPreview] = useState(localPreview);
   const [content, setContent] = useState(() => clone(initialContent));
@@ -90,7 +91,7 @@ export default function CmsView({ initialContent, loadError, onExit, onApply, lo
   const [system, setSystem] = useState('all');
   const [token, setToken] = useState('');
   const [busy, setBusy] = useState(false);
-  const [autoLoading, setAutoLoading] = useState(true);
+  const [autoLoading, setAutoLoading] = useState(() => !isLocalServer);
   const [reloadKey, setReloadKey] = useState(0);
   const dirtyRef = useRef(false);
   const confirmedReload = useRef<number | null>(null);
@@ -104,6 +105,13 @@ export default function CmsView({ initialContent, loadError, onExit, onApply, lo
   const credentialRef = useRef(token);
   credentialRef.current = token;
   useEffect(() => {
+    // On local server, do not auto-load from remote GitHub on initial mount.
+    // Local server loads local repository resources and edits modify local files.
+    // Remote GitHub content is only auto-loaded on online servers (opened via domain).
+    if (isLocalServer && confirmedReload.current === null) {
+      setAutoLoading(false);
+      return;
+    }
     let cancelled = false;
     setAutoLoading(true); setConnection(''); setError('');
     const timer = window.setTimeout(() => {
@@ -122,7 +130,7 @@ export default function CmsView({ initialContent, loadError, onExit, onApply, lo
       .finally(() => { if (!cancelled) { confirmedReload.current = null; setAutoLoading(false); } });
     }, 300);
     return () => { cancelled = true; window.clearTimeout(timer); };
-  }, [repo.owner, repo.repo, repo.branch, repo.path, reloadKey]);
+  }, [repo.owner, repo.repo, repo.branch, repo.path, reloadKey, isLocalServer]);
   useEffect(() => {
     if (!dirty) return;
     const beforeUnload = (event: BeforeUnloadEvent) => { event.preventDefault(); event.returnValue = ''; };
@@ -187,11 +195,35 @@ export default function CmsView({ initialContent, loadError, onExit, onApply, lo
       return <li key={id}><span><small>{String(index + 1).padStart(2, '0')}</small>{names?.[id] ?? tool?.shortName ?? id}{tool?.hidden && <span className="cms-hidden-badge">已隐藏</span>}</span><div><button type="button" className="cms-text-btn" disabled={index === 0} onClick={() => { const next = [...ids]; [next[index - 1], next[index]] = [next[index], next[index - 1]]; update(next); }} aria-label={`${id}上移`}>↑ 上移</button><button type="button" className="cms-text-btn" disabled={index === ids.length - 1} onClick={() => { const next = [...ids]; [next[index + 1], next[index]] = [next[index], next[index + 1]]; update(next); }} aria-label={`${id}下移`}>↓ 下移</button></div></li>;
     })}</ol>;
   }
-  return <div className="cms-shell"><header className="cms-topbar a4-sheet"><div><p className="cms-eyebrow">紙上談兵 / 内容工作台</p><h1>把好内容，写在纸上。</h1><p className={`cms-status ${dirty ? 'is-dirty' : ''}`} role="status">{dirty ? '● 有未提交的修改' : '✓ 没有未提交的修改'} <span>GitHub SHA：{currentRevision ? currentRevision.slice(0, 12) : '尚未载入'}</span></p></div><div className="cms-publish"><div className="cms-button-row"><button type="button" className="pencil-btn cms-apply" disabled={busy || autoLoading} onClick={() => guard(() => { const snapshot = parseContent(content); onApply(snapshot); setApplied(clone(snapshot)); setHasPreview(true); setMessage('已应用到此浏览器的本地预览。点击「返回主站」或「查看本地预览」查看；刷新后仍保留，不会提交到 GitHub 或发布到线上。'); })}>应用</button><button type="button" className="pencil-btn cms-primary" disabled={busy || autoLoading || !connected || !dirty} onClick={() => void publish()}>{autoLoading ? '正在载入仓库…' : testing ? '正在测试…' : busy ? '请求处理中…' : '提交到 GitHub'}</button><button type="button" className="pencil-btn-secondary" disabled={busy || autoLoading} onClick={() => { if (!dirty || (hasPreview && same(content, applied)) || window.confirm('有尚未应用到本地预览的修改，确定离开工作台？')) onExit(); }}>返回主站 ↗</button></div>{connected && <small>{`已连接 ${repo.owner}/${repo.repo} · ${repo.branch}`}</small>}</div></header>
+  async function handleApply() {
+    setError(''); setMessage('');
+    try {
+      const snapshot = parseContent(content);
+      if (isLocalServer) {
+        setBusy(true);
+        try {
+          await onApply(snapshot);
+          setSaved(clone(snapshot));
+          setApplied(clone(snapshot));
+          setMessage('已直接保存并应用到本地代码库 (public/content/site-content.json)。');
+        } finally {
+          setBusy(false);
+        }
+      } else {
+        await onApply(snapshot);
+        setApplied(clone(snapshot));
+        setHasPreview(true);
+        setMessage('已应用到此浏览器的本地预览。点击「返回主站」或「查看本地预览」查看；刷新后仍保留，不会提交到 GitHub 或发布到线上。');
+      }
+    } catch (err) {
+      setError(errorText(err));
+    }
+  }
+  return <div className="cms-shell"><header className="cms-topbar a4-sheet"><div><p className="cms-eyebrow">紙上談兵 / 内容工作台</p><h1>把好内容，写在纸上。</h1><p className={`cms-status ${dirty ? 'is-dirty' : ''}`} role="status">{dirty ? (isLocalServer ? '● 有未保存的本地修改' : '● 有未提交的修改') : (isLocalServer ? '✓ 本地内容已是最新' : '✓ 没有未提交的修改')} <span>{isLocalServer ? (currentRevision ? `GitHub SHA：${currentRevision.slice(0, 12)}` : '模式：本地代码库（直接读写文件）') : `GitHub SHA：${currentRevision ? currentRevision.slice(0, 12) : '尚未载入'}`}</span></p></div><div className="cms-publish"><div className="cms-button-row"><button type="button" className="pencil-btn cms-apply" disabled={busy || autoLoading} onClick={() => void handleApply()}>应用</button><button type="button" className="pencil-btn cms-primary" disabled={busy || autoLoading || !connected || !dirty} onClick={() => void publish()}>{autoLoading ? '正在载入仓库…' : testing ? '正在测试…' : busy ? '请求处理中…' : '提交到 GitHub'}</button><button type="button" className="pencil-btn-secondary" disabled={busy || autoLoading} onClick={() => { if (isLocalServer) { if (!dirty || window.confirm('有尚未保存到本地代码库的修改，确定离开工作台？')) onExit(); } else { if (!dirty || (hasPreview && same(content, applied)) || window.confirm('有尚未应用到本地预览的修改，确定离开工作台？')) onExit(); } }}>返回主站 ↗</button></div>{connected && <small>{`已连接 ${repo.owner}/${repo.repo} · ${repo.branch}`}</small>}</div></header>
     {error && <div className="cms-notice cms-error" role="alert">操作未完成：{error}</div>}{message && <div className="cms-notice" role="status">{message}</div>}
     <nav className="cms-tabs" aria-label="内容管理导航">{([['tools', '软件 / 教程'], ['order', '排序'], ['site', '站点文案'], ['data', '数据 / 备份'], ['github', '连接内容仓库']] as const).map(([id, label], i) => <button type="button" key={id} aria-current={tab === id ? 'page' : undefined} onClick={() => setTab(id)}><span>0{i + 1}</span>{label}</button>)}</nav>
     <main className="cms-main"><fieldset disabled={busy || (autoLoading && tab !== 'github')} className="cms-workspace">
-      {tab === 'tools' && <div className="cms-tool-layout"><aside className="cms-sidebar a4-sheet"><h2>软件笔记簿 <small>{content.tools.length} 款</small></h2><label className="cms-field">搜索软件<input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="名称、简介或 ID…" /></label><label className="cms-field">筛选系统<select value={system} onChange={event => setSystem(event.target.value)}><option value="all">全部系统</option>{SYSTEMS.map(id => <option key={id} value={id}>{SYSTEM_NAMES[id]}</option>)}</select></label><div className="cms-tool-list">{filtered.map(tool => <button type="button" key={tool.id} className={`${selectedId === tool.id ? 'is-selected' : ''} ${tool.hidden ? 'is-hidden-tool' : ''}`} onClick={() => setSelectedId(tool.id)} aria-pressed={selectedId === tool.id}><div className="cms-tool-item-title"><strong>{tool.shortName}</strong>{tool.hidden && <span className="cms-hidden-badge">已隐藏</span>}</div><small>{SYSTEM_NAMES[tool.system]} · {tool.id}</small></button>)}{filtered.length === 0 && <p className="cms-muted">没有找到匹配的软件。</p>}</div></aside><section className="cms-editor a4-sheet">{selected ? <><div className="cms-section-heading"><div><p className="cms-eyebrow">软件与教程 · 完整字段编辑</p><h2>{selected.name}{selected.hidden && <span className="cms-hidden-badge" style={{ marginLeft: '10px', verticalAlign: 'middle' }}>已隐藏</span>}</h2></div><a className="pencil-btn-secondary" href={`/?tool=${encodeURIComponent(selected.id)}`} target="_blank" rel="noopener noreferrer">{hasPreview ? '查看本地预览 ↗' : '查看已发布页面 ↗'}</a></div><div className="cms-hide-control"><label className="cms-checkbox"><input type="checkbox" checked={Boolean(selected.hidden)} onChange={event => { const isHidden = event.target.checked; setContent(previous => ({ ...previous, tools: previous.tools.map(tool => tool.id === selected.id ? { ...tool, hidden: isHidden } : tool) })); }} /><strong>隐藏此软件</strong><small>（开启后在主站首页四象限与卡片列表中隐藏；直达链接仍可查看教程）</small></label></div><p className="cms-muted">{hasPreview ? (same(content, applied) ? '当前编辑已应用到此浏览器的本地预览，尚未发布到线上。' : '有尚未应用的新修改，请再次点击「应用」更新本地预览。') : '点击「应用」后可在此浏览器预览修改，无需提交或部署。'} 关联字段不可修改；每个字段可重置到最近保存版本。数组支持添加、删除和排序。</p><Field name="软件资料" value={asJson(selected)} baseline={asJson(saved.tools.find(tool => tool.id === selected.id))} template={toolTemplate} lockIdentity onChange={next => setContent(previous => ({ ...previous, tools: previous.tools.map(tool => tool.id === selected.id ? next as unknown as typeof tool : tool) }))} /></> : <p>请从左侧选择一款软件。</p>}</section></div>}
+      {tab === 'tools' && <div className="cms-tool-layout"><aside className="cms-sidebar a4-sheet"><h2>软件笔记簿 <small>{content.tools.length} 款</small></h2><label className="cms-field">搜索软件<input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="名称、简介或 ID…" /></label><label className="cms-field">筛选系统<select value={system} onChange={event => setSystem(event.target.value)}><option value="all">全部系统</option>{SYSTEMS.map(id => <option key={id} value={id}>{SYSTEM_NAMES[id]}</option>)}</select></label><div className="cms-tool-list">{filtered.map(tool => <button type="button" key={tool.id} className={`${selectedId === tool.id ? 'is-selected' : ''} ${tool.hidden ? 'is-hidden-tool' : ''}`} onClick={() => setSelectedId(tool.id)} aria-pressed={selectedId === tool.id}><div className="cms-tool-item-title"><strong>{tool.shortName}</strong>{tool.hidden && <span className="cms-hidden-badge">已隐藏</span>}</div><small>{SYSTEM_NAMES[tool.system]} · {tool.id}</small></button>)}{filtered.length === 0 && <p className="cms-muted">没有找到匹配的软件。</p>}</div></aside><section className="cms-editor a4-sheet">{selected ? <><div className="cms-section-heading"><div><p className="cms-eyebrow">软件与教程 · 完整字段编辑</p><h2>{selected.name}{selected.hidden && <span className="cms-hidden-badge" style={{ marginLeft: '10px', verticalAlign: 'middle' }}>已隐藏</span>}</h2></div><a className="pencil-btn-secondary" href={`/?tool=${encodeURIComponent(selected.id)}`} target="_blank" rel="noopener noreferrer">{isLocalServer ? '查看页面 ↗' : hasPreview ? '查看本地预览 ↗' : '查看已发布页面 ↗'}</a></div><div className="cms-hide-control"><label className="cms-checkbox"><input type="checkbox" checked={Boolean(selected.hidden)} onChange={event => { const isHidden = event.target.checked; setContent(previous => ({ ...previous, tools: previous.tools.map(tool => tool.id === selected.id ? { ...tool, hidden: isHidden } : tool) })); }} /><strong>隐藏此软件</strong><small>（开启后在主站首页四象限与卡片列表中隐藏；直达链接仍可查看教程）</small></label></div><p className="cms-muted">{isLocalServer ? (dirty ? '检测到本地修改尚未保存到代码库，点击「应用」直接写入本地文件。' : '当前内容已保存至本地代码库文件。') : (hasPreview ? (same(content, applied) ? '当前编辑已应用到此浏览器的本地预览，尚未发布到线上。' : '有尚未应用的新修改，请再次点击「应用」更新本地预览。') : '点击「应用」后可在此浏览器预览修改，无需提交或部署。')} 关联字段不可修改；每个字段可重置到最近保存版本。数组支持添加、删除和排序。</p><Field name="软件资料" value={asJson(selected)} baseline={asJson(saved.tools.find(tool => tool.id === selected.id))} template={toolTemplate} lockIdentity onChange={next => setContent(previous => ({ ...previous, tools: previous.tools.map(tool => tool.id === selected.id ? next as unknown as typeof tool : tool) }))} /></> : <p>请从左侧选择一款软件。</p>}</section></div>}
       {tab === 'order' && <section className="cms-editor a4-sheet"><p className="cms-eyebrow">独立排序，互不影响</p><h2>安排阅读顺序</h2><p className="cms-muted">卡片顺序决定系统列表；首页按钮顺序单独维护。调整后请提交到 GitHub。</p><div className="cms-order-grid">{SYSTEMS.map(id => <section className="cms-order-section" key={id}><h3>{SYSTEM_NAMES[id]}</h3><h4>系统列表 · 软件卡片</h4>{orderList(content.cardOrder[id], ids => setContent(previous => ({ ...previous, cardOrder: { ...previous.cardOrder, [id]: ids } })))}<h4>首页 · 软件按钮</h4>{orderList(content.homeOrder[id], ids => setContent(previous => ({ ...previous, homeOrder: { ...previous.homeOrder, [id]: ids } })))}</section>)}<section className="cms-order-section"><h3>苹果象限 · 系统先后</h3>{orderList(content.appleOrder, ids => setContent(previous => ({ ...previous, appleOrder: ids as SiteContent['appleOrder'] })), SYSTEM_NAMES)}</section></div></section>}
       {tab === 'site' && <section className="cms-editor a4-sheet"><p className="cms-eyebrow">每一个字，都值得打磨</p><h2>站点与象限文案</h2><Field name="全站设置" value={asJson(content.settings)} baseline={asJson(saved.settings)} onChange={next => setContent(previous => ({ ...previous, settings: next as unknown as SiteContent['settings'] }))} />{(['apple', 'android', 'windows', 'linux'] as const).map(id => <Field key={id} name={`${SYSTEM_NAMES[id]}象限`} value={asJson(content.quadrants[id])} baseline={asJson(saved.quadrants[id])} template={{ badge: '' }} lockIdentity onChange={next => setContent(previous => ({ ...previous, quadrants: { ...previous.quadrants, [id]: next as unknown as SiteContent['quadrants'][typeof id] } }))} />)}</section>}
       {tab === 'data' && <section className="cms-editor a4-sheet"><p className="cms-eyebrow">先留一份底稿，再安心修改</p><h2>数据与本地备份</h2><div className="cms-backup-panel"><h3>本地草稿</h3><p>仅在此浏览器手动保存，不会自动发布，也不会保存管理令牌。清理浏览器数据可能丢失草稿，请另行下载备份。</p><div className="cms-button-row"><button type="button" className="pencil-btn-secondary" onClick={saveDraft}>保存本地草稿</button><button type="button" className="pencil-btn-secondary" onClick={restoreDraft}>恢复本地草稿</button></div>{draftTime && <p className="cms-muted">草稿时间：{new Date(draftTime).toLocaleString('zh-CN')}</p>}</div><div className="cms-button-row"><button type="button" className="pencil-btn" onClick={download}>↓ 下载 JSON 备份</button><button type="button" className="pencil-btn-secondary" onClick={() => setJson(JSON.stringify(content, null, 2))}>生成当前 JSON</button><button type="button" className="pencil-btn-secondary" onClick={() => importInput.current?.click()}>从文件导入</button><input ref={importInput} hidden type="file" accept=".json,application/json" onChange={event => { const file = event.target.files?.[0]; event.target.value = ''; if (file) void file.text().then(text => guard(() => applyImport(text))).catch(err => setError(errorText(err))); }} /></div><label className="cms-field cms-json-label">JSON 数据<textarea className="cms-json" value={json} onChange={event => setJson(event.target.value)} spellCheck={false} rows={18} placeholder="粘贴完整 SiteContent JSON，或点击「生成当前 JSON」。" /></label><p className="cms-muted">导入和恢复均经过完整数据校验。导入只替换编辑内容，不会立即发布，也不会改动当前仓库文件 SHA。</p><button type="button" className="pencil-btn" onClick={() => guard(() => applyImport(json))}>校验并导入 JSON</button></section>}
@@ -206,7 +238,7 @@ export default function CmsView({ initialContent, loadError, onExit, onApply, lo
        </div>
       <div className="cms-repo-grid">{([['owner', '仓库所有者'], ['repo', '仓库名称'], ['branch', '分支']] as const).map(([key, label]) => <label className="cms-field" key={key}>{label}<input aria-label={label} value={repo[key]} disabled={busy} onChange={event => { confirmedReload.current = null; setRepo(previous => ({ ...previous, [key]: event.target.value })); setCommitUrl(''); }} /></label>)}<label className="cms-field">内容文件路径<input readOnly value={repo.path} /></label></div>
       <label className="cms-field">提交说明<input aria-label="提交说明" value={commitMessage} disabled={busy || autoLoading} onChange={event => setCommitMessage(event.target.value)} /></label>
-      <div className="cms-button-row"><button type="button" className="pencil-btn-secondary cms-connect" disabled={busy || autoLoading} onClick={() => void connect()}>{autoLoading ? '自动载入中…' : '重新载入仓库'}</button><span role="status">{connected ? `已连接 ${repo.owner}/${repo.repo} · ${repo.branch}` : autoLoading ? '正在自动载入仓库最新内容…' : '仓库尚未载入，请检查配置后重试。'}</span><button type="button" className="cms-text-btn" disabled={busy || autoLoading} onClick={() => { setToken(''); }}>清除令牌</button></div>
+      <div className="cms-button-row"><button type="button" className="pencil-btn-secondary cms-connect" disabled={busy || autoLoading} onClick={() => void connect()}>{autoLoading ? '自动载入中…' : isLocalServer && !connected ? '载入 GitHub 仓库' : '重新载入仓库'}</button><span role="status">{connected ? `已连接 ${repo.owner}/${repo.repo} · ${repo.branch}` : autoLoading ? '正在自动载入仓库最新内容…' : isLocalServer ? '当前处于本地开发模式（直接读写本地文件，未连接 GitHub）' : '仓库尚未载入，请检查配置后重试。'}</span><button type="button" className="cms-text-btn" disabled={busy || autoLoading} onClick={() => { setToken(''); }}>清除令牌</button></div>
       <p className="cms-muted">仅授权目标仓库的 Contents 读写权限。提交会触发已绑定该分支的静态部署；若使用受保护分支，请使用允许直推的内容分支并在 GitHub 合并。仓库与分支配置仅保存在当前页面。</p>
       {commitUrl && <p><a className="cms-commit-link" href={commitUrl} target="_blank" rel="noopener noreferrer">查看 GitHub 提交 ↗</a> · <a href={`https://github.com/${encodeURIComponent(repo.owner)}/${encodeURIComponent(repo.repo)}/actions`} target="_blank" rel="noopener noreferrer">查看构建 / 部署状态 ↗</a></p>}
       {loadError && <p role="alert">站点静态资源提示：{loadError}。仍可连接 GitHub 读取仓库内容。</p>}

@@ -50,7 +50,7 @@ export interface SoftwareTool {
   price?: string; // 软件价格 (含货币单位、数值与买断说明，如 "约 $2.99 买断")
   releasedAt: string; // 工具最初发布时间
   latestVersion: string; // 当前最新版本号
-  updatePath: string; // 独立更新路径，例如 "data/tutorials/ios/shadowrocket.md"
+  updatePath: string; // 独立更新路径，例如 "src/data/tutorials/ios/shadowrocket.ts"
   
   // Links
   officialSite?: string;

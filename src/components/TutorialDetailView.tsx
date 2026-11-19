@@ -4,10 +4,8 @@ import { PencilSoftwareLogo } from './PencilSoftwareLogos';
 import { TutorialImagePreview } from './TutorialImagePreview';
 import { handleJiakuanNavigation } from '../utils/jiakuanNavigation';
 import { 
-  ArrowLeft, 
   GitPullRequest, 
   Calendar, 
-  Code, 
   CheckCircle2, 
   Copy, 
   Check, 
@@ -15,11 +13,8 @@ import {
   AlertCircle, 
   ShieldCheck, 
   Sparkles, 
-  Terminal, 
-  Info,
-  History,
-  HelpCircle,
-  Share2
+  History, 
+  HelpCircle 
 } from 'lucide-react';
 
 interface TutorialDetailViewProps {

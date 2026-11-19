@@ -34,7 +34,7 @@ body:
     attributes:
       label: 独立更新路径 (Update Path)
       description: 该软件对应的独立更新路径
-      placeholder: "如: data/tutorials/ios/shadowrocket.md"
+      placeholder: "如: src/data/tutorials/ios/shadowrocket.ts"
     validations:
       required: true
   - type: input
