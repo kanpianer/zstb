@@ -25,6 +25,7 @@ const step: Schema = { stepNumber: 'number', title: 'string', description: 'stri
 const action: Schema = { 'prefixText?': 'string', url: 'string', name: 'string', 'iconSrc?': 'string', 'suffixText?': 'string', 'title?': 'string' };
 const toolSchema: Schema = {
   id: 'string', name: 'string', shortName: 'string', system: 'string', category: 'string', tagline: 'string', description: 'string', iconName: 'string', badgeText: 'string',
+  'hidden?': 'boolean',
   updatedAt: 'string', isOpenSource: 'boolean', license: 'string', 'price?': 'string', releasedAt: 'string', latestVersion: 'string', updatePath: 'string',
   'officialSite?': 'string', 'officialSiteLabel?': 'string', 'officialSiteIcon?': 'string', 'githubRepo?': 'string', 'appStoreUrl?': 'string', 'playStoreUrl?': 'string', 'homebrewUrl?': 'string', 'releasesUrl?': 'string',
   specs: { compatibility: 'string', architecture: 'string', coreEngine: 'string', protocols: ['string'], trafficHandling: 'string' },

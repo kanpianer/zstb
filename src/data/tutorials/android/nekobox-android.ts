@@ -10,6 +10,7 @@ export const nekoboxAndroid: SoftwareTool = {
   "description": "NekoBox 是 Android 代理客户端，支持多种节点订阅。项目目前较少维护，使用前请确认所需功能；它不是 sing-box 官方客户端。",
   "iconName": "Smartphone",
   "badgeText": "官方来源核查",
+  "hidden": true,
   "updatedAt": "2026-11-13",
   "isOpenSource": true,
   "license": "GPL-3.0-or-later",

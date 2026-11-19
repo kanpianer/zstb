@@ -41,6 +41,7 @@ export interface SoftwareTool {
   description: string;
   iconName: string; // icon identifier
   badgeText: string;
+  hidden?: boolean; // 是否在主站首页与列表中隐藏
   
   // Mandatory Standardized Metadata
   updatedAt: string; // 最近更新时间

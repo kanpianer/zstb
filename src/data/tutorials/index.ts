@@ -13,6 +13,7 @@ import { singBoxMac } from './macos/sing-box-mac';
 
 import { v2rayng } from './android/v2rayng';
 import { flclash } from './android/flclash';
+import { clashMetaAndroid } from './android/clash-meta-android';
 import { nekoboxAndroid } from './android/nekobox-android';
 import { singBoxAndroid } from './android/sing-box-android';
 
@@ -40,11 +41,12 @@ export const ALL_TOOLS: SoftwareTool[] = [
   clashPartyMac,
   singBoxMac,
   
-  // Android (4 tools)
+  // Android (收录 5 款，其中 4 款公开展示)
   v2rayng,
   flclash,
-  nekoboxAndroid,
+  clashMetaAndroid,
   singBoxAndroid,
+  nekoboxAndroid,
   
   // Windows (4 tools)
   v2rayn,
@@ -84,7 +86,7 @@ export const QUADRANTS_CONFIG: Record<SystemCategory, QuadrantMeta> = {
     id: 'android',
     name: '安卓系统',
     englishTitle: 'Android',
-    representativeTool: 'v2rayNG · FlClash · NekoBox',
+    representativeTool: 'v2rayNG · FlClash · Clash Meta',
     bgDescription: '',
     subTitle: '安卓系统翻墙工具及教程',
     toolCount: 4
@@ -111,16 +113,19 @@ export const QUADRANTS_CONFIG: Record<SystemCategory, QuadrantMeta> = {
 
 export function getQuadrants() { return getActiveContent()?.quadrants ?? QUADRANTS_CONFIG; }
 
-export function getToolsBySubSystem(subSystem: SubSystemCategory, placement: 'card' | 'home' = 'card'): SoftwareTool[] {
+export function getToolsBySubSystem(subSystem: SubSystemCategory, placement: 'card' | 'home' = 'card', includeHidden = false): SoftwareTool[] {
   const content = getActiveContent();
-  const tools = (content?.tools ?? ALL_TOOLS).filter(t => t.system === subSystem);
+  let tools = (content?.tools ?? ALL_TOOLS).filter(t => t.system === subSystem);
+  if (!includeHidden) {
+    tools = tools.filter(t => !t.hidden);
+  }
   const order = content?.[placement === 'home' ? 'homeOrder' : 'cardOrder'][subSystem];
   return order ? [...tools].sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id)) : tools;
 }
 
-export function getToolsByCategory(category: SystemCategory, placement: 'card' | 'home' = 'card'): SoftwareTool[] {
-  if (category === 'apple') return [...getToolsBySubSystem('ios', placement), ...getToolsBySubSystem('macos', placement)];
-  return getToolsBySubSystem(category, placement);
+export function getToolsByCategory(category: SystemCategory, placement: 'card' | 'home' = 'card', includeHidden = false): SoftwareTool[] {
+  if (category === 'apple') return [...getToolsBySubSystem('ios', placement, includeHidden), ...getToolsBySubSystem('macos', placement, includeHidden)];
+  return getToolsBySubSystem(category, placement, includeHidden);
 }
 
 export function getToolById(id: string): SoftwareTool | undefined {

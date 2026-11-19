@@ -7,9 +7,9 @@ const result = await build({ entryPoints: ['src/data/tutorials/index.ts'], bundl
 const { ALL_TOOLS } = await import(`data:text/javascript;base64,${Buffer.from(result.outputFiles[0].text).toString('base64')}`);
 const audited = ALL_TOOLS.filter(tool => tool.id !== 'vps-nodes');
 
-test('all 19 non-VPS tutorials retain stable IDs and traceable source paths', () => {
-  assert.equal(audited.length, 19);
-  assert.equal(new Set(ALL_TOOLS.map(tool => tool.id)).size, 20);
+test('all 20 non-VPS tutorials retain stable IDs and traceable source paths', () => {
+  assert.equal(audited.length, 20);
+  assert.equal(new Set(ALL_TOOLS.map(tool => tool.id)).size, 21);
   for (const tool of audited) {
     assert.equal(tool.updatedAt, '2026-11-13', tool.id);
     assert.equal(tool.updatePath, `src/data/tutorials/${tool.system}/${tool.id}.ts`, tool.id);

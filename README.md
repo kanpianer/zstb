@@ -26,7 +26,7 @@
 | :--- | :--- |
 | **iOS** | Shadowrocket、Clash、Sing-box、Karing |
 | **macOS** | Clash Verge Rev、Clash、Clash Party、Sing-box |
-| **Android** | v2rayNG、FlClash、NekoBox、Sing-box |
+| **Android** | v2rayNG、FlClash、Clash Meta、Sing-box |
 | **Windows** | v2rayN、Clash Verge Rev、Clash Party、Sing-box |
 | **Linux / 软路由** | Clash Verge Rev、v2rayA、OpenClash、自己搭建节点 |
 

@@ -57,7 +57,7 @@ try {
   await send('Page.navigate', {url: `${origin}/dtms`});
   await until(`document.querySelector('.cms-shell') !== null`);
   await until(`document.querySelector('.cms-status')?.textContent.includes('seed-sha')`);
-  assert.equal(await evaluate(`document.querySelectorAll('.cms-tool-list button').length`),20);
+  assert.equal(await evaluate(`document.querySelectorAll('.cms-tool-list button').length`),21);
   assert.equal(await evaluate(`document.querySelector('.cms-primary').disabled`), true);
   assert.equal(await evaluate(`/手绘设备展示|资源占用/.test(document.querySelector('.cms-editor').textContent)`), false);
   assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.cms-tabs button')).map(b=>b.textContent.replace(/^0\\d/, ''))`), ['软件 / 教程', '排序', '站点文案', '数据 / 备份', '连接内容仓库']);

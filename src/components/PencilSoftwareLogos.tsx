@@ -1100,6 +1100,142 @@ export const PencilFlClashLogo: React.FC<PencilSoftwareLogoProps> = ({
 };
 
 /**
+ * ClashMetaForAndroid (Android) 铅笔手绘 Logo
+ * 参考官方 MetaCubeX 立体立方体图标精准重绘：
+ * - 经典等轴测 3D 六边形立体魔方盒子外轮廓，保持与 Clash / sing-box 同款手绘素描质感
+ * - 中心对称 6 条骨架辐射线，精准连接中心与 6 个外顶点
+ * - 上、左下、右下三维立体分面，搭配铅笔素描阴影排线与手绘草图复线
+ * - 底部配有 Clash 同款基准手绘地面投影虚线
+ */
+export const PencilClashMetaLogo: React.FC<PencilSoftwareLogoProps> = ({
+  className = 'w-6 h-6',
+  size,
+  ...props
+}) => {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={{
+        width: size,
+        height: size,
+        filter: 'url(#pencil-stroke)',
+      }}
+      stroke="currentColor"
+      {...props}
+    >
+      {/* 底部手绘投影基准虚线 (与 Clash Logo 风格一致) */}
+      <line
+        x1="14"
+        y1="56"
+        x2="50"
+        y2="56"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        opacity="0.3"
+        strokeDasharray="4 3 10 3"
+      />
+
+      {/* MetaCubeX 经典等轴测六边形立体立方体外轮廓 */}
+      <path
+        d="M 32 10 
+           L 51 21 
+           L 51 43 
+           L 32 54 
+           L 13 43 
+           L 13 21 Z"
+        strokeWidth="2.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="currentColor"
+        fillOpacity="0.08"
+      />
+
+      {/* 六边形外轮廓手绘草图复线 (双线素描笔触) */}
+      <path
+        d="M 32 11.5 L 49.5 21.8 L 49.5 42.2 L 32 52.5 L 14.5 42.2 L 14.5 21.8 Z"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+        opacity="0.35"
+      />
+
+      {/* 核心垂直中轴线（自顶向下贯穿立方体中心） */}
+      <line
+        x1="32"
+        y1="10"
+        x2="32"
+        y2="54"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+      {/* 垂直中轴线草图伴线 */}
+      <line
+        x1="32.8"
+        y1="11"
+        x2="32.8"
+        y2="53"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+        opacity="0.3"
+      />
+
+      {/* 中心至四个斜角顶点的骨架辐射线 (构成 MetaCubeX 核心标识) */}
+      {/* 中心至左上顶点 */}
+      <line
+        x1="32"
+        y1="32"
+        x2="13"
+        y2="21"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+      />
+      {/* 中心至右上顶点 */}
+      <line
+        x1="32"
+        y1="32"
+        x2="51"
+        y2="21"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+      />
+      {/* 中心至左下顶点 */}
+      <line
+        x1="32"
+        y1="32"
+        x2="13"
+        y2="43"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+      />
+      {/* 中心至右下顶点 */}
+      <line
+        x1="32"
+        y1="32"
+        x2="51"
+        y2="43"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+      />
+
+      {/* 右侧面铅笔素描立体阴影排线 (营造与 Clash / sing-box 同款明暗素描层次) */}
+      <g strokeWidth="0.9" strokeLinecap="round" opacity="0.45">
+        <line x1="36" y1="36" x2="47" y2="30" />
+        <line x1="36" y1="41" x2="47" y2="35" />
+        <line x1="36" y1="46" x2="47" y2="40" />
+      </g>
+
+      {/* 左侧面微光阴影排线 */}
+      <g strokeWidth="0.8" strokeLinecap="round" opacity="0.3">
+        <line x1="17" y1="29" x2="28" y2="35" />
+        <line x1="17" y1="34" x2="28" y2="40" />
+      </g>
+    </svg>
+  );
+};
+
+/**
  * 11. NekoBox / NekoRay (Android / Windows) 铅笔手绘 Logo
  * 参考官方截图精准重绘：快递纸箱中探出小脑袋的猫耳萌娘、整齐刘海、直勾勾大眼睛、右侧白色发饰绒球与箱前小猫涂鸦
  */
@@ -1735,6 +1871,14 @@ export const PencilSoftwareLogo: React.FC<{
     // FlClash (Android)
     case 'flclash':
       return <PencilFlClashLogo className={className} size={size} {...props} />;
+    
+    // ClashMetaForAndroid (Android)
+    case 'clash-meta-android':
+    case 'clash-meta-for-android':
+    case 'clash-meta':
+    case 'clashmeta':
+    case 'cmfa':
+      return <PencilClashMetaLogo className={className} size={size} {...props} />;
     
     // NekoBox / NekoRay 保持官方纸箱萌猫徽标一致
     case 'nekobox-android':

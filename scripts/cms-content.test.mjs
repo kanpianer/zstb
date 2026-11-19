@@ -17,7 +17,7 @@ test('visitors read deployed static JSON without credentials or GitHub requests'
       assert.equal(options.cache, 'no-store'); assert.equal(options.headers, undefined);
       return new Response(JSON.stringify(next));
     };
-    assert.equal((await content.fetchContent()).tools.length, 20);
+    assert.equal((await content.fetchContent()).tools.length, 21);
     next = content.createDefaultContent(); next.settings.footerText = '部署后的新内容';
     assert.equal((await content.fetchContent()).settings.footerText, '部署后的新内容');
     next = { broken: true }; await assert.rejects(() => content.fetchContent());
@@ -40,9 +40,9 @@ test('published resources drive tool detail, card order, home order and footer',
 
 test('defaults include all existing tutorials and validate', () => {
   const defaults = content.createDefaultContent();
-  assert.equal(defaults.tools.length, 20);
+  assert.equal(defaults.tools.length, 21);
   content.validateContent(defaults);
-  assert.equal(tools.ALL_TOOLS.length, 20);
+  assert.equal(tools.ALL_TOOLS.length, 21);
 });
 test('reject malformed nested resources and unsafe links', () => {
   for (const mutate of [
