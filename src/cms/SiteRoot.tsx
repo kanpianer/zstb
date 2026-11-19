@@ -45,6 +45,15 @@ export function SiteRoot() {
     const snapshot = saveLocalPreview(localStorage, next);
     setActiveContent(snapshot); setContent(snapshot); setPreview(true); setPreviewError('');
     setRevision(previous => previous + 1);
+    // In the local dev server, also write the content directly to the source file so
+    // changes are immediately visible in the codebase without a manual export step.
+    if (import.meta.env.DEV) {
+      fetch('/api/cms/write-content', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(snapshot),
+      }).catch(() => { /* Non-critical: file write failure does not block the preview. */ });
+    }
   };
   const stopPreview = () => {
     try { clearLocalPreview(localStorage); location.reload(); }
