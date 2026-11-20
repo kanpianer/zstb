@@ -38,7 +38,8 @@ export const shadowrocket: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "购买并安装应用",
-        "description": "通过官方 App Store 页面核对应用 ID 932747118、销售方 Shadow Launch Technology Limited，再按当前地区价格购买安装。不使用不可信共享 Apple 账户。"
+        "description": "通过官方 App Store 页面核对应用 ID 932747118、销售方 Shadow Launch Technology Limited，再按当前地区价格购买安装。不使用不可信共享 Apple 账户。",
+        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
       },
       {
         "stepNumber": 2,

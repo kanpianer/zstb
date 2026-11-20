@@ -51,7 +51,8 @@ export const clashPartyMac: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "从官方渠道下载安装",
-        "description": "从官方发布页下载 macOS 安装包：Apple Silicon 选 arm64，Intel 选 x64。当前 v2.0.4 提供 PKG，双击并按系统安装器完成安装，然后打开应用；涉及 Helper 时仅对可信官方安装包授权。"
+        "description": "从官方发布页下载 macOS 安装包：Apple Silicon 选 arm64，Intel 选 x64。当前 v2.0.4 提供 PKG，双击并按系统安装器完成安装，然后打开应用；涉及系统辅助程序（Helper）时仅对可信官方安装包授权。",
+        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
       },
       {
         "stepNumber": 2,

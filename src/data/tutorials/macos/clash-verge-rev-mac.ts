@@ -51,7 +51,8 @@ export const clashVergeRevMac: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "核对平台并安装",
-        "description": "从官方 Releases 下载 aarch64.dmg（Apple Silicon）或 x64.dmg（Intel）。打开 DMG，将应用拖入“应用程序”，再打开客户端。遇到安全警告先核实来源和文件完整性，不要关闭 Gatekeeper。"
+        "description": "从官方发布页下载 aarch64.dmg（Apple Silicon）或 x64.dmg（Intel）。打开 DMG，将应用拖入“应用程序”，再打开客户端。遇到安全警告先核实来源和文件完整性，不要关闭 Gatekeeper。",
+        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
       },
       {
         "stepNumber": 2,

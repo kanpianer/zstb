@@ -37,7 +37,7 @@ export const v2rayn: SoftwareTool = {
         stepNumber: 1,
         title: '下载并打开软件',
         description: '打开[官方发布页](https://github.com/2dust/v2rayN/releases)。普通 x64 电脑下载 `v2rayN-windows-64.zip`，ARM64 电脑选择对应包。完整解压到自己的文件夹，双击 `v2rayN.exe`。',
-        pencilTip: '不要在压缩包内直接运行；如提示缺少运行时，按该版本的发布说明安装。'
+        pencilTip: '推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。不要在压缩包内直接运行；如提示缺少运行时，按该版本的发布说明安装。'
       },
       {
         stepNumber: 2,

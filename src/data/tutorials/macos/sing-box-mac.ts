@@ -51,20 +51,20 @@ export const singBoxMac: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "安装 SFM 图形客户端",
-        "description": "从官方 GitHub Releases 选择 SFM 的 Universal.pkg 或匹配芯片的 Apple/Intel.pkg，按安装器完成安装；也可使用官方文档链接的 Homebrew Cask。启动后仅按系统实际提示授权。",
+        "description": "从官方 GitHub 发布页下载选择 SFM 的 Universal.pkg 或匹配芯片的 Apple/Intel.pkg，按安装器完成安装；也可使用官方文档链接的 Homebrew Cask。启动后仅按系统实际提示授权。",
         "codeSnippet": "brew install --cask sfm",
         "codeLanguage": "bash",
-        "pencilTip": "brew install sing-box 安装的是命令行核心，不是 SFM 图形界面。不要因此期待出现 Profiles 窗口。"
+        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。brew install sing-box 安装的是命令行核心，不是 SFM 图形界面。不要因此期待出现「配置」窗口。"
       },
       {
         "stepNumber": 2,
-        "title": "配置 Local 或 Remote Profile",
-        "description": "在配置管理中添加本地完整 JSON 配置，或建立 Remote Profile 并填写返回完整配置的 URL。确认下载、解析无错误后选中；具体菜单名称与位置以安装版本为准。"
+        "title": "配置本地或远端配置",
+        "description": "在配置管理中添加本地完整 JSON 配置，或创建「远端配置」并填写返回完整配置的 URL。确认下载、解析无错误后选中；具体菜单名称与位置以安装版本为准。"
       },
       {
         "stepNumber": 3,
         "title": "确认节点或策略组",
-        "description": "确认已选中要使用的配置。若配置提供 selector/urltest 分组，可在 Dashboard 中选择节点或自动选择组；若分组要在启动后才显示，连接后再选择。没有分组时使用配置中预设的出站。"
+        "description": "确认已选中要使用的配置。若配置提供节点选择 / 自动选择分组，可在「仪表盘」中选择节点或自动选择组；若分组要在启动后才显示，连接后再选择。没有分组时使用配置中预设的出站。"
       },
       {
         "stepNumber": 4,

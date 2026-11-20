@@ -49,8 +49,8 @@ export const singBoxAndroid: SoftwareTool = {
       "订阅和配置含凭据，请勿公开；连接前停止其他 VPN"
     ],
     "steps": [
-      { "stepNumber": 1, "title": "安装官方客户端", "description": "通过官方 Android 文档进入下载渠道。普通构建需要 Android 7+，Android 5/6 需选择标有 legacy-android-5 的构建；下载 APK 时也要匹配手机架构，不确定可选择提供的 universal 包。" },
-      { "stepNumber": 2, "title": "导入完整配置", "description": "在配置管理中添加 Remote Profile，填入返回完整 sing-box JSON 的订阅地址，下载并保存后选中它。本地文件可使用 Local Profile。Clash YAML、普通节点列表或单节点链接不能直接替代完整配置。" },
+      { "stepNumber": 1, "title": "安装官方客户端", "description": "通过官方 Android 文档进入下载渠道。普通构建需要 Android 7+，Android 5/6 需选择标有 legacy-android-5 的构建；下载 APK 时也要匹配手机架构，不确定可选择提供的 universal 包。", "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。" },
+      { "stepNumber": 2, "title": "导入完整配置", "description": "在配置管理中添加「远端配置」，填入返回完整 sing-box JSON 的订阅地址，下载并保存后选中它。本地文件可使用「本地配置」。Clash YAML、普通节点列表或单节点链接不能直接替代完整配置。" },
       { "stepNumber": 3, "title": "启动并允许 VPN", "description": "启动所选配置，首次同意 Android VPN 连接请求。若出现配置错误，先按提示检查配置，不要反复点连接。" },
       { "stepNumber": 4, "title": "选择可用节点", "description": "配置提供策略组时，在对应分组中选择节点；自动选择组会按配置选择线路。没有分组时使用配置预设的节点，想换线路需向服务方获取带节点选择的配置。" },
       { "stepNumber": 5, "title": "浏览器验证与关闭", "description": "打开浏览器访问日常网站及需要代理的网站，确认网页正常加载。用完回到客户端停止服务，并确认系统 VPN 状态已断开。" }

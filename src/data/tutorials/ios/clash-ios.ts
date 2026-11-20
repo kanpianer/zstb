@@ -39,27 +39,28 @@ export const clashIos: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "从官方入口安装",
-        "description": "通过官网进入 App Store，核对应用名 Clash - Rule Based Proxy、ID 6794257189 与销售方 OmniWide Media Limited。地区可用性以商店页面为准，不使用不可信共享 Apple 账户。"
+        "description": "通过官网进入 App Store，核对应用名 Clash - Rule Based Proxy、ID 6794257189 与销售方 OmniWide Media Limited。地区可用性以商店页面为准，不使用不可信共享 Apple 账户。",
+        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
       },
       {
         "stepNumber": 2,
         "title": "导入并选择配置",
-        "description": "iPhone 点击 Home 左上方配置名称进入 Profile Center；iPad 从侧栏进入 Profiles。选择 Add Profile，导入服务方提供的 Clash / mihomo 配置 URL 或 YAML 文件，保存后选用该配置。普通节点链接不能代替完整配置。"
+        "description": "iPhone 点击「首页」左上方配置名称进入「配置中心」；iPad 从侧栏进入「配置」。选择「添加配置」，导入服务方提供的 Clash / Mihomo 配置 URL 或 YAML 文件，保存后选用该配置。普通节点链接不能代替完整配置。"
       },
       {
         "stepNumber": 3,
         "title": "选择节点",
-        "description": "打开 Proxies 或 Nodes，在负责代理流量的策略组里选择节点。初次使用可先选服务方推荐的线路；日常可用 Rule 模式，具体分流由配置决定。"
+        "description": "打开「代理」或「节点」页面，在负责代理流量的策略组里选择节点。初次使用可先选服务方推荐的线路；日常可用「规则」模式，具体分流由配置决定。"
       },
       {
         "stepNumber": 4,
         "title": "连接并允许 VPN",
-        "description": "回到 Home 启动连接，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。先停止其他 VPN，避免互相影响。"
+        "description": "回到「首页」启动连接，首次按 iOS 提示允许添加 VPN 配置并完成系统认证。先停止其他 VPN，避免互相影响。"
       },
       {
         "stepNumber": 5,
         "title": "浏览器验证与关闭",
-        "description": "打开 Safari，分别访问日常网站及需要代理的网站。能正常加载才算验证通过，VPN 图标并不代表节点可用。用完回到 Home 停止连接，确认系统 VPN 状态已断开。"
+        "description": "打开 Safari，分别访问日常网站及需要代理的网站。能正常加载才算验证通过，VPN 图标并不代表节点可用。用完回到「首页」停止连接，确认系统 VPN 状态已断开。"
       }
     ],
     "advancedRules": [

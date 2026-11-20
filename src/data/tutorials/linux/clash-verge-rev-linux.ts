@@ -51,8 +51,8 @@ export const clashVergeRevLinux: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "下载并安装软件",
-        "description": "点击本页“软件下载”，展开发布页的 Assets（下载文件）。Ubuntu / Debian 选 .deb，Fedora 选 .rpm；普通 Intel / AMD 电脑选 x86_64，ARM 电脑选 aarch64。用系统的软件安装程序打开下载的包，安装后从应用菜单启动 Clash Verge Rev。",
-        "pencilTip": "安装提示缺依赖时，按[官方安装说明](https://github.com/clash-verge-rev/clash-verge-rev)处理，不要强行忽略错误。"
+        "description": "点击本页“软件下载”，展开发布页的下载文件列表（Assets）。Ubuntu / Debian 选 .deb，Fedora 选 .rpm；普通 Intel / AMD 电脑选 x86_64，ARM 电脑选 aarch64。用系统的软件安装程序打开下载的包，安装后从应用菜单启动 Clash Verge Rev。",
+        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。安装提示缺依赖时，按[官方安装说明](https://github.com/clash-verge-rev/clash-verge-rev)处理，不要强行忽略错误。"
       },
       {
         "stepNumber": 2,

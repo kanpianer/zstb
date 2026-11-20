@@ -30,7 +30,7 @@ export const clashPartyWin: SoftwareTool = {
     overview: '先用系统代理连接浏览器，不必一开始就设置 TUN。界面操作可对照 [官方快速上手](https://clashparty.org/docs/handson)。',
     prerequisites: ['Windows 10 / 11，确认电脑使用 x64 还是 ARM64', '准备服务方的 Clash / Mihomo 订阅链接或 YAML 配置，不要公开其中的凭证'],
     steps: [
-      { stepNumber: 1, title: '下载安装', description: '打开 [官方发布页](https://github.com/mihomo-party-org/clash-party/releases)，按电脑架构下载 Windows setup.exe 安装包，按向导安装后打开应用。若选择 7z 便携包，先完整解压再运行。' },
+      { stepNumber: 1, title: '下载安装', description: '打开 [官方发布页](https://github.com/mihomo-party-org/clash-party/releases)，按电脑架构下载 Windows setup.exe 安装包，按向导安装后打开应用。若选择 7z 便携包，先完整解压再运行。', pencilTip: '推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。' },
       { stepNumber: 2, title: '导入订阅', description: '在订阅管理区域添加服务提供方的 Clash / Mihomo 订阅 URL，下载后选为当前配置；已有 YAML 文件也可导入。不要粘贴服务商登录网页或其他客户端专用订阅。' },
       { stepNumber: 3, title: '选择节点', description: '进入代理区域，使用规则模式，在负责代理流量的策略组中选择一个节点。可以先测试延迟，优先尝试有响应的节点；延迟低不代表所有网站都能访问。' },
       { stepNumber: 4, title: '开启系统代理', description: '开启应用中的系统代理，保持 Clash Party 运行。第一次先不要开启 TUN，也不要同时运行其他代理或 VPN，便于确认连接是否正常。系统代理只影响遵循该设置的应用。' },

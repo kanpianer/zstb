@@ -52,7 +52,7 @@ export const nekoboxAndroid: SoftwareTool = {
       "订阅含凭据，请勿公开；不要同时运行冲突的 VPN"
     ],
     "steps": [
-      { "stepNumber": 1, "title": "安装官方 APK", "description": "点击本页“软件下载”，在发布页的 Assets（下载文件）中选择 APK。大多数近年的安卓手机使用 arm64-v8a；若该版本提供 universal 通用包，不确定时可选通用包。安装后打开应用。官方提醒 Google Play 同名版本已由第三方控制，不要从那里下载。" },
+      { "stepNumber": 1, "title": "安装官方 APK", "description": "点击本页“软件下载”，在发布页的下载文件列表（Assets）中选择 APK。大多数近年的安卓手机使用 arm64-v8a；若该版本提供 universal 通用包，不确定时可选通用包。安装后打开应用。官方提醒 Google Play 同名版本已由第三方控制，不要从那里下载。", "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。" },
       { "stepNumber": 2, "title": "导入订阅", "description": "在分组管理中新建订阅分组，填入服务方提供的订阅 URL，保存并更新。也可从剪贴板或二维码导入单个节点。支持的 ClashMeta、v2rayN 等格式只导入节点，不会带入原有分流规则。" },
       { "stepNumber": 3, "title": "选择一个节点", "description": "在导入的分组中选中一个节点。初次使用优先选服务方推荐、无需额外插件的节点；提示缺少插件时，先向服务方确认要求，不要随意修改参数。" },
       { "stepNumber": 4, "title": "连接并允许 VPN", "description": "启动连接，首次按 Android 提示允许 VPN 连接。先关闭其他 VPN，避免连接被替换；未授权时返回应用重新启动。" },

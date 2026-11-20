@@ -46,7 +46,8 @@ export const v2rayng: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "安装 v2rayNG",
-        "description": "从官方 Releases 下载适合手机架构的 APK，不确定时可选 universal 包。按系统提示允许此次安装，不安装来路不明的同名软件。"
+        "description": "从官方发布页下载适合手机架构的 APK，不确定时可选 universal 通用包。按系统提示允许此次安装，不安装来路不明的同名软件。",
+        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
       },
       {
         "stepNumber": 2,

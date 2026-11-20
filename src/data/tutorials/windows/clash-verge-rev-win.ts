@@ -51,7 +51,8 @@ export const clashVergeRevWin: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "下载并安装",
-        "description": "打开[官方发布页](https://github.com/clash-verge-rev/clash-verge-rev/releases)，按电脑架构选择 x64 或 ARM64 的 Windows 安装包，按向导安装后打开。若提示缺少 WebView2，按[官方安装文档](https://www.clashverge.dev/install.html)补齐。"
+        "description": "打开[官方发布页](https://github.com/clash-verge-rev/clash-verge-rev/releases)，按电脑架构选择 x64 或 ARM64 的 Windows 安装包，按向导安装后打开。若提示缺少 WebView2，按[官方安装文档](https://www.clashverge.dev/install.html)补齐。",
+        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
       },
       {
         "stepNumber": 2,

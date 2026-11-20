@@ -72,10 +72,10 @@ export const singBoxWin: SoftwareTool = {
       {
         "stepNumber": 4,
         "title": "运行并开启浏览器代理",
-        "description": "执行下面的命令并保持 PowerShell 窗口打开。确认无启动错误后，打开 Windows 设置中的网络和 Internet → 代理 → 手动设置代理，填入服务方配置的本地 mixed 入站地址和端口并保存。仅本机使用时地址通常是 127.0.0.1，端口必须以配置为准。",
+        "description": "执行下面的命令并保持 PowerShell 窗口打开。确认无启动错误后，打开 Windows 设置中的网络和 Internet → 代理 → 手动设置代理，填入服务方配置的本地混合（mixed）入站地址和端口并保存。仅本机使用时地址通常是 127.0.0.1，端口必须以配置为准。",
         "codeSnippet": ".\\sing-box.exe run -c .\\config.json",
         "codeLanguage": "powershell",
-        "pencilTip": "本教程先用 mixed 入站，不必开启 TUN；系统代理只影响遵循该设置的应用。不要填写远端节点服务器的地址。"
+        "pencilTip": "本教程先用混合（mixed）入站，不必开启 TUN；系统代理只影响遵循该设置的应用。不要填写远端节点服务器的地址。"
       },
       {
         "stepNumber": 5,

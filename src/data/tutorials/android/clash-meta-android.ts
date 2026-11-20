@@ -51,7 +51,8 @@ export const clashMetaAndroid: SoftwareTool = {
       {
         stepNumber: 1,
         title: '下载并安装 ClashMetaForAndroid',
-        description: '点击本页“软件下载”，在 GitHub 发布页的 Assets 列表中下载对应的 Android 安装包（APK）。绝大多数近几年的安卓手机选用 arm64-v8a 版本，若不确定可下载 universal 通用包。系统提示时允许安装未知来源应用，安装完成后打开客户端。'
+        description: '点击本页“软件下载”，在 GitHub 发布页的下载文件列表（Assets）中下载对应的 Android 安装包（APK）。绝大多数近几年的安卓手机选用 arm64-v8a 版本，若不确定可下载 universal 通用包。系统提示时允许安装未知来源应用，安装完成后打开客户端。',
+        pencilTip: '推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。'
       },
       {
         stepNumber: 2,
@@ -61,7 +62,7 @@ export const clashMetaAndroid: SoftwareTool = {
       {
         stepNumber: 3,
         title: '选择代理节点',
-        description: '返回主界面点击进入「代理」页面。在策略组（如 PROXY / 节点选择）中选择一个可用节点，初次配置建议选用服务方推荐的线路或低延迟节点。日常使用建议保持“规则”模式，使国内外流量自动分流。'
+        description: '返回主界面点击进入「代理」页面。在策略组（如「节点选择」/ PROXY）中选择一个可用节点，初次配置建议选用服务方推荐的线路或低延迟节点。日常使用建议保持“规则”模式，使国内外流量自动分流。'
       },
       {
         stepNumber: 4,
