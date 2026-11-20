@@ -51,13 +51,13 @@ export const clashVergeRevMac: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "核对平台并安装",
-        "description": "从官方发布页下载 aarch64.dmg（Apple Silicon）或 x64.dmg（Intel）。打开 DMG，将应用拖入“应用程序”，再打开客户端。遇到安全警告先核实来源和文件完整性，不要关闭 Gatekeeper。",
-        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+        "description": "从官方发布页下载 aarch64.dmg（Apple Silicon）或 x64.dmg（Intel）。打开 DMG，将应用拖入“应用程序”，再打开客户端。遇到安全警告先核实来源和文件完整性，不要关闭 Gatekeeper。"
       },
       {
         "stepNumber": 2,
         "title": "导入并激活配置",
-        "description": "在订阅管理页面粘贴服务商提供的 Clash / Mihomo 订阅链接并导入，或导入本地 YAML 文件。成功后选中该配置，确认能看到节点；导入失败先核对是否拿到了正确格式的订阅。"
+        "description": "在订阅管理页面粘贴服务商提供的 Clash / Mihomo 订阅链接并导入，或导入本地 YAML 文件。成功后选中该配置，确认能看到节点；导入失败先核对是否拿到了正确格式的订阅。",
+        "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
       },
       {
         "stepNumber": 3,

@@ -51,13 +51,13 @@ export const clashMetaAndroid: SoftwareTool = {
       {
         stepNumber: 1,
         title: '下载并安装 ClashMetaForAndroid',
-        description: '点击本页“软件下载”，在 GitHub 发布页的下载文件列表（Assets）中下载对应的 Android 安装包（APK）。绝大多数近几年的安卓手机选用 arm64-v8a 版本，若不确定可下载 universal 通用包。系统提示时允许安装未知来源应用，安装完成后打开客户端。',
-        pencilTip: '推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。'
+        description: '点击本页“软件下载”，在 GitHub 发布页的下载文件列表（Assets）中下载对应的 Android 安装包（APK）。绝大多数近几年的安卓手机选用 arm64-v8a 版本，若不确定可下载 universal 通用包。系统提示时允许安装未知来源应用，安装完成后打开客户端。'
       },
       {
         stepNumber: 2,
         title: '导入订阅或配置文件',
-        description: '进入「配置」界面，点击右上角加号或新建按钮。选择「从 URL 导入」，粘贴服务方提供的 Clash / Mihomo 订阅链接，设置易于识别的名称，点击右上角保存完成配置下载并选中生效。'
+        description: '进入「配置」界面，点击右上角加号或新建按钮。选择「从 URL 导入」，粘贴服务方提供的 Clash / Mihomo 订阅链接，设置易于识别的名称，点击右上角保存完成配置下载并选中生效。',
+        pencilTip: '推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。'
       },
       {
         stepNumber: 3,

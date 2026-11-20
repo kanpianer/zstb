@@ -53,13 +53,13 @@
           {
             "stepNumber": 1,
             "title": "购买并安装应用",
-            "description": "通过官方 App Store 页面核对应用 ID 932747118、销售方 Shadow Launch Technology Limited，再按当前地区价格购买安装。不使用不可信共享 Apple 账户。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "通过官方 App Store 页面核对应用 ID 932747118、销售方 Shadow Launch Technology Limited，再按当前地区价格购买安装。不使用不可信共享 Apple 账户。"
           },
           {
             "stepNumber": 2,
             "title": "添加兼容订阅",
-            "description": "机场一般提供一键导入和扫描二维码添加订阅功能，添加订阅成功后，会在界面显示订阅的所有节点。如果是自建节点，复制节点链接后回到软件，会提示是否允许粘粘，允许后即可导入节点。"
+            "description": "机场一般提供一键导入和扫描二维码添加订阅功能，添加订阅成功后，会在界面显示订阅的所有节点。如果是自建节点，复制节点链接后回到软件，会提示是否允许粘粘，允许后即可导入节点。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -152,13 +152,13 @@
           {
             "stepNumber": 1,
             "title": "从官方入口安装",
-            "description": "通过官网进入 App Store，核对应用名 Clash - Rule Based Proxy、ID 6794257189 与销售方 OmniWide Media Limited。地区可用性以商店页面为准，不使用不可信共享 Apple 账户。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "通过官网进入 App Store，核对应用名 Clash - Rule Based Proxy、ID 6794257189 与销售方 OmniWide Media Limited。地区可用性以商店页面为准，不使用不可信共享 Apple 账户。"
           },
           {
             "stepNumber": 2,
             "title": "导入并选择配置",
-            "description": "iPhone 点击「首页」左上方配置名称进入「配置中心」；iPad 从侧栏进入「配置」。选择「添加配置」，导入服务方提供的 Clash / Mihomo 配置 URL 或 YAML 文件，保存后选用该配置。普通节点链接不能代替完整配置。"
+            "description": "iPhone 点击「首页」左上方配置名称进入「配置中心」；iPad 从侧栏进入「配置」。选择「添加配置」，导入服务方提供的 Clash / Mihomo 配置 URL 或 YAML 文件，保存后选用该配置。普通节点链接不能代替完整配置。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -246,13 +246,13 @@
           {
             "stepNumber": 1,
             "title": "安装官方客户端",
-            "description": "通过官方 Apple 文档的 App Store 链接安装 sing-box MT，核对 ID 6785326793 和销售方 Metamerism LLC。普通 iPhone 使用商店版本，不使用 GitHub 上的越狱安装包。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "通过官方 Apple 文档的 App Store 链接安装 sing-box MT，核对 ID 6785326793 和销售方 Metamerism LLC。普通 iPhone 使用商店版本，不使用 GitHub 上的越狱安装包。"
           },
           {
             "stepNumber": 2,
             "title": "添加完整配置",
-            "description": "在配置管理中添加「远端配置」，填写返回完整 sing-box JSON 的 HTTPS 地址，下载保存后选中配置。已有本地配置可用「本地配置」；Clash YAML、普通节点订阅或单个分享链接不能直接替代完整配置。"
+            "description": "在配置管理中添加「远端配置」，填写返回完整 sing-box JSON 的 HTTPS 地址，下载保存后选中配置。已有本地配置可用「本地配置」；Clash YAML、普通节点订阅或单个分享链接不能直接替代完整配置。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -348,13 +348,13 @@
           {
             "stepNumber": 1,
             "title": "安装 Karing",
-            "description": "通过官网的 App Store 入口安装，核对应用 ID 6472431552。地区可用性以商店为准，不使用不可信共享 Apple 账户。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "通过官网的 App Store 入口安装，核对应用 ID 6472431552。地区可用性以商店为准，不使用不可信共享 Apple 账户。"
           },
           {
             "stepNumber": 2,
             "title": "添加订阅",
-            "description": "使用添加配置链接功能粘贴订阅 URL，填写备注并保存，确认出现节点。支持 Clash、V2Ray 等多种格式，但 Clash Meta 配置仅部分兼容，优先使用服务方标注适用于 Karing 的订阅。"
+            "description": "使用添加配置链接功能粘贴订阅 URL，填写备注并保存，确认出现节点。支持 Clash、V2Ray 等多种格式，但 Clash Meta 配置仅部分兼容，优先使用服务方标注适用于 Karing 的订阅。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -441,13 +441,13 @@
           {
             "stepNumber": 1,
             "title": "核对平台并安装",
-            "description": "从官方发布页下载 aarch64.dmg（Apple Silicon）或 x64.dmg（Intel）。打开 DMG，将应用拖入“应用程序”，再打开客户端。遇到安全警告先核实来源和文件完整性，不要关闭 Gatekeeper。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "从官方发布页下载 aarch64.dmg（Apple Silicon）或 x64.dmg（Intel）。打开 DMG，将应用拖入“应用程序”，再打开客户端。遇到安全警告先核实来源和文件完整性，不要关闭 Gatekeeper。"
           },
           {
             "stepNumber": 2,
             "title": "导入并激活配置",
-            "description": "在订阅管理页面粘贴服务商提供的 Clash / Mihomo 订阅链接并导入，或导入本地 YAML 文件。成功后选中该配置，确认能看到节点；导入失败先核对是否拿到了正确格式的订阅。"
+            "description": "在订阅管理页面粘贴服务商提供的 Clash / Mihomo 订阅链接并导入，或导入本地 YAML 文件。成功后选中该配置，确认能看到节点；导入失败先核对是否拿到了正确格式的订阅。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -536,14 +536,13 @@
           {
             "stepNumber": 1,
             "title": "安装并打开 Clash",
-            "description": "打开 Mac 官方页，进入 Mac App Store 安装。核对应用 ID 6794257189 和销售方 OmniWide Media Limited，安装完成后打开应用。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "打开 Mac 官方页，进入 Mac App Store 安装。核对应用 ID 6794257189 和销售方 OmniWide Media Limited，安装完成后打开应用。"
           },
           {
             "stepNumber": 2,
             "title": "导入并选中配置",
             "description": "在侧栏打开「配置」，选择「添加配置」，填写服务商提供的配置 URL 或导入 YAML 文件。保存后选中配置，确认没有解析错误。",
-            "pencilTip": "订阅链接包含凭证，不要公开分享。"
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。订阅链接包含凭证，不要公开分享。"
           },
           {
             "stepNumber": 3,
@@ -631,13 +630,13 @@
           {
             "stepNumber": 1,
             "title": "从官方渠道下载安装",
-            "description": "从官方发布页下载 macOS 安装包：Apple Silicon 选 arm64，Intel 选 x64。当前 v2.0.4 提供 PKG，双击并按系统安装器完成安装，然后打开应用；涉及系统辅助程序（Helper）时仅对可信官方安装包授权。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "从官方发布页下载 macOS 安装包：Apple Silicon 选 arm64，Intel 选 x64。当前 v2.0.4 提供 PKG，双击并按系统安装器完成安装，然后打开应用；涉及系统辅助程序（Helper）时仅对可信官方安装包授权。"
           },
           {
             "stepNumber": 2,
             "title": "导入兼容订阅并激活",
-            "description": "在订阅管理中添加服务商提供的 Clash / Mihomo YAML 链接，或导入本地配置文件。下载成功后选为当前配置，确认节点列表出现；单个节点分享链接不等于完整配置。"
+            "description": "在订阅管理中添加服务商提供的 Clash / Mihomo YAML 链接，或导入本地配置文件。下载成功后选为当前配置，确认节点列表出现；单个节点分享链接不等于完整配置。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -728,12 +727,13 @@
             "description": "从官方 GitHub 发布页下载选择 SFM 的 Universal.pkg 或匹配芯片的 Apple/Intel.pkg，按安装器完成安装；也可使用官方文档链接的 Homebrew Cask。启动后仅按系统实际提示授权。",
             "codeSnippet": "brew install --cask sfm",
             "codeLanguage": "bash",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。brew install sing-box 安装的是命令行核心，不是 SFM 图形界面。不要因此期待出现「配置」窗口。"
+            "pencilTip": "brew install sing-box 安装的是命令行核心，不是 SFM 图形界面。不要因此期待出现「配置」窗口。"
           },
           {
             "stepNumber": 2,
             "title": "配置本地或远端配置",
-            "description": "在配置管理中添加本地完整 JSON 配置，或创建「远端配置」并填写返回完整配置的 URL。确认下载、解析无错误后选中；具体菜单名称与位置以安装版本为准。"
+            "description": "在配置管理中添加本地完整 JSON 配置，或创建「远端配置」并填写返回完整配置的 URL。确认下载、解析无错误后选中；具体菜单名称与位置以安装版本为准。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -824,13 +824,13 @@
           {
             "stepNumber": 1,
             "title": "安装 v2rayNG",
-            "description": "从官方发布页下载适合手机架构的 APK，不确定时可选 universal 通用包。按系统提示允许此次安装，不安装来路不明的同名软件。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "从官方发布页下载适合手机架构的 APK，不确定时可选 universal 通用包。按系统提示允许此次安装，不安装来路不明的同名软件。"
           },
           {
             "stepNumber": 2,
             "title": "添加并更新订阅",
-            "description": "进入订阅分组设置，新增名称和订阅 URL，保存后执行更新订阅。使用服务方标注适用于 v2rayNG / v2rayN 的节点订阅，不要填入 Clash YAML；单节点可从剪贴板或二维码导入。"
+            "description": "进入订阅分组设置，新增名称和订阅 URL，保存后执行更新订阅。使用服务方标注适用于 v2rayNG / v2rayN 的节点订阅，不要填入 Clash YAML；单节点可从剪贴板或二维码导入。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -922,13 +922,13 @@
           {
             "stepNumber": 1,
             "title": "安装 FlClash",
-            "description": "点击本页“软件下载”，在发布页的下载文件列表（Assets）里找到 Android APK。大多数近年的安卓手机选择 arm64-v8a 包；不确定时先查看手机处理器信息或向设备厂商确认。按系统提示允许此次安装，安装完成后打开 FlClash。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "点击本页“软件下载”，在发布页的下载文件列表（Assets）里找到 Android APK。大多数近年的安卓手机选择 arm64-v8a 包；不确定时先查看手机处理器信息或向设备厂商确认。按系统提示允许此次安装，安装完成后打开 FlClash。"
           },
           {
             "stepNumber": 2,
             "title": "导入兼容订阅",
-            "description": "在配置管理中通过 URL 添加服务方提供的 Clash / Mihomo YAML 订阅，也可导入本地 YAML 文件。保存后选为当前配置，确认能看到节点；普通节点分享链接不能代替完整配置。"
+            "description": "在配置管理中通过 URL 添加服务方提供的 Clash / Mihomo YAML 订阅，也可导入本地 YAML 文件。保存后选为当前配置，确认能看到节点；普通节点分享链接不能代替完整配置。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -1015,13 +1015,13 @@
           {
             "stepNumber": 1,
             "title": "下载并安装 ClashMetaForAndroid",
-            "description": "点击本页“软件下载”，在 GitHub 发布页的下载文件列表（Assets）中下载对应的 Android 安装包（APK）。绝大多数近几年的安卓手机选用 arm64-v8a 版本，若不确定可下载 universal 通用包。系统提示时允许安装未知来源应用，安装完成后打开客户端。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "点击本页“软件下载”，在 GitHub 发布页的下载文件列表（Assets）中下载对应的 Android 安装包（APK）。绝大多数近几年的安卓手机选用 arm64-v8a 版本，若不确定可下载 universal 通用包。系统提示时允许安装未知来源应用，安装完成后打开客户端。"
           },
           {
             "stepNumber": 2,
             "title": "导入订阅或配置文件",
-            "description": "进入「配置」界面，点击右上角加号或新建按钮。选择「从 URL 导入」，粘贴服务方提供的 Clash / Mihomo 订阅链接，设置易于识别的名称，点击右上角保存完成配置下载并选中生效。"
+            "description": "进入「配置」界面，点击右上角加号或新建按钮。选择「从 URL 导入」，粘贴服务方提供的 Clash / Mihomo 订阅链接，设置易于识别的名称，点击右上角保存完成配置下载并选中生效。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -1109,13 +1109,13 @@
           {
             "stepNumber": 1,
             "title": "安装官方客户端",
-            "description": "通过官方 Android 文档进入下载渠道。普通构建需要 Android 7+，Android 5/6 需选择标有 legacy-android-5 的构建；下载 APK 时也要匹配手机架构，不确定可选择提供的 universal 包。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "通过官方 Android 文档进入下载渠道。普通构建需要 Android 7+，Android 5/6 需选择标有 legacy-android-5 的构建；下载 APK 时也要匹配手机架构，不确定可选择提供的 universal 包。"
           },
           {
             "stepNumber": 2,
             "title": "导入完整配置",
-            "description": "在配置管理中添加「远端配置」，填入返回完整 sing-box JSON 的订阅地址，下载并保存后选中它。本地文件可使用「本地配置」。Clash YAML、普通节点列表或单节点链接不能直接替代完整配置。"
+            "description": "在配置管理中添加「远端配置」，填入返回完整 sing-box JSON 的订阅地址，下载并保存后选中它。本地文件可使用「本地配置」。Clash YAML、普通节点列表或单节点链接不能直接替代完整配置。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -1214,13 +1214,13 @@
           {
             "stepNumber": 1,
             "title": "安装官方 APK",
-            "description": "点击本页“软件下载”，在发布页的下载文件列表（Assets）中选择 APK。大多数近年的安卓手机使用 arm64-v8a；若该版本提供 universal 通用包，不确定时可选通用包。安装后打开应用。官方提醒 Google Play 同名版本已由第三方控制，不要从那里下载。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "点击本页“软件下载”，在发布页的下载文件列表（Assets）中选择 APK。大多数近年的安卓手机使用 arm64-v8a；若该版本提供 universal 通用包，不确定时可选通用包。安装后打开应用。官方提醒 Google Play 同名版本已由第三方控制，不要从那里下载。"
           },
           {
             "stepNumber": 2,
             "title": "导入订阅",
-            "description": "在分组管理中新建订阅分组，填入服务方提供的订阅 URL，保存并更新。也可从剪贴板或二维码导入单个节点。支持的 ClashMeta、v2rayN 等格式只导入节点，不会带入原有分流规则。"
+            "description": "在分组管理中新建订阅分组，填入服务方提供的订阅 URL，保存并更新。也可从剪贴板或二维码导入单个节点。支持的 ClashMeta、v2rayN 等格式只导入节点，不会带入原有分流规则。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -1310,13 +1310,13 @@
             "stepNumber": 1,
             "title": "下载并打开软件",
             "description": "打开[官方发布页](https://github.com/2dust/v2rayN/releases)。普通 x64 电脑下载 `v2rayN-windows-64.zip`，ARM64 电脑选择对应包。完整解压到自己的文件夹，双击 `v2rayN.exe`。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。不要在压缩包内直接运行；如提示缺少运行时，按该版本的发布说明安装。"
+            "pencilTip": "不要在压缩包内直接运行；如提示缺少运行时，按该版本的发布说明安装。"
           },
           {
             "stepNumber": 2,
             "title": "导入订阅",
             "description": "打开订阅分组设置，新增分组，填写名称并粘贴服务方的订阅链接。保存后更新该订阅，看到节点列表即表示导入成功。",
-            "pencilTip": "首次先尝试不通过代理更新；导入失败时向服务方确认链接适用于 v2rayN。"
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。首次先尝试不通过代理更新；导入失败时向服务方确认链接适用于 v2rayN。"
           },
           {
             "stepNumber": 3,
@@ -1407,13 +1407,13 @@
           {
             "stepNumber": 1,
             "title": "下载并安装",
-            "description": "打开[官方发布页](https://github.com/clash-verge-rev/clash-verge-rev/releases)，按电脑架构选择 x64 或 ARM64 的 Windows 安装包，按向导安装后打开。若提示缺少 WebView2，按[官方安装文档](https://www.clashverge.dev/install.html)补齐。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "打开[官方发布页](https://github.com/clash-verge-rev/clash-verge-rev/releases)，按电脑架构选择 x64 或 ARM64 的 Windows 安装包，按向导安装后打开。若提示缺少 WebView2，按[官方安装文档](https://www.clashverge.dev/install.html)补齐。"
           },
           {
             "stepNumber": 2,
             "title": "导入订阅",
-            "description": "打开订阅页面，粘贴服务方的 Clash / Mihomo 订阅链接并导入，然后选中该配置。已有 YAML 文件也可以从本地导入。"
+            "description": "打开订阅页面，粘贴服务方的 Clash / Mihomo 订阅链接并导入，然后选中该配置。已有 YAML 文件也可以从本地导入。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -1501,13 +1501,13 @@
           {
             "stepNumber": 1,
             "title": "下载安装",
-            "description": "打开 [官方发布页](https://github.com/mihomo-party-org/clash-party/releases)，按电脑架构下载 Windows setup.exe 安装包，按向导安装后打开应用。若选择 7z 便携包，先完整解压再运行。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+            "description": "打开 [官方发布页](https://github.com/mihomo-party-org/clash-party/releases)，按电脑架构下载 Windows setup.exe 安装包，按向导安装后打开应用。若选择 7z 便携包，先完整解压再运行。"
           },
           {
             "stepNumber": 2,
             "title": "导入订阅",
-            "description": "在订阅管理区域添加服务提供方的 Clash / Mihomo 订阅 URL，下载后选为当前配置；已有 YAML 文件也可导入。不要粘贴服务商登录网页或其他客户端专用订阅。"
+            "description": "在订阅管理区域添加服务提供方的 Clash / Mihomo 订阅 URL，下载后选为当前配置；已有 YAML 文件也可导入。不要粘贴服务商登录网页或其他客户端专用订阅。",
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
           },
           {
             "stepNumber": 3,
@@ -1709,13 +1709,13 @@
             "stepNumber": 1,
             "title": "下载并安装软件",
             "description": "点击本页“软件下载”，展开发布页的下载文件列表（Assets）。Ubuntu / Debian 选 .deb，Fedora 选 .rpm；普通 Intel / AMD 电脑选 x86_64，ARM 电脑选 aarch64。用系统的软件安装程序打开下载的包，安装后从应用菜单启动 Clash Verge Rev。",
-            "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。安装提示缺依赖时，按[官方安装说明](https://github.com/clash-verge-rev/clash-verge-rev)处理，不要强行忽略错误。"
+            "pencilTip": "安装提示缺依赖时，按[官方安装说明](https://github.com/clash-verge-rev/clash-verge-rev)处理，不要强行忽略错误。"
           },
           {
             "stepNumber": 2,
             "title": "粘贴订阅链接",
             "description": "打开“订阅”页面，粘贴服务商提供的 Clash / Mihomo 订阅链接并导入。出现配置卡片后，点击选中它。",
-            "pencilTip": "订阅链接不是服务商网站的登录地址；不知道复制哪个链接，就找服务商页面里的“Clash 订阅”。"
+            "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。订阅链接不是服务商网站的登录地址；不知道复制哪个链接，就找服务商页面里的“Clash 订阅”。"
           },
           {
             "stepNumber": 3,

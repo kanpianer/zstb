@@ -32,8 +32,8 @@ export const clashMac: SoftwareTool = {
     overview: '使用 ProjectClash 的 Clash Mac 客户端，导入配置并通过 VPN 连接。请从 [Mac 官方页](https://clash.md/platforms/macos) 安装，不要与 ClashX 等同名客户端混用教程。',
     prerequisites: ['macOS 13 或更高版本；可使用对应商店的 Apple 账户', '可信 Clash / mihomo YAML 配置或配置 URL；自行提供节点'],
     steps: [
-      { stepNumber: 1, title: '安装并打开 Clash', description: '打开 Mac 官方页，进入 Mac App Store 安装。核对应用 ID 6794257189 和销售方 OmniWide Media Limited，安装完成后打开应用。', pencilTip: '推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。' },
-      { stepNumber: 2, title: '导入并选中配置', description: '在侧栏打开「配置」，选择「添加配置」，填写服务商提供的配置 URL 或导入 YAML 文件。保存后选中配置，确认没有解析错误。', pencilTip: '订阅链接包含凭证，不要公开分享。' },
+      { stepNumber: 1, title: '安装并打开 Clash', description: '打开 Mac 官方页，进入 Mac App Store 安装。核对应用 ID 6794257189 和销售方 OmniWide Media Limited，安装完成后打开应用。' },
+      { stepNumber: 2, title: '导入并选中配置', description: '在侧栏打开「配置」，选择「添加配置」，填写服务商提供的配置 URL 或导入 YAML 文件。保存后选中配置，确认没有解析错误。', pencilTip: '推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。订阅链接包含凭证，不要公开分享。' },
       { stepNumber: 3, title: '选择节点', description: '在「代理」或「节点」中找到负责代理流量的策略组，测试延迟并选择可用节点。初次使用保留「规则」模式，流量按配置规则分流。' },
       { stepNumber: 4, title: '开启 VPN 连接', description: '回到「首页」开启连接，首次按 macOS 提示允许添加 VPN 配置，等待连接成功。此客户端使用 VPN 隧道，不需要另找系统代理或额外 TUN 开关。' },
       { stepNumber: 5, title: '验证访问并断开', description: '打开浏览器访问需要代理的网站，并确认常用网站仍能打开；失败时换节点或查看连接日志。用完后在「首页」断开连接，确认 VPN 已停止，再检查普通上网是否正常。' },

@@ -32,8 +32,8 @@ export const karing: SoftwareTool = {
     overview: 'Karing 可以导入多种订阅，选择节点后连接即可使用。下面从安装开始；更多说明见 [官方网站](https://karing.app)。',
     prerequisites: ['iOS / iPadOS 15+ 与可下载应用的本人 Apple 账户', '服务方提供的 Karing 兼容订阅；应用不附带节点', '订阅包含凭据，请勿公开或交给不可信转换网站'],
     steps: [
-      { stepNumber: 1, title: '安装 Karing', description: '通过官网的 App Store 入口安装，核对应用 ID 6472431552。地区可用性以商店为准，不使用不可信共享 Apple 账户。', pencilTip: '推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。' },
-      { stepNumber: 2, title: '添加订阅', description: '使用添加配置链接功能粘贴订阅 URL，填写备注并保存，确认出现节点。支持 Clash、V2Ray 等多种格式，但 Clash Meta 配置仅部分兼容，优先使用服务方标注适用于 Karing 的订阅。' },
+      { stepNumber: 1, title: '安装 Karing', description: '通过官网的 App Store 入口安装，核对应用 ID 6472431552。地区可用性以商店为准，不使用不可信共享 Apple 账户。' },
+      { stepNumber: 2, title: '添加订阅', description: '使用添加配置链接功能粘贴订阅 URL，填写备注并保存，确认出现节点。支持 Clash、V2Ray 等多种格式，但 Clash Meta 配置仅部分兼容，优先使用服务方标注适用于 Karing 的订阅。', pencilTip: '推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。' },
       { stepNumber: 3, title: '选择节点', description: '在节点选择界面选择服务方推荐的节点；如果进行延迟测试，选一个有响应的节点先试用。测试结果不等于网页一定能打开。' },
       { stepNumber: 4, title: '启动并允许 VPN', description: '打开主页连接开关，首次按 iOS 提示允许添加 VPN 配置，并完成系统认证。先停止其他 VPN，以免互相影响。' },
       { stepNumber: 5, title: '浏览器验证与关闭', description: '打开 Safari，分别访问日常网站和需要代理的网站。能正常加载后再使用其他应用；用完关闭 Karing 的连接开关，确认系统 VPN 状态已断开。' },

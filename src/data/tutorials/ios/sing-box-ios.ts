@@ -52,13 +52,13 @@ export const singBoxIos: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "安装官方客户端",
-        "description": "通过官方 Apple 文档的 App Store 链接安装 sing-box MT，核对 ID 6785326793 和销售方 Metamerism LLC。普通 iPhone 使用商店版本，不使用 GitHub 上的越狱安装包。",
-        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+        "description": "通过官方 Apple 文档的 App Store 链接安装 sing-box MT，核对 ID 6785326793 和销售方 Metamerism LLC。普通 iPhone 使用商店版本，不使用 GitHub 上的越狱安装包。"
       },
       {
         "stepNumber": 2,
         "title": "添加完整配置",
-        "description": "在配置管理中添加「远端配置」，填写返回完整 sing-box JSON 的 HTTPS 地址，下载保存后选中配置。已有本地配置可用「本地配置」；Clash YAML、普通节点订阅或单个分享链接不能直接替代完整配置。"
+        "description": "在配置管理中添加「远端配置」，填写返回完整 sing-box JSON 的 HTTPS 地址，下载保存后选中配置。已有本地配置可用「本地配置」；Clash YAML、普通节点订阅或单个分享链接不能直接替代完整配置。",
+        "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
       },
       {
         "stepNumber": 3,

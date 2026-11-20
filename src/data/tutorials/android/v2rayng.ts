@@ -46,13 +46,13 @@ export const v2rayng: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "安装 v2rayNG",
-        "description": "从官方发布页下载适合手机架构的 APK，不确定时可选 universal 通用包。按系统提示允许此次安装，不安装来路不明的同名软件。",
-        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+        "description": "从官方发布页下载适合手机架构的 APK，不确定时可选 universal 通用包。按系统提示允许此次安装，不安装来路不明的同名软件。"
       },
       {
         "stepNumber": 2,
         "title": "添加并更新订阅",
-        "description": "进入订阅分组设置，新增名称和订阅 URL，保存后执行更新订阅。使用服务方标注适用于 v2rayNG / v2rayN 的节点订阅，不要填入 Clash YAML；单节点可从剪贴板或二维码导入。"
+        "description": "进入订阅分组设置，新增名称和订阅 URL，保存后执行更新订阅。使用服务方标注适用于 v2rayNG / v2rayN 的节点订阅，不要填入 Clash YAML；单节点可从剪贴板或二维码导入。",
+        "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
       },
       {
         "stepNumber": 3,

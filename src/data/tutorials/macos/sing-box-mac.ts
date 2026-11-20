@@ -54,12 +54,13 @@ export const singBoxMac: SoftwareTool = {
         "description": "从官方 GitHub 发布页下载选择 SFM 的 Universal.pkg 或匹配芯片的 Apple/Intel.pkg，按安装器完成安装；也可使用官方文档链接的 Homebrew Cask。启动后仅按系统实际提示授权。",
         "codeSnippet": "brew install --cask sfm",
         "codeLanguage": "bash",
-        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。brew install sing-box 安装的是命令行核心，不是 SFM 图形界面。不要因此期待出现「配置」窗口。"
+        "pencilTip": "brew install sing-box 安装的是命令行核心，不是 SFM 图形界面。不要因此期待出现「配置」窗口。"
       },
       {
         "stepNumber": 2,
         "title": "配置本地或远端配置",
-        "description": "在配置管理中添加本地完整 JSON 配置，或创建「远端配置」并填写返回完整配置的 URL。确认下载、解析无错误后选中；具体菜单名称与位置以安装版本为准。"
+        "description": "在配置管理中添加本地完整 JSON 配置，或创建「远端配置」并填写返回完整配置的 URL。确认下载、解析无错误后选中；具体菜单名称与位置以安装版本为准。",
+        "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
       },
       {
         "stepNumber": 3,

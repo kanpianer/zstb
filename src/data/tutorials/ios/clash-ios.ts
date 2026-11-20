@@ -39,13 +39,13 @@ export const clashIos: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "从官方入口安装",
-        "description": "通过官网进入 App Store，核对应用名 Clash - Rule Based Proxy、ID 6794257189 与销售方 OmniWide Media Limited。地区可用性以商店页面为准，不使用不可信共享 Apple 账户。",
-        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+        "description": "通过官网进入 App Store，核对应用名 Clash - Rule Based Proxy、ID 6794257189 与销售方 OmniWide Media Limited。地区可用性以商店页面为准，不使用不可信共享 Apple 账户。"
       },
       {
         "stepNumber": 2,
         "title": "导入并选择配置",
-        "description": "iPhone 点击「首页」左上方配置名称进入「配置中心」；iPad 从侧栏进入「配置」。选择「添加配置」，导入服务方提供的 Clash / Mihomo 配置 URL 或 YAML 文件，保存后选用该配置。普通节点链接不能代替完整配置。"
+        "description": "iPhone 点击「首页」左上方配置名称进入「配置中心」；iPad 从侧栏进入「配置」。选择「添加配置」，导入服务方提供的 Clash / Mihomo 配置 URL 或 YAML 文件，保存后选用该配置。普通节点链接不能代替完整配置。",
+        "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
       },
       {
         "stepNumber": 3,

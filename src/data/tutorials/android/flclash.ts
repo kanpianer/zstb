@@ -49,8 +49,8 @@ export const flclash: SoftwareTool = {
       "订阅含凭据，请勿公开；不要同时运行冲突的 VPN"
     ],
     "steps": [
-      { "stepNumber": 1, "title": "安装 FlClash", "description": "点击本页“软件下载”，在发布页的下载文件列表（Assets）里找到 Android APK。大多数近年的安卓手机选择 arm64-v8a 包；不确定时先查看手机处理器信息或向设备厂商确认。按系统提示允许此次安装，安装完成后打开 FlClash。", "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。" },
-      { "stepNumber": 2, "title": "导入兼容订阅", "description": "在配置管理中通过 URL 添加服务方提供的 Clash / Mihomo YAML 订阅，也可导入本地 YAML 文件。保存后选为当前配置，确认能看到节点；普通节点分享链接不能代替完整配置。" },
+      { "stepNumber": 1, "title": "安装 FlClash", "description": "点击本页“软件下载”，在发布页的下载文件列表（Assets）里找到 Android APK。大多数近年的安卓手机选择 arm64-v8a 包；不确定时先查看手机处理器信息或向设备厂商确认。按系统提示允许此次安装，安装完成后打开 FlClash。" },
+      { "stepNumber": 2, "title": "导入兼容订阅", "description": "在配置管理中通过 URL 添加服务方提供的 Clash / Mihomo YAML 订阅，也可导入本地 YAML 文件。保存后选为当前配置，确认能看到节点；普通节点分享链接不能代替完整配置。", "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。" },
       { "stepNumber": 3, "title": "选择节点", "description": "在代理策略组中选择一个节点，初次使用可先选服务方推荐的线路。日常使用规则模式，哪些网站直连或走代理由当前配置决定。" },
       { "stepNumber": 4, "title": "连接并授权 VPN", "description": "启动连接，首次同意 Android 的 VPN 请求。先停止其他 VPN；若之前拒绝授权，返回 FlClash 再次启动。" },
       { "stepNumber": 5, "title": "浏览器验证与关闭", "description": "打开浏览器，分别访问日常网站和需要代理的网站。确认网页能加载，而不只看 VPN 图标或延迟。用完返回 FlClash 停止连接，确认系统 VPN 状态已断开。" }

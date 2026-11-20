@@ -52,13 +52,13 @@ export const clashVergeRevLinux: SoftwareTool = {
         "stepNumber": 1,
         "title": "下载并安装软件",
         "description": "点击本页“软件下载”，展开发布页的下载文件列表（Assets）。Ubuntu / Debian 选 .deb，Fedora 选 .rpm；普通 Intel / AMD 电脑选 x86_64，ARM 电脑选 aarch64。用系统的软件安装程序打开下载的包，安装后从应用菜单启动 Clash Verge Rev。",
-        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。安装提示缺依赖时，按[官方安装说明](https://github.com/clash-verge-rev/clash-verge-rev)处理，不要强行忽略错误。"
+        "pencilTip": "安装提示缺依赖时，按[官方安装说明](https://github.com/clash-verge-rev/clash-verge-rev)处理，不要强行忽略错误。"
       },
       {
         "stepNumber": 2,
         "title": "粘贴订阅链接",
         "description": "打开“订阅”页面，粘贴服务商提供的 Clash / Mihomo 订阅链接并导入。出现配置卡片后，点击选中它。",
-        "pencilTip": "订阅链接不是服务商网站的登录地址；不知道复制哪个链接，就找服务商页面里的“Clash 订阅”。"
+        "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。订阅链接不是服务商网站的登录地址；不知道复制哪个链接，就找服务商页面里的“Clash 订阅”。"
       },
       {
         "stepNumber": 3,

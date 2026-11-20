@@ -51,13 +51,13 @@ export const clashVergeRevWin: SoftwareTool = {
       {
         "stepNumber": 1,
         "title": "下载并安装",
-        "description": "打开[官方发布页](https://github.com/clash-verge-rev/clash-verge-rev/releases)，按电脑架构选择 x64 或 ARM64 的 Windows 安装包，按向导安装后打开。若提示缺少 WebView2，按[官方安装文档](https://www.clashverge.dev/install.html)补齐。",
-        "pencilTip": "推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。"
+        "description": "打开[官方发布页](https://github.com/clash-verge-rev/clash-verge-rev/releases)，按电脑架构选择 x64 或 ARM64 的 Windows 安装包，按向导安装后打开。若提示缺少 WebView2，按[官方安装文档](https://www.clashverge.dev/install.html)补齐。"
       },
       {
         "stepNumber": 2,
         "title": "导入订阅",
-        "description": "打开订阅页面，粘贴服务方的 Clash / Mihomo 订阅链接并导入，然后选中该配置。已有 YAML 文件也可以从本地导入。"
+        "description": "打开订阅页面，粘贴服务方的 Clash / Mihomo 订阅链接并导入，然后选中该配置。已有 YAML 文件也可以从本地导入。",
+        "pencilTip": "推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。"
       },
       {
         "stepNumber": 3,

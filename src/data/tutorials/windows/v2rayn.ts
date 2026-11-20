@@ -37,13 +37,13 @@ export const v2rayn: SoftwareTool = {
         stepNumber: 1,
         title: '下载并打开软件',
         description: '打开[官方发布页](https://github.com/2dust/v2rayN/releases)。普通 x64 电脑下载 `v2rayN-windows-64.zip`，ARM64 电脑选择对应包。完整解压到自己的文件夹，双击 `v2rayN.exe`。',
-        pencilTip: '推荐使用多数机场都支持快捷的一键添加订阅，或者扫描二维码添加订阅的方式。不要在压缩包内直接运行；如提示缺少运行时，按该版本的发布说明安装。'
+        pencilTip: '不要在压缩包内直接运行；如提示缺少运行时，按该版本的发布说明安装。'
       },
       {
         stepNumber: 2,
         title: '导入订阅',
         description: '打开订阅分组设置，新增分组，填写名称并粘贴服务方的订阅链接。保存后更新该订阅，看到节点列表即表示导入成功。',
-        pencilTip: '首次先尝试不通过代理更新；导入失败时向服务方确认链接适用于 v2rayN。'
+        pencilTip: '推荐使用多数机场都支持的一键添加订阅，或者扫描二维码添加订阅的方式。机场往往也会提供比较详细的教程。首次先尝试不通过代理更新；导入失败时向服务方确认链接适用于 v2rayN。'
       },
       {
         stepNumber: 3,
